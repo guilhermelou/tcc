@@ -1,0 +1,363 @@
+
+\chapter{ Recuperação de Informação } \label{cap2}
+
+  \section{ Introdução } 
+  
+Com o crescimento dos meios de informações, da tecnologia e do interesse e necessidade humana de buscar informações nos mais diversos meios de informação, uma tarefa que está em crescimento e passando pelas mais diversas pesquisas, é a Recuperação de Informação. Informações estão armazenadas atualmente em um grande número de elementos, donde podemos citar documentos, artigos, a Internet, dispositivos móveis, imagens, áudio e, a partir desses meios que armazenam informações, técnicas são pesquisadas para recuperar informações a fim de classificá-las de acordo com a necessidade.
+
+A Recuperação de Informação busca encontrar dados em um conjunto de elementos, a fim de classificá-los e retirar informações particulares destes elementos. Essa característica é o que mais evidência a diferença entre a recuperação de informação e os sistemas de bancos de dados.
+  
+Sistemas Gerenciadores de Banco de Dados, ou SGBDs, são ferramentas utilizadas para retornar após uma consulta, todos os elementos - com todos os seus itens, presentes no banco de dados que satisfaçam a operação. Já a recuperação de informação extrai dados particulares dos elementos pertencentes a coleção/seleção que satisfaçam ao usuário do sistema de recuperação. \cite{ferneda}
+  
+Na recuperação de informações através de uma coleção de documentos, alguns procedimentos e técnicas devem ser aplicadas para a extração da informação. Neste tipo de recuperação, a busca pela informação se baseia pelo contexto das palavras-chaves passadas pelo usuário, ou até documentos que são analisados realizando uma comparação entre seus conteúdos. 
+
+Como neste trabalho visamos a recuperação de informação em coleções de documentos a partir de documentos, esta revisão visará destacar os procedimentos e as características deste tipo de recuperação de dados.
+
+  \thispagestyle{empty}
+  \vspace{13mm}
+
+  \begin{figure}[!h]
+    \hspace{20mm}
+    \includegraphics[scale=0.2]{Figuras/Chapter2/extracao_exemplo.png}
+    \caption{Procedimento para recuperação de informação em coleções de documentos}
+    \label{ProcedimentoRecuperacao}
+  \end{figure}
+  
+O processo de recuperação de informação se inicia - como visto na Figura \ref{ProcedimentoRecuperacao}, com a identificação do documento ou da coleção de documentos que serão analisados na recuperação de informação. Nesta etapa são identificados os documentos que serão utilizados como 'modelos', e os documentos que serão comparados à estes modelos definidos pelo usuário do sistema de recuperação de informação.
+Após esta etapa de identificação dos elementos pertencentes a recuperação, se inicia o processo que formará o vetor de ocorrência e por sequência, de similaridade entre os documentos. 
+
+Na Seção \ref{VSM} teremos uma descrição detalhada do processo que cria o modelo vetorial, ou Modelo do Espaço Vetorial (VSM - Vector Space Model). Na Subseção \ref{MetricaOcorrencia} destacaremos o processo que define a ocorrência dos termos analisados no modelo vetorial.
+
+O processo que define o resultado final, a similaridade entre os documentos, será destacado na Seção \ref{MetricaSimilaridade}.
+
+
+  \section{ Modelo Vetorial }  \label {VSM}
+  
+
+Com a identificação dos documentos que farão parte dos objetos de análise, se inicia o processo de reconhecimento e armazenamento do conteúdo de cada um destes documentos. Como a recuperação se baseia em similaridade por conteúdo, este procedimento de armazenar os termos relevantes de cada documento tem uma importância muito significativa. Caso um termo seja descartado incorretamente, o usuário do sistema de recuperação poderá receber respostas que não satisfaçam a busca.
+
+No Modelo Vetorial, ou modelo de espaço vetorial (VSM -Vector Space Model), os documentos são representados em uma matriz com \textit{n}-documentos, onde cada linha desta matriz é um vetor representando cada documento da coleção. A matriz representa nas colunas os termos relevantes de todos os documentos da coleção.\cite{raghavan}
+
+Neste processo destaca-se que os termos são adicionados a matriz conforme a sua descoberta nos documentos, fazendo com que todos os vetores tenham o mesmo número de atributos para se manterem em igualdade para a comparação de similaridade a ser realizada posteriormente. Se após o processamento do documento \textit{X}, for descoberto um termo relevante \textit{'a1'} no documento \textit{Y}, então o campo \textit{'a1'} é adicionado na matriz, fazendo com que todos os documentos que já foram processados também possuam este campo. Neste caso, a ocorrência deste termo neste documento será nula ou vazia.
+
+Conforme os termos de cada documento são identificados e adicionados ao vetor correspondente, a matriz do modelo vetorial fica composta pelas colunas - que representam os termos, as linhas - que representam os documentos, e o valor daquela posição no vetor, ou na matriz. Este valor, é o número de ocorrência deste termo no documento analisado.
+
+Abaixo temos um exemplo de uma matriz formada por um conjunto X  de documentos D, sendo D = \{$d_1$,$d_2$,...,$d_X$\}, uma quantidade N de termos T na matriz, donde T = \{$t_1$,$t_2$,..$t_N$\}, e a composição de cada elemento de D, onde cada posição $\alpha_{i,j}$ definem a frequência de cada termo no documento $d_x$ analisado.
+
+
+\vspace{8mm}
+\begin{table}[ht]
+    \centering 
+    \begin{tabular}{|c || c c c c c|}
+        \hline 
+        & $t_1$ & $t_2$ & $t_3$ & .. & $t_N$ \\ [0.5ex] % inserts table 
+        \hline  \hline 
+        
+        $d_1$ & $\alpha_{1,1}$ & $\alpha_{1,2}$ & $\alpha_{1,3}$ & .. & $\alpha_{1,N}$ \\ \hline
+        $d_2$ & $\alpha_{2,1}$ & $\alpha_{2,2}$ & $\alpha_{2,3}$ & .. & $\alpha_{2,N}$ \\ \hline
+        $d_3$ & $\alpha_{3,1}$ & $\alpha_{3,2}$ & $\alpha_{3,3}$ & .. & $\alpha_{3,N}$ \\ \hline
+        ..    & ..             & ..             & ..             & .. & ..             \\ \hline
+        $d_X$ & $\alpha_{X,1}$ & $\alpha_{X,2}$ & $\alpha_{X,3}$ & .. & $\alpha_{X,N}$ \\ \hline
+        
+    \end{tabular}
+    \label{exModeloVetorial} 
+    \caption{ Exemplo da Matriz VSM - Modelo Vetorial}
+\end{table}
+
+Para começar este procedimento é necessário separar todos os termos de cada documento, para que os mesmos passem pelas análises. Este processo chamado de \textbf{tokenização} separa cada termo do documento para que sejam tratados separadamente. Esta característica impossibilita que expressões sejam recuperadas, pois cada palavra que for encontrada, será tratada separadamente. Como este projeto visa recuperação a partir de documentos, busca com expressões não irão ocorrer, e não trarão nenhum problema ao resultado final. \cite{manning}
+
+Para que apenas os termos com relevância sejam adicionados ao modelo vetorial, alguns procedimentos são adotados para que alguns termos sejam eliminados. Esses termos podem atrapalhar o processamento da recuperação por não terem importância no contexto do documento, terem alta ocorrência - o que pode indicar que este termo tem importância apenas a este documento, ou pelo próprio contexto do termo (preposições por exemplo) que não é relevante a recuperação.
+
+Como foi dito, termos que são classificados como preposições, artigos, pronomes, advérbios não são adicionados ao VSM para que seja reduzida a dimensionalidade da matriz do modelo vetorial, para que estes termos não alterem o resultado final da recuperação e também para que os mesmos não atrapalhem no processamento, já que os cálculos deixarão de ser aplicados à estes termos. Este procedimento é chamado de '\textbf{remoção de stop words}'.
+
+Para exemplificar o método, temos abaixo um exemplo:  
+ 
+\textbf{Entrada}: 'O rato roeu a roupa do Rei de Roma'. 
+
+\textbf{Termos Relevantes}: 'rato roeu roupa Rei Roma'.
+
+\vspace{3mm}
+Após eliminar as palavras que apenas aumentarão a dimensão do modelo vetorial, outro procedimento pode ser aplicado para reduzir o número de palavras com contextos semelhantes. O '\textbf{stemming}' é um algoritmo que é executado para reduzir duas palavras com o mesmo radical, para um termo só, que no caso, é o próprio radical. Este processo como o de '\textit{stop words}' reduz a dimensão do modelo vetorial, pois elimina ocorrências repetidas do mesmo radical. \cite{bassil}
+
+Para exemplificar o método, temos abaixo um exemplo:  
+
+\textbf{Entradas}: 'pesca', 'pescaria', 'pescador', 'pescado'. 
+
+\textbf{Termos Relevantes}: 'pesc'.
+
+\vspace{3mm}
+Os processos de remoção das \textit{stopwords} e do \textit{stemming} ocorrem baseados em dicionários particulares de cada linguagem. Isto significa que este processo ocorre apenas se a ferramenta de recuperação de informação dar suporte à língua em que os elementos da coleção estão escritos. Existem dicionários para ambas operações. Os dicionários para \textit{stopwords} são mais fáceis de ser encontrados ou criados já que além de possuírem um número menor de termos, eles não envolvem nenhuma lógica no seu contexto.
+
+Os dicionários para \textit{stemming} são mais difíceis de serem encontrados para algumas línguas já que é um dicionário mais complicado de ser criado. Os melhores criados, segundo estudos, foram para a língua inglesa. Este dicionário é mais difícil de ser encontrado já que um bom dicionário tem que saber diferenciar, para algumas linguagens como o português, mudanças nos radicais de alguns termos com o mesmo contexto semântico.
+
+Veja o exemplo abaixo para a língua portuguesa:
+
+\textbf{Entrada}: 'Viajar' 'Viagem'. 
+
+\vspace{3mm}
+Neste caso surge a dúvida entre o radical ser 'Viaj' ou 'Viag', e isto o dicionário tem que analisar e identificar para um melhor agrupamento dos radicais.
+
+Com a dimensionalidade dos termos reduzida, e a identificação de todos os termos de cada documento, teremos a matriz de ocorrência dos documentos da coleção montada e preparada para o cálculo de similaridade. Até o momento foi destacado o processo de identificação dos termos que irão indexar, ou compor a matriz do modelo vetorial (VSM).
+
+No mesmo momento que é realizada a análise dos termos, a frequência de cada termo é calculada e por isso, as análises acabam juntas. No processo de identificação dos termos relevantes, caso um termo já está indexado, ou presente, na matriz, a frequência deste termo é atualizada de acordo com a métrica utilizada.
+
+Neste momento, a ferramenta de recuperação de informação aplicará algoritmos que serão destacados nas próximas sub-seções; a métrica de ocorrência, e também os Algoritmos da Lei de Zipf e o Corte de Luhn.
+
+
+    \subsection{ Métricas de Ocorrência nos Documentos } \label {MetricaOcorrencia}
+    
+    Para o cálculo de ocorrência, ou frequência, de um termo no documento, algumas métricas foram desenvolvidas.
+  
+    \begin{itemize}
+      
+      \item{Frequência do Termo}
+    
+    Com uma lógica muito simples, este método se baseia em contabilizar o número de vezes que o termo apareceu no documento. Quanto maior o número, maior foi a ocorrência deste termo no documento. O valor ser maior que 0 (zero) indica também que o termo existe no documento.
+      
+      
+      \item{Booleana}
+    
+    A métrica booleana é uma das métricas mais simples que existem, pois ela descreve com valores booleanos (1 e 0), a existência do termo no documento. Se o termo existir no documento, o campo frequência é preenchido com 1. Caso não exista, o campo da frequência é preenchido com 0.
+      
+      \begin{center}      
+        $\alpha_{i,j} = 1$  ou    $\alpha_{i,j} = 0$      
+      \end{center}
+      \item{Term Frequency Inverse Document Frequency (tf-idf)}
+    
+    Alguns termos podem ser frequentes em muitos documentos, ou ao contrário, podem ter um índice de ocorrência muito baixo. Com essa característica, esses termos não são relevantes à recuperação de informação, já que eles descrevem por este ponto de vista, particularidades de alguns documentos. Um termo que está presente em muitos documentos, será incapaz de diferenciá-los, assim como um termo que aparece poucas vezes na coleção, será de pouca relevância na diferenciação dos documentos. \cite{alencar}
+    
+    Para isso temos o fator \textit{idf} que estima a frequência favorecendo termos que não apareceram tanto na coleção de documentos. Um termo que aparece muito no documento, tem um idf baixo, já um termo que quase não é encontrado no documento possui um idf alto.
+    
+    \begin{center}
+    \large
+      $idf = \log   \frac{N}{d(t_j)}$
+    \end{center}
+    
+    N é o número de documentos da coleção,
+    
+    $d(t_j)$ é o número de documentos que contêm o termo.
+    
+    
+    Para obtermos a frequência do termo pelo inverso do documento(tf-idf), precisamos combinar o fator \textit{idf} com a frequência do termo ($\alpha_{i,j}$).
+    
+    \begin{center}
+    \large
+      $tf-idf(t_j,d_i) = tf(t_j,d_i) \times idf(t_j) = \alpha_{i,j} \times \log \frac{N}{d(t_j)}$
+    \end{center}
+      
+    \end{itemize}
+    
+    
+    \subsection{ Lei de Zipf - Corte de Luhn } \label {ZipfLuhn}
+    
+    Afim de que a dimensionalidade da matriz de termos seja reduzida, alguns algoritmos ainda são executados para eliminarem termos que não ajudarão na comparação entre os documentos por terem uma frequência muito alta ou muito baixa na coleção de documentos. \cite{alencar}
+    
+    
+    \begin{description}
+    
+      \item{Lei de Zipf} \label {Zipf}
+      
+      A lei de Zipf, ou Curva de Zipf (George K. Zipf - 1940) é uma lei matemática que calcula dimensões, frequências de elementos. O resultado é armazenado ordenadamente em uma lista onde os termos são ordenados pelos que possuem maior frequência até os que são raros ou pouco frequentes. Na recuperação de informação essa lei pode ser aplicada buscando identificar e ordenar os termos que mais se destacaram na recuperação.
+            
+      \item{Corte de Luhn} \label {Luhn}
+      
+      O Corte de Luhn é um algoritmo utilizado na recuperação de informação com o auxílio da Lei de Zipf. O Corte de Luhn estabelece limites inferiores e superiores sobre o resultado de Lei de Zipf. Estes cortes eliminam os termos que tiveram uma frequência alta no número de ocorrências - significando que não há como diferenciar os documentos já que o termo é comum à todos, e também aqueles que não apareceram tanto nos documentos, que com isso, não irão diferenciar os documentos já que são particulares a poucos documentos na coleção.
+      
+  \begin{figure}[!h]
+    \vspace{5mm}
+    \begin{center}
+    \includegraphics[scale=0.17]{Figuras/Chapter2/curvaZipfcorteLuhn.png}
+    \caption{Exemplo da Lei de Zipf(esquerda) e do Corte de Luhn(direita)}
+    \label{LuhnImage}
+    \end{center}
+  \end{figure}      
+      
+      Com este corte podemos notar que na Curva de Zipf, ou Lei de Zipf, os termos mais importantes e relevantes se encontram normalmente no meio do conjunto.
+      
+    \end{description}
+
+	\section{ Medidas de Dissimilaridade entre Documentos } \label {MetricaSimilaridade}
+  
+    Medidas de similaridade são métricas usadas para demonstrar quanto um documento é parecido ao outro através de valores numéricos. Esses valores são sempre iguais ou maiores que 0(zero), onde  quanto maior for o valor, maior será a similaridade entre os objetos.
+    
+    Para cálculos envolvendo documentos no espaço vetorial, temos que assumir uma regra importante para o cálculo. Dados dois elementos \textit{x} e \textit{y}, e \textit{n} sua dimensionalidade, os objetos x e y serão representados no espaço vetorial da forma abaixo: (Zhang, 2008).
+    
+    \begin{center}
+    \begin{large}
+    x = ($x_1, x_2, x_3, .., x_n$)
+    
+    y = ($y_1, y_2, y_3, .., y_n$)    
+    \end{large}
+    \end{center}
+    
+    \subsection{Produto Interno}
+
+    Na medida do produto interno, o valor de similaridade é obtido através do produto simples entre os objetos, sendo que só serão calculadas as dimensões que ambos objetos possuírem. Isto quer dizer que se um objeto possuir uma ocorrência e o outro a ser comparado, não possuir, esta posição do objeto será ignorada e o cálculo irá para a próxima dimensão.
+
+    Esta medida é um tanto quanto tendenciosa já que dado um objeto que possuir 100 dimensões, e outro com 30 dimensões, levando em considerações que todas as dimensões do segundo objeto estão também presentes no primeiro, este resultado segundo esta medida, será de 100\% compatível, sendo que o correto seria 30\%, já que as outras 70 dimensões do objetos não existem e não foram analisadas.
+    
+    A medida de similaridade deste método é dada pela fórmula abaixo:
+    
+    \begin{center}
+    \begin{large}
+      D(a,b) = $\sum_{i=1}^{N} a_i \times b_i$
+    \end{large}   
+    \end{center}
+      
+    \subsection{Coeficiente de Dice}
+    
+    O coeficiente de Dice foi desenvolvido a partir da medida do Produto Interno, para tentar normalizar os resultados e fazer com que o 'erro' apresentado na medida do Produto Interno seja corrigido.
+    
+    Para isto é adicionado um denominador na medida do Produto Interno, para que todas as dimensões sejam levadas em consideração;
+    
+    O algoritmo é descrito abaixo:
+    
+    \begin{center}
+    \begin{large}
+      D(a,b) = $\frac{2\sum_{i=1}^{N} a_i \times b_i}{\sum_{i=1}^{N} a_i + \sum_{i=1}^{N} b_i}$
+    \end{large} 
+    \end{center}  
+    
+    \subsection{Euclidiana}
+    
+    A distância Euclidiana se baseia na equação matemática que extrai um valor a partir da raiz quadrada da soma dos quadrados das diferenças entre os pontos. Isto para a recuperação de documentos implicaria em comparações entre cada dimensão dos objetos analisados.
+    
+    Sendo x = ($x_1, x_2, x_3, .., x_n$) e y = ($y_1, y_2, y_3, .., y_n$), a comparação seria a raiz da somatória ($(x_1 - y_1)^2 + (x_2 - y_2)^2 + (x_3 - y_3)^2 + ... + (x_n - y_n)^2 $).
+    
+    O algoritmo é descrito abaixo:
+    
+    \begin{center}
+    \begin{large}
+      D(a,b) = $\sqrt[2]{\sum_{i=1}^{N} (a_i - b_i)^2}$
+    \end{large} 
+    \end{center}
+    
+    da mesma forma,
+    
+    \begin{center}
+    \begin{large}
+      D(a,b) = $\sqrt[2]{(x_1 - y_1)^2 + (x_2 - y_2)^2 + (x_3 - y_3)^2 + ... + (x_n - y_n)^2}$
+    \end{large} 
+    \end{center}
+    
+    
+    \subsection{Lei do Cosseno}
+    
+    A lei do Cosseno é uma medida de similaridade que encontra a distância a partir do ângulo que os dois objetos formam no plano. Dado dois objetos, o cálculo de sua similaridade é o cosseno do ângulo que existe entre os objetos no espaço vetorial. Com isso, os valores obtidos serão sempre entre os valores 0 e 1 que são o intervalo do cosseno. 
+    
+    Este método reconhece melhor a similaridade em objetos porque acaba analisando melhor a distribuição de pesos nos objetos. A medida é dada pela divisão  do produto interno pela raiz da soma dos quadrados de cada termo dos objetos. 
+    
+    O algoritmo é descrito abaixo:
+    
+    \begin{center}
+    \begin{large}
+      D(a,b) = $\frac{\sum_{i=1}^{N} a_i \times b_i}{ ( \sum_{i=1}^{N} a^2_i \times \sum_{i=1}^{N} b^2_i )^\frac{1}{2} }$
+    \end{large} 
+    \end{center}
+    
+    \subsection{City Block}
+    
+    A distância City Block, ou Manhattan,  é um algoritmo que calcula a distância entre os pontos de uma maneira bem simples. O calculo é realizado apenas com a somatória das diferenças entre os pontos. Lembrando que as diferenças são sempre positivos (módulo). 
+    
+    Prestando mais atenção no algoritmo podemos notar que é bem semelhante ao algoritmo Euclidiano, onde para o City Block o valor de p na equação abaixo é 1, e no caso do Euclidiano, p receberia o valor 2.
+    
+    \begin{center}
+    \begin{large}
+      $(\sum_{i=1}^{N} |a_i - b_i|^p)^\frac{1}{p}$
+    \end{large} 
+    \end{center}
+    
+   A partir destas analises temos então o algoritmo City Block descrito abaixo:
+    
+    \begin{center}
+    \begin{large}
+     D(a,b) = $\sum_{i=1}^{N} |a_i - b_i|$
+    \end{large}
+    \end{center}
+    
+    
+    \subsection{Overlap co-efficient} 
+    
+    Este algoritmo é baseado também no algoritmo do Produto Interno, e muito similar ao Coeficiente de Dice. A mudança vem no denominador da equação que nos levará a medida de similaridade.
+    
+    Neste algoritmo, o denominador é o mínimo entre as somas de pesos entre cada objeto analisado. O algoritmo está descrito abaixo:
+    
+    \begin{center}
+    \begin{large}
+      D(a,b) = $\frac{\sum_{i=1}^{N} a_i \times b_i}{ MIN (\sum_{i=1}^{N} a_i , \sum_{i=1}^{N} b_i ) }$
+    \end{large} 
+    \end{center} 
+    
+    
+    \subsection{Jaccard Distance}   
+    
+    A distância de Jaccard é calculada levando em consideração dimensões que são presentes em ambos objetos. O cálculo tem base no conceito de conjuntos matemáticos. O coeficiente de similaridade é dado pela divisão dos atributos pertencentes em ambos objetos pela união de todas os atributos (dimensões) existentes.
+    
+    \begin{center}
+    \begin{large}
+    	J(a,b) = $\frac{ |a	\cap b| }{|a	\cup b| }$  
+    \end{large}
+    \end{center}
+    
+    
+    A partir deste coeficiente, a distância de Jaccard é dada subtraindo o coeficiente de Jaccard de 1. A medida de similaridade é dada abaixo:
+        
+    \begin{center}
+    \begin{large}
+    	$D_j(a,b) = 1 - \frac{ |a	\cap b| }{|a	\cup b| }$  
+    \end{large}
+    \end{center}
+    
+    \subsection{Extended Jaccard}
+    
+	A medida Extended Jaccard é derivada da Jaccard Distance diferindo apenas em seu denominador. 
+	
+	Na Jaccard Distance o denominador leva em consideração os elementos presentes em ambos objetos.
+	No algoritmo Extended Jaccard, o denominador é definido pela soma do quadrado dos atributos(dimensões) pertencentes a cada objeto subtraindo os elementos que são pertencente em ambos. 
+	
+	Este algoritmo leva em consideração objetos com valores binários (e.g: se uma dimensão está presente ao objeto, será identificado por 1, senão 0). Como o vetor é identificado como um vetor binário, a soma dos quadrados abaixo acaba ficando igual a soma simples já que o quadrado de 1 permanece 1. Então temos:
+	
+    \begin{center}
+    \begin{large}
+    	 $\|a\|^2 = \sum_{i=1}^{N} a^2_i = \sum_{i=1}^{N} a_i$
+    \end{large}
+    \end{center}	
+	
+	O algoritmo é dado por:
+        
+    \begin{center}
+    \begin{large}
+    	$D(a,b) = \frac{ a \cdot b }{\|a\|^2 + \|b\|^2 - a \cdot b }$  
+    \end{large}
+    \end{center}
+    
+    \subsection{The Pearson r correlation}
+
+	Esta medida avalia os objetos baseados na força da relação entre duas varáveis que foram assumidas \cite{Zhang}. Esta força é encontrada através de uma equação que leva em consideração a média de valores de cada variável assumida.
+    
+    Na equação, o numerador é composto por uma somatória do produto da diferença entre o valor da posição atual do objeto e a média de ocorrência do objeto. No denominador temos o produto das raízes de cada objeto, sendo o produto formado pela diferença entre o valor do objeto e a média de ocorrência dos valores no mesmo objeto.
+    
+    Os valores da equação são dados entre -1 e 1, e por isso, o resultado da medida é obtido pelo valor absoluto. 
+    
+    Abaixo temos a equação:
+	        
+    \begin{center}
+    \begin{large}
+    	$D(a,b) = \frac{ \sum_{i=1}^{N} (a_i - \frac{ \sum_{i=1}^{N} a_i }{n}) \times (b_i - \frac{ \sum_{i=1}^{N} b_i }{n}) }{ \sqrt[2]{\sum_{i=1}^{N} (a_i - \frac{ \sum_{i=1}^{N} a_i }{n})}  \times \sqrt[2]{\sum_{i=1}^{N} (b_i - \frac{ \sum_{i=1}^{N} b_i }{n})}}$  
+    	
+    \end{large}
+    \end{center}        
+
+  \section{ Considerações Finais }  
+  
+	Após  a construção do modelo vetorial e da aplicação de uma medida de similaridade na coleção, teremos a matriz de distâncias dos objetos. Lembrando que esta matriz de distâncias é totalmente diferente da matriz que foi criada no modelo vetorial.  Naquela etapa a matriz guardava os termos de cada documento, já na matriz de distâncias guardaremos as distâncias provenientes das medidas de similaridades entre cada objeto.
+
+	Essa matriz possui uma dimensão \textit{n} x \textit{n}, onde \textit{n} é o numero de documentos que foram selecionados para a comparação, incluindo os documentos que são os modelos para a comparação.  Isto implica que o cálculo de similaridade será aplicado \textit{n} $\cdot$ \textit{n} vezes, o que traz uma complexidade $\sigma(n^2)$ ao processo. 
+
+	Este processo é realizado desta forma para que o usuário possa saber  a distância de cada objeto em relação aos outros.  Caso o usuário só queira saber a distância entre um objeto e os outros elementos da coleção, a complexidade é $\sigma(n)$, mas caso o usuário queira utilizar ferramentas de visualização de informação por exemplo, será necessário ter uma matriz \textit{n} $\cdot$ \textit{n} para que os elementos possam ser representados em relação ao conjunto todo.
+
+	No próximo capítulo será descrito técnicas de projeções multidimensionais que utilizaram a matriz de distâncias para executarem as projeções.
+
+
+
+

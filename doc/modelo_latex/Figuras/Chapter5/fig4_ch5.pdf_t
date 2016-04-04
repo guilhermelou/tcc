@@ -1,0 +1,21 @@
+\begin{picture}(0,0)%
+\includegraphics{Figuras/Chapter5/fig4_ch5.pdf}%
+\end{picture}%
+\setlength{\unitlength}{4144sp}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(6127,3445)(8,-2563)
+\put( 23,-1972){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\rmdefault}{\mddefault}{\updefault}$\bf{p}_{1}$}}}}
+\put(1204,-1974){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\rmdefault}{\mddefault}{\updefault}$\bf{p}_{2}$}}}}
+\put(2406,-1918){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\rmdefault}{\mddefault}{\updefault}$\bf{p}_{3}$}}}}
+\put(1271,723){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\rmdefault}{\mddefault}{\updefault}$\bf{p}_{4}$}}}}
+\put(3730,-1979){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\rmdefault}{\mddefault}{\updefault}$\bf{p}_{1}$}}}}
+\put(4978,716){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\rmdefault}{\mddefault}{\updefault}$\bf{p}_{4}$}}}}
+\put(4933,-1597){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\rmdefault}{\mddefault}{\updefault}$\bf{p}_{2}$}}}}
+\put(6120,-1962){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\rmdefault}{\mddefault}{\updefault}$\bf{p}_{3}$}}}}
+\end{picture}%

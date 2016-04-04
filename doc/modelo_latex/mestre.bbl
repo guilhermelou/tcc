@@ -1,0 +1,101 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v<VERSION> }
+
+\bibitem[ALENCAR 2013]{alencar}
+\abntrefinfo{ALENCAR}{ALENCAR}{2013}
+{ALENCAR, A. \emph{Visualização da evolução temporal das coleções de artigos
+  científicos}.
+[S.l.], 2013.}
+
+\bibitem[BASSIL 2012]{bassil}
+\abntrefinfo{BASSIL}{BASSIL}{2012}
+{BASSIL, Y. A survey on information retrivial, text categorization, and web
+  crawling.
+\emph{Journal of Computer Science and Research (JCSCR)}, v.~1, n.~6, p. 1--11,
+  2012.}
+
+\bibitem[ELER D.M.;~MINGHIM 2007]{eler}
+\abntrefinfo{ELER D.M.;~MINGHIM}{ELER D.M.;~MINGHIM}{2007}
+{ELER D.M.;~MINGHIM, R. \emph{Projeçao e Arranjo}.
+[S.l.], 2007.}
+
+\bibitem[FALOUTSOS C.;~LIN]{faloutsose}
+\abntrefinfo{FALOUTSOS C.;~LIN}{FALOUTSOS C.;~LIN}{}
+{FALOUTSOS C.;~LIN, K. \emph{FastMap: A Fast Algorithm for Indexing,
+  Data-Mining and Visualization of Tradicional and Mutimedia Datasets}.
+[S.l.].}
+
+\bibitem[FERNEDA 2003]{ferneda}
+\abntrefinfo{FERNEDA}{FERNEDA}{2003}
+{FERNEDA, E. \emph{Recuperação de Informaçao: Análise sobre a contribuiçao da
+  Ciência da Computação para a Ciência da Informaçao}.
+[S.l.], 2003.}
+
+\bibitem[MANNING C.D.;~RAGHAVAN 2008]{manning}
+\abntrefinfo{MANNING C.D.;~RAGHAVAN}{MANNING C.D.;~RAGHAVAN}{2008}
+{MANNING C.D.;~RAGHAVAN, P. S.~H. \emph{Introduction to Information Retrivial}.
+  [S.l.: s.n.], 2008.}
+
+\bibitem[MINGHIM R.;~PAULOVICH 2006]{paulovichetal2}
+\abntrefinfo{MINGHIM R.;~PAULOVICH}{MINGHIM R.;~PAULOVICH}{2006}
+{MINGHIM R.;~PAULOVICH, F. P. L.~A. Content-based text mapping using
+  multi-dimensional projections for exploration of document collections.
+\emph{Visualization and Data Analysis 2006}, 2006.}
+
+\bibitem[PAULOVICH F 2009]{paulovichetal}
+\abntrefinfo{PAULOVICH F}{PAULOVICH F}{2009}
+{PAULOVICH F, P. N. L. M.~R. L.~H. Least square projection: a fast high
+  precision multidimensional projection technique and its application to
+  document mapping.
+\emph{Visualization and Computer Graphics, IEEE Transactions}, v.~14, p.
+  564--575, 2009.}
+
+\bibitem[PAULOVICH 2008]{paulovichetal3}
+\abntrefinfo{PAULOVICH}{PAULOVICH}{2008}
+{PAULOVICH, F.~V. \emph{Mapeamento de dados multi-dimensionais - integrando
+  mineração e visualização}.
+[S.l.], 2008.}
+
+\bibitem[PLATT]{platt}
+\abntrefinfo{PLATT}{PLATT}{}
+{PLATT, J. \emph{FastMap, MetricMap, and LandMark MDS are all Nyström
+  Algorithms}.
+[S.l.].}
+
+\bibitem[RAGHAVAN]{raghavan}
+\abntrefinfo{RAGHAVAN}{RAGHAVAN}{}
+{RAGHAVAN, P. \emph{Information Retrivial Algorithms: A Survey}.
+[S.l.].}
+
+\bibitem[SALAZAR 2012]{salazar}
+\abntrefinfo{SALAZAR}{SALAZAR}{2012}
+{SALAZAR, F. \emph{Um estudo sobre o papel de medidas de similaridade em
+  visualização de coleções de documentos}.
+[S.l.], 2012.}
+
+\bibitem[TEJADA E.;~MINGHIM 2003]{Tejada}
+\abntrefinfo{TEJADA E.;~MINGHIM}{TEJADA E.;~MINGHIM}{2003}
+{TEJADA E.;~MINGHIM, R. N.~L. On improved projection techniques to support
+  visual exploration of multidimensional data sets.
+\emph{Information Visualization}, Palgrave Macmillan, v.~2, n.~4, p. 218--231,
+  dez. 2003.
+ISSN 1473-8716.
+Dispon{\'\i}vel em: $<$http://dx.doi.org/10.1057/palgrave.ivs.9500054$>$.}
+
+\bibitem[VALDIVIA 2007]{valdivia}
+\abntrefinfo{VALDIVIA}{VALDIVIA}{2007}
+{VALDIVIA, A. \emph{Mapeamento de dados multidimensionais usando árvores
+  filogenéticas: foco em mapeamento de textos}.
+[S.l.], 2007.}
+
+\bibitem[ZHANG]{Zhang}
+\abntrefinfo{ZHANG}{ZHANG}{}
+{ZHANG, J. \emph{Visualization for Information Retrieval (The Information
+  Retrieval Series)}. 1. ed. [S.l.: s.n.].
+ISBN 3540751475, 9783540751472.}
+
+\end{thebibliography}

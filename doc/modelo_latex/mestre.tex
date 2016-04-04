@@ -1,0 +1,112 @@
+% aqui se define a hifenização: brazil
+\documentclass[12pt, a4paper, brazil]{abntex2}
+
+%\usepackage[Bjornstrup]{fncychap} 	% estilo do capitulo
+
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc} 
+\usepackage{ae} 
+
+\usepackage{lmodern}
+%\usepackage[alf]{abntex2cite}
+\usepackage{cite}
+\usepackage{xcolor}
+\usepackage{algorithm}									% inclusão de pseudo-códigos - ver exemplos
+\usepackage{algorithmic}								% inclusão de pseudo-códigos - ver exemplos
+%\usepackage{hyperref}										% cria hiperlinks entre as referências e os objetos referenciados
+\usepackage{textpos} %posicionamento do texto
+
+\usepackage[Lenny]{fncychap}
+
+%\usepackage{epsfig}
+\usepackage{graphicx}
+
+\usepackage{listings} % inclusão de códigos fonte
+
+\renewcommand{\rm}{\textrm}
+\renewcommand{\bf}{\textbf}
+\renewcommand{\it}{\textit}
+\renewcommand\lstlistingname{Código}
+\renewcommand{\algorithmicrequire}{\textbf{Entrada:}}
+\renewcommand{\algorithmicensure}{\textbf{Saida:}}
+\renewcommand{\algorithmicend}{\textbf{fim}}
+\renewcommand{\algorithmicif}{\textbf{Se}}
+\renewcommand{\algorithmicelse}{\textbf{sen\~{a}o}}
+\renewcommand{\algorithmicdo}{\textbf{fa\c{c}a}}
+\renewcommand{\algorithmicwhile}{\textbf{enquanto}}
+\renewcommand{\algorithmicfor}{\textbf{para}}
+\renewcommand{\algorithmicthen}{\textbf{ent\~{a}o}}
+\floatname{algorithm}{Algoritmo}
+\newtheorem{Def}{Definição}
+\newtheorem{Lem}{Lema}
+\newtheorem{Teo}{Teorema}
+\newtheorem{Cor}{Corolário}
+
+% PRÉ_TEXTO: Informações básicas que antecedem o texto propriamente dito (Capa, conteúdo, lista de figuras, tabelas, 
+% agradecimentos, resumo, abstract, notação, termos de aprovação, ...)
+
+
+% Como forçar a hifenização de algumas palavras. Caso contrário, 
+% muitos espaços poderiam ser introduzidos numa mesma linha de texto. 
+\hyphenation{ir-re-gu-lar}
+\hyphenation{con-si-de-ra-vel-men-te}
+
+
+% +-----------------------------------------------------------------+
+% | Inicio do seu documento LaTeX                                   |
+% +-----------------------------------------------------------------+
+
+% TEXTO: Corpo principal de sua monografia 
+% (Capítulos e seus elementos constituintes)
+\begin{document} % só existe um único \begin{document} em seu projeto
+
+% +-----------------------------------------------------------------+
+% | Pré-Texo: Capa, Folha de Rosto, Folha de Aprovação, resumo em PT|
+% |           resumo em EN, Sumário.                                |
+% +-----------------------------------------------------------------+
+%\thispagestyle{empty}
+%\include{PaginasIniciais/capa}
+\include{PaginasIniciais/capaModelo2}
+\thispagestyle{empty}
+%\include{PaginasIniciais/capa2}
+%\thispagestyle{empty}
+%\include{PaginasIniciais/aprovacao}
+%\thispagestyle{empty}
+%\include{PaginasIniciais/agradecimentos}
+%\thispagestyle{empty}
+%\include{PaginasIniciais/resumo}
+%\thispagestyle{empty}
+%\include{PaginasIniciais/abstract}
+
+% SUMÁRIO: Cria (automaticamente) uma tabela com entradas para todos 
+% os capítulos, seções, subseções, ..., com as respectivas páginas 
+% onde elas se encontram
+\tableofcontents
+\newpage
+
+% FIGURAS: Insere uma ou mais páginas com todas as legendas de suas 
+% figuras, respectivas numerações e páginas onde as mesmas se encontram.
+\listoffigures 
+
+% +-----------------------------------------------------------------+
+% | Texo: Introdução, Desenvolvimento e Conclusão.                  |
+% |       Os Capítulos que constituirem sua Monografia.             |
+% +-----------------------------------------------------------------+
+
+\include{Capitulos/Capitulo1/cap1}	
+\include{Capitulos/Capitulo2/cap2}	
+\include{Capitulos/Capitulo3/cap3}	
+\include{Capitulos/Capitulo4/cap4}      	
+
+% +-----------------------------------------------------------------+
+% | Pós-Texo: Tudo que vem após o término de seu documento          |
+% |           propriamente ditoReferências, Apêndices (Opcional),   | 
+% |           Anexos (Opcional), Glossário (Opcional).              |
+% +-----------------------------------------------------------------+
+
+% REFERÊNCIAS BIBLIOGRÁFICAS -
+\bibliographystyle{abntex2-alf}
+\bibliography{Bibliografia/referencias}		% arquivo com nome referencias no diretório Bibliografia
+
+\end{document}						

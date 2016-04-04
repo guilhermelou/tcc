@@ -1,0 +1,28 @@
+
+
+
+\chapter{ Introdução }
+
+Esta revisão bibliográfica apresenta uma fundamentação teórica sobre a recuperação de informação em documentos textuais, destacando as técnicas que são utilizadas para o cálculo de dissimilaridade entre os documentos, demonstrando o procedimento que é usado em cada técnica. Destaca-se ainda a visualização de informação que dará o suporte à esses resultados obtidos, onde cada resultado obtido será representado através de um plano do espaço através do posicionamento de pontos, que auxiliará no entendimento dos resultados.
+
+A Recuperação de Informação é um ramo da ciência que tem por objetivo pesquisar dados em documentos e recuperar informações relacionadas a eles. A partir de uma coleção de documentos, é possível realizar uma seleção de elementos (documentos) e procurar por documentos relacionados na mesma coleção ou em coleções distintas.
+
+Para que técnicas de Recuperação de Informação sejam aplicadas em coleções de documentos, é necessário realizar algumas etapas de pré-processamento. Por exemplo, pode-se construir uma matriz de documentos e seus respectivos termos, armazenando também a frequências destes termos em cada documento. Neste processo, há uma etapa de eliminação de termos que não são interessantes para discriminar os documentos (e.g., artigos, pronomes, preposições). Para isso, uma lista deve ser construída com esses possíveis termos que não são relevantes. Essa lista é conhecida como lista de stop words. Adicionalmente, com os termos relevantes, outro tratamento pode ser efetuado para que os termos sejam reduzidos aos seus radicais. Esse processo é conhecido como stemming.
+
+Com esta matriz de documentos criada, a análise da similaridade entre os documentos pode ser realizada, a partir de algumas métricas que calculam a distância entre os documentos a partir da ocorrência das mesmas palavras em ambos documentos. Nesse cálculo, o resultado é dado numa escala de 0 à 1, e quanto mais próximo de 1, mais similar são os documentos.
+
+Neste projeto propomos utilizar os conceitos e técnicas acima para recuperação de documentos de coleções distintas, buscando similaridade entre os conteúdos dos documentos. Esse processo de recuperação será apoiado por técnicas de visualização de informação para construção de mapas de similaridade por meio de posicionamento de pontos no plano, os quais representam os documentos. Assim, o usuário pode aproveitar tirar proveito tanto das técnicas de Recuperação de Informação quanto das técnicas de visualização, ou seja, a visualização exibirá os resultados em formas gráficas, mostrando os elementos da coleção de acordo com a recuperação de informação.
+
+Convém realçar que o desenvolvimento do projeto me ajudou a ter um contato com ferramentas que colaboraram para a edição do presente documento, entre elas o \LaTeX ( processador de textos científico ).
+
+\section{ Objetivos do Trabalho }
+
+Esse projeto tem como objetivo principal demonstrar os resultados obtidos pelas medidas de dissimilaridade entre documentos, através da Visualização de Informação. Estes dados serão exibidos em conjuntos de pontos no espaço - que será determinado, de forma que quanto maior a proximidade entre os pontos - que representarão cada documento, maior será a semelhança quanto ao conteúdo entre os documentos.
+A visualização além de posicionar os pontos no espaço para demonstrar a proximidade entre os conteúdos, destacará na região do documento que foi selecionado, os documentos (pontos, no caso) que são mais similares.
+
+
+\section{ Organização deste Trabalho }
+
+Neste trabalho apresentaremos além deste capítulo de introdução, mais 3 capítulos. O primeiro, destacará o processo da recuperação de informação, e o segundo, a representação de dados apoiada à visualização de dados.
+
+No terceiro será feito um comentário sobre o que foi escrito nos capítulos anteriores e também será feita uma analise de como será feita as próximas etapas do projeto.

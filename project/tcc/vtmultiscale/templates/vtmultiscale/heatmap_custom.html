@@ -1,0 +1,13 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>
+    <script src="{% static 'vtmultiscale/d3.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'vtmultiscale/style.css' %}"/>
+  </head>
+  <body>
+	<div id='heatmap'></div>
+    <script type="text/javascript" src="{% static 'vtmultiscale/app_custom.js' %}"></script>
+  </body>
+</html>

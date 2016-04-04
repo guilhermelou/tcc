@@ -1,0 +1,174 @@
+\chapter{ Visualização de Informação }
+
+	\section{ Introdução } 
+	
+		A Visualização de Informação é um ramo da computação que busca a representação de dados visualmente, de forma que fique mais compreensível a visualização e o entendimento dos dados pelos usuários. 
+		
+		A compreensão dos objetos num ambiente de visualização de informação, faz com que os usuários analisem com maior rapidez, intuitividade e precisão o conjunto analisado, reduzindo o esforço que seria necessário em uma análise tradicional dos dados. O reconhecimento de padrões também acontece com a visualização, o que melhora no geral o entendimento da coleção.
+	
+		Atualmente alguns objetos podem carregar consigo um número grande de atributos, e devido a grande dimensão destes objetos e o volume destes dados, a representação destes conjuntos se torna uma tarefa complicada. O fluxo e a dimensão dos dados se alteram constantemente, e com isso a representação se torna um desafio já que a capacidade humana de analisar e identificar todas as informações disponíveis permanecem a mesma. \cite{salazar}
+		
+		Por estas razões, a visualização e a recuperação de informação - que tratamos no capítulo \ref{cap2}, possuem uma ligação muito grande. Técnicas de visualização de informação são combinadas à recuperação de informação para que os dados sejam expostos de forma que suas características, assim como alguns padrões sejam identificados de um jeito mais claro pelos usuários.
+		
+		A criação do espaço de visualização pode utilizar itens como pontos, linhas, direções para representar no plano o posicionamento e/ou as distâncias entre os objetos. Isto pode facilitar também a descrição do conteúdo, relação e contexto dos objetos.
+		
+		A utilização de cores nos itens pode também ajudar na visualização. Mudanças de cores e da composição delas (saturação, brilho) podem ajudar a diferenciação dos itens no conjunto representado.
+		
+		Estas técnicas podem ser aplicadas por exemplo em coleções de documentos. A Visualização neste caso trabalharia com técnicas de posicionamento de pontos no espaço, onde os pontos representariam os documentos, e a distância entre cada ponto seria retirado dos cálculos de dissimilaridade entre os documentos, como visto no no capítulo \ref{cap2} na subseção \ref{MetricaSimilaridade}.
+		
+		Sendo assim, pontos que estejam próximos representam documentos que são similares quanto ao conteúdo segundo a recuperação de informação. Pontos que estejam mais distantes, logo, representam documentos que não possuem conteúdos semelhantes.
+		
+		A distância entre os pontos dependem também das técnicas de recuperação que foram utilizadas, onde cada uma pode alterar bastante a visualização.
+			
+	\section{Técnicas de Projeções Multidimensionais}  
+	
+		Para que os documentos que foram analisados na recuperação de informação sejam representados através da visualização de informação, os dados provenientes da recuperação são utilizados por técnicas de Projeções Multidimensionais.
+		
+		Essas técnicas buscam receber - das técnicas de Recuperação de Informação, os dados com \textit{n}-dimensionalidade e transformá-los - para que possam ser representados em um plano \textit{t}-dimensional, onde t = \{1,2,3\}, para que a representação possa ser mais clara, intuitiva e que represente da melhor forma o conjunto de dados no plano. 
+		
+		Com o conjuntos de dados provenientes da recuperação - VSM, teremos o conjunto de documentos com todas as ocorrências dos termos nos documentos. Juntando estes dados com a matriz de distância da coleção, como visto no capítulo anterior, teremos a distância de cada documento da coleção para todos os outros.
+		
+		A técnica então busca posicionar os itens no plano bi ou tridimensional de forma que fiquem posicionados de acordo com as distâncias calculadas, sendo que o posicionamento respeite também o conteúdo da vizinhança, a partir do VSM. A visualização deve respeitar a distância posicionando os documentos de forma que estejam respeitando a distância em relação a todos os documentos da coleção. 
+		
+		Para isso são realizados alguns processamentos para que um VSM com uma dimensão alta, seja reduzido até que chegue a dimensão do plano, que geralmente é 2 ou 3. A seguir estaremos destacando algumas técnicas de projeção multidimensaional.	
+		
+		\subsection{FastMap}
+		
+		O algoritmo de projeção FastMap busca realizar a projeção de um conjunto de objetos com dimensão \textit{D} em um espaço com dimensão \textit{$D_1$}, sendo $D_1$ $\leq$ D. \cite{faloutsose} O processo começa com a seleção de 2 objetos, chamados pivôs, sendo que para o segundo vale a regra de que o mesmo deve ser o mais distante possível em relação ao primeiro. 
+		
+		Após a seleção destes dois pivôs, o algoritmo traça uma reta entre eles, o que acaba formando um hiperplano perpendicular a reta. Os outros objetos do conjunto são posicionados neste hiperplano que tem a dimensão D - 1. O processo é repetido até que a dimensão da representação seja igual à $D_1$. \cite{valdivia}
+		
+		Para calcular a posição dos itens entre os dois pivôs, a Lei dos Cossenos pode ser utilizada. Dado os pivôs $A_1$ e $A_2$, o ponto $A_i$ será dado a partir da equação:
+		
+		\begin{center}
+			\large
+			$\delta^2(A_2,A_i) = \delta(A_1,A_i)^2 + \delta(A_1,A_2^2 - 2x_1\delta(A_1,A_2)$ 
+		\end{center}
+			
+		onde a posição do objeto é dada por:
+			
+			\begin{center}
+		\large
+		$x_1 = \frac { \delta(A_1,A_i)^2 + \delta(A_1,A_2)^2 - \delta(A_2,A_i)^2 }{ 2\delta(A_1,A_2) }$
+		\end{center}
+				
+		Este algoritmo não é recomendado para coleções de dados com alta dimensionalidade, porque sua representação sofre com a perda de informação e com isso, o relacionamento entre os objetos pode ser afetado. Segundo  Platt \cite{platt}, esta perca ocorre porque o método realiza (D - $D_1$) iterações
+		
+		\subsection{NNP - Nearest Neighbor Projection}
+		
+		O método NNP criada por pesquisadores do ICMC, projeta dados n-dimensionais no plano bidimensional sem precisar de nenhuma outra váriavel exceto a matriz de distância dos objetos. O algoritmo posiciona os pontos no plano a partir de 2 pontos que já foram posicionados anteriormente.
+		
+		O algoritmo posiciona o ponto p do conjunto a partir de 2 pontos que estejam mais próximos de p e que já foram projetados no espaço. Após identificar os pontos que já foram projetados (x e y), o ponto p é posicionado na intersecção de dois círculos que são 'projetados' a partir dos pontos x e y, onde o raio dos círculos x e y é retirado do vetor de distância (dissimilaridade $\delta(x,p)$ e $\delta(y,p)$) entre os pontos(x e y) e o ponto a ser projetado.  \cite{eler}
+
+	\begin{figure}[!h]
+		\begin{center}
+		\includegraphics[scale=0.45]{Figuras/Chapter3/nnp_exemplo.png}
+		\caption{Exemplos de Posicionamento com o Algoritmo NNP - Extraído de \cite{Tejada}}
+		\label{NNPImagem}
+		\end{center}
+	\end{figure}
+	
+		Caso os círculos tenham o ponto de intersecção, a posição do ponto p é definida na intersecção. Se os círculos não possuírem intersecção, o ponto p é posicionado num ponto médio entre os círculos. Se os círculos possuírem interessecção mas não forem tangentes, existem duas possibilidades sendo a solução escolhida ao acaso.
+				
+		\subsection{Least Squares Projection - LSP} 	
+		
+		Dado um conjunto de pontos com \textit{m}-dimensionalidade, o algoritmo LSP busca representar estes pontos em um plano com uma dimensão \textit{x}, com x $\leq$ m, sendo que as distâncias que representam a vizinhança entre os pontos sejam preservadas, oque representa a similaridade entre eles. \cite{paulovichetal}
+		
+		A técnica LSP tem como objetivo encontrar posições no espaço $R^d$, onde é \textit{d} foi definido previamente, para posicionar os itens da coleção. O processo possui duas fases de execução, onde a primeira é a busca e identificação dos chamados \textbf{\textit{pontos de controle}}, e na segunda fase o restante dos pontos da coleção são posicionados de acordo com a proximidade em relação aos pontos de controle.
+		
+		No ínicio do processo, pontos de controle são definidos e projetados por alguma técnica de redução de dimensionalidade (MDS -Multidimensional Scaling), como a FastMap ou ForceScheme. Os pontos são definidos a partir de técnicas de clustering e mineração de dados, onde pequenos clusters são formados com os pontos, e cada cluster proporcionará um ponto de controle, sendo este ponto o centro geométrico deste agrupamento. \cite{paulovichetal3}
+		
+		Após esta fase, o restante dos itens de dados são divididos em pequenos conjuntos, onde cada conjunto são pontos que estão próximos a cada ponto de controle. Com esses conjuntos de pontos, o algoritmo procura projetar os pontos de acordo com as coordenadas do ponto de controle, visando manter a distância(representando a similaridade) entre os itens e levando em consideração também o restante dos pontos que não estão neste conjunto local.
+
+	\begin{figure}[!h]
+		\begin{center}
+		\includegraphics[scale=0.35]{Figuras/Chapter3/lsp_cosseno.png}
+		\caption{Projeções pelo método LSP realizada na ferramenta PEx utilizando o conjunto de dados CBR-ILP-IR utilizando a métrica de dissimilaridade Lei do Cosseno no pré-processamento}
+		\label{LSPImage}		
+		\end{center}
+	\end{figure}	
+	
+		\subsection{Neighboor Joining - NJ}
+		
+		A técnica Neighboor Joining (NJ) utiliza o conceito de árvores filogenéticas para a representação de pontos no espaço. Árvores Filogenéticas são usadas para representação porque podem mostrar com mais facilidade a evolução (ancestralidade) dos objetos em questão. As distâncias são representadas pelo tamanho das arestas que ligam cada nó da árvore, e cada folha (ramificação) da árvore representa uma nova espécie dos dados. \cite{valdivia}
+		
+		O algoritmo NJ utiliza a representação por árvores sem raiz, que representa apenas as distancias entre os nós mas não a ancestralidade. O processo consiste em encontrar dois nós que possuam o menor valor na soma das distância entre os ramos.
+		
+		Para encontrar os nós que possuam a menor distância entre os ramos, uma matriz de distância entre os ramos é criada onde será armazenado as distâncias entre cada nó da árvore. Após a matriz ser criada são encontrados os nós que possuam a menor distância entre os ramos e a partir deles, é definido um novo objeto X que ligará os objetos escolhidos.
+		
+		Sendo os 2 nós com a menor distância a e b respectivamente, nesta etapa é calculada a distância dos ramos que ligarão a e b ao novo objeto X.
+		
+		Subsequente a tudo isso, também será calculado a distância que ligará X aos outros objetos da árvore. Este processo é repetido até que a matriz possua apenas 2 elementos.
+		
+		Abaixo temos o algoritmo completo.
+		
+\vspace{5mm}		
+		
+		1. Para cada objeto calcular a divergência da árvore,
+		
+		\begin{center} r(i) = $D_{i1}$ + $D_{i2}$ + $D_{i3}$ + .. + $D_{ij}$, \end{center}
+		
+		onde i $\neq$ j e j = 1,2,..,n 
+	
+		2. Calcular a nova matriz de distâncias com a equação:
+		
+		\begin{center}$M_{ij}$ = $D_{ij} - \frac { [ r_i + r_j ] }{ n - 2 }$  \end{center}
+		
+		3. Escolher os objetos i e j para s quais $M_{ij}$ é mínimo e criar um novo objeto U (nó internet da árvore) que una os objetos i e j.
+		
+		4. Calcular o tamanho do ramo que una o objeto U aos objetos i e j.
+				
+		\begin{center}$S_{iU} = \frac {D_{ij}}{ 2 } + \frac { [ r_i - r_j ] }{ 2[n - 2] }$ 	 \end{center}
+		\begin{center}$S_{jU} = D_{ij} -  S_{iU}$  \end{center}
+		
+		5. Calcular as distâncias entre os novo objeto U com os objetos restantes.
+				
+		\begin{center}$D_{kU} = \frac {D_{ik} + D_{jk} - D_{ij}}{ 2 }$,  \end{center}
+		
+		onde k $\neq$ i, k $\neq$ j e j = 1,2,..,n
+		
+		6. n = n -1
+		
+		7. Volte ao passo um da iteração enquanto que n > 2.
+		
+		\subsection{Interactive Document Map - IDMap} 
+		
+		A técnica de projeção multidimensional IDMap foi desenvolvida para análise e projeção de documentos. A técnica busca projetar os documentos no plano como pontos e realiza a combinação de duas técnicas para tentar diminuir o erro de projeção dos dados. O erro de projeção é a distância que não foi possível ser preservada na representação. \cite{paulovichetal2}
+		
+		Para a representação por esta técnica são utilizados 2 métodos de posicionamento de pontos no plano. Inicialmente o método FastMap ou o NNP (Nearest Neighbor Projection) é aplicado ao conjunto criando assim uma projeção inicial. Como esta projeção inicial, a técnica IDMAP aplica a ForceScheme sobre estes pontos para que os pontos possam ser melhores posicionados na tentativa de reduzir erros do tipo pontos que ficaram muito próximos numa representação. 
+		
+	\begin{figure}[!h]
+		\begin{center}
+		\includegraphics[scale=0.4]{Figuras/Chapter3/idmap_cosseno_fastmap.png}
+		\caption{Projeções pelo método IDMAP realizada na ferramenta PEx utilizando o conjunto de dados CBR-ILP-IR utilizando a métrica de dissimilaridade Lei do Cosseno no pré-processamento e a técnica FastMap como primeira fase da projeção}
+		\label{IDMAPImage}
+		\end{center}
+	\end{figure}
+		
+	
+	\section{PEX} 
+	
+	A ferramenta de visualização de informação PEX (Projection EXplorer) foi desenvolvida no ICMC - USP como parte do doutorado de Fernando Vieira Paulovich, e alguns outros pesquisadores contribuíram para o desenvolvimento da aplicação.
+	
+	Ela foi desenvolvida na linguagem Java e é utilizada para criar visualizações de informação como descritos neste capítulo. A ferramenta é utilizada para representações a partir de coleções de documentos e cada objeto da coleção é representado na visualização por pequenos círculos. Utilizando conceitos citados acima, se um ponto está próximo ao outro, isto significa que os documentos são semelhantes quanto ao conteúdo.
+	
+	Para que a ferramenta seja utilizada para dados que não sejam coleções de documentos, é necessário que métricas para cálculo de distância sejam passadas à ferramenta.	Para qualquer tipo de visualização de informação gerada pela ferramenta, técnicas de recuperação de informação são aplicadas para o cálculo de distância entre os elementos.
+	
+	\begin{figure}[!h]
+		\begin{center}
+		\includegraphics[scale=0.3]{Figuras/Chapter3/pex.png}
+		\caption{Exemplo - Interface da ferramenta PEX}
+		\label{PEXImage}
+		\end{center}
+	\end{figure}
+
+	Para obter a matriz de distâncias que é o resultado final desta parte do processo, a ferramenta aplica os procedimentos aplicados no capítulo anterior, como a remoção de stopwords, aplicação de stemming e cortes de frequência. Os resultados obtidos são armazenados na matriz de distância.
+
+	Para realizar os cálculos de similaridade entre os documentos e criar a matriz de distâncias, a ferramenta possui algumas métricas como a Euclidiana, a Lei do Cosseno e City Block. A ferramenta  também dispõe de algumas técnicas de projeções multidimensionais como as citadas neste documento LSP, IDMAP e  NJ, como também várias outras que não foram citadas como a ISOMAP,  ProjClus, Local Linear Embedding (LLE) dentre outras.
+	
+	As ferramenta PEX disponibiliza ao usuário em suas projeções, algumas pequenas funcionalidades que podem ajudar ao usuário a identificar e compreender melhor as coleções. As labels são um exemplo destas pequenas funcionalidades, e com elas, o usuário pode visualizar para cada ponto(documento) na projeção informações que podem ser o nome do documento ou palavras-chaves do mesmo.
+
+	A representação da vizinhança entre os pontos pode ser visualizada com as ligações de arestas entre eles, ou com o destaque dos vizinhos, após o usuário selecionar algum ponto na projeção. 
+	
+	Existe a possibilidade também de vizinhanças serem destacadas e/ou selecionadas na projeção.  Normalmente,  as cores que são usadas para caracterizarem as distâncias entre os objetos, são também utilizadas pelas técnicas para separarem na projeção grupos de itens que formam pequenas vizinhanças, ou pequenos clusters. \cite{paulovichetal3}
+
