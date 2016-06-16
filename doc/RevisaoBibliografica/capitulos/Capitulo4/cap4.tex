@@ -1,0 +1,81 @@
+
+\chapter[Algoritmos]{Como Obter a Triangula\c{c}\~ao de Delaunay} \label{chapter4}
+
+\section{Introdu\c{c}\~{a}o}
+
+Introdução...
+
+\section{Algoritmo de Inser\c{c}\~ao Randomizado}
+
+Veremos abaixo o pseudo-c\'{o}digo desenvolvido do algoritmo a ser
+implementado:
+
+\begin{algorithm}
+\caption{Algoritmo incremental}
+\label{watson}
+\begin{algorithmic}
+\REQUIRE Um conjunto $P$ de $n$ pontos no plano
+\ENSURE A Triangula\c{c}\~{a}o de Delaunay de P.
+Seja ${\mathbf p}-1$, ${\mathbf p}-2$ e ${\mathbf p}-3$ um conjunto de tr\^{e}s pontos que formam uma grande tri\^{a}ngulos imagin\'{a}rio que contem $P$.
+Inicializar a triangula\c{c}\~{a}o $\mathcal{T}$ que possui apenas um tri\^{a}ngulo simples
+${\mathbf p}-1$, ${\mathbf p}-2$ e ${\mathbf p}-3$
+
+\FOR {r $\Longleftarrow$ 1  \textbf{at\'{e}} n}
+\STATE  Insere-se um novo ponto em $\mathcal{T}$
+\STATE  Encontre o tri\^{a}ngulo ${p}_{i}{p}_{j}{p}_{k}$ que cont\'{e}m o ponto p.
+\IF {p est\'{a} no interior do tri\^{a}ngulo ${p}_{i}{p}_{j}{p}_{k}$ }
+\STATE Ligue o ponto p aos tr\^{e}s \textit{v\'{e}rtices} formados criando \textit{arestas} e dividindo 
+${p}_{i}{p}_{j}{p}_{k}$ em tr\^{e}s tri\^{a}ngulos.
+\STATE $\mathbf{flip}\left( p,\overline{p_{i}p_{j}}\right)$
+\STATE $\mathbf{flip}\left( p,\overline{p_{j}p_{k}}\right)$
+\STATE $\mathbf{flip}\left( p,\overline{p_{k}p_{i}}\right)$
+\ELSE 
+\STATE Adicione arestas de p at\'{e} $\mathbf{p}_{k}$ e ao terceiro \textit{v\'{e}rtice} $\mathbf{p}_{l}$ 
+\STATE do outro tri\^{a}ngulo que \'{e} incidente a $\overline{p_{i}p_{j}}$, logo dividindo os dois 
+\STATE tri\^{a}ngulos incidentes a $\overline{p_{i}p_{j}}$ em quatro.
+\STATE $\mathbf{flip}\left( p,\overline{p_{i}p_{l}}\right)$
+\STATE $\mathbf{flip}\left( p,\overline{p_{l}p_{j}}\right)$
+\STATE $\mathbf{flip}\left( p,\overline{p_{j}p_{k}}\right)$
+\STATE $\mathbf{flip}\left( p,\overline{p_{k}p_{i}}\right)$
+\ENDIF
+\ENDFOR
+\STATE Remova os \textit{v\'{e}rtices} p-1, p-2 e p-3 e tamb\'{e}m todas \textit{arestas} 
+\STATE do supertri\^{a}ngulo incidentes na triangula\c{c}\~{a}o 
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Ilustra\c{c}\~{a}o das atualiza\c{c}\~{o}es topol\'{o}gicas na 
+	             inser\c{c}\~{a}o do primeiro ponto \textbf{V}.}
+    \label{fig6_chapter6}
+  \end{center}
+\end{figure}
+
+
+
+\subsection{Escolha adequada das coordenadas de um supertri\^angulo}
+
+No algoritmo incremental de Lawson, citamos a necessidade de criar-se um grande tri\^angulo que contenha todos os pontos da triangula\c{c}\~{a}o, as coordenadas dos v\'{e}rtices do grande tri\^{a}ngulo segundo o criterio devem ser escolhidas como sendo os maiores valores poss\'{i}veis. Por\'em o ideal \'{e} que escolhamos n\'umeros adequados para que o supertri\^{a}ngulo contenha todos os pontos que ser\~{a}o processados e que n\~{a}o tenha coordenadas muito exageradas. Ent\~{a}o o que faremos ser\'{a} escolher os pontos ${\mathbf p}-1$, ${\mathbf p}
+-2$ e ${\mathbf p}-3$ e modificar o teste feito para arestas ilegais, funcionar como se estiv\'essemos os escolhido com coordenadas bem grandes. Uma sugest\~{a}o feita em \cite{berg} \'{e} que a gera\c{c}\~{a}o de pontos seja feita no interior de um quadril\'{a}tero de lado $M$ e que o supertri\^{a}ngulo dever\'{a} envolver o quadril\'{a}tero tendo coordenadas de dist\^ancia $3M$ ( $[0, 3M]$, $[3M, 0]$, $[-3M, -3M]$ ), embora ao inv\'{e}s de $3M$ alguns autores sugerem o uso de uma dist\^ancia de $6M$ ( $[0, 6M]$, $[6M, 0]$, $[-6M, -6M]$ ) figura \ref{super_tri_3M}.
+Uma outra sugest\~{a}o \'{e} utilizar um circulo de raio $M$, e gerar os pontos no interior do quadril\'{a}tero inscrito na circunfer\^{e}ncia segundo a figura \ref{super_tri_circ_3M}
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Supertri\^angulo envolvendo o quadril\'atero com coordenadas $3M$.}
+    \label{super_tri_3M}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Circunfer\^encia de raio  $3M$ inscrita no Supertri\^angulo envolve um quadril\'atero onde ser\~ao gerados os pontos.}
+    \label{super_tri_circ_3M}
+  \end{center}
+\end{figure}
+

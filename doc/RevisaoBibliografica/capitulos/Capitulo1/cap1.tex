@@ -1,0 +1,41 @@
+
+
+
+\chapter{PostgreSQL e os tipos de dados não estruturados}
+
+\section{PostgreSQL}
+
+Falar sobre o PostgreSQL que é um Banco que segue as mais recentes ISOS que tem as garantias ACID, é transacional, antigo maduro, existe em várias plataformas, suporte para dados complexos, opensource, arquitetura extensível, e agora tem suporte para dados sem schema json, xml e hstore.
+
+Sobre os dados sem schema que utiliza, o Xml é estruturado de maneira hierarquica sendo o padrão W3C standard 1998 o padrão é base para o protocolo de troca de mensagens SOAP, porém seu uso é um pouco complexo e seu desempenho de velocidade é o pior dos dados em armazenamento em documentos postgresql, sem indexação.
+
+Outro tipo é o Hstore, este tipo tem um desempenho bem expressivo pois baseia-se apenas em chave para valores em strings ou outros valores hstore, embora seja eficiente a falta de aninhamento e diferentes tipos dificulta sua utilização para situações mais complexas, não é muito flexível.
+
+Por último temos o tipo JSON, nesta revisão haverá uma seção apenas sobre tal tipo mas em resumo é um tipo de documento baseado no tipo de notação JavaScript, é utilizado com forma para armazenamento e troca de dados entre várias plataformas web e mobile.
+
+\section{JSON}
+
+JSON significa JavaScript Object Notation, é um formato de dados de fácil leitura e escrita para os humanos e de fácil geração e análise para as máquinas. Um objeto em JSON é um conjunto de pares de chave e valor que podem ser organizados de forma aninhada e(ou) listados em arrays, a chave é uma string e o valor pode ser uma string, um numero, um booleano, um array e até mesmo outro objeto aninhado. O array pode ter valores dos mesmos tipos citados. Pode haver também uma lista de objetos no mesmo nível, esta lista pode obedecer ou não a sua ordem.
+
+
+e serviços rest, json e datavisualization
+
+\section{JSON vs JSONB}
+
+Antes do JSONB fazer parte do PosgreSQL Geoffrey Litt desenvolveu em seu projeto final, através do fonte do PostgreSQL, bibliotecas de parsing JSON e bibliotecas de parsing BSON do Mongodb, um campo similar chamado BSON, em sua tese pode testar as diferenças de performance destes campos.
+
+\section{Objetivos do Trabalho}
+
+Esse projeto tem como objetivo principal...
+
+
+\section{Organização do Trabalho}
+
+O capítulo \ref{chapter2} contém...
+
+O capítulo \ref{chapter3} destina-se...
+
+O capítulo \ref{chapter4} discute sobre...
+
+Por fim, no capítulo \ref{chapter5} será feita uma conclusão...
+

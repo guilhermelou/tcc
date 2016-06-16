@@ -1,0 +1,681 @@
+
+\chapter{Fundamentação Teórica} \label{chapter2}
+
+\section{Triangulação}
+
+A Triangulação de um conjunto de pontos não possui unicidade. 
+Em outras palavras, a partir de um mesmo conjunto de pontos 
+é possível obter diferentes triangulações cada uma delas com 
+$2(n-1)k$ triângulos e $3(n-1)-k$ arestas, onde $k$ é o número 
+de pontos pertencentes ao (\textit{Fecho Convexo}) da Triangulação. 
+No caso a forma dos triângulos também podem influenciar na 
+aplicação que se deseja fazer, é necessário evitar triângulos 
+muito finos(ângulos internos muito agudos) na Triangulação 
+como na figura \ref{triangulations} a) e b), o ideal é termos 
+triângulos o mais próximo possível dos triângulos equiláteros 
+com os ângulos se aproximando de $60^{\textrm{o}}$, figura 
+\ref{triangulations} c).
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Possíveis triangulações para um mesmo conjunto de pontos.}
+    \label{triangulations}
+  \end{center}
+\end{figure}
+
+
+
+\section{Primitivas Geométricas}
+
+Nessa pequena introdução falaremos...
+
+Pontos cocirculares e pol\'{\i}gonos inscritos possuem muitas propriedades
+especiais que permitem uma constru\c{c}\~{a}o eficiente de uma triangula\c{c}%
+\~{a}o equiangular \cite{sibson}. Algumas dessas propriedades ser\~{a}o descritas a partir
+dos \textit{LEMAS}.
+
+\begin{Lem}
+: Cada Triangulação de um \textit{pol\'igono} de $n$ lados inscrito ter\'{a} entre seus \^{a}ngulos o mesmo conjunto de $n$ \^{a}ngulos, isto \'{e}, os $n$ \^{a}ngulos opostos \`{a}s $n$ cordas do lado de fora.
+\end{Lem}
+
+A seguir trataremos...
+
+
+
+\section[Teste de Orienta\c{c}\~{a}o]{CounterClockWise}
+
+A seguir introduziremos...
+
+Se a dimens\~{a}o $n=1$, ent\~{a}o a orienta\c{c}\~{a}o de $(\mathbf{p}_{1},%
+\mathbf{p}_{2})$ \'{e} positiva se \textbf{p}$_{1}>$\textbf{p}$_{2}$ e
+negativa se \textbf{p}$_{1}<$\textbf{p}$_{2}$ comparar com a figura \ref{fig1_chapter2}. 
+Se $n=2$, ent\~{a}o$(\mathbf{p}_{1},\mathbf{p}_{2},\mathbf{p}_{3})$
+tem orienta\c{c}\~{a}o positiva se tr\^{e}s pontos rotacionam se \`{a}
+esquerda no plano, isto \'{e}, \textbf{p}$_{3}$, fica \`{a} esquerda da
+linha que passa por \textbf{p}$_{1},$\textbf{p}$_{2}$ nesta ordem. Se $(%
+\mathbf{p}_{1},\mathbf{p}_{2},\mathbf{p}_{3})$ faz uma rota\c{c}\~{a}o \`{a}
+direita, ent\~{a}o a orienta\c{c}\~{a}o \'{e} negativa. Note que a orienta%
+\c{c}\~{a}o de $(\mathbf{p}_{1},\mathbf{p}_{2},\mathbf{p}_{3})$ \'{e} a
+mesma de $(\mathbf{p}_{1},\mathbf{p}_{2})$ como visto. De fato, a linha que
+passa por $\mathbf{p}_{2}$ e $\mathbf{p}_{3}$ pode ser identificada com $%
+R^{1}$ t\~{a}o logo escolhamos a dire\c{c}\~{a}o da linha. Essa dire\c{c}%
+\~{a}o \'{e} dada pela localiza\c{c}\~{a}o de $\mathbf{p}_{1}$; que vai da
+esquerda para direita a partir de $\mathbf{p}_{1}.$
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Ilustra\c{c}\~{a}o dos poss\'{i}veis resultados da primitiva \textit{Ccw(.)} }
+    \label{fig1_chapter2}
+  \end{center}
+\end{figure}
+
+Para $n>2$, a orienta\c{c}\~{a}o de $(\mathbf{p}_{1},\mathbf{p}_{2},\mathbf{p%
+}_{3},\mathbf{p}_{4})$, \'{e} dada a partir da resolu\c{c}\~{a}o de uma
+determinante, no qual pode ser usada a t\'{e}cnica da elimina\c{c}\~{a}o de
+Gauss, Laplace ou outras t\'{e}cnicas para resolv\^{e}-lo.
+
+Seja \textbf{p}$_{1}=(\mathbf{p}_{1x}$, $\mathbf{p}_{1y})$, \textbf{p}$_{2}=(%
+\mathbf{p}_{2x}$, $\mathbf{p}_{2y})$, \textbf{p}$_{3}=(\mathbf{p}_{3x},\mathbf{p%
+}_{3y})$ tr\^{e}s pontos no plano, consideraremos $\mathbf{p}_{1}$, $\mathbf{p}%
+_{2}$, $\mathbf{p}_{3}$ indefinidos se forem coplanares. No caso indefinido, o
+ponto $\mathbf{p}_{3}$ \'{e} uma combina\c{c}\~{a}o linear de \textbf{p}$_{1}$ e 
+\textbf{p}$_{2}$, \textbf{p}$_{3}=\lambda _{1}\mathbf{p}_{1}+\lambda _{2}%
+\mathbf{p}_{2}$ com $\lambda _{1}+\lambda _{2}=1$. Dessa maneira $\lambda
+_{1},\lambda _{2}$ existir\~{a}o se e somente se o determinante de
+
+\begin{equation}
+Ccw(\mathbf{p}_{1}, \mathbf{p}_{2}, \mathbf{p}_{3})=%
+\left( \begin{array}{ccc}
+1 & \mathbf{p}_{1x} & \mathbf{p}_{1y} \\ 
+1 & \mathbf{p}_{2x} & \mathbf{p}_{2y} \\ 
+1 & \mathbf{p}_{3x} & \mathbf{p}_{3y}%
+\end{array} \right)%
+=0
+\end{equation}
+
+Se n\~{a}o acontecer isso ent\~{a}o $\mathbf{p}_{1}$, $\mathbf{p}_{2}$, $\mathbf{p}%
+_{3}$ orientam-se para esquerda ou direita e o uso do determinante dar\'{a}
+a orienta\c{c}\~{a}o de $\mathbf{p}_{1}$, $\mathbf{p}_{2}$, $\mathbf{p}_{3}$.
+
+Para $n+1$ pontos $(\mathbf{p}_{1},\ldots ,\mathbf{p}_{n})$ o teste de
+orienta\c{c}\~{a}o vai indicar como os pontos est\~{a}o orientados no
+hiperplano e nesse caso geral a primitiva \textit{Ccw} \'{e} dada pelo sinal
+do determinante:
+
+\begin{equation}
+\left\vert 
+\begin{array}{ccccc}
+1 & \mathbf{p}_{12} & \cdots & \mathbf{p}_{1n} & \mathbf{p}_{11} \\ 
+1 & \mathbf{p}_{22} & \cdots & \mathbf{p}_{2n} & \mathbf{p}_{21} \\ 
+\vdots & \vdots &  & \vdots & \vdots \\ 
+1 & \mathbf{p}_{n+1,2} & \cdots & \mathbf{p}_{n+1,n} & \mathbf{p}_{n+1,1}%
+\end{array}%
+\right\vert
+\end{equation}
+
+\textbf{Teste do plano: }Seja $T=\{\mathbf{p}_{1},\mathbf{p}_{2},\mathbf{p}%
+_{3}\}$ e $ht$ \'{e} o \'{u}nico plano que cont\'{e}m todos tr\^{e}s pontos
+de $T$. Esse plano pode ser orientado se substituirmos o conjunto $T$ por
+uma seq\"{u}encia $\ T,$ por exemplo, $T=(\mathbf{p}_{1},\mathbf{p}_{2},%
+\mathbf{p}_{3}).$ Assim, um lado de $ht$ pode ser o positivo e o outro o
+negativo, e os referimos como os lados da seq\"{u}\^{e}ncia $T$.
+
+$T=(\mathbf{p}_{1},\mathbf{p}_{2},\mathbf{p}_{3})$: $\mathbf{p}_{4}$ fica no
+lado positivo (esquerda) se e somente se $\det(Ccw(.))>0$ e orienta-se para o
+lado negativo (direita) se e somente se $\det(Ccw(.))<0$
+
+{\bf Prova}
+ Verificaremos para $\mathbf{p}_{1}=(0,0)$, $\mathbf{p}_{2}=(1,0)$ e 
+$\mathbf{p}_{3}=(0,1)$, geometricamente \'{e} obvio que $\mathbf{p}_{1}$,
+$\mathbf{p}_{2}$, $\mathbf{p}_{3}$ orientam-se para esquerda (lado positivo), de
+fato.
+
+\begin{equation}
+\det 
+\left(\begin{array}{ccc}
+1 & 0 & 0 \\ 
+1 & 1 & 0 \\ 
+1 & 0 & 1%
+\end{array} \right)
+=1
+\end{equation}
+
+Portanto...
+
+\section{InC\'{\i}rculo}
+
+Esta primitiva tem por finalidade verificar se o ponto \textbf{p}$_{4}$ est%
+\'{a} no interior do c\'{\i}rculo definido pelos pontos \textbf{p}$_{1}$, 
+\textbf{p}$_{2}$, \textbf{p}$_{3}$. Consideraremos \textbf{p}$_{1}$, \textbf{%
+p}$_{2}$, \textbf{p}$_{3}$, \textbf{p}$_{4}$ degenerados se \textbf{p}$_{1}$%
+, \textbf{p}$_{2}$, \textbf{p}$_{3}$ coplanares ou \textbf{p}$_{1}$, \textbf{%
+p}$_{2}$, \textbf{p}$_{3}$, \textbf{p}$_{4}$ cocirculares. Para mostrar se
+os pontos s\~{a}o cocirculares faremos \textbf{p}$_{1}'=(\mathbf{p}_{1x},%
+\mathbf{p}_{1y},\mathbf{p}_{1z})$, com $\mathbf{p}_{1z}=\mathbf{p}_{1x}^{2}+%
+\mathbf{p}_{1y}^{2}$ e assim por diante. Os pontos ser\~{a}o cocirculares se 
+\textbf{p}$_{1}'$, \textbf{p}$_{2}'$, \textbf{p}$_{3}'$, \textbf{p}$_{4}'$ forem coplanares. Em outras palavras, \textbf{p}$_{4}'$ \'{e} combina\c{c}\~{a}o linear de \textbf{p}$_{1}'$, \textbf{p}$_{2}'$, \textbf{p}$_{3}'$ \cite{berg}. O resultado de \textit{InCirculo} \'{e} obtido, solucionando o seguinte determinante:
+
+\textit{InCirculo }(\textbf{p}$_{1}$, \textbf{p}$_{2}$, \textbf{p}$_{3}$, 
+\textbf{p}$_{4}$) =$\left| 
+\begin{array}{cccc}
+\mathbf{p}_{1x} & \mathbf{p}_{1y} & \mathbf{p}_{1x}^{2}+\mathbf{p}_{1y}^{2}
+& 1 \\ 
+\mathbf{p}_{2x} & \mathbf{p}_{2y} & \mathbf{p}_{2x}^{2}+\mathbf{p}_{2y}^{2}
+& 1 \\ 
+\mathbf{p}_{3x} & \mathbf{p}_{3y} & \mathbf{p}_{3x}^{2}+\mathbf{p}_{3y}^{2}
+& 1 \\ 
+\mathbf{p}_{4x} & \mathbf{p}_{4y} & \mathbf{p}_{4x}^{2}+\mathbf{p}_{4y}^{2}
+& 1%
+\end{array}
+\right| $
+
+Se:
+
+\ \ \ \ \textit{InCirculo }(\textbf{p}$_{1}$, \textbf{p}$_{2}$, \textbf{p}$%
+_{3}$, \textbf{p}$_{4}$) = 0 ent\~{a}o os pontos s\~{a}o cocirculares;
+
+\ \ \ \ \textit{InCirculo }(\textbf{p}$_{1}$, \textbf{p}$_{2}$, \textbf{p}$%
+_{3}$, \textbf{p}$_{4}) > 0$  ent\~{a}o $\mathbf{p}_{4}$
+pertence ao exterior do c\'{i}rculo;
+
+\ \ \ \ \textit{InCirculo }(\textbf{p}$_{1}$, \textbf{p}$_{2}$, \textbf{p}$%
+_{3}$, \textbf{p}$_{4}) < 0$ ent\~{a}o $\mathbf{p}_{4}$
+pertence ao interior do c\'{i}rculo;
+Veja a representa\c{c}\~{a}o  na figura \ref{fig2_chapter2}
+\ \ 
+
+Essa primitiva \'{e} baseada no seguinte lema:
+
+\begin{Lem}
+: O teste \textit{InCirculo}(.) \'{e} equivalente a:
+\end{Lem}
+
+\begin{equation}
+\textit{InCirculo} (\mathbf{p}_{1},\mathbf{p}_{2},\mathbf{p}_{3},\mathbf{p}_{4})=\left\vert 
+\begin{array}{cccc}
+	\mathbf{p}_{1x} & \mathbf{p}_{1y} & \mathbf{p}_{1x}^{2}+\mathbf{p}_{1y}^{2} & 1 \\ 
+	\mathbf{p}_{2x} & \mathbf{p}_{2y} & \mathbf{p}_{2x}^{2}+\mathbf{p}_{2y}^{2} & 1 \\ 
+	\mathbf{p}_{3x} & \mathbf{p}_{3y} & \mathbf{p}_{3x}^{2}+\mathbf{p}_{3y}^{2} & 1 \\ 
+	\mathbf{p}_{4x} & \mathbf{p}_{4y} & \mathbf{p}_{4x}^{2}+\mathbf{p}_{4y}^{2} & 1%
+\end{array}%
+\right\vert .
+\end{equation}
+
+{\bf Prova} Para provar a validade desse resultado teremos que olhar para equa\c{c}\~{a}o
+do parabol\'oide $\Gamma$ representado no $R^{3}$ de equa\c{c}\~{a}o \ref{eq_paraboloid} e ilustrado 
+na figura \ref{fig3_2_chapter2}.
+
+Seja $H$ um plano n\~ao-vertical de equa\c{c}\~{a}o \ref{eq_plano}, a proje\c{c}\~{a}o 
+$O_{xy}$ de $H\bigcap\Gamma$ no plano da origem a um c\'irculo de equa\c{c}\~{a}o \ref{eq_circ}.
+Ver figura \ref{fig3_2_chapter2} que cont\'em a proje\c{c}\~{a}o mencionada.
+
+Seja $\mathbf{p} = (\mathbf{p}_x,\mathbf{p}_y)$ elevaremos o ponto ${\bf p}$ e obtemos
+um ${\mathbf{p'}}$ de equa\c{c}\~{a}o \ref{eq_de_p}. Essa transforma\c{c}\~{a}o $\mathbf{p}\longrightarrow \mathbf{p'}$ \'e chamada {\bf mapa de eleva\c{c}\~{a}o}. A eleva\c{c}\~{a}o dos pontos \textbf{p}$_{1}$, \textbf{p}$_{2}$, \textbf{p}$_{3}$ e \textbf{p}$_{4}$ resulta respectivamente nas equa\c{c}\~{o}es \ref{eq_de_p1}, \ref{eq_de_p2}, \ref{eq_de_p3} e \ref{eq_de_p4}. Assim se \textit{InCirculo }(\textbf{p}$_{1}$, \textbf{p}$_{2}$, \textbf{p}$_{3}$, \textbf{p}$_{4}$) = 0, significa que $\det(Ccw(.))=0$ e o ponto \textbf{p}$_{4}' \in H$ e consequentemente \textbf{p}$_{4}$ \'e cocircular \`a circunfer\^encia definida por \textbf{p}$_{1}$, \textbf{p}$_{2}$, \textbf{p}$_{3}$, caso \textit{InCirculo }(\textbf{p}$_{1}$, \textbf{p}$_{2}$, \textbf{p}$_{3}$, \textbf{p}$_{4}$) $>0$ ent\~ao $\det(Ccw(.))>0$ e o ponto \textbf{p}$_{4}'$ est\'a acima do plano $H$ e \textbf{p}$_{4}$ fora do c\'irculo \textbf{p}$_{1}$, \textbf{p}$_{2}$, \textbf{p}$_{3}$, por \'ultimo se \textit{InCirculo }(\textbf{p}$_{1}$, \textbf{p}$_{2}$, \textbf{p}$_{3}$, \textbf{p}$_{4}$) $<0$ ent\~ao $\det(Ccw(.))<0$ e o ponto \textbf{p}$_{4}'$ abaixo do plano $H$ e \textbf{p}$_{4}$ no interior do c\'irculo \textbf{p}$_{1}$, \textbf{p}$_{2}$, \textbf{p}$_{3}$.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Parabol\'oide $\Gamma$ e a proje\c{c}\~{a}o da \'area interceptada pelo plano $H$ no $R^2$}
+    \label{fig3_2_chapter2}
+  \end{center}
+\end{figure}
+
+\begin{equation} {\label{eq_paraboloid}}
+\mathit{z} = x^2 + y^2 
+\end{equation}
+
+\begin{equation} {\label{eq_plano}}
+\mathit{z} = \alpha x + \beta y + \gamma
+\end{equation}
+
+\begin{equation} {\label{eq_circ}}
+\mathit{x^2} + \mathit{y^2} = \alpha x + \beta y + \gamma
+\end{equation}
+
+\begin{equation} {\label{eq_de_p}}
+\mathbf{p'} = (\mathbf{p}_x,\mathbf{p}_y,{\mathbf{p}_x}^2+{\mathbf{p}_y}^2)
+\end{equation}
+
+\begin{equation} {\label{eq_de_p1}}
+\mathbf{p}_{1}' = (\mathbf{p}_{1x},\mathbf{p}_{1y},{\mathbf{p}_{1x}}^2+{\mathbf{p}_{1y}}^2)
+\end{equation}
+
+\begin{equation} {\label{eq_de_p2}}
+\mathbf{p}_2' = (\mathbf{p}_{2x},\mathbf{p}_{2y},{\mathbf{p}_{2x}}^2+{\mathbf{p}_{2y}}^2)
+\end{equation}
+
+\begin{equation} {\label{eq_de_p3}}
+\mathbf{p}_3' = (\mathbf{p}_{3x},\mathbf{p}_{3y},{\mathbf{p}_{3x}}^2+{\mathbf{p}_{3y}}^2)
+\end{equation}
+
+\begin{equation} {\label{eq_de_p4}}
+\mathbf{p}_4' = (\mathbf{p}_{4x},\mathbf{p}_{4y},{\mathbf{p}_{4x}}^2+{\mathbf{p}_{4y}}^2)
+\end{equation}
+
+Conv\'{e}m lembrar que o teste do \textit{Incirculo}, em uma situa\c{c}\~{a}%
+o geral, serve tamb\'{e}m para orienta\c{c}\~{a}o de um ponto em rela\c{c}%
+\~{a}o \`{a} uma esfera no $R^{3}$ e tamb\'{e}m no hiperplano. Dada uma sequ\^{e}ncia 
+de $n+1$ pontos $(\mathbf{p}%
+_{2},\ldots ,\mathbf{p}_{n+1})$, se \textbf{p}$_{1}$ pertencer ao exterior
+da esfera, dizemos que est\'{a} orientado positivamente caso contr\'{a}rio,
+est\'{a} orientado negativamente, e o sinal do determinante indica, assim
+como no caso do c\'{\i}rculo, a orienta\c{c}\~{a}o de \textbf{p}$_{1}$ e
+esse determinante no espa\c{c}o $R^{n}$ est\'{a} ilustrado como abaixo:
+
+\begin{equation}
+\left\vert 
+\begin{array}{ccccc}
+\mathbf{p}_{11} & \cdots & \mathbf{p}_{1n} & \mathbf{p}_{11}^{2}+\ldots +%
+\mathbf{p}_{1n}^{2} & 1 \\ 
+\mathbf{p}_{21} & \cdots & \mathbf{p}_{2n} & \mathbf{p}_{21}^{2}+\ldots +%
+\mathbf{p}_{2n}^{2} & 1 \\ 
+\vdots &  & \vdots & \vdots & \vdots \\ 
+\mathbf{p}_{n+2,1} & \cdots & \mathbf{p}_{n+2,n} & \mathbf{p}%
+_{n+2,1}^{2}+\ldots +\mathbf{p}_{n+2,n}^{2} & 1%
+\end{array}%
+\right\vert
+\end{equation}
+
+A resolu\c{c}\~{a}o do determinante pode ser obtida atrav\'{e}s da rela\c{c}%
+\~{a}o:
+
+\textit{InCirculo }(\textbf{p}$_{1}$, \textbf{p}$_{2}$, \textbf{p}$_{3}$, 
+\textbf{p}$_{4}$) =
+
+\begin{tabular}[t]{ll}
+$-((\mathbf{p}_{1y})\ast (\mathbf{p}_{2x})\ast (\mathbf{p}_{3x}^{2}+\mathbf{p%
+}_{3y}^{2}))$ & $+((\mathbf{p}_{1x})\ast (\mathbf{p}_{2y})\ast (\mathbf{p}%
+_{3x}^{2}+\mathbf{p}_{3y}^{2}))$ \\ 
+$+((\mathbf{p}_{1y})\ast (\mathbf{p}_{2x}^{2}+\mathbf{p}_{2y}^{2})\ast (%
+\mathbf{p}_{3x}))$ & $-((\mathbf{p}_{1x}^{2}+\mathbf{p}_{1y}^{2})\ast (%
+\mathbf{p}_{2y})\ast (\mathbf{p}_{3x}))$ \\ 
+$-((\mathbf{p}_{1x})\ast (\mathbf{p}_{2x}^{2}+\mathbf{p}_{2y}^{2})\ast (%
+\mathbf{p}_{3y}))$ & $+((\mathbf{p}_{1x}^{2}+\mathbf{p}_{1y}^{2})\ast (%
+\mathbf{p}_{2x})\ast (\mathbf{p}_{3y}))$ \\ 
+$+((\mathbf{p}_{1y})\ast (\mathbf{p}_{2x})\ast (\mathbf{p}_{4x}^{2}+\mathbf{p%
+}_{4y}^{2}))$ & $-((\mathbf{p}_{1x})\ast (\mathbf{p}_{2y})\ast (\mathbf{p}%
+_{4x}^{2}+\mathbf{p}_{4y}^{2}))$ \\ 
+$-((\mathbf{p}_{1y})\ast (\mathbf{p}_{3x})\ast (\mathbf{p}_{4x}^{2}+\mathbf{p%
+}_{4y}^{2}))$ & $+((\mathbf{p}_{2y})\ast (\mathbf{p}_{3x})\ast (\mathbf{p}%
+_{4x}^{2}+\mathbf{p}_{4y}^{2}))$ \\ 
+$+((\mathbf{p}_{1x})\ast (\mathbf{p}_{3y})\ast (\mathbf{p}_{4x}^{2}+\mathbf{p%
+}_{4y}^{2}))$ & $-((\mathbf{p}_{2x})\ast (\mathbf{p}_{3y})\ast (\mathbf{p}%
+_{4x}^{2}+\mathbf{p}_{4y}^{2}))$ \\ 
+$-((\mathbf{p}_{1y})\ast (\mathbf{p}_{2x}^{2}+\mathbf{p}_{2y}^{2})\ast (%
+\mathbf{p}_{4x}))$ & $+((\mathbf{p}_{1x}^{2}+\mathbf{p}_{1y}^{2})\ast (%
+\mathbf{p}_{2y})\ast (\mathbf{p}_{4x}))$ \\ 
+$+((\mathbf{p}_{1y})\ast (\mathbf{p}_{3x}^{2}+\mathbf{p}_{3y}^{2})\ast (%
+\mathbf{p}_{4x}))$ & $-((\mathbf{p}_{2y})\ast (\mathbf{p}_{3x}^{2}+\mathbf{p}%
+_{3y}^{2})\ast (\mathbf{p}_{4x}))$ \\ 
+$-((\mathbf{p}_{1x}^{2}+\mathbf{p}_{1y}^{2})\ast (\mathbf{p}_{3y})\ast (%
+\mathbf{p}_{4x}))$ & $+((\mathbf{p}_{2x}^{2}+\mathbf{p}_{2y}^{2})\ast (%
+\mathbf{p}_{3y})\ast (\mathbf{p}_{4x}))$ \\ 
+$+((\mathbf{p}_{1x})\ast (\mathbf{p}_{2x}^{2}+\mathbf{p}_{2y}^{2})\ast (%
+\mathbf{p}_{4y}))$ & $-((\mathbf{p}_{1x}^{2}+\mathbf{p}_{1y}^{2})\ast (%
+\mathbf{p}_{2x})\ast (\mathbf{p}_{4y}))$ \\ 
+$-((\mathbf{p}_{1x})\ast (\mathbf{p}_{3x}^{2}+\mathbf{p}_{3y}^{2})\ast (%
+\mathbf{p}_{4y}))$ & $+((\mathbf{p}_{2x})\ast (\mathbf{p}_{3x}^{2}+\mathbf{p}%
+_{3y}^{2})\ast (\mathbf{p}_{4y}))$ \\ 
+$+((\mathbf{p}_{1x}^{2}+\mathbf{p}_{1y}^{2})\ast (\mathbf{p}_{3x})\ast (%
+\mathbf{p}_{4y}))$ & $-((\mathbf{p}_{2x}^{2}+\mathbf{p}_{2y}^{2})\ast (%
+\mathbf{p}_{3x})\ast (\mathbf{p}_{4y}));$%
+\end{tabular}
+
+A fun\c{c}\~{a}o auxiliar \textit{Area} utiliza a rela\c{c}\~{a}o da equa\c{c}\~{a}o \ref{func_Area}.
+
+\begin{equation} \label{func_Area}
+\mathit{Area\ }(\mathbf{p}_{i},\mathbf{p}_{j},\mathbf{p}_{k})=1/2\ast
+\lbrack (\mathbf{p}_{jx}\mathbf{-\mathbf{p}}_{ix})\ast (\mathbf{p}_{ky}%
+\mathbf{-\mathbf{p}}_{iy})]-[(\mathbf{p}_{jy}\mathbf{-\mathbf{p}}_{iy})\ast (%
+\mathbf{p}_{kx}\mathbf{-\mathbf{p}}_{ix})];
+\end{equation}
+
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Ilustra\c{c}\~{a}o dos resultados da primitiva {\textit{InC\'{i}culo}}. }
+    \label{fig2_chapter2}
+  \end{center}
+\end{figure}
+
+
+
+\section{Circuncentro...}
+
+A primitiva circuncentro...
+
+
+\textbf{Mediatriz:}
+
+\begin{Def}
+ Consideramos um segmento $\overline{AB}$ e seja $M$ o ponto m\'{e}dio do
+segmento. A reta perpendicular ao segmento $\overline{AB}$ e que passa por $%
+M $ \'{e} denominada \textbf{mediatriz}\textit{.}\textbf{\ }
+\end{Def}
+
+\textbf{Circuncentro:}
+
+\begin{Def}
+\textbf{\ }Dado um $\Delta ($\textbf{p}$_{1}$\textbf{p}$_{2}$\textbf{p}$%
+_{3}) $ se tra\c{c}armos as mediatrizes dos tr\^{e}s lados elas
+intercectam-se num mesmo ponto \textbf{c}, que est\'{a} eq\"{u}idistante dos 
+\textit{v\'{e}rtices} do tri\^{a}ngulo. Este ponto \textbf{c} \'{e} chamado de 
+\textbf{circuncentro do tri\^{a}ngulo}.
+\end{Def}
+
+Tomando \textbf{c} como centro e o raio como a dist\^{a}ncia de \textbf{c} a
+um dos \textit{v\'{e}rtices}, obteremos a circunfer\^{e}ncia que circunscreve
+o $\Delta ($\textbf{p}$_{1}$\textbf{p}$_{2}$\textbf{p}$_{3})$. Esta descri%
+\c{c}\~{a}o pode ser observado na figura \ref{fig3_chapter2}
+
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Representa\c{c}\~{a}o do Circuncentro de um elemento triangular e da 
+	              circunfer\^{e}ncia por ele determinada.}
+    \label{fig3_chapter2}
+  \end{center}
+\end{figure}
+
+
+{\bf Prova}
+ Seja o $\Delta $\textbf{p}$_{1}$\textbf{p}$_{2}$\textbf{p}$_{3}$
+
+\textbf{Hip\'{o}tese: }$\mathbf{m}_{1},\mathbf{m}_{2},\mathbf{m}_{3}$
+mediatrizes de $\overline{\mathbf{p}_{2}\mathbf{p}_{3}}$, $\overline{\mathbf{%
+p}_{1}\mathbf{p}_{3}}$, e $\overline{\mathbf{p}_{1}\mathbf{p}_{2}}$
+respectivamente:
+
+\textbf{1}) $\mathbf{m}_{1}\cap $ $\mathbf{m}_{2}\cap $ $\mathbf{m}_{3}=\{%
+\mathbf{c}\}$
+
+\textbf{2) }$\overline{\mathbf{cp}_{1}}\equiv \overline{\mathbf{cp}_{2}}%
+\equiv \overline{\mathbf{cp}_{3}}$
+
+Seja $\mathbf{c}$\textbf{\ }o ponto tal que:
+
+$\mathbf{m}_{2}\cap $ $\mathbf{m}_{3}=\{\mathbf{c}\}$
+
+$\mathbf{c}$\textbf{\ }$\in $ $\mathbf{m}_{2}$ $\Longrightarrow \overline{%
+\mathbf{cp}_{1}}\equiv \overline{\mathbf{cp}_{3}}$
+
+$\mathbf{c\in m}_{3}\Longrightarrow $\textbf{\ }$\overline{\mathbf{cp}_{1}}%
+\equiv \overline{\mathbf{cp}_{2}}$ \ \ \ \ \ \ \ \ $\Longrightarrow \mathbf{%
+cp}_{1}\equiv \mathbf{cp}_{2}\equiv \mathbf{cp}_{3}$
+
+ Logo:
+
+\textbf{1}) $\mathbf{m}_{1}\cap $ $\mathbf{m}_{2}\cap $ $\mathbf{m}_{3}=\{%
+\mathbf{c}\}$
+
+\textbf{2) }$\overline{\mathbf{cp}_{1}}\equiv \overline{\mathbf{cp}_{2}}%
+\equiv \overline{\mathbf{cp}_{3}}$
+
+
+
+As coordenadas de \textbf{c} s\~{a}o obtidas conforme as equa\c{c}\~{o}es
+descritas a seguir:
+
+
+
+\begin{equation}
+\mathbf{c}_{x}=\frac{\left\vert 
+\begin{array}{cc}
+(x_{\mathbf{p}_{3}\mathbf{p}_{2}}^{2}+y_{\mathbf{p}_{3}\mathbf{p}_{2}}^{2})
+& y_{\mathbf{p}_{3}\mathbf{p}_{2}} \\ 
+(x_{\mathbf{p}_{1}\mathbf{p}_{2}}^{2}+y_{\mathbf{p}_{1}\mathbf{p}_{2}}^{2})
+& y_{\mathbf{p}_{1}\mathbf{p}_{2}}%
+\end{array}%
+\right\vert }{2\left\vert 
+\begin{array}{cc}
+x_{\mathbf{p}_{3}\mathbf{p}_{2}} & y_{\mathbf{p}_{3}\mathbf{p}_{2}} \\ 
+x_{\mathbf{p}_{1}\mathbf{p}_{2}} & y_{\mathbf{p}_{1}\mathbf{p}_{2}}%
+\end{array}%
+\right\vert }
+\end{equation}%
+
+
+
+
+\begin{equation}
+\mathbf{c}_{y}=\frac{\left\vert 
+\begin{array}{cc}
+x_{\mathbf{p}_{3}\mathbf{p}_{2}} & (x_{\mathbf{p}_{3}\mathbf{p}_{2}}^{2}+y_{%
+\mathbf{p}_{3}\mathbf{p}_{2}}^{2}) \\ 
+x_{\mathbf{p}_{1}\mathbf{p}_{2}} & (x_{\mathbf{p}_{1}\mathbf{p}_{2}}^{2}+y_{%
+\mathbf{p}_{1}\mathbf{p}_{2}}^{2})%
+\end{array}%
+\right\vert }{2\left\vert 
+\begin{array}{cc}
+x_{\mathbf{p}_{3}\mathbf{p}_{2}} & y_{\mathbf{p}_{3}\mathbf{p}_{2}} \\ 
+x_{\mathbf{p}_{1}\mathbf{p}_{2}} & y_{\mathbf{p}_{1}\mathbf{p}_{2}}%
+\end{array}%
+\right\vert }
+\end{equation}%
+Onde:
+
+\begin{equation}
+x_{\mathbf{p}_{1}\mathbf{p}_{2}}=\mathbf{p}_{1x}-\mathbf{p}_{2x},\ \ x_{%
+\mathbf{p}_{3}\mathbf{p}_{2}}=\mathbf{p}_{3x}-\mathbf{p}_{2x}
+\end{equation}
+
+e
+
+\begin{equation}
+y_{\mathbf{p}_{1}\mathbf{p}_{2}}=\mathbf{p}_{1y}-\mathbf{p}_{2y},\ \ y_{%
+\mathbf{p}_{3}\mathbf{p}_{2}}=\mathbf{p}_{3y}-\mathbf{p}_{2y}
+\end{equation}
+
+
+
+O raio da cincunfer\^{e}ncia que circunscreve o tri\^{a}ngulo segue:
+
+
+
+\begin{equation}
+\mathbf{R}_{circ}=\frac{1}{2}\sqrt{\frac{(\mathbf{d}_{1}+\mathbf{d}_{2})(%
+\mathbf{d}_{2}+\mathbf{d}_{3})(\mathbf{d}_{3}+\mathbf{d}_{1})}{\mathbf{c}}}
+\end{equation}
+
+ de maneira que:
+
+\begin{eqnarray}
+\mathbf{d}_{1} &=&(\mathbf{p}_{3}-\mathbf{p}_{1})(\mathbf{p}_{2}-\mathbf{p}%
+_{1}) \\
+\mathbf{d}_{2} &=&(\mathbf{p}_{3}-\mathbf{p}_{2})(\mathbf{p}_{1}-\mathbf{p}%
+_{2}) \\
+\mathbf{d}_{3} &=&(\mathbf{p}_{1}-\mathbf{p}_{3})(\mathbf{p}_{2}-\mathbf{p}%
+_{3}) \\
+\mathbf{c} &=&\mathbf{d}_{1}\mathbf{d}_{2}+\mathbf{d}_{2}\mathbf{d}_{3}+%
+\mathbf{d}_{3}\mathbf{d}_{1} \\
+\mathbf{p}_{i} &=&(\mathbf{p}_{ix},\mathbf{p}_{iy})
+\end{eqnarray}
+
+
+
+\section{Estrutura de Dados}
+
+\subsection{Introdu\c{c}\~{a}o}
+A maneira como...
+
+\subsection{Fundamenta\c{c}\~{a}o}
+
+Um grafo ${\mathbf G}(V, E)$ \'e um conjunto finito n\~ao-vazio $V$ de \textit{v\'ertices}, e um conjunto $E$ de \textit{aretas}, que s\~ao formadas a partir de pares n\~ao-ordenados de v\'ertices distintos de $V$. Uma aresta $\mathbf{e}=(\mathbf{u}, \mathbf{v})$ \'e constituida pelos v\'ertices $\mathbf{u}$ e $\mathbf{v}$, que s\~ao seus extremos.
+
+O n\'umero de \textit{v\'etices}, \textit{arestas} e \textit{faces} em qualquer subdivis\~ao planar, dados respectivamente pr \textit{nv}, \textit{ne} e \textit{nf}, se relacionam combinatoriamente atrav\'es da rela\c{c}\~{a}o de Euler dada pela equa\c{c}\~{a}o \ref{relac_Euler}.
+
+\begin{equation} \label{relac_Euler}
+nv+nf-ne = 2
+\end{equation}
+
+Num \textit{grafo planar} cada face \'e formada por, no m\'inimo, tr\^es arestas, cada aresta possui exatamente dois v\'ertices e \'e adjacente a exatamente duas faces. Logo, $2ne\geq 3nf$, e, ao se substituir esta desigualdade na equa\c{c}\~{a}o \ref{relac_Euler}, obt\'em-se as inequa\c{c}\~{o}es \ref{Euler_ineq1}, \ref{Euler_ineq2} e \ref{Euler_ineq3}, que s\~ao sempre v\'alidas. Se for acrescentada a restri\c{c}\~{a}o de que cada \textit{v\'ertice} possui pelo menos tr\^es \textit{arestas} incidentes, ent\~ao, as inequa\c{c}\~{o}es \ref{Euler_ineq4}, \ref{Euler_ineq5} e \ref{Euler_ineq6} tamb\'em s\~ao v\'alidas.
+
+Um \textit{grafo} ${\mathbf G}(V, E)$ \'e dito \textit{conexo} quando existe uma sequ\^encia de arestas entre dois v\'ertices quaisquer de $V$. Dado um conjunto ${\mathbf S}$ e um subconjunto ${\mathbf S}'$(${\mathbf S}'\subseteq {\mathbf S}$), diz-se que ${\mathbf S}'$ \'e \textit{maximal} em rela\c{c}\~{a}o a uma determinada propriedade \textbf{M} quando ${\mathbf S}'$ satisfaz a propriedade \textbf{M} e n\~ao existe outro subconjunto ${\mathbf S}''$ que cont\'em ${\mathbf S}'$ e tamb\'em satisfaz a propriedade \textbf{M}. Muitos outros resultados te\'oricos sobre teoria dos grafos podem ser encontrados em \cite{szwarcfiter}.
+
+\begin{equation} \label{Euler_ineq1}
+ne\leq 3nv-6
+\end{equation}
+
+\begin{equation} \label{Euler_ineq2}
+nf\leq \frac{2}{3}ne
+\end{equation}
+
+\begin{equation} \label{Euler_ineq3}
+nf\leq 2nv-4
+\end{equation}
+
+\begin{equation} \label{Euler_ineq4}
+nv \leq \frac{2}{3}ne
+\end{equation}
+
+\begin{equation} \label{Euler_ineq5}
+ne \leq 3nf-6
+\end{equation}
+
+\begin{equation} \label{Euler_ineq6}
+nv \leq 2nf-4
+\end{equation}
+
+
+
+\subsection{Estrutura de Dados baseada em Fronteira}
+
+Todos os modelos de fronteiras representam \textit{faces} em termos de n%
+\'{o}s expl\'{\i}citos numa estrutura de dados de fronteiras. Isso,
+possibilita muitas alternativas para representa\c{c}\~{a}o da geometria e da topologia 
+de um modelo de fronteiras, algum dos quais s\~{a}o descritos a seguir. Para
+deixar mais simples e mais claro, devemos ilustr\'{a}-los baseados na
+representa\c{c}\~{a}o do bloco mostrado na
+figura \ref{fig2_chapter3}.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{ Orienta\c{c}\~{a}o das \textit{arestas} relacionada com o \textit{loop} exterior do objeto.}  
+    \label{fig2_chapter3}
+  \end{center}
+\end{figure}
+
+
+
+\subsubsection{Modelo de fronteiras baseada em \textit{v\'{e}rtice}.}
+
+Note que a simples representa\c{c}\~{a}o da figura \ref{fig3_chapter3} lista os 
+\textit{v\'{e}rtices} de cada \textit{face} em uma ordem consistente (sentido hor\'{a}rio) como o visto do lado de fora do cubo. Essa orienta\c{c}\~{a}o
+robusta \'{e} \'{u}til em muitos algoritmos. Por exemplo, em linhas
+ocultas ou numa superf\'{\i}cie remota, permite a elimina\c{c}\~{a}o de 
+\textit{faces}\textit{\ traseiras } na base das \textit{faces} normais atrav\'{e}s dos ponteiros consistentemente apontando para elas. No caso da figura \ref{fig3_chapter3}
+as \textit{faces} \textit{f}$_{1}$, \textit{f}$_{4}$ e \textit{f}$_{5}$ podem
+ser imediatamenete descartadas pelas linhas ocultas e um algoritmo de
+remo\c{c}\~{a}o de superf\'{\i}cie.
+
+A representa\c{c}\~{a}o da figura \ref{fig3_chapter3} n\~{a}o inclui
+todas informa\c{c}\~{o}es da superf\'{\i}cie; como todas as \textit{faces} s%
+\~{a}o planares, suas geometrias s\~{a}o completamente definidas atrav\'{e}s
+das coordenadas dos \textit{v\'{e}rtices}. Por outro lado, se a equa\c{c}\~{a}%
+o da \textit{face} \'{e} necess\'{a}ria para c\'{a}lculo num\'{e}rico (digamos,
+para sombreamento) essa informa\c{c}\~{a}o tamb\'{e}m podem ser 
+incorporadas junto \`{a}s \textit{faces}.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Modelo de fronteira baseado em \textit{v\'{e}rtice} segundo o modelo \ref{fig2_chapter3}.}  
+    \label{fig3_chapter3}
+  \end{center}
+\end{figure}
+
+
+
+\subsubsection{Modelo de fronteira baseada em \textit{arestas}}
+
+Um modelo de fronteiras baseado em \textit{arestas} representa uma fronteira
+de \textit{face} em uma sequ\^{e}ncia fechada de \textit{arestas}, ou por um
+pequeno \textit{loop}. Os \textit{v\'{e}rtices} das \textit{faces} est\~{a}o
+representados atrav\'{e}s das \textit{arestas}. Essa aproxima\c{c}\~{a}o nos leva
+ao modelo da figura \ref{fig4_chapter3}. 
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Modelo de fronteira baseado em \textit{aresta} de acordo com a figura \ref{fig2_chapter3}.}  
+    \label{fig4_chapter3}
+  \end{center}
+\end{figure}
+
+
+\section{Primitivas Topol\'{o}gicas}
+
+\subsection{Operadores de Euler}
+
+De acordo com Braid \cite{braid} cinco operadores topol\'{o}gicos s\~{a}o necess%
+\'{a}rios para manipula\c{c}\~{a}o dos modelos, por\'{e}m para maior pr\'{a}tica no desenvolvimento de um sistema, mais operadores podem ser implementados. As seis entidades envolvidas no modelo planar utilizado s\~{a}o: \textit{v\'{e}rtices}, \textit{arestas}, \textit{faces}, \textit{ciclos}(\textit{loops}), e corpos ou shell que s\~{a}o baseados na estrutura de dados \textit{winged-edge modificada}. Em nossas implementa\c{c}\~ao utilizamos primitivas topol\'ogicas para executar atualiza\c{c}\~oes durante o processo construtivo da malha e garantindo sua consist\^encia e robustez.
+
+
+
+\subsection{As Rela\c{c}\~{o}es entre as Entidades Topol\'{o}gicas}
+
+H\'{a} rela\c{c}\~{o}es de adjac\^{e}ncia entre as entidades topol\'{o}gicas 
+\textit{v\'{e}rtice}, \textit{aresta} e \textit{face} encontradas em uma \textit{subdivis\~{a}o planar}, a Figura \ref{fig6_chapter4} representa essa situa\c{c}\~{a}o. Cada uma dessas rela\c{c}\~{o}es \'{e} representada por um par de letras, em que a segunda identifica o conjunto de entidades incidentes ou adjacentes 
+\`{a} primeira. Assim, \textbf{VF} e \textbf{FF} significam, respectivamente, o conjunto de \textit{faces} incidentes a um \textit{v\'{e}rtice} dado e o conjunto de \textit{faces} adjacentes a uma \textit{face} dada.
+
+Segue as nove rela\c{c}\~{o}es de adjac\^{e}ncia poss\'{\i}veis em
+toda estrutura topol\'{o}gica:
+
+\begin{itemize}
+\item \textbf{VV}: dado um \textit{v\'{e}rtice}, encontrar os \textit{v\'{e}rtices} adjacentes a ele. Dois \textit{v\'{e}rtices} s\~{a}o adjacentes se est\~{a}o conectados por uma \textit{aresta};
+
+\item \textbf{VE}: dado um \textit{v\'{e}rtice}, encontrar as \textit{arestas} adjacentes. Uma \textit{aresta} \'{e} adjacente a um \textit{v\'{e}rtice} se o \textit{v\'{e}rtice} \'{e} seu extremo;
+\end{itemize}
+
+Todas as nove rela\c{c}\~{o}es podem ser obtidas de forma muito simples na
+estrutura \textit{winged-edge modificada}, que foi a adotada na implementa\c{c}\~{a}o, com o aux\'{\i}lio de apenas duas primitivas topol\'{o}gicas, descritas abaixo ilustradas na Figura \ref{fig9_chapter4}.
+
+\vspace{-2mm}
+
+\begin{description}
+\item[ccw\_nev(v, e, ne)] Dado um \textit{v\'{e}rtice} \textbf{v} e uma \textit{%
+aresta} \textbf{e}, esta primitiva retorna a \textit{aresta} \textbf{ne}, que 
+\'{e} a pr\'{o}xima \textit{aresta} incidente a \textbf{v} no sentido anti-hor%
+\'{a}rio depois de \textbf{e}.
+
+\item[ccw\_nel(l, e, ne)] Dado um \textit{ciclo} \textbf{l} e uma de suas 
+\textit{arestas} \textbf{e}, esta primitiva retorna a \textit{aresta} \textbf{ne}%
+, que \'{e} a \textit{aresta} seguinte a \textbf{e} quando se percorre o \textit{%
+\ ciclo} \textbf{l} no sentido anti-hor\'{a}rio.
+\end{description}
+
+A seguir, apresentam-se formalmente todas as componentes no modelo hier\'{a}rquico topol\'{o}gico:
+
+\begin{itemize}
+\item \textbf{v\'{e}rtice:} representa um simplexo de dimens\~{a}o zero, que 
+\'{e} um ponto no espa\c{c}o euclidiano.
+
+\item \textbf{aresta:} representa um segmento de curva limitado por dois 
+\textit{v\'{e}rtices}, n\~{a}o necessariamente distintos, e \textit{homeomorfo}
+ao intervalo [0,1]. Na implementa\c{c}\~{a}o que estamos realizando, uma 
+\textit{aresta} ser\'{a} sempre um segmento de reta, podendo pertencer a um ou
+no m\'{a}ximo dois \textit{ciclos}.
+\end{itemize}
+
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Rela\c{c}\~{o}es de adjac\^{e}ncias entre {\textit{aresta}}, {\textit{v\'{e}rtice}} e {\textit{face}}, entidades presentes na estrutura.}
+    \label{fig6_chapter4}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Primitivas utilizadas para se obter todas as rela\c{c}\~{o}es de adjac\^{e}ncias
+	              entre as entidades {\textit{aresta}},{\textit{v\'{e}rtice}} e {\textit{face}}.}   
+    \label{fig9_chapter4}
+  \end{center}
+\end{figure}

@@ -1,0 +1,393 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: fig3_ch5.fig
+%%Creator: fig2dev Version 3.2 Patchlevel 4
+%%CreationDate: Tue Jan  1 12:02:50 2002
+%%For: anderson@piteri (Anderson  Gregório da Silva)
+%%BoundingBox: 0 0 273 285
+%%Magnification: 1.0000
+%%EndComments
+/$F2psDict 200 dict def
+$F2psDict begin
+$F2psDict /mtrx matrix put
+/col-1 {0 setgray} bind def
+/col0 {0.000 0.000 0.000 srgb} bind def
+/col1 {0.000 0.000 1.000 srgb} bind def
+/col2 {0.000 1.000 0.000 srgb} bind def
+/col3 {0.000 1.000 1.000 srgb} bind def
+/col4 {1.000 0.000 0.000 srgb} bind def
+/col5 {1.000 0.000 1.000 srgb} bind def
+/col6 {1.000 1.000 0.000 srgb} bind def
+/col7 {1.000 1.000 1.000 srgb} bind def
+/col8 {0.000 0.000 0.560 srgb} bind def
+/col9 {0.000 0.000 0.690 srgb} bind def
+/col10 {0.000 0.000 0.820 srgb} bind def
+/col11 {0.530 0.810 1.000 srgb} bind def
+/col12 {0.000 0.560 0.000 srgb} bind def
+/col13 {0.000 0.690 0.000 srgb} bind def
+/col14 {0.000 0.820 0.000 srgb} bind def
+/col15 {0.000 0.560 0.560 srgb} bind def
+/col16 {0.000 0.690 0.690 srgb} bind def
+/col17 {0.000 0.820 0.820 srgb} bind def
+/col18 {0.560 0.000 0.000 srgb} bind def
+/col19 {0.690 0.000 0.000 srgb} bind def
+/col20 {0.820 0.000 0.000 srgb} bind def
+/col21 {0.560 0.000 0.560 srgb} bind def
+/col22 {0.690 0.000 0.690 srgb} bind def
+/col23 {0.820 0.000 0.820 srgb} bind def
+/col24 {0.500 0.190 0.000 srgb} bind def
+/col25 {0.630 0.250 0.000 srgb} bind def
+/col26 {0.750 0.380 0.000 srgb} bind def
+/col27 {1.000 0.500 0.500 srgb} bind def
+/col28 {1.000 0.630 0.630 srgb} bind def
+/col29 {1.000 0.750 0.750 srgb} bind def
+/col30 {1.000 0.880 0.880 srgb} bind def
+/col31 {1.000 0.840 0.000 srgb} bind def
+
+end
+save
+newpath 0 285 moveto 0 0 lineto 273 0 lineto 273 285 lineto closepath clip newpath
+-28.0 324.4 translate
+1 -1 scale
+
+/cp {closepath} bind def
+/ef {eofill} bind def
+/gr {grestore} bind def
+/gs {gsave} bind def
+/sa {save} bind def
+/rs {restore} bind def
+/l {lineto} bind def
+/m {moveto} bind def
+/rm {rmoveto} bind def
+/n {newpath} bind def
+/s {stroke} bind def
+/sh {show} bind def
+/slc {setlinecap} bind def
+/slj {setlinejoin} bind def
+/slw {setlinewidth} bind def
+/srgb {setrgbcolor} bind def
+/rot {rotate} bind def
+/sc {scale} bind def
+/sd {setdash} bind def
+/ff {findfont} bind def
+/sf {setfont} bind def
+/scf {scalefont} bind def
+/sw {stringwidth} bind def
+/tr {translate} bind def
+/tnt {dup dup currentrgbcolor
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add srgb}
+  bind def
+/shd {dup dup currentrgbcolor 4 -2 roll mul 4 -2 roll mul
+  4 -2 roll mul srgb} bind def
+ /DrawEllipse {
+	/endangle exch def
+	/startangle exch def
+	/yrad exch def
+	/xrad exch def
+	/y exch def
+	/x exch def
+	/savematrix mtrx currentmatrix def
+	x y tr xrad yrad sc 0 0 1 startangle endangle arc
+	closepath
+	savematrix setmatrix
+	} def
+
+/$F2psBegin {$F2psDict begin /$F2psEnteredState save def} def
+/$F2psEnd {$F2psEnteredState restore end} def
+
+$F2psBegin
+10 setmiterlimit
+0 slj 0 slc
+ 0.06299 0.06299 sc
+%
+% Fig objects follow
+%
+% 
+% here starts figure with depth 50
+% Ellipse
+7.500 slw
+n 923 1804 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+n 1343 1234 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+n 2043 1234 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+n 1733 1874 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Polyline
+n 923 1804 m
+ 2043 1234 l gs col0 s gr 
+% Polyline
+n 923 1804 m 1343 1234 l 2043 1234 l 1733 1874 l
+ cp gs col0 s gr 
+% Polyline
+ [60] 0 sd
+n 1356 1246 m
+ 1626 746 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 1356 1246 m
+ 476 1366 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 1356 1246 m
+ 936 786 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 2056 1216 m
+ 1786 716 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 2056 1226 m
+ 2546 816 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 2056 1246 m
+ 2426 1596 l gs col0 s gr  [] 0 sd
+% Polyline
+n 1742 1876 m 1750 1876 l gs col0 s gr
+% Polyline
+ [60] 0 sd
+n 1746 1876 m
+ 2346 1776 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 926 1806 m
+ 456 1496 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 936 1826 m
+ 1186 2166 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 1736 1896 m
+ 1386 2206 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 1756 1896 m
+ 2156 2346 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 946 1816 m
+ 476 2156 l gs col0 s gr  [] 0 sd
+% Ellipse
+n 3208 1818 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+n 3628 1248 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+n 4328 1248 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+n 4018 1888 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+ [60] 0 sd
+n 3656 1315 680 680 0 360 DrawEllipse gs col0 s gr
+ [] 0 sd
+% Polyline
+n 3208 1818 m
+ 4328 1248 l gs col0 s gr 
+% Polyline
+n 3208 1818 m 3628 1248 l 4328 1248 l 4018 1888 l
+ cp gs col0 s gr 
+% Polyline
+ [60] 0 sd
+n 3641 1260 m
+ 3736 885 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 3641 1260 m
+ 3331 1185 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 3641 1260 m
+ 3391 960 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 4341 1230 m
+ 4306 750 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 4341 1240 m
+ 4756 900 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 4341 1260 m
+ 4666 1515 l gs col0 s gr  [] 0 sd
+% Polyline
+n 4027 1890 m 4035 1890 l gs col0 s gr
+% Polyline
+ [60] 0 sd
+n 4031 1890 m
+ 4546 1785 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 3211 1820 m
+ 2741 1510 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 3221 1840 m
+ 3226 2310 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 4021 1910 m
+ 3721 2280 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 4041 1910 m
+ 4381 2265 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 3231 1830 m
+ 2761 2170 l gs col0 s gr  [] 0 sd
+% Ellipse
+n 3216 4117 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+n 3636 3547 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+n 4336 3547 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+n 4026 4187 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+ [60] 0 sd
+n 3636 3988 445 445 0 360 DrawEllipse gs col0 s gr
+ [] 0 sd
+% Ellipse
+ [60] 0 sd
+n 4002 3772 425 425 0 360 DrawEllipse gs col0 s gr
+ [] 0 sd
+% Polyline
+n 3216 4117 m 3636 3547 l 4336 3547 l 4026 4187 l
+ cp gs col0 s gr 
+% Polyline
+ [60] 0 sd
+n 3649 3559 m
+ 3763 3221 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 3649 3559 m
+ 3260 3538 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 3649 3559 m
+ 3463 3353 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 4349 3529 m
+ 4284 3132 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 4349 3539 m
+ 4655 3274 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 4349 3559 m
+ 4734 3997 l gs col0 s gr  [] 0 sd
+% Polyline
+n 4035 4189 m 4043 4189 l gs col0 s gr
+% Polyline
+ [60] 0 sd
+n 4039 4189 m
+ 4663 4226 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 3219 4119 m
+ 3005 3856 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 3229 4139 m
+ 3340 4553 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 4029 4209 m
+ 3755 4588 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 4049 4209 m
+ 4257 4447 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 3239 4129 m
+ 2802 4350 l gs col0 s gr  [] 0 sd
+% Polyline
+n 3649 3559 m
+ 4029 4194 l gs col0 s gr 
+% Ellipse
+n 984 4130 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+n 1404 3560 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+n 2104 3560 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Ellipse
+n 1794 4200 30 30 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Polyline
+n 984 4130 m 1404 3560 l 2104 3560 l 1794 4200 l
+ cp gs col0 s gr 
+% Polyline
+ [60] 0 sd
+n 1417 3572 m
+ 1558 3307 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 1417 3572 m
+ 923 3598 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 1417 3572 m
+ 1258 3324 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 2117 3542 m
+ 1991 3307 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 2117 3552 m
+ 2379 3360 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 2117 3572 m
+ 2308 3766 l gs col0 s gr  [] 0 sd
+% Polyline
+n 1803 4202 m 1811 4202 l gs col0 s gr
+% Polyline
+ [60] 0 sd
+n 1807 4202 m
+ 2405 4242 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 987 4132 m
+ 614 3977 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 997 4152 m
+ 1170 4419 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 1797 4222 m
+ 1585 4472 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 1817 4222 m
+ 2044 4560 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 998 4124 m
+ 623 4454 l gs col0 s gr  [] 0 sd
+% here ends figure;
+$F2psEnd
+rs
+showpage

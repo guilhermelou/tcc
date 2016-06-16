@@ -1,0 +1,54 @@
+
+\chapter{Conclus\~{a}o} \label{chapter5}
+
+Considerando a amplitude dos algoritmos existentes, optamos por aqueles pertencentes ao paradigma de \textit{inser\c{c}\~{a}o}, tamb\'em referenciado na literatura por \textit{incremental} \cite{berg}. As maiores vantagens dos algoritmos pertencentes a essa classe, s\~ao: em primeiro lugar, a sua simplicidade algor\'itmica e, em segundo, a possibilidade deles serem facilmente generalizados para outras dimens\~oes, em particular, o $R^{3}$.
+
+Para ser mais preciso, foram implementados dois algoritmos. O primeiro deles tem como base o trabalho de Watson \cite{watson}. Entretanto, in\'umeras variantes foram incorporadas, como por exemplo, o princ\'ipio de Lawson \cite{lawson} para manuten\c{c}\~{a}o do crit\'erio de Delaunay e o conceito de randomiza\c{c}\~{a}o sobre o conjunto de pontos de entrada \cite{guibas}, que combinadas com eficientes t\'ecnicas de busca, aumentam significativamente a perormance dese algoritmo. S\'o para exemplificas, atualmente, mesmo sem ter finalizado muitas das otimiza\c{c}\~{o}es necess\'arias, conseguimos obter triangula\c{c}\~{o}es da ordem de $10^5$ em torno de 25 segundos, o que \'e bastante razo\'avel para um trabalho dessa natureza.
+
+\section{Futuros Trabalhos}
+
+E agora...... ?
+
+
+\section{Como Inserir Figuras Obtidas de Outras Fontes}
+
+É importante ressaltar que o padrão da característica biométrica obtida no momento da verificação ou identificação não será idêntico ao armazenado previamente pelo sistema. O sistema biométrico deve comparar as duas representações da característica e verificar a correlação existente entre elas. A correlação geralmente é determinada pelo grau de similaridade, um valor normalizado que pode variar entre 0 e 1. Quanto mais se aproximar de 1, maior é a probabilidade dos dois padrões terem sido obtidos da mesma pessoa. Por outro lado, quanto mais próximo for de 0, menor é esta possibilidade. O que determina a aceitação ou a rejeição é um limiar. Se a comparação tiver um grau de similaridade maior ou igual a este limiar, ocorre uma aceitação, caso contrário, há uma rejeição \cite{jain2}.
+
+
+\begin{figure}[htbp]
+	\centering
+	\leavevmode
+	\includegraphics[scale=0.4]{Figuras/Chapter2/FARxFRR.eps}
+	\caption{Situações possíveis em sistemas biométricos.}%\newline 
+	\footnotesize{Fonte: adaptada a partir da referência \cite{jain2}.}
+	\label{FARxFRR}
+\end{figure}
+
+Há quatro situações possíveis no processo de autenticação biométrica. Estas possibilidades são ilustradas na Figura \ref{FARxFRR} e são denominadas: Correta Aceitação (CA), Correta Rejeição (CR), Falsa Aceitação (FA) e Falsa Rejeição (FR). CA e CR caracterizam o funcionamento esperado do sistema, pois um usuário legítimo é aceito e um impostor é rejeitado, respectivamente, nestas ocasiões. Já FR e FA constituem situações de erro do sistema. No primeiro caso, uma identidade genuína é considerada falsa e no segundo, um impostor é tratado como um usuário autêntico.
+
+FA e FR são quantificadas, respectivamente, pela taxa de falsa aceitação (FAR - {\it False Acceptance Rate}) e pela taxa de falsa rejeição (FRR - {\it False Rejection Rate}). Estas medidas referem-se a probabilidade de ocorrer uma falsa aceitação e uma falsa rejeição em um algoritmo de verificação, e são constantemente usadas para avaliar o desempenho de sistemas biométricos.
+
+\begin{table}
+\centering
+\begin{tabular}{| l | c | r |} 
+  \hline                       
+  1 & 2 & 3 \\
+  4 & 5 & 6 \\
+  7 & 8 & 9 \\
+  \hline  
+\end{tabular}
+\caption{Taxas de Desempenho}
+\label{taxas_desempenho}
+\end{table}
+
+A taxa de falsa aceitação (FAR) e a taxa de falsa rejeição (FRR) são mutuamente dependentes. A diminuição de uma aumenta a outra. A Tabela \ref{taxas_desempenho} apresenta as taxas médias de desempenho FAR e FRR de alguns sistemas biométricos típicos encontrados no mercado \cite{pinheiro}.
+
+\cleardoublepage
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "tese"
+%%% End:
