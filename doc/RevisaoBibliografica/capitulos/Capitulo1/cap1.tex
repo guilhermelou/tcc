@@ -1,7 +1,66 @@
 
 
 
-\chapter{PostgreSQL e os tipos de dados não estruturados}
+\chapter{Bancos de Dados Não Relacionais - NoSQL}
+    Em um trabalho acadêmico intitulado "Selected Topics on Software-Technology Ultra-Large Scale Sites"(Tópicos Selecionados na Tecnologia de Softwares de Sites de Escala Ultra Grande) na Stuttgart Media University(Universidade de Mídia de Stuttgart) Christof Strauch reúne várias referências e tópicos sobre todo o assunto de base do NoSQL, conforme seu trabalho, os bancos de dados relacionais são os tipos predominantes para armazenamento de dados estruturados, desde 1970 este tipo de base de dados se suporta em uma aritmética relacional com o proliferado uso do SQL(Secure Query Language) para inserir, alterar, recuperar e remover os dados. Bases de dados não convencionais eram utilizadas apenas para aplicações de algum nicho específico como projetos utilizando SOAP que utiliza o padrão XML, porém o pensamento por cima desse uso disseminado "um tamanho para caber todos" tem sido questionado tanto pelas empresas como pelos acadêmicos devido ao aumento de usuários e volume de dados no meio.
+
+	Conforme segue na argumentação de Christof Strauch, para suprir essa demanda algumas alternativas começam a ser propostas, vários outros modelos são criados para abrangir mais nichos antes dominados pelos SGBDRs, esses modeloss adotam caminhos não convencionais nem sempre garantindo a ACID (Atomicidade, Consistência, Isolamento e Durabilidade) dos dados, porém conseguem optimizar o espaço de armazenamento e a performance das bases de dados, não necessariamente se desfazendo do uso do SQL, por isso a sigla NoSQL significa $"not$ $only$ $secure$ $query$ $language"$.
+    
+    \section{Definição}
+
+    
+    \section{Aspectos Comuns ao NoSQL}
+    Esta seção destina-se a criar uma base sólida sobre os principais aspectos e conceitos que envolvem o NoSQL, além de apontar diferenças e temas relacionados com SGBDs também serão abordados teoremas e tópicos específicos sobre o NoSQL
+
+    \subsection{Recapitulando SGBDRs}
+    Em uma tese de mestrado intitulada "Extracting Data from NoSQL Databases. A Step towards Interactive Visual Analysis of NoSQL Data"(Extração de dados de bases NoSQL. Um passo avante para análise de visualização interativa de NoSQL) da Chalmers University of Technology(Chalmers, Universidade de Tecnologia) Petter Näsholm apresenta uma recapitulação rápida sobre as bases de dados convencionais. SGBDRs se baseiam no conceito de tabelas com conjunto de atributos podendo ser chamados de colunas da tabela, cada atributo é associado a um tipo de dado(como inteiro, real ou string). Cada linha desta tabela é considerada uma tupla, ao passo que os atributos dentro de cada tupla podem ser preenchidos com componentes referente ao seu tipo. As tabelas também podem ter colunas com informações sobre a relação entre elas mesmas.
+
+    \subsection{ACID e BASE}
+    Petter Näsholm também aborda as garantias que a maioria dos SGBDRs adotam sendo elas a sigla ACID(Atomicidade, Consistência, Isolação, Durabilidade) onde Atomicidade é a garantia de que ou uma trasação é executada de forma completa ou não é executada de forma alguma, a Consistência garante que toda transação saia de um estado da base válido para outro, Isolação é a garantia de que não interfere outra no tempo em que estão ocorrendo e a Durabilidade garante que o efeito de uma transação deve persistir e, portanto, nunca ser perdido. No trabalho de Christof Strauch o autor apresenta o BASE que são as garantias dos NoSQL:
+
+    Basic available(Basicamente disponível): Uma aplicação funciona basicamente todo o tempo.
+    
+    Soft-state(Estado "leve, macio", simples): Não precisa ser consistente o tempo todo.
+    
+    Eventual consistency(Eventual consistência): Em algum momento conhecido haverá consistência.
+    
+    O aspecto com maior diferença entre os modelos é a parte da consistência, no modelo ACID existe uma consistência estrita enquanto no base há uma consistência eventual. A consistência estrita implica que toda operação de leitura deve retornar resultados a partir da última escrita, devido a isso as operações de leitura e escrita devem ser feitas no mesmo servidor ou obedecer a um protocolo de transação distribuída, porém, como veremos abaixo pelo teorema CAP, essa forma de operar implica ou na perda da disponibilidade dos dados ou na tolerância do particionamento dos mesmos. A consistência eventual permite que leitores acessem a base conforme os dados vão sendo escritos, não importando necessariamente se aquele registro foi o último a ser escrito, eventualmente em um estado estável será retornado o último registro escrito, até isso ocorrer o sistema pode estar em um estado de inconsistência.
+
+    Além das garantias colocadas acima Christof Strauch lista outras que também podem ser fornecidas:
+
+    RYOW - Read Your Own Writes(leia seus próprios escritos): O leitor deve visualizar imediatamente aquilo que ele próprio escreveu, independentemente se o leitor acessa pelo próprio servidor que escreveu ou por outro.
+
+    Consistência da Sessão: Acompanha a garantia do RYOW porém apenas para a sessão que o leitor estiver conectado, ou seja, caso escreva os dados por um servidor e tenter ler por outro a consistência não será garantida.
+
+    Consistência ocasional: se foi escrito y após ser lido x, qualquer leitor que ver y também verá x.
+
+    \subsection{Teorema CAP}
+    O Teorema CAP que, conforme Christof Strauch, é muito adotado pela comunidade NoSQL, apresenta um conceito referente as limitações estritamente associadas as capacidades que oferecem.
+    
+    A sigla CAP se refere à Consistência(Consistency), Disponibilidade(Availability), Tolerância ao particionamento(Partition Tolerance), sendo respectivamente a habilidade de manter os dados compartilhados disponíveis a todos os leitores após um escritor executar um update, a habilidade de continuar disponível mesmo com a falta de algum cluster ou parte do sistema ficar indisponível e a habilidade de continuar operando mesmo que um servidor não consiga se conectar a outro servidor da mesma aplicação também entendido como a habilidade de poder adicionar ou remover nós de uma rede particionada. Este Teorema propõe que só é possível para qualquer aplicação combinar duas dentre as três características, ou seja ela pode ter muita consistencia e disponibilidade porém com pouca tolerância ao particionamento, muita consistencia e tolerância ao particionamento porém com pouca disponibilidade ou muita disponibilidade e tolerância ao particionamento e pouca consistência.
+    
+    Observando pelo teorema CAP os NoSQL buscam ofertar alternativas para aplicações que nem sempre dependem de consistência ou disponibilidade ou tolerância ao particionamento.
+
+    Também existem outros aspectos mais profundos mas que não seram abordados neste documento como o versionamento do conjunto dos dados, os cenários distribuídos e o particionamento. Os aspectos vistos acima nos dão aparato suficiente para progredir o trabalho focando nas questões principais sobre as necessidades da aplicação e o uso de diferentes tipos de SGBDs para qual se encaixam melhor.
+    
+    \section{Formas de Armazenamento}
+    Nesta seção seram abordados algums tipos de bases NoSQL, o modelo orientado à documento utilizando JSON será aprofundado pois foi escolhido para dar suporte a este trabalho devido a sua fácil integração com a ferramenta de visualização de dados escolhida.
+    
+    \subsection{Armazenamento baseado em linhas}
+    
+
+\subsection{e serviços rest, json e datavisualization}
+    \section{Do SQL ao NOSQL}
+    \section{NoSQL Orientado a Documento}
+        falar dos tipos existentes
+    %\section{Tipos Mais conhecidos de NoSQL}
+        %\subsection{Orientado a Objetos}
+        %\subsection{Orientado a Colunas}
+        %\subsection{Orientado a Grafos}
+        %\subsection{Orientado a Documento}
+    \section{Críticas ao NoSQL pag 15 http://www.christof-strauch.de/nosqldbs.pdf}
+
+\chapter{PostgreSQL e os tipos de dados não convencionais}
 
 \section{PostgreSQL}
 
@@ -11,26 +70,68 @@ Sobre os dados sem schema que utiliza, o Xml é estruturado de maneira hierarquic
 
 Outro tipo é o Hstore, este tipo tem um desempenho bem expressivo pois baseia-se apenas em chave para valores em strings ou outros valores hstore, embora seja eficiente a falta de aninhamento e diferentes tipos dificulta sua utilização para situações mais complexas, não é muito flexível.
 
-Por último temos o tipo JSON, nesta revisão haverá uma seção apenas sobre tal tipo mas em resumo é um tipo de documento baseado no tipo de notação JavaScript, é utilizado com forma para armazenamento e troca de dados entre várias plataformas web e mobile.
+Por último temos o tipo JSON e JSONB, que é o tipo Orientado a Documento baseado na notação JavaScript, é utilizado como forma para armazenamento e troca de dados entre várias plataformas web e mobile. Abaixo temos um aprofundamento sobre este tipo por ser base ao trabalho.
 
 \section{JSON}
 
 JSON significa JavaScript Object Notation, é um formato de dados de fácil leitura e escrita para os humanos e de fácil geração e análise para as máquinas. Um objeto em JSON é um conjunto de pares de chave e valor que podem ser organizados de forma aninhada e(ou) listados em arrays, a chave é uma string e o valor pode ser uma string, um numero, um booleano, um array e até mesmo outro objeto aninhado. O array pode ter valores dos mesmos tipos citados. Pode haver também uma lista de objetos no mesmo nível, esta lista pode obedecer ou não a sua ordem.
 
 
-e serviços rest, json e datavisualization
+\section{BSON}
 
-\section{JSON vs JSONB}
+O termo BSON é uma junção de Binary JSON, ele é a serialização de documentos JSON para binário, foi desenvolvido para melhorar o desempenho na busca das chaves. Além de armazenar os dados em arquivos binários a maior diferença entre ele e o JSON é o uso de tipos de dados com definição de tamanho e tipo pré-determinadas, para armazenar um número inteiro o JSON utiliza uma cadeia de caracteres arbitrária enquanto o BSON utiliza 32 e 64 bits para inteiros e 64 bits para double e floats, tipos booleanos em JSON são representados pela cadeia de caracteres 'True' ou 'False', em BSON é representado por apenas um bit 0 ou 1. Para valores como cadeias de strings são armazenadas meta-informações como o comprimento dela e, como os outros tipos já tem comprimentos definidos, um parsing na busca por uma chave pode facilmente saltar para os pontos em que interessa no documento.
 
-Antes do JSONB fazer parte do PosgreSQL Geoffrey Litt desenvolveu em seu projeto final, através do fonte do PostgreSQL, bibliotecas de parsing JSON e bibliotecas de parsing BSON do Mongodb, um campo similar chamado BSON, em sua tese pode testar as diferenças de performance destes campos.
+\section{Json vs JsonB}
 
-\section{Objetivos do Trabalho}
+Antes do JSONB fazer parte do PosgreSQL Geoffrey Litt desenvolveu em seu projeto final "Improving performance of schemaless
+document storage in PostgreSQL using BSON"(Aprimorando a performance de armazenamento orientado a documento em PostgrSQL utilizando BSON) da Yale University(Universidade de Yale), através do fonte do PostgreSQL, bibliotecas de parsing JSON e bibliotecas de parsing BSON do Mongodb, um campo similar chamado BSON, em sua tese pode testar as diferenças de performance destes campos. Posteriormente o PostgreSQL adotou este campo.
 
-Esse projeto tem como objetivo principal...
+Para o primeiro teste utilizou o mesmo documento e variando seu tamanho de 1 à 90 vezes, nele executava uma query simples para encontrar um valor no meio do documento, o teste demonstrou que quanto maior o documento maior era a velozidade do BSON sobre o JSON, com o tamanho máximo o BSON foi 8.28 vezes mais rápido para o JSON.
 
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson1}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{green}.}
+    	\label{fig_bson1}
+  	\end{figure}
 
-\section{Organização do Trabalho}
+No segundo teste utilizou o mesmo tamanho de documentos mas aumentou o número de tuplas, nele pode constatar que a velocidade de BSON sobre o JSON aumentava com o número de tuplas porém após o número de 100 tuplas essa velocidade começa a convergir para um valor constante de 6 vezes em relação ao JSON.
 
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson2}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{green}.}
+    	\label{fig_bson2}
+  	\end{figure}
+
+Outro teste foi realizar queries por uma chave variando seu lugar do começo ao fim do documento e variando o tamanho do documento, a velocidade do bson foi aproximadamente 4 vezes maior  em relação ao json para todos os tamanhos de documentos com chaves próximas do começo do documento, para chaves próximas do fim do documento a velocidade do bson foi aproximadamente 6 vezes maior em relação ao json para todos os tamanhos de documentos, isso deve-se à capacidade que o bson tem de atravessar rapidamente as chaves por ter meta-informações sobre seu comprimento enquanto o json tem que analisar caracter a caracter.
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson3}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{green}.}
+    	\label{fig_bson3}
+  	\end{figure}
+
+Foi realizado também um teste sobre a composição do documento, ou seja, os tipos de dados dentro do documento, executando queries em 3 documentos, o primeiro com apenas stringsi de 10 caracteres, o segundo apenas com inteiros e o terceiro com apenas booleanos, para strings a valocidade do bson foi 3 vezes superior sobre o json, para inteiros e booleanos a velocidade do bson foi aproximadamente 5,5 vezes superior ao json, o resultado superior de inteiros e booleanos deve-se ao fato do bson utilizar inteiros de 32bits e booleanos de 1 bit, como foi comentado acima, e o json utilizar cadeias de caracteres para representá-los. 
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson4}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{green}.}
+    	\label{fig_bson4}
+  	\end{figure}
+
+Por último foi realizado um teste para verificar o tempo de carregamento dos arquivos em disco, como o bson precisa de um passo a mais no parsing transformando os valores de strings para os tipos de inteiros, booleanos, etc, criando os metadados sobre strings e comprimento das chaves, seu tempo de carregamento é pouco mais demorado em relação ao json, como pode-se verificar na figura \ref{fig_bson5}, entretanto para esse teste foi utilizado o parsing de validação do json e posteriormente foi salvo em disco, caso tivesse sido usado um parsing de validação já em bson essa diferença poderia se igualar ou até mesmo inverter-se.
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson5}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{green}.}
+    	\label{fig_bson5}
+  	\end{figure}
+
+    \section{Técnicas para Execução de Queries}
 O capítulo \ref{chapter2} contém...
 
 O capítulo \ref{chapter3} destina-se...

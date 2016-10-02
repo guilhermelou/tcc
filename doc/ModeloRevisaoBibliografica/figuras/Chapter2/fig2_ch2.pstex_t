@@ -1,0 +1,28 @@
+\begin{picture}(0,0)%
+\includegraphics{Figuras/Chapter2/fig2_ch2.pstex}%
+\end{picture}%
+\setlength{\unitlength}{4144sp}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(5870,1938)(361,-1321)
+\put(615,485){\makebox(0,0)[b]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}${\bf p}_3$}}}}
+\put(1776,-126){\makebox(0,0)[b]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}${\bf p}_2$}}}}
+\put(1147,-939){\makebox(0,0)[b]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}${\bf p}_1$}}}}
+\put(3371,-948){\makebox(0,0)[b]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}${\bf p}_1$}}}}
+\put(4071,-109){\makebox(0,0)[b]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}${\bf p}_2$}}}}
+\put(2833,420){\makebox(0,0)[b]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}${\bf p}_3$}}}}
+\put(5040,372){\makebox(0,0)[b]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}${\bf p}_3$}}}}
+\put(6231,-110){\makebox(0,0)[b]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}${\bf p}_2$}}}}
+\put(5605,-995){\makebox(0,0)[b]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}${\bf p}_1$}}}}
+\put(4906,-1276){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}$InCirculo(.)\! = \! 0$}}}}
+\put(2656,-1276){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}$InCirculo(.)\! < \! 0$}}}}
+\put(6081,-736){\makebox(0,0)[b]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}${\bf p}_4$}}}}
+\put(3198,-236){\makebox(0,0)[b]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}${\bf p}_4$}}}}
+\put(1832,-747){\makebox(0,0)[b]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}${\bf p}_4$}}}}
+\put(361,-1276){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}{\familydefault}{\mddefault}{\updefault}$InCirculo(.)\! > \!0$}}}}
+\end{picture}%

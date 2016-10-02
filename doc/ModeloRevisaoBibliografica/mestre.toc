@@ -1,0 +1,36 @@
+\select@language {brazil}
+\contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{10}
+\contentsline {section}{\numberline {1.1}Objetivos do Trabalho}{10}
+\contentsline {section}{\numberline {1.2}Organiza\c c\~ao do Trabalho}{10}
+\contentsline {chapter}{\numberline {2}Fundamenta\c c\~ao Te\'orica}{11}
+\contentsline {section}{\numberline {2.1}Triangula\c c\~ao}{11}
+\contentsline {section}{\numberline {2.2}Primitivas Geom\'etricas}{11}
+\contentsline {section}{\numberline {2.3}Teste de Orienta\c {c}\~{a}o}{12}
+\contentsline {section}{\numberline {2.4}InC\'{\i }rculo}{13}
+\contentsline {section}{\numberline {2.5}Circuncentro...}{16}
+\contentsline {section}{\numberline {2.6}Estrutura de Dados}{18}
+\contentsline {subsection}{\numberline {2.6.1}Introdu\c {c}\~{a}o}{18}
+\contentsline {subsection}{\numberline {2.6.2}Fundamenta\c {c}\~{a}o}{18}
+\contentsline {subsection}{\numberline {2.6.3}Estrutura de Dados baseada em Fronteira}{19}
+\contentsline {subsubsection}{\numberline {2.6.3.1}Modelo de fronteiras baseada em \textit {v\'{e}rtice}.}{20}
+\contentsline {subsubsection}{\numberline {2.6.3.2}Modelo de fronteira baseada em \textit {arestas}}{20}
+\contentsline {section}{\numberline {2.7}Primitivas Topol\'{o}gicas}{21}
+\contentsline {subsection}{\numberline {2.7.1}Operadores de Euler}{21}
+\contentsline {subsection}{\numberline {2.7.2}As Rela\c {c}\~{o}es entre as Entidades Topol\'{o}gicas}{21}
+\contentsline {chapter}{\numberline {3}Triangula\c c\~ao de Delaunay}{23}
+\contentsline {section}{\numberline {3.1}Defini\c {c}\~{o}es}{24}
+\contentsline {section}{\numberline {3.2}Propriedades}{24}
+\contentsline {section}{\numberline {3.3}Como gerar uma Triangula\c {c}\~{a}o Delaunay}{25}
+\contentsline {subsection}{\numberline {3.3.1}A t\'{e}cnica do \textit {flip-edge}}{26}
+\contentsline {section}{\numberline {3.4}Maximizando os \^{a}ngulos m\'{\i }nimos.}{26}
+\contentsline {section}{\numberline {3.5}Aplica\c {c}\~{o}es Pr\'aticas da Triangula\c {c}\~{a}o de Delaunay}{28}
+\contentsline {subsection}{\numberline {3.5.1}GG - Grabriel graph}{28}
+\contentsline {chapter}{\numberline {4}Algoritmos}{29}
+\contentsline {section}{\numberline {4.1}Introdu\c {c}\~{a}o}{29}
+\contentsline {section}{\numberline {4.2}Algoritmo de Inser\c {c}\~ao Randomizado}{29}
+\contentsline {subsection}{\numberline {4.2.1}Escolha adequada das coordenadas de um supertri\^angulo}{29}
+\contentsline {chapter}{\numberline {5}Conclus\~{a}o}{32}
+\contentsline {section}{\numberline {5.1}Futuros Trabalhos}{32}
+\contentsline {section}{\numberline {5.2}Como Inserir Figuras Obtidas de Outras Fontes}{32}
+\contentsline {chapter}{Ap\^endice{} A{} -$\mskip -\thinmuskip $-{} C\'odigo Fonte 1}{34}
+\contentsline {chapter}{Ap\^endice{} B{} -$\mskip -\thinmuskip $-{} C\'odigo Fonte 2}{36}

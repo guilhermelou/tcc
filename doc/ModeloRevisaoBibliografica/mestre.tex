@@ -1,0 +1,211 @@
+% Versão 01 - Para começar a trabalhar
+
+% Observem que este é apenas um modelo (template) básico. Dependendo 
+% da natureza de seu trabalho, você precisará de alguns pacotes 
+% adicionais que não estão sendo referenciados aqui.
+
+% É necessáro gerar .bbl para montar a bibliografia, siga os passos:
+%				1 - Compile o Mestre/Projeto (Build -> Build Output).
+%				2 - Vá até a aba do arquivo Mestre, gere o .bbl (Build -> Current File -> BibTeX).
+%				3 - Compile o Mestre/Projeto mais umas 2 ou 3 vezes seguidas.
+% Depois destes passos você já irá ver na pasta do projeto um arquivo mestre.pdf
+
+% PERFIL DE COMPILAÇÃO: LaTeX => PS => PDF
+
+% +-----------------------------------------------------------------+
+% | ORDEM DAS PARTES DA MONOGRAFIA                                  |
+% +-----------------------------------------------------------------+
+% 
+% PRÉ-TEXTUAL
+%   # Capa
+%   # Folha de Rosto
+%   - Errata (Opcional)
+%   # Folha de Aprovação
+%   - Dedicatória (Opcional)
+%   - Agradecimentos (Opcional)
+%   - Epígrafe (Opcional)
+%   # Resumo em Português
+%   # Resumo em Inglês (Abstract)
+%   # Sumário
+%   - Lista de Figuras (Opcional)
+%   - Lista de Abreviações e Siglas (Opcional)
+%   - Lista de Símbolos (Opcional)
+%
+% TEXTUAL
+%   # Introdução
+%   # Desenvolvimento
+%   # Conclusão
+%
+% PÓS-TEXTUAIS
+%   # Referências
+%   - Apêndice (Opcional)
+%   - Anexo (Opcional)
+%   - Glossário (Opcional)
+
+
+\documentclass{abnt}
+
+%\usepackage[Bjornstrup]{fncychap} 	% estilo do capitulo
+
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[alf]{abntex2cite}
+\usepackage{color}
+\usepackage{algorithm}									% inclusão de pseudo-códigos - ver exemplos
+\usepackage{algorithmic}								% inclusão de pseudo-códigos - ver exemplos
+%\usepackage{hyperref}										% cria hiperlinks entre as referências e os objetos referenciados
+%\usepackage{picinpar}
+%\usepackage{array}
+\usepackage{textpos} %posicionamento do texto
+
+\usepackage[Lenny]{fncychap}
+
+%\usepackage{epsfig}
+\usepackage{graphicx}
+
+\usepackage{listings} % inclusão de códigos fonte
+
+\renewcommand\lstlistingname{Código}
+\renewcommand{\algorithmicrequire}{\textbf{Entrada:}}
+\renewcommand{\algorithmicensure}{\textbf{Saida:}}
+\renewcommand{\algorithmicend}{\textbf{fim}}
+\renewcommand{\algorithmicif}{\textbf{Se}}
+\renewcommand{\algorithmicelse}{\textbf{sen\~{a}o}}
+\renewcommand{\algorithmicdo}{\textbf{fa\c{c}a}}
+\renewcommand{\algorithmicwhile}{\textbf{enquanto}}
+\renewcommand{\algorithmicfor}{\textbf{para}}
+\renewcommand{\algorithmicthen}{\textbf{ent\~{a}o}}
+\floatname{algorithm}{Algoritmo}
+
+
+
+
+\newtheorem{Def}{Definição}
+\newtheorem{Lem}{Lema}
+\newtheorem{Teo}{Teorema}
+\newtheorem{Cor}{Corolário}
+
+% PRÉ_TEXTO: Informações básicas que antecedem o texto propriamente dito (Capa, conteúdo, lista de figuras, tabelas, 
+% agradecimentos, resumo, abstract, notação, termos de aprovação, ...)
+
+%\includeonly{preliminares/listaSimbolos}
+%\includeonly{apendice/apendice1}
+%\includeonly{apendice/apendice2}
+%\includeonly{preliminares/resumo}
+%\includeonly{preliminares/abstract}
+%\includeonly{preliminares/aprovacao}
+%\includeonly{preliminares/capa}
+%\includeonly{cap1/cap1}
+%\includeonly{cap2/cap2}
+%\includeonly{cap3/cap3}
+%\includeonly{conclusao/conclusao}
+
+
+% Como forçar a hifenização de algumas palavras. Caso contrário, 
+% muitos espaços poderiam ser introduzidos numa mesma linha de texto. 
+\hyphenation{ir-re-gu-lar}
+\hyphenation{con-si-de-ra-vel-men-te}
+
+
+% +-----------------------------------------------------------------+
+% | Inicio do seu documento LaTeX                                   |
+% +-----------------------------------------------------------------+
+
+% TEXTO: Corpo principal de sua monografia 
+% (Capítulos e seus elementos constituintes)
+\begin{document} % só existe um único \begin{document} em seu projeto
+
+
+% +-----------------------------------------------------------------+
+% | Pré-Texo: Capa, Folha de Rosto, Folha de Aprovação, resumo em PT|
+% |           resumo em EN, Sumário.                                |
+% +-----------------------------------------------------------------+
+%\thispagestyle{empty}
+\include{PaginasIniciais/capa}
+\include{PaginasIniciais/capaModelo2}
+%\thispagestyle{empty}
+\include{PaginasIniciais/capa2}
+%\thispagestyle{empty}
+\include{PaginasIniciais/aprovacao}
+%\thispagestyle{empty}
+\include{PaginasIniciais/agradecimentos}
+%\thispagestyle{empty}
+\include{PaginasIniciais/resumo}
+%\thispagestyle{empty}
+\include{PaginasIniciais/abstract}
+
+
+% SUMÁRIO: Cria (automaticamente) uma tabela com entradas para todos 
+% os capítulos, seções, subseções, ..., com as respectivas páginas 
+% onde elas se encontram
+\tableofcontents
+
+\newpage
+
+% FIGURAS: Insere uma ou mais páginas com todas as legendas de suas 
+% figuras, respectivas numerações e páginas onde as mesmas se encontram.
+\listadefiguras
+
+% +-----------------------------------------------------------------+
+% | Texo: Introdução, Desenvolvimento e Conclusão.                  |
+% |       Os Capítulos que constituirem sua Monografia.             |
+% +-----------------------------------------------------------------+
+\include{Capitulos/Capitulo1/cap1}			% a extensão do nome de cada arquivo deve ser .tex
+\include{Capitulos/Capitulo2/cap2}			% você não deve colocar o comando \begin{document}  
+\include{Capitulos/Capitulo3/cap3}			% no início de seus documentos. 
+\include{Capitulos/Capitulo4/cap4}      % Observe o exemplos que estão sendo passados a vocês
+\include{Capitulos/Capitulo5/cap5}			% INCLUSÃO DE FIGURAS
+
+
+% +-----------------------------------------------------------------+
+% | Pós-Texo: Tudo que vem após o término de seu documento          |
+% |           propriamente ditoReferências, Apêndices (Opcional),   | 
+% |           Anexos (Opcional), Glossário (Opcional).              |
+% +-----------------------------------------------------------------+
+
+
+% REFERÊNCIAS BIBLIOGRÁFICAS -
+% O arquivo com suas entradas (referências bibliográficas) deve ter 
+% a extensão .bib. Porém, não é necessário especificar a extensão. 
+% Não é necessário colocar o estilo de bibliografia 
+% (\bibliographstyle{}). A classe abnt em \documentclass{abnt} já 
+% assume o estilo abnt
+\bibliographystyle{abnt-alf}
+\bibliography{Bibliografia/referencias}		% arquivo com nome referencias no diretório Bibliografia
+
+
+% ANEXOS
+%\anexo % diz ao abnTeX que os próximos capítulos são ANEXOS
+%\chapter{Primeiro Anexo}
+% ou
+%\include{Anexo/anexo1}
+
+
+% APÊNDICES 
+\apendice % diz ao abnTeX que os próximos capítulos são APÊNDICES
+%\include{Apendice/apendice1}				% a extensão do nome de cada arquivo deve ser .tex
+% ou
+%\chapter{Primeiro Apêndice}
+
+\chapter{Código Fonte 1}
+\lstinputlisting[language=C,
+			showstringspaces=false,
+			numbers=left,
+			frame=single,
+			frame=trBL,
+			caption='Código Fonte de Wolfstein - Enemy Territory']
+{Codigo/zoom.c}
+
+
+\chapter{Código Fonte 2}
+\lstinputlisting[language=C,
+			showstringspaces=false,
+			numbers=left,
+			frame=single,
+			frame=trBL,
+			caption='Código Fonte de Wolfstein - Enemy Territory']
+{Codigo/angle.c} 
+
+
+
+\end{document}						% só existe um único \end{document} em seu projeto

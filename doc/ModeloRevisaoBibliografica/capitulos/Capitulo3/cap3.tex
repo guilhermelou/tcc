@@ -1,0 +1,319 @@
+
+\chapter{Triangulação de Delaunay} \label{chapter3}
+
+Em alguns casos, h\'{a} mais de uma \textit{Triangula\c{c}\~{a}o de Delaunay}
+para um conjunto de pontos, estes casos s\~{a}o chamados de degenerados. Um
+exemplo de caso degenerado \'{e} mostrado na Figura \ref{fig1_chapter5},
+ onde h\'{a} quatro pontos localizados nos \textit{v\'{e}rtices}
+de um quadrado. Neste caso h\'{a} um \'{u}nico \textit{v\'{e}rtice} de
+Voronoi localizado no centro do quadrado, e est\'{a} associado com quatro
+regi\~{o}es de Voronoi. Duas triangula\c{c}\~{o}es s\~{a}o poss\'{\i}veis
+com este diagrama e ambas s\~{a}o v\'{a}lidas. Na pr\'{a}tica, os casos
+degenerados devem ser resolvidos fazendo uma escolha entre as triangula\c{c}%
+\~{o}es v\'{a}lidas.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Casos degenerados.} 
+    \label{fig1_chapter5}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{a) Conjunto de pontos distribuidos arbitrariamente no plano;
+	     b) Fecho convexo do conjunto de pontos em  a)
+	     c) Triangula\c{c}\~{a}o de Delaunay incidente sobre o conjunto de pontos a);
+	     d) Diagrama de Voronoi do conjunto de pontos  a).}
+    \label{fig2_chapter5}
+  \end{center}
+\end{figure}
+
+Para ilustrar a base geom\'{e}trica da \textit{Triangula\c{c}\~{a}o de Delaunay} 
+\'{e} conveniente considerar sua dupla geometria, o diagrama de Voronoi.
+Considere um conjunto de pontos no plano como mostrado na figura \ref{fig2_chapter5} a). 
+O diagrama de Voronoi associado com estes pontos \'{e} mostrado
+pelas linhas tracejadas na figura \ref{fig2_chapter5} d). A \textit{Triangula\c{c}\~{a}o de Delaunay}
+\'e mostrada na figura \ref{fig2_chapter5} c).
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Combina\c{c}\~{a}o de todos os problemas geom\'etricos listados na figura \ref{fig2_chapter5}. O conjunto de pontos \'e exatamente o mesmo da figura \ref{fig2_chapter5} a).}
+    \label{fig_combina}
+  \end{center}
+\end{figure}
+
+
+
+\section{Defini\c{c}\~{o}es}
+
+Seja $P=\{p_{1},p_{2},...,p_{n}\}$ um conjunto de $n$ $(n\geq3)$ pontos
+distintos do plano pertencentes a $R^{n}$.
+
+\begin{Def}
+O Diagrama de Voronoi de $P$ \'{e} a subdivis\~{a}o do plano em $n$ 
+c\'{e}lulas, para cada ponto em $P$, com a propriedade que um ponto $q$ pertence
+a c\'{e}lula correspondente ao ponto $p_{i}$ se e somente se
+
+\begin{equation}
+\mathit{dist(\mathbf {q}, \mathbf{p}}_{i}\mathit{)<dist(\mathbf{q}, \mathbf{p}}_{j}\mathit{)}
+\end{equation}
+
+para cada $p_{j}\in P$  com $i\neq j$.
+
+Denotamos o Diagrama de Voronoi por $V(P)$. A c\'{e}lula
+que corresponde ao ponto $p_{i}$, denotamos por $V(p_{i})$.%
+\end{Def}
+
+\begin{Def} 
+Consideremos dois pontos $p_{1}$%
+e $p_{2}$. Definimos o bisector perpendicular do segmento 
+$\overline{p_{1}p_{2}}$ como sendo $B(p_{1},p_{2})=B_{12}$. 
+Ent\~{a}o cada ponto $x$ sobre $B_{12}$ est\'{a}
+equidistante de $p_{1}$ e $p_{2}$.
+\end{Def}
+
+
+
+\section{Propriedades}
+
+Veremos a seguir algumas caracter\'{\i}sticas importantes da \textit{%
+Triangula\c{c}\~{a}o de Delaunay} que pode ser encontrada em \cite{musin}, \cite{orourke}. 
+Sendo $P$ um conjunto de pontos e chamaremos de $D(P)$ a \textit{Triangula\c{c}\~{a}o de Delaunay} do
+respectivo conjunto de pontos $P$:
+
+\begin{itemize}
+\item Se $P$ \'{e} um conjunto finito $\in R^{2}$ e seja abc 3 pontos que
+comp\~{o}em um c\'{\i}rculo, abc \'{e} um tri\^{a}ngulo de Delaunay se o c%
+\'{\i}rculo n\~{a}o conter nenhum outro ponto;
+
+\item Entre todas as triangula\c{c}\~{o}es de um dado conjunto de pontos, a
+Triangula\c{c}\~{a}o de Delaunay maximiza lexicograficamente o menor dos 
+\^{a}ngulos de qualquer tri\^{a}ngulo;
+
+
+\item Uma \textit{aresta} obedece \`{a} regra de Delaunay se:\end{itemize}
+
+
+- Pertence a um \'{u}nico tri\^{a}ngulo e fica na fronteira da regi\~{a}o
+convexa ou;
+
+- Pertence a 2 tri\^{a}ngulos \textbf{abc }e \textbf{abd} sendo que \textbf{d 
+}fica no exterior do c\'{\i}rculo determinado por \textbf{abc.}
+
+A partir dessa postura citaremos alguns teoremas e
+lemas importantes, inclusive alguns obtidos em Sibson\cite{green}, que far\~{a}o
+uma pequena explana\c{c}\~{a}o entre as primitivas e a triangula\c{c}\~{a}o e
+tamb\'{e}m destacar\'{a} caracter\'{\i}sticas relevante das propriedades da
+triangula\c{c}\~{a}o.
+
+\textbf{Teorema}\textit{(C\'{\i}rculo Circunscrito): A Circunfer\^{e}ncia
+Circunscrita em qualquer tri\^{a}ngulo de Delaunay n\~{a}o cont\'{e}m nenhum
+outro ponto da triangula\c{c}\~{a}o.}
+
+\ \ \ \ \ \ \ \ \ \ \ 
+
+\textbf{Corol\'{a}rio: }\textit{A pr\'{e}-Triangula\c{c}\~{a}o de Delaunay 
+\'{e} n\~{a}o-degenerada, e deste modo \'{e} uma triangula\c{c}\~{a}o,
+unicamente caracterizada pelos equi\^angulos locais. O resultado \'{e}
+afirmado por Green e Sibson\cite{green} e a presente nota validou a sua afirma%
+\c{c}\~{a}o. Green e Sibson descreveram um algoritmo para construir apenas
+a Triangula\c{c}\~{a}o de Delaunay; este algoritmo foi implementado e
+posteriormente executado com sucesso em grande escala - superando 10.000
+dados apresentados - precisa de pouco espa\c{c}o para ser armazenado e \'{e}
+muito r\'{a}pido. O presente teorema permitiu considerarmos este como um dos
+meios de se construir equi\^angulos localizados nas triangula\c{c}\~{o}es para
+interpola\c{c}\~{a}o. Diferente do algoritmo (apresentado por Lawson\cite{lawson})
+que trabalhava diretamente em termos de \^{a}ngulos m\'{a}ximos-m\'{\i}%
+nimos, crit\'{e}rios concorrentes para adquirir direto os recursos
+aproximados no algoritmo Green-Sibson.}
+
+\begin{description}
+\item[1] $V$\textit{\ e }$D$\textit{\ s\~{a}o duais, isto \'{e}, para }$%
+P,P^{^{\prime }}\subseteq S,$\textit{\ }$V(P)$\textit{\ \'{e} uma face de }$%
+V(P^{^{\prime }})$\textit{\ se }$D(P)$\textit{\ \'{e} uma face de }$%
+D(P^{^{\prime }})$.
+
+\item[2] \textit{Se }$P\subseteq S,$\textit{\ }$V(P)$\textit{\ n\~{a}o
+possuir\'{a} fronteira se cada lado de }$R$\textit{\ est\'{a} sobre a
+fronteira do \textit{Fecho Convexo} de }$S.$
+\end{description}
+
+\begin{Lem}
+: Seja $T_{L}$ e $T_{R}$ triangula\c{c}\~{o}es de Delaunay com um conjunto de $L$ e $R$ v\'{e}rtices. Ent\~{a}o podemos sempre construir uma triangula\c{c}\~{a}o de Delaunay $T$ para o conjunto $L$ $\cup $ $R$
+tais que cada aresta de $T$ que n\~{a}o est\'{a} em $T_{L}$ ou $T_{R}$ tem um ponto final em $L$ e um em $R$.
+\end{Lem}
+
+
+
+\section{Como gerar uma Triangula\c{c}\~{a}o Delaunay}
+
+Aqui será abordada...
+
+\subsection{A t\'{e}cnica do \textit{flip-edge}}
+
+Para verificar se o tri\^{a}ngulo satisfaz a regra de Delaunay primeiramente
+passeamos pela lista duplamente encadeada, atrav\'{e}s das primitivas 
+\textbf{pcw} e \textbf{pccw}, de \textit{arestas}(\textbf{e}), verificando se cada uma de suas \textit{faces}(f1,f2) possui algum \textit{v\'{e}rtice} no interior da circunfer\^{e}ncia que circunscreve a \textit{face }triangular. Observe a Figura \ref{fig3_chapter5} b) para melhor compreens\~{a}o.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{a) Tri\^{a}ngulos cuja aresta comum entre eles n\~{a}o passou no teste do \textit{InC\'{i}rculo}; 
+             b) C\'{i}rculo formado pelos pontos pertencentes aos dois tri\^{a}ngulos que revela um 
+			 quarto ponto em seu interiores; 
+			 c) Remo\c{c}\~{a}o da aresta ilegal; 
+			 d) Ap\'{o}s o \textit{flip}(troca da aresta do quadril\'{a}tero) ambos tri\^{a}ngulos
+			 satisfazem o crit\'{e}rio de Delaunay.}
+    \label{fig3_chapter5}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{a) Pelo fato de existirem tr\^{e}s pontos cocirculares $\mathbf{p}_{1}$, 
+	$\mathbf{p}_{2}$ e $\mathbf{p}_{3}$, trata-se de um caso degenerado 
+	do \textit{flip-edge} e deve ser tratado de maneira especial. b) como n\~ao se trata de uma regi\~ao convexa nesse tri\^angulo n\~ao se aplica a t\'ecnica do \textit{flip-edge}.}
+    \label{fig4_chapter5}
+  \end{center}
+\end{figure}
+
+\textbf{Descri\c{c}\~{a}o do pseudo-c\'{o}digo }\textit{flip-edge.}
+
+\begin{algorithm}
+\caption{flip-edge}
+\label{flip}
+\begin{algorithmic}
+\REQUIRE Dois tri\^{a}ngulos que n\~{a}o passaram no teste do Inc\'{i}rculo.
+\ENSURE A diagonal do quadril\'{a}tero formado pelos tri\^{a}ngulos trocada e o teste do Inc\'{i}rculo 
+satisfeito plenamente.
+\FOR {Os tri\^{a}ngulos que  n\~{a}o satisfazem o Inc\'{i}rculo}
+\STATE  Remover uma \textit{aresta} uma \textit{face} e um \textit{loop}
+\STATE  Realizar atualiza\c{c}\~{o}es topol\'{o}gicas 
+\STATE  Criar uma nova \textit{aresta} na outra diagonal da \textit{face} do quadril\'{a}tero resultante
+um novo \textit{loop} e uma nova \textit{face}.
+\STATE  Atualizar novamente a topologia das \textit{arestas} da \textit{face} e do \textit{loop}.
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+Com essa t\'{e}cnica conseguimos tri\^{a}ngulos que satisfazem o \textit{Crit%
+\'{e}rio de Delaunay}, semelhante ao crit\'erio MaxMin(se\c{c}\~{a}o seguinte), com um n\'{u}mero reduzido de opera\c{c}\~{o}es. Assim poderemos tanto obter uma Triangula\c{c}\~{a}o de Delaunay a partir de uma triangula\c{c}\~{a}o arbitr\'{a}ria como tamb\'{e}m usando o algoritmo de inser\c{c}\~{a}o verificar durante a inser\c{c}\~{a}o dos pontos se os tri\^{a}ngulos s\~{a}o Delaunay.
+
+
+
+\section{Maximizando os \^{a}ngulos m\'{\i}nimos.}
+
+Seja $T$ uma triangula\c{c}\~{a}o de um conjunto de pontos $S$, e suponha
+que ela tenha $m$ tri\^{a}ngulos. Consideremos os $3m$ \^{a}ngulos dos tri%
+\^{a}ngulos em $T$, ordenados em ordem crescente. Seja $\alpha _{1},$ $%
+\alpha _{2},\ldots ,$ $\alpha _{3m}$ o resultado da ordena\c{c}\~{a}o dos 
+\^{a}ngulos, consequentemente, $\alpha _{i}\leq $ $\alpha _{j},$ para $i<j$
+e chamaremos de $A(T)=(\alpha _{1},\alpha _{2},\ldots ,\alpha _{3m})$ o
+vetor-\^{a}ngulo de $T$. Seja $T^{\prime }$ uma triangula\c{c}\~{a}o do mesmo
+conjunto de pontos $S$, e seja $A\left( T^{\prime }\right) =\left( \alpha
+_{1}^{\prime },\;\alpha _{2}^{\prime },\ldots ,\;\alpha _{3m}^{\prime
+}\right) $ seu vetor-\^{a}ngulo. Dizemos que o vetor-\^{a}ngulo de $T$ \'{e}
+maior que o de $T^{\prime }$ se $A(T)$ \'{e} lexicograficamente maior que $%
+A(T^{\prime })$, ou, em outras palavras, se existe um \'{\i}ndice $i$ com $%
+1\leq i\leq 3m$ de forma que:
+
+\begin{equation}
+\left\{
+\begin{array}{l}
+\alpha_{j} = \alpha_{j}^{\prime} 
+\ \ \  j\leq i \\
+\alpha_{i}> \alpha _{i}^{\prime }\\
+\end{array}
+\right.
+\end{equation}
+
+Denotamos como $A\left( T\right) >A\left( T^{\prime }\right) .$ Uma Triangula%
+\c{c}\~{a}o de $T$ \'{e} chamada de \^{a}ngulo-\'{o}timo se $A\left(
+T\right) \geq A\left( T^{\prime }\right) $ para todas as triangula\c{c}\~{o}%
+es de $T^{\prime }$ de $S$. Note que uma triangula\c{c}\~{a}o que maximiza o
+vetor-\^{a}ngulo para uma ordem lexicogr\'{a}fica tamb\'{e}m maximiza o
+menor de seus \^{a}ngulos, e tal triangula\c{c}\~{a}o \'{e} chamada de 
+\textit{globalmente equiangular}.
+
+\textbf{Teorema: }\textit{Seja }$\mathbf{C}$ \textit{um c\'{\i}rculo, }$l$ \textit{%
+uma linha cruzando }$\mathbf{C}$ \textit{nos pontos }$\mathbf{a}$ \textit{e} 
+$\mathbf{b}$, \textit{e} $\mathbf{p}$, $\mathbf{q}$, $\mathbf{r}$ 
+\textit{e} $\mathbf{s}$ \textit{pontos localizados no mesmo lado da linha }$%
+l$\textit{. Suponha que }$\mathbf{p}$\textit{\ e }$\mathbf{q}$\textit{\ estejam sobre}
+$\mathbf{C}$\textit{, que }$\mathbf{r}$\textit{\ esteja dentro de }$\mathbf{C}$, \textit{% 
+e que} $\mathbf{s}$ \textit{esteja fora de} $\mathbf{C}$. Figura \ref{fig5_chapter5}. Ent\~{a}o:
+
+\begin{equation}
+\angle{\mathbf{arb}}>\angle{\mathbf{apb}}=\angle{\mathbf{aqb}}>\angle{\mathbf{asb}}.
+\end{equation}
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Maximiza\c{c}\~{a}o dos \^{a}ngulos m\'{i}nimos.}
+    \label{fig5_chapter5}
+  \end{center}
+\end{figure}
+
+Agora considerando uma \textit{aresta} $e=\overline{p_{i}p_{j}}$ de uma
+triangula\c{c}\~{a}o $T$ de $S$. Se $e$ n\~{a}o \'{e} uma \textit{aresta}
+pertencente ao \textit{Fecho Convexo}, ela \'{e} incidente a dois tri\^{a}ngulos $%
+\triangle \left( p_{i}p_{j}p_{k}\right) $ e $\triangle \left(
+p_{i}p_{j}p_{l}\right) .$ Se estes dois tri\^{a}ngulos formam um quadril\'{a}%
+tero convexo, n\'{o}s podemos ter uma nova triangula\c{c}\~{a}o $T^{\prime }$
+simplesmente fazendo o \textit{flip-edge }retirando $\overline{p_{i}p_{j}}$
+e inserindo $\overline{p_{k}p_{l}}.$ A figura \ref{fig3_chapter5} ilustra a a%
+\c{c}\~{a}o. Logo dizemos que uma \textit{aresta} \'{e} ilegal se conseguirmos fazer
+o \textit{flip }nessa \textit{aresta}\textit{\ }aumentando o menor dos \^{a}%
+ngulos.
+
+\textbf{Lema: }\textit{Seja a aresta }$\overline{p_{i}p_{j}}$\textit{\
+incidente aos tri\^{a}ngulos }$p_{i}p_{j}p_{k}$\textit{\ e }$p_{i}p_{j}p_{l}$%
+\textit{, e seja }$C$\textit{\ o c\'{\i}rculo passando por }$p_{i},\;p_{j},$%
+\textit{\ e}$\;p_{k}$\textit{. A aresta }$\overline{p_{i}p_{j}}$\textit{\ ser%
+\'{a} ilegal se e somente se }$p_{l}$\textit{\ est\'{a} no inteiror de }$C$%
+\textit{. Al\'{e}m disso, se os pontos }$p_{i},\;p_{j},\;p_{k},\;p_{l}$%
+\textit{\ \ formam um quadril\'{a}tero convexo e n\~{a}o est\~{a}o em um c%
+\'{\i}rculo comum, ent\~{a}o exatamente uma das arestas }$\overline{%
+p_{i}p_{j}}$\textit{\ e }$\overline{p_{k}p_{l}}$\textit{\ \'{e} uma aresta
+ilegal.} Figura \ref{fig3_chapter5}(b). 
+
+
+
+\section{Aplica\c{c}\~{o}es Pr\'aticas da Triangula\c{c}\~{a}o de Delaunay}
+
+Muitas aplicações...
+
+\begin{equation} \label{relations}
+MST \subseteq RNG \subseteq GG \subseteq Delaunay
+\end{equation}
+
+
+\subsection{GG - Grabriel graph}
+
+O grafo de Gabriel \'e um grafo ${\mathbf G}(V, E)$ que conecta um conjunto de pontos no plano euclidiano. Dois pontos $\mathbf{p}_1$ e $\mathbf{p}_2$ s\~ao conectados por uma aresta no grafo de Gabriel se o c\'irculo contendo o di\^ametro $\overline{{\mathbf p}_1{\mathbf p}_2}$ n\~ao possui nenhum outro ponto no seu interior figura \ref{fig_gabriel_circ} a), caso haja um terceiro ponto no interior da circunfer\^encia figura \ref{fig_gabriel_circ} b), a aresta n\~ao far\'a parte do grafo de Gabriel. Em qualquer outra dimens\~ao o grafo de Gabriel conecta dois pontos formando o di\^ametro de uma esfera vazia. O grafo de Gabriel foi apresentada por K. Ruben Gabriel e intitulada  por  Robert R. Sokal em 1969 \cite{sokal}. Esse grafo \'e um sub-grafo da Triangula\c{c}\~{a}o de Delaunay e com a triangula\c{c}\~{a}o dada pode ser obtido em tempo linear \cite{matula}. Esse gr\'afico cont\'em a MST e o RNG na inst\^ancia de um esqueleto-beta. Sua aplicabilidade tamb\'em se encontra na \'area de redes, na montagem de redes wireless. Um exemplo de grafo pode ser visto na figura \ref{fig_gabriel_graph}.
+
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{a) circunfer\^encia que cont\'em o di\^ametro de $\overline{{\mathbf p}_1{\mathbf p}_2}$, com um terceiro ponto ${\mathbf p}_3$ no exterior da circunfer\^encia. b) circunfer\^encia que cont\'em o di\^ametro de $\overline{{\mathbf p}_1{\mathbf p}_2}$, por\'em com um terceiro ponto ${\mathbf p}_3$ no interior da circunfer\^encia}
+    \label{fig_gabriel_circ}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[htbp]
+  \begin{center}
+    \leavevmode
+    \caption{Gabriel Graph de um determinado conjunto de pontos em destaque sobre a Triangula\c{c}\~{a}o de Delaunay - linha pontilhadas}
+    \label{fig_gabriel_graph}
+  \end{center}
+\end{figure}
+

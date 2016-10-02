@@ -1,23 +1,28 @@
 \select@language {brazil}
-\contentsline {figure}{\numberline {1}{\ignorespaces Poss\IeC {\'\i }veis triangula\c c\~oes para um mesmo conjunto de pontos.}}{13}
-\contentsline {figure}{\numberline {2}{\ignorespaces Ilustra\c {c}\~{a}o dos poss\'{i}veis resultados da primitiva \textit {Ccw(.)} }}{14}
-\contentsline {figure}{\numberline {3}{\ignorespaces Parabol\'oide $\Gamma $ e a proje\c {c}\~{a}o da \'area interceptada pelo plano $H$ no $R^2$}}{16}
-\contentsline {figure}{\numberline {4}{\ignorespaces Ilustra\c {c}\~{a}o dos resultados da primitiva {\textit {InC\'{i}culo}}. }}{18}
-\contentsline {figure}{\numberline {5}{\ignorespaces Representa\c {c}\~{a}o do Circuncentro de um elemento triangular e da circunfer\^{e}ncia por ele determinada.}}{19}
-\contentsline {figure}{\numberline {6}{\ignorespaces Orienta\c {c}\~{a}o das \textit {arestas} relacionada com o \textit {loop} exterior do objeto.}}{22}
-\contentsline {figure}{\numberline {7}{\ignorespaces Modelo de fronteira baseado em \textit {v\'{e}rtice} segundo o modelo \ref {fig2_chapter3}.}}{22}
-\contentsline {figure}{\numberline {8}{\ignorespaces Modelo de fronteira baseado em \textit {aresta} de acordo com a figura \ref {fig2_chapter3}.}}{22}
-\contentsline {figure}{\numberline {9}{\ignorespaces Rela\c {c}\~{o}es de adjac\^{e}ncias entre {\textit {aresta}}, {\textit {v\'{e}rtice}} e {\textit {face}}, entidades presentes na estrutura.}}{24}
-\contentsline {figure}{\numberline {10}{\ignorespaces Primitivas utilizadas para se obter todas as rela\c {c}\~{o}es de adjac\^{e}ncias entre as entidades {\textit {aresta}},{\textit {v\'{e}rtice}} e {\textit {face}}.}}{24}
-\contentsline {figure}{\numberline {11}{\ignorespaces Casos degenerados.}}{25}
-\contentsline {figure}{\numberline {12}{\ignorespaces a) Conjunto de pontos distribuidos arbitrariamente no plano; b) Fecho convexo do conjunto de pontos em a) c) Triangula\c {c}\~{a}o de Delaunay incidente sobre o conjunto de pontos a); d) Diagrama de Voronoi do conjunto de pontos a).}}{25}
-\contentsline {figure}{\numberline {13}{\ignorespaces Combina\c {c}\~{a}o de todos os problemas geom\'etricos listados na figura \ref {fig2_chapter5}. O conjunto de pontos \'e exatamente o mesmo da figura \ref {fig2_chapter5} a).}}{25}
-\contentsline {figure}{\numberline {14}{\ignorespaces a) Tri\^{a}ngulos cuja aresta comum entre eles n\~{a}o passou no teste do \textit {InC\'{i}rculo}; b) C\'{i}rculo formado pelos pontos pertencentes aos dois tri\^{a}ngulos que revela um quarto ponto em seu interiores; c) Remo\c {c}\~{a}o da aresta ilegal; d) Ap\'{o}s o \textit {flip}(troca da aresta do quadril\'{a}tero) ambos tri\^{a}ngulos satisfazem o crit\'{e}rio de Delaunay.}}{28}
-\contentsline {figure}{\numberline {15}{\ignorespaces a) Pelo fato de existirem tr\^{e}s pontos cocirculares $\mathbf {p}_{1}$, $\mathbf {p}_{2}$ e $\mathbf {p}_{3}$, trata-se de um caso degenerado do \textit {flip-edge} e deve ser tratado de maneira especial. b) como n\~ao se trata de uma regi\~ao convexa nesse tri\^angulo n\~ao se aplica a t\'ecnica do \textit {flip-edge}.}}{28}
-\contentsline {figure}{\numberline {16}{\ignorespaces Maximiza\c {c}\~{a}o dos \^{a}ngulos m\'{i}nimos.}}{29}
-\contentsline {figure}{\numberline {17}{\ignorespaces a) circunfer\^encia que cont\'em o di\^ametro de $\overline {{\mathbf p}_1{\mathbf p}_2}$, com um terceiro ponto ${\mathbf p}_3$ no exterior da circunfer\^encia. b) circunfer\^encia que cont\'em o di\^ametro de $\overline {{\mathbf p}_1{\mathbf p}_2}$, por\'em com um terceiro ponto ${\mathbf p}_3$ no interior da circunfer\^encia}}{30}
-\contentsline {figure}{\numberline {18}{\ignorespaces Gabriel Graph de um determinado conjunto de pontos em destaque sobre a Triangula\c {c}\~{a}o de Delaunay - linha pontilhadas}}{30}
-\contentsline {figure}{\numberline {19}{\ignorespaces Ilustra\c {c}\~{a}o das atualiza\c {c}\~{o}es topol\'{o}gicas na inser\c {c}\~{a}o do primeiro ponto \textbf {\mathversion {bold}V}.}}{31}
-\contentsline {figure}{\numberline {20}{\ignorespaces Supertri\^angulo envolvendo o quadril\'atero com coordenadas $3M$.}}{33}
-\contentsline {figure}{\numberline {21}{\ignorespaces Circunfer\^encia de raio $3M$ inscrita no Supertri\^angulo envolve um quadril\'atero onde ser\~ao gerados os pontos.}}{33}
-\contentsline {figure}{\numberline {22}{\ignorespaces Situa\c c\~oes poss\IeC {\'\i }veis em sistemas biom\'etricos.}}{35}
+\contentsline {figure}{\numberline {1}{\ignorespaces Performance relativa de BSON e JSON para aumento de documento sobre n\'umero constante de tuplas \cite {green}.}}{18}
+\contentsline {figure}{\numberline {2}{\ignorespaces Performance relativa de BSON e JSON para aumento de documento sobre n\'umero constante de tuplas \cite {green}.}}{18}
+\contentsline {figure}{\numberline {3}{\ignorespaces Performance relativa de BSON e JSON para aumento de documento sobre n\'umero constante de tuplas \cite {green}.}}{19}
+\contentsline {figure}{\numberline {4}{\ignorespaces Performance relativa de BSON e JSON para aumento de documento sobre n\'umero constante de tuplas \cite {green}.}}{20}
+\contentsline {figure}{\numberline {5}{\ignorespaces Performance relativa de BSON e JSON para aumento de documento sobre n\'umero constante de tuplas \cite {green}.}}{20}
+\contentsline {figure}{\numberline {6}{\ignorespaces Poss\IeC {\'\i }veis triangula\c c\~oes para um mesmo conjunto de pontos.}}{21}
+\contentsline {figure}{\numberline {7}{\ignorespaces Ilustra\c {c}\~{a}o dos poss\'{i}veis resultados da primitiva \textit {Ccw(.)} }}{22}
+\contentsline {figure}{\numberline {8}{\ignorespaces Parabol\'oide $\Gamma $ e a proje\c {c}\~{a}o da \'area interceptada pelo plano $H$ no $R^2$}}{24}
+\contentsline {figure}{\numberline {9}{\ignorespaces Ilustra\c {c}\~{a}o dos resultados da primitiva {\textit {InC\'{i}culo}}. }}{26}
+\contentsline {figure}{\numberline {10}{\ignorespaces Representa\c {c}\~{a}o do Circuncentro de um elemento triangular e da circunfer\^{e}ncia por ele determinada.}}{27}
+\contentsline {figure}{\numberline {11}{\ignorespaces Orienta\c {c}\~{a}o das \textit {arestas} relacionada com o \textit {loop} exterior do objeto.}}{30}
+\contentsline {figure}{\numberline {12}{\ignorespaces Modelo de fronteira baseado em \textit {v\'{e}rtice} segundo o modelo \ref {fig2_chapter3}.}}{30}
+\contentsline {figure}{\numberline {13}{\ignorespaces Modelo de fronteira baseado em \textit {aresta} de acordo com a figura \ref {fig2_chapter3}.}}{30}
+\contentsline {figure}{\numberline {14}{\ignorespaces Rela\c {c}\~{o}es de adjac\^{e}ncias entre {\textit {aresta}}, {\textit {v\'{e}rtice}} e {\textit {face}}, entidades presentes na estrutura.}}{32}
+\contentsline {figure}{\numberline {15}{\ignorespaces Primitivas utilizadas para se obter todas as rela\c {c}\~{o}es de adjac\^{e}ncias entre as entidades {\textit {aresta}},{\textit {v\'{e}rtice}} e {\textit {face}}.}}{32}
+\contentsline {figure}{\numberline {16}{\ignorespaces Casos degenerados.}}{33}
+\contentsline {figure}{\numberline {17}{\ignorespaces a) Conjunto de pontos distribuidos arbitrariamente no plano; b) Fecho convexo do conjunto de pontos em a) c) Triangula\c {c}\~{a}o de Delaunay incidente sobre o conjunto de pontos a); d) Diagrama de Voronoi do conjunto de pontos a).}}{33}
+\contentsline {figure}{\numberline {18}{\ignorespaces Combina\c {c}\~{a}o de todos os problemas geom\'etricos listados na figura \ref {fig2_chapter5}. O conjunto de pontos \'e exatamente o mesmo da figura \ref {fig2_chapter5} a).}}{33}
+\contentsline {figure}{\numberline {19}{\ignorespaces a) Tri\^{a}ngulos cuja aresta comum entre eles n\~{a}o passou no teste do \textit {InC\'{i}rculo}; b) C\'{i}rculo formado pelos pontos pertencentes aos dois tri\^{a}ngulos que revela um quarto ponto em seu interiores; c) Remo\c {c}\~{a}o da aresta ilegal; d) Ap\'{o}s o \textit {flip}(troca da aresta do quadril\'{a}tero) ambos tri\^{a}ngulos satisfazem o crit\'{e}rio de Delaunay.}}{36}
+\contentsline {figure}{\numberline {20}{\ignorespaces a) Pelo fato de existirem tr\^{e}s pontos cocirculares $\mathbf {p}_{1}$, $\mathbf {p}_{2}$ e $\mathbf {p}_{3}$, trata-se de um caso degenerado do \textit {flip-edge} e deve ser tratado de maneira especial. b) como n\~ao se trata de uma regi\~ao convexa nesse tri\^angulo n\~ao se aplica a t\'ecnica do \textit {flip-edge}.}}{36}
+\contentsline {figure}{\numberline {21}{\ignorespaces Maximiza\c {c}\~{a}o dos \^{a}ngulos m\'{i}nimos.}}{37}
+\contentsline {figure}{\numberline {22}{\ignorespaces a) circunfer\^encia que cont\'em o di\^ametro de $\overline {{\mathbf p}_1{\mathbf p}_2}$, com um terceiro ponto ${\mathbf p}_3$ no exterior da circunfer\^encia. b) circunfer\^encia que cont\'em o di\^ametro de $\overline {{\mathbf p}_1{\mathbf p}_2}$, por\'em com um terceiro ponto ${\mathbf p}_3$ no interior da circunfer\^encia}}{38}
+\contentsline {figure}{\numberline {23}{\ignorespaces Gabriel Graph de um determinado conjunto de pontos em destaque sobre a Triangula\c {c}\~{a}o de Delaunay - linha pontilhadas}}{38}
+\contentsline {figure}{\numberline {24}{\ignorespaces Ilustra\c {c}\~{a}o das atualiza\c {c}\~{o}es topol\'{o}gicas na inser\c {c}\~{a}o do primeiro ponto \textbf {\mathversion {bold}V}.}}{39}
+\contentsline {figure}{\numberline {25}{\ignorespaces Supertri\^angulo envolvendo o quadril\'atero com coordenadas $3M$.}}{41}
+\contentsline {figure}{\numberline {26}{\ignorespaces Circunfer\^encia de raio $3M$ inscrita no Supertri\^angulo envolve um quadril\'atero onde ser\~ao gerados os pontos.}}{41}
+\contentsline {figure}{\numberline {27}{\ignorespaces Situa\c c\~oes poss\IeC {\'\i }veis em sistemas biom\'etricos.}}{43}
