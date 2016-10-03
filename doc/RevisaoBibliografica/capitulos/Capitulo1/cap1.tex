@@ -2,18 +2,26 @@
 
 
 \chapter{Bancos de Dados Não Relacionais - NoSQL}
-    Em um trabalho acadêmico intitulado "Selected Topics on Software-Technology Ultra-Large Scale Sites"(Tópicos Selecionados na Tecnologia de Softwares de Sites de Escala Ultra Grande) na Stuttgart Media University(Universidade de Mídia de Stuttgart) Christof Strauch reúne várias referências e tópicos sobre todo o assunto de base do NoSQL, conforme seu trabalho, os bancos de dados relacionais são os tipos predominantes para armazenamento de dados estruturados, desde 1970 este tipo de base de dados se suporta em uma aritmética relacional com o proliferado uso do SQL(Secure Query Language) para inserir, alterar, recuperar e remover os dados. Bases de dados não convencionais eram utilizadas apenas para aplicações de algum nicho específico como projetos utilizando SOAP que utiliza o padrão XML, porém o pensamento por cima desse uso disseminado "um tamanho para caber todos" tem sido questionado tanto pelas empresas como pelos acadêmicos devido ao aumento de usuários e volume de dados no meio.
+    Em um trabalho acadêmico intitulado "Selected Topics on Software-Technology Ultra-Large Scale Sites"(Tópicos Selecionados na Tecnologia de Softwares de Sites de Escala Ultra Grande) \cite{strauch} na Stuttgart Media University(Universidade de Mídia de Stuttgart) Christof Strauch reúne várias referências e tópicos sobre todo o assunto de base do NoSQL, conforme seu trabalho, os bancos de dados relacionais são os tipos predominantes para armazenamento de dados estruturados, desde 1970 este tipo de base de dados se suporta em uma aritmética relacional com o proliferado uso do SQL(Secure Query Language) para inserir, alterar, recuperar e remover os dados. Bases de dados não convencionais eram utilizadas apenas para aplicações de algum nicho específico como projetos utilizando SOAP que utiliza o padrão XML, porém o pensamento por cima desse uso disseminado "um tamanho para caber todos" tem sido questionado tanto pelas empresas como pelos acadêmicos devido ao aumento de usuários e volume de dados no meio.
 
 	Conforme segue na argumentação de Christof Strauch, para suprir essa demanda algumas alternativas começam a ser propostas, vários outros modelos são criados para abrangir mais nichos antes dominados pelos SGBDRs, esses modeloss adotam caminhos não convencionais nem sempre garantindo a ACID (Atomicidade, Consistência, Isolamento e Durabilidade) dos dados, porém conseguem optimizar o espaço de armazenamento e a performance das bases de dados, não necessariamente se desfazendo do uso do SQL, por isso a sigla NoSQL significa $"not$ $only$ $secure$ $query$ $language"$.
     
     \section{Definição}
+	Existem dois pontos de vista não equivalentes sobre o princípio do NoSQL, o NoSQL Archive \cite{nosql} apresenta uma visão seguindo o termo "NonSQL" que significa uma base de dados sem SQL em tudo, no artigo "NoSQL Databases"(Base de Dados NoSQL) \cite{weber} Silvan Weber define outro ponto de vista mais aceito sendo "Not only SQL"(Não apenas SQL), ou seja, base de dados que não é baseada em SQL porém, pode ter ou não funcionalidades SQL. Além do conceito presente no nome, Weber levanta outras características fundamentais:
+
+\begin{itemize}  
+\item Armazenamento Distribuido: Um dos maiores intuítos e motivador para o desenvolvimento de bases NoSQL é a necessidade de distribuir a carga de armazenamento e acessos das bases a vários servidores porém, mesmo dividido em vários servidores, a base continua interagindo com os outros sistemas como uma.
+\item Fonte aberto: Esse princípio assegura que o código fonte de bases NoSQL estejam disponíveis para que possam ser alterados para melhor se adaptar a necessidade de cada aplicação, diferentemente de SGBDRs comerciais que, além de serem muito onerosos, 
+nem sempre atendem aos requisitos das aplicações
+\item Escalável horizontalmente: Uma das necessidades de ter um armazenamento distribuído é para que quanto mais servidores ligados à base maior será a performance da base por completo, seguindo uma linha de proporção próxima do linear.
+\end{itemize}
 
     
     \section{Aspectos Comuns ao NoSQL}
     Esta seção destina-se a criar uma base sólida sobre os principais aspectos e conceitos que envolvem o NoSQL, além de apontar diferenças e temas relacionados com SGBDs também serão abordados teoremas e tópicos específicos sobre o NoSQL
 
     \subsection{Recapitulando SGBDRs}
-    Em uma tese de mestrado intitulada "Extracting Data from NoSQL Databases. A Step towards Interactive Visual Analysis of NoSQL Data"(Extração de dados de bases NoSQL. Um passo avante para análise de visualização interativa de NoSQL) da Chalmers University of Technology(Chalmers, Universidade de Tecnologia) Petter Näsholm apresenta uma recapitulação rápida sobre as bases de dados convencionais. SGBDRs se baseiam no conceito de tabelas com conjunto de atributos podendo ser chamados de colunas da tabela, cada atributo é associado a um tipo de dado(como inteiro, real ou string). Cada linha desta tabela é considerada uma tupla, ao passo que os atributos dentro de cada tupla podem ser preenchidos com componentes referente ao seu tipo. As tabelas também podem ter colunas com informações sobre a relação entre elas mesmas.
+    Em uma tese de mestrado intitulada "Extracting Data from NoSQL Databases. A Step towards Interactive Visual Analysis of NoSQL Data"(Extração de dados de bases NoSQL. Um passo avante para análise de visualização interativa de NoSQL) \cite{nasholm} da Chalmers University of Technology(Chalmers, Universidade de Tecnologia) Petter Näsholm apresenta uma recapitulação rápida sobre as bases de dados convencionais. SGBDRs se baseiam no conceito de tabelas com conjunto de atributos podendo ser chamados de colunas da tabela, cada atributo é associado a um tipo de dado(como inteiro, real ou string). Cada linha desta tabela é considerada uma tupla, ao passo que os atributos dentro de cada tupla podem ser preenchidos com componentes referente ao seu tipo. As tabelas também podem ter colunas com informações sobre a relação entre elas mesmas.
 
     \subsection{ACID e BASE}
     Petter Näsholm também aborda as garantias que a maioria dos SGBDRs adotam sendo elas a sigla ACID(Atomicidade, Consistência, Isolação, Durabilidade) onde Atomicidade é a garantia de que ou uma trasação é executada de forma completa ou não é executada de forma alguma, a Consistência garante que toda transação saia de um estado da base válido para outro, Isolação é a garantia de que não interfere outra no tempo em que estão ocorrendo e a Durabilidade garante que o efeito de uma transação deve persistir e, portanto, nunca ser perdido. No trabalho de Christof Strauch o autor apresenta o BASE que são as garantias dos NoSQL:
@@ -49,22 +57,24 @@
     \subsection{Armazenamento baseado em linhas}
     
 
-\subsection{e serviços rest, json e datavisualization}
-    \section{Do SQL ao NOSQL}
-    \section{NoSQL Orientado a Documento}
-        falar dos tipos existentes
+\section{e serviços rest, json e datavisualization}
+ %   \section{Do SQL ao NOSQL}
+ %   \section{NoSQL Orientado a Documento}
+ %       falar dos tipos existentes
     %\section{Tipos Mais conhecidos de NoSQL}
         %\subsection{Orientado a Objetos}
         %\subsection{Orientado a Colunas}
         %\subsection{Orientado a Grafos}
         %\subsection{Orientado a Documento}
-    \section{Críticas ao NoSQL pag 15 http://www.christof-strauch.de/nosqldbs.pdf}
+  %  \section{Críticas ao NoSQL pag 15 http://www.christof-strauch.de/nosqldbs.pdf}
 
 \chapter{PostgreSQL e os tipos de dados não convencionais}
 
 \section{PostgreSQL}
 
-Falar sobre o PostgreSQL que é um Banco que segue as mais recentes ISOS que tem as garantias ACID, é transacional, antigo maduro, existe em várias plataformas, suporte para dados complexos, opensource, arquitetura extensível, e agora tem suporte para dados sem schema json, xml e hstore.
+
+%falta completar aquiiiiii
+Falar sobre o PostgreSQL \cite{postgresql} que é um Banco que segue as mais recentes ISOS que tem as garantias ACID, é transacional, antigo maduro, existe em várias plataformas, suporte para dados complexos, opensource, arquitetura extensível, e agora tem suporte para dados sem schema json, xml e hstore.
 
 Sobre os dados sem schema que utiliza, o Xml é estruturado de maneira hierarquica sendo o padrão W3C standard 1998 o padrão é base para o protocolo de troca de mensagens SOAP, porém seu uso é um pouco complexo e seu desempenho de velocidade é o pior dos dados em armazenamento em documentos postgresql, sem indexação.
 
@@ -74,7 +84,7 @@ Por último temos o tipo JSON e JSONB, que é o tipo Orientado a Documento baseado
 
 \section{JSON}
 
-JSON significa JavaScript Object Notation, é um formato de dados de fácil leitura e escrita para os humanos e de fácil geração e análise para as máquinas. Um objeto em JSON é um conjunto de pares de chave e valor que podem ser organizados de forma aninhada e(ou) listados em arrays, a chave é uma string e o valor pode ser uma string, um numero, um booleano, um array e até mesmo outro objeto aninhado. O array pode ter valores dos mesmos tipos citados. Pode haver também uma lista de objetos no mesmo nível, esta lista pode obedecer ou não a sua ordem.
+JSON significa "JavaScript Object Notation" \cite{json}, é um formato de dados de fácil leitura e escrita para os humanos e de fácil geração e análise para as máquinas. Um objeto em JSON é um conjunto de pares de chave e valor que podem ser organizados de forma aninhada e(ou) listados em arrays, a chave é uma string e o valor pode ser uma string, um numero, um booleano, um array e até mesmo outro objeto aninhado. O array pode ter valores dos mesmos tipos citados. Pode haver também uma lista de objetos no mesmo nível, esta lista pode obedecer ou não a sua ordem.
 
 
 \section{BSON}
@@ -84,14 +94,14 @@ O termo BSON é uma junção de Binary JSON, ele é a serialização de documentos JSO
 \section{Json vs JsonB}
 
 Antes do JSONB fazer parte do PosgreSQL Geoffrey Litt desenvolveu em seu projeto final "Improving performance of schemaless
-document storage in PostgreSQL using BSON"(Aprimorando a performance de armazenamento orientado a documento em PostgrSQL utilizando BSON) da Yale University(Universidade de Yale), através do fonte do PostgreSQL, bibliotecas de parsing JSON e bibliotecas de parsing BSON do Mongodb, um campo similar chamado BSON, em sua tese pode testar as diferenças de performance destes campos. Posteriormente o PostgreSQL adotou este campo.
+document storage in PostgreSQL using BSON"(Aprimorando a performance de armazenamento orientado a documento em PostgrSQL utilizando BSON) \cite{whittaker} da Yale University(Universidade de Yale), através do fonte do PostgreSQL, bibliotecas de parsing JSON e bibliotecas de parsing BSON do Mongodb, um campo similar chamado BSON, em sua tese pode testar as diferenças de performance destes campos. Posteriormente o PostgreSQL adotou este campo.
 
 Para o primeiro teste utilizou o mesmo documento e variando seu tamanho de 1 à 90 vezes, nele executava uma query simples para encontrar um valor no meio do documento, o teste demonstrou que quanto maior o documento maior era a velozidade do BSON sobre o JSON, com o tamanho máximo o BSON foi 8.28 vezes mais rápido para o JSON.
 
 	\begin{figure}[!htb]
     	\centering
     	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson1}
-    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{green}.}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
     	\label{fig_bson1}
   	\end{figure}
 
@@ -100,7 +110,7 @@ No segundo teste utilizou o mesmo tamanho de documentos mas aumentou o número de
 	\begin{figure}[!htb]
     	\centering
     	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson2}
-    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{green}.}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
     	\label{fig_bson2}
   	\end{figure}
 
@@ -109,7 +119,7 @@ Outro teste foi realizar queries por uma chave variando seu lugar do começo ao f
 	\begin{figure}[!htb]
     	\centering
     	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson3}
-    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{green}.}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
     	\label{fig_bson3}
   	\end{figure}
 
@@ -118,7 +128,7 @@ Foi realizado também um teste sobre a composição do documento, ou seja, os tipos
 	\begin{figure}[!htb]
     	\centering
     	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson4}
-    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{green}.}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
     	\label{fig_bson4}
   	\end{figure}
 
@@ -127,16 +137,25 @@ Por último foi realizado um teste para verificar o tempo de carregamento dos arq
 	\begin{figure}[!htb]
     	\centering
     	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson5}
-    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{green}.}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
     	\label{fig_bson5}
   	\end{figure}
 
     \section{Técnicas para Execução de Queries}
-O capítulo \ref{chapter2} contém...
 
-O capítulo \ref{chapter3} destina-se...
+opa
+\cite{heer}
+Opa
+\cite{genghini}
+Opa
+\cite{shimabukuro}
+Opa
 
-O capítulo \ref{chapter4} discute sobre...
+%O capítulo \ref{chapter2} contém...
 
-Por fim, no capítulo \ref{chapter5} será feita uma conclusão...
+%O capítulo \ref{chapter3} destina-se...
+
+%O capítulo \ref{chapter4} discute sobre...
+
+%Por fim, no capítulo \ref{chapter5} será feita uma conclusão...
 

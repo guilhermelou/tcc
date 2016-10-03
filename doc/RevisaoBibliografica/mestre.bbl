@@ -5,81 +5,62 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.5 }
 
-\bibitem[BERG, OVERMARS e SCHWARZKOPF 1977]{berg}
-\abntrefinfo{BERG, OVERMARS e SCHWARZKOPF}{BERG; OVERMARS; SCHWARZKOPF}{1977}
-{BERG, M.~K.; OVERMARS, M.; SCHWARZKOPF, M.~O. \emph{Computational geometry}:
-  algorithms and applications. [S.l.]: Springer-Verlag, 1977.}
+\bibitem[archive 2009]{nosql}
+\abntrefinfo{archive}{ARCHIVE}{2009}
+{ARCHIVE, N. \emph{NoSQL Databases}. 2009.
+Dispon{\'\i}vel em: \url{http://nosql-database.org/}.}
 
-\bibitem[BRAID I. C.;~HILLYARD 1980]{braid}
-\abntrefinfo{BRAID I. C.;~HILLYARD}{BRAID I. C.;~HILLYARD}{1980}
-{BRAID I. C.;~HILLYARD, R. C. S. I.~A. Stepwise construction of polyhedrain
-  geometric modeling. In:  BRODLIE, K. (Ed.). \emph{Mathematical methods in
-  Computer Graphics and Design}. [S.l.]: Academic Press, 1980. p. 123--141.}
+\bibitem[Bostock, Ogievetsky e Heer 2011]{heer}
+\abntrefinfo{Bostock, Ogievetsky e Heer}{BOSTOCK; OGIEVETSKY; HEER}{2011}
+{BOSTOCK, M.; OGIEVETSKY, V.; HEER, J. D$^3$ data-driven documents.
+\emph{IEEE transactions on visualization and computer graphics}, IEEE, v.~17,
+  n.~12, p. 2301--2309, 2011.}
 
-\bibitem[GREEN P.J.;~SIBSON 1978]{green}
-\abntrefinfo{GREEN P.J.;~SIBSON}{GREEN P.J.;~SIBSON}{1978}
-{GREEN P.J.;~SIBSON, R. Computing {D}irichlet tessellations in the plane.
-\emph{Computer Journal}, v.~2, n.~21, p. 168--173, 1978.}
+\bibitem[Genghini 2011]{genghini}
+\abntrefinfo{Genghini}{GENGHINI}{2011}
+{GENGHINI, F. Extens{\~a}o da plataforma de visualiza{\c{c}}{\~a}o infovis
+  incorporando recursos de interatividade.
+Universidade Estadual Paulista (UNESP), 2011.}
 
-\bibitem[GUIBAS, KNUTH e SHARIR 1985]{guibas}
-\abntrefinfo{GUIBAS, KNUTH e SHARIR}{GUIBAS; KNUTH; SHARIR}{1985}
-{GUIBAS, L.; KNUTH, D.; SHARIR, M. Randomized incremental construction of
-  {D}elaunay and {V}oronoi diagrams.
-\emph{ACM Transactions on Graphics}, v.~4, n.~2, p. 75--123, 1985.}
+\bibitem[International 2013]{json}
+\abntrefinfo{International}{INTERNATIONAL}{2013}
+{INTERNATIONAL, E. \emph{Introducting JSON}. 2013.
+Dispon{\'\i}vel em: \url{http://www.json.org/}.}
 
-\bibitem[JAIN K. A.;~BOLLE 2006]{jain2}
-\abntrefinfo{JAIN K. A.;~BOLLE}{JAIN K. A.;~BOLLE}{2006}
-{JAIN K. A.;~BOLLE, R. P.~S. \emph{Biometrics}: personal identification in
-  networked society. [S.l.: s.n.], 2006.}
+\bibitem[N{\"a}sholm 2012]{nasholm}
+\abntrefinfo{N{\"a}sholm}{N{\"A}SHOLM}{2012}
+{N{\"A}SHOLM, P. Extracting data from nosql databases-a step towards
+  interactive visual analysis of nosql data.
+Chalmers University of Technology, 2012.}
 
-\bibitem[LAWSON 1972]{lawson}
-\abntrefinfo{LAWSON}{LAWSON}{1972}
-{LAWSON, C. \emph{Generation of a triangulation grid with applications to
-  contour plotting}.
-[S.l.], 1972.}
+\bibitem[PostgreSQL 1996]{postgresql}
+\abntrefinfo{PostgreSQL}{POSTGRESQL}{1996}
+{POSTGRESQL. \emph{JSON Functions and Operators}. 1996.
+Dispon{\'\i}vel em:
+  \url{https://www.postgresql.org/docs/9.6/static/functions-json.html}.}
 
-\bibitem[MATULA D.W.;~SOKAL 1980]{matula}
-\abntrefinfo{MATULA D.W.;~SOKAL}{MATULA D.W.;~SOKAL}{1980}
-{MATULA D.W.;~SOKAL, R. Properties of {G}abriel graphs relevant to geographic
-  variation research and clustering of points in the plane. In:
-  \emph{Geographic Anal}. [S.l.: s.n.], 1980. v.~12, p. 205--222.}
+\bibitem[Shimabukuro 2004]{shimabukuro}
+\abntrefinfo{Shimabukuro}{SHIMABUKURO}{2004}
+{SHIMABUKURO, M.~H.
+\emph{Visualiza{\c{c}}{\~o}es temporais em uma plataforma de software
+  extens{\'\i}vel e adapt{\'a}vel}.
+Tese (Doutorado) --- Instituto de Ci{\^e}ncias Matem{\'a}ticas e de
+  Computa{\c{c}}{\~a}o, 2004.}
 
-\bibitem[MUSIN 1997]{musin}
-\abntrefinfo{MUSIN}{MUSIN}{1997}
-{MUSIN, O. Properties of the {D}elaunay triangulation. In:  \emph{PROCEEDINGS
-  OF THE ANNUAL SYMPOSIUM ON COMPUTATIONAL GEOMETRY}. Nice, France: [s.n.],
-  1997. v.~13, p. 424--426.}
+\bibitem[Strauch, Sites e Kriha 2011]{strauch}
+\abntrefinfo{Strauch, Sites e Kriha}{STRAUCH; SITES; KRIHA}{2011}
+{STRAUCH, C.; SITES, U.-L.~S.; KRIHA, W. Nosql databases.
+\emph{Lecture Notes, Stuttgart Media University}, 2011.}
 
-\bibitem[O'ROURKE 1994]{orourke}
-\abntrefinfo{O'ROURKE}{O'ROURKE}{1994}
-{O'ROURKE, J. \emph{Computational geometry in C}. 2. ed. [S.l.]: Cambridge
-  University Press, 1994. 161-163~p.}
+\bibitem[Weber 2010]{weber}
+\abntrefinfo{Weber}{WEBER}{2010}
+{WEBER, S. Nosql databases.
+\emph{University of Applied Sciences HTW Chur, Switzerland}, 2010.}
 
-\bibitem[PINHEIRO 2008]{pinheiro}
-\abntrefinfo{PINHEIRO}{PINHEIRO}{2008}
-{PINHEIRO, M.~J. \emph{Biometria nos sistemas computacionais}: você é a senha.
-  [S.l.: s.n.], 2008.}
-
-\bibitem[SIBSON 1978]{sibson}
-\abntrefinfo{SIBSON}{SIBSON}{1978}
-{SIBSON, R. Locally equiangular triangulations.
-\emph{Computer Journal}, v.~21, n.~3, p. 243--245, 1978.}
-
-\bibitem[SOKAL R.R;~GABRIEL 1969]{sokal}
-\abntrefinfo{SOKAL R.R;~GABRIEL}{SOKAL R.R;~GABRIEL}{1969}
-{SOKAL R.R;~GABRIEL, K. A new statistical approach to geographic variation
-  analysis.
-\emph{Systematic Zoology}, v.~18, p. 259--270, 1969.}
-
-\bibitem[SZWARCFITER 1984]{szwarcfiter}
-\abntrefinfo{SZWARCFITER}{SZWARCFITER}{1984}
-{SZWARCFITER, J. \emph{Grafos e algoritmos computacionais}. Rio de Janeiro:
-  Editora Campus, 1984. 216~p.}
-
-\bibitem[WATSON 1981]{watson}
-\abntrefinfo{WATSON}{WATSON}{1981}
-{WATSON, D. Computing the n-dimensional {D}elaunay tesselation with application
-  to voronoi polytopes.
-\emph{Computer Journal}, v.~24, n.~2, p. 167--172, 1981.}
+\bibitem[Whittaker 2013]{whittaker}
+\abntrefinfo{Whittaker}{WHITTAKER}{2013}
+{WHITTAKER, G. L. S. T.~J. Improving performance of schemaless document storage
+  in postgresql using bson.
+2013.}
 
 \end{thebibliography}

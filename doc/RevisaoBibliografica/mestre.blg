@@ -2,15 +2,10 @@ This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: mestre.aux
 A level-1 auxiliary file: PaginasIniciais/capa2.aux
-A level-1 auxiliary file: PaginasIniciais/aprovacao.aux
 A level-1 auxiliary file: PaginasIniciais/agradecimentos.aux
 A level-1 auxiliary file: PaginasIniciais/resumo.aux
 A level-1 auxiliary file: PaginasIniciais/abstract.aux
 A level-1 auxiliary file: Capitulos/Capitulo1/cap1.aux
-A level-1 auxiliary file: Capitulos/Capitulo2/cap2.aux
-A level-1 auxiliary file: Capitulos/Capitulo3/cap3.aux
-A level-1 auxiliary file: Capitulos/Capitulo4/cap4.aux
-A level-1 auxiliary file: Capitulos/Capitulo5/cap5.aux
 The style file: abntex2-alf.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -24,85 +19,52 @@ Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Database file #1: abntex2-options.bib
 Database file #2: Bibliografia/referencias.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Too many commas in name 1 of "BRAID, I. C.; HILLYARD, R. C.; STROUD, I. A." for entry braid
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "BRAID, I. C.; HILLYARD, R. C.; STROUD, I. A." for entry braid
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "BRAID, I. C.; HILLYARD, R. C.; STROUD, I. A." for entry braid
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "BRAID, I. C.; HILLYARD, R. C.; STROUD, I. A." for entry braid
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "BRAID, I. C.; HILLYARD, R. C.; STROUD, I. A." for entry braid
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "JAIN, K. A.; BOLLE, R.; PANKANTI, S." for entry jain2
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "JAIN, K. A.; BOLLE, R.; PANKANTI, S." for entry jain2
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "JAIN, K. A.; BOLLE, R.; PANKANTI, S." for entry jain2
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "JAIN, K. A.; BOLLE, R.; PANKANTI, S." for entry jain2
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "JAIN, K. A.; BOLLE, R.; PANKANTI, S." for entry jain2
-while executing---line 2091 of file abntex2-alf.bst
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
-Too many commas in name 1 of "BRAID, I. C.; HILLYARD, R. C.; STROUD, I. A." for entry braid
-while executing---line 2146 of file abntex2-alf.bst
-Too many commas in name 1 of "BRAID, I. C.; HILLYARD, R. C.; STROUD, I. A." for entry braid
-while executing---line 2146 of file abntex2-alf.bst
-Too many commas in name 1 of "BRAID, I. C.; HILLYARD, R. C.; STROUD, I. A." for entry braid
-while executing---line 2146 of file abntex2-alf.bst
-Too many commas in name 1 of "JAIN, K. A.; BOLLE, R.; PANKANTI, S." for entry jain2
-while executing---line 2146 of file abntex2-alf.bst
-Too many commas in name 1 of "JAIN, K. A.; BOLLE, R.; PANKANTI, S." for entry jain2
-while executing---line 2146 of file abntex2-alf.bst
-Too many commas in name 1 of "JAIN, K. A.; BOLLE, R.; PANKANTI, S." for entry jain2
-while executing---line 2146 of file abntex2-alf.bst
 +---------------------------------------------------------+
 | Estilo bibliográfico abntex2-alf.bst versão v-1.9.5           |
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 15 entries,
+You've used 11 entries,
             6714 wiz_defined-function locations,
-            1296 strings with 11350 characters,
-and the built_in function-call counts, 11344 in all, are:
-= -- 948
-> -- 293
-< -- 27
-+ -- 146
-- -- 91
-* -- 745
-:= -- 1569
-add.period$ -- 52
-call.type$ -- 15
-change.case$ -- 116
-chr.to.int$ -- 39
-cite$ -- 14
-duplicate$ -- 589
-empty$ -- 956
-format.name$ -- 423
-if$ -- 2726
+            1252 strings with 10756 characters,
+and the built_in function-call counts, 9222 in all, are:
+= -- 923
+> -- 223
+< -- 115
++ -- 235
+- -- 70
+* -- 580
+:= -- 1306
+add.period$ -- 33
+call.type$ -- 11
+change.case$ -- 85
+chr.to.int$ -- 14
+cite$ -- 10
+duplicate$ -- 637
+empty$ -- 548
+format.name$ -- 324
+if$ -- 1970
 int.to.chr$ -- 0
 int.to.str$ -- 0
-missing$ -- 260
-newline$ -- 70
-num.names$ -- 71
-pop$ -- 332
+missing$ -- 175
+newline$ -- 59
+num.names$ -- 50
+pop$ -- 241
 preamble$ -- 1
-purify$ -- 49
+purify$ -- 37
 quote$ -- 0
-skip$ -- 650
+skip$ -- 751
 stack$ -- 1
-substring$ -- 515
-swap$ -- 291
-text.length$ -- 19
+substring$ -- 372
+swap$ -- 223
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 3
+type$ -- 2
 warning$ -- 0
-while$ -- 103
+while$ -- 68
 width$ -- 0
-write$ -- 230
-(There were 16 error messages)
+write$ -- 152
