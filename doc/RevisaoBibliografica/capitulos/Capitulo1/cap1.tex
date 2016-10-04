@@ -54,19 +54,58 @@ nem sempre atendem aos requisitos das aplicações
     \section{Formas de Armazenamento}
     Nesta seção seram abordados algums tipos de bases NoSQL, o modelo orientado à documento utilizando JSON será aprofundado pois foi escolhido para dar suporte a este trabalho devido a sua fácil integração com a ferramenta de visualização de dados escolhida.
     
-    \subsection{Armazenamento baseado em linhas}
-    
+    \subsection{Armazenamento baseado em Chave-Valor}
+	Bases de dados Chave-Valor são extremamente simples, existe uma chave única, geralmente gerada por algum algoritmo de Hash, associada a um valor que pode ser de diferentes tipos como: string, inteiros, reais, cadeias de bytes. Algumas bases de dados não implementão nem a verificação de tipo. 
 
-\section{e serviços rest, json e datavisualization}
- %   \section{Do SQL ao NOSQL}
- %   \section{NoSQL Orientado a Documento}
- %       falar dos tipos existentes
-    %\section{Tipos Mais conhecidos de NoSQL}
-        %\subsection{Orientado a Objetos}
-        %\subsection{Orientado a Colunas}
-        %\subsection{Orientado a Grafos}
-        %\subsection{Orientado a Documento}
-  %  \section{Críticas ao NoSQL pag 15 http://www.christof-strauch.de/nosqldbs.pdf}
+	Tem a vantagem de ter um modelo de dados simples, feito com foco na rápida e eficiente manipulação dos dados para armazenamento distribuído sendo totalmente escalável. Alguns de seus exemplos: Google¿s BigTable\footnote{https://cloud.google.com/bigtable/, acessado em 16 de Maio de 2016}, Memcached\footnote{https://memcached.org/, acessado em 22 de Maio de 2016}, Redis\footnote{http://redis.io/, acessado em 25 de Maio de 2016}.
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson1}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
+    	\label{fig_bson1}
+  	\end{figure}
+
+	Algumas bases são construídas para funcionarem na memória RAM, como é o caso do Memcached, isso permite uma performance muito superior porém implica em um limite de espaço reduzido e o risco de perda de dados no caso de quedas de energia.
+
+    \subsection{Armazenamento orientado a Documento}
+	Este tipo de armazenamento pode ser entendido como um caso particular de uma base Chave-Valor, a diferença é que a base deve ler e escrever em algum tipo conhecido de arquivo e(ou) estrutura. Utiliza documentos com diferentes tipos de conjuntos de dados, alguns tipos de documento são de fácil interpretação para humanos, dentre eles: XML, JSON, XAML\@. Também é possível acessar e alterar diretamente tais documentos pelo servidor.
+	
+	O esquema que existe nas bases é a estrutura utilizada no próprio arquivo, sem relação nenhuma dentre os documentos da base, cada documento funciona independente do outro, no caso de bases que os arquivos dependem são chamadas de semi-estruturadas.
+
+	Como a estrutura dos arquivos é algo arbitrário campos sem dados não precisam ser preenchidos e nenhum espaço de armazenamento precisa ser reservado. Dentre os tipos existentes estão: CouchDB\footnote{http://couchdb.apache.org/, acessado em 13 de Abril de 2016} e MongoDB\footnote{https://www.mongodb.com/, acessado em 13 de Abril de 2016}
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson1}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
+    	\label{fig_bson1}
+  	\end{figure}
+
+	\subsection{Banco de Dados Orientado a Colunas}
+	Diferentemente de bases SQL onde o conjunto de dados é armazenado em uma unidade, este modelo armazena um atributo do conjunto de dados em uma unidade, exemplo: Supondo termos 3 atributos nome, idade, telefone, com o conjunto de dados "Julio", 18, 33821522; "Lucas", 20, 82331248; "Marina", 25, 39031169. Organizando estes dados no formato orientado a colunas eles ficam nesta disposição: "Julio", "Marina", "Lucas"; 18, 20, 25; 33821522, 82331248, 39031169.
+	
+	O uso dos atributos separados por coluna garante uma rápida análise dos dados mesmo em grande quantidade, pois estão descritos sucessivamente. Então análise como obter a média retornam rapidamente sem percorer outros atributos desnecessários. As bases mais conhecidas são: HBase\footnote{https://hbase.apache.org/, acessado em 23 de Junho de 2016} e Cassandra\footnote{http://cassandra.apache.org/, acessado em 24 de Junho de 2016}
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson1}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
+    	\label{fig_bson1}
+  	\end{figure}
+
+	\subsection{Banco de Daods Orientado a Grafos}
+	A teoria dos grafos serve como suporte para a elaboração dessa base onde, cada vértice representa uma entidade com dados, e as arestas são as relações entre os dados. Pode-se também utilizar o fator da direcionalidade das arestas do grafo como parte do conjunto de dados, no caso do Twitter\footnote{https://twitter.com/, acessado em 30 de Junho de 2016}, por exemplo, poderia ser utilizado esse recurso, supondo existirem "João" e "Maria", "João" segue maria no Twitter, ou seja, tem uma aresta na direção de "João" para "Maria" simbolizando essa relação, Caso "Maria" também seguisse "João" haveria outra aresta na direção de "Maria" para "João".
+	
+	Sua aplicação é muito utilizada em redes sociais e serviços de transito, aproveitando recursos de encontrar caminhos mais curtos entre nós utilizando algoritmos da teoria dos grafos como o de Dijkstra. Além disto é altamente escalável horizontalmente replicando vértices para aumentar a performance e novamente utilizando a teoria dos grafos para particionálo tornando os caminhos das buscas ainda mais curtos. Exemplos de bases: Neo4j\footnote{https://neo4j.com/, acessado em 30 de Junho de 2016} e FlockDB\footnote{https://blog.twitter.com/2010/introducing-flockdb, acessado em 30 de Junho de 2016}
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson1}
+    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
+    	\label{fig_bson1}
+  	\end{figure}
+%\section{e serviços rest, json e datavisualization}
 
 \chapter{PostgreSQL e os tipos de dados não convencionais}
 
