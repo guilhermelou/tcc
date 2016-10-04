@@ -7,7 +7,7 @@
 \contentsline {subsection}{\numberline {1.2.3}Teorema CAP}{11}
 \contentsline {section}{\numberline {1.3}Formas de Armazenamento}{12}
 \contentsline {subsection}{\numberline {1.3.1}Armazenamento baseado em Chave-Valor}{12}
-\contentsline {subsection}{\numberline {1.3.2}Armazenamento orientado a Documento}{13}
+\contentsline {subsection}{\numberline {1.3.2}Armazenamento orientado a Documento}{12}
 \contentsline {subsection}{\numberline {1.3.3}Banco de Dados Orientado a Colunas}{13}
 \contentsline {subsection}{\numberline {1.3.4}Banco de Daods Orientado a Grafos}{14}
 \contentsline {chapter}{\numberline {2}PostgreSQL e os tipos de dados n\~ao convencionais}{16}
