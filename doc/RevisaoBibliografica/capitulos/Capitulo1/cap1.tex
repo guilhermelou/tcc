@@ -113,7 +113,9 @@ nem sempre atendem aos requisitos das aplicações
 
 
 %falta completar aquiiiiii
-Falar sobre o PostgreSQL \cite{postgresql} que é um Banco que segue as mais recentes ISOS que tem as garantias ACID, é transacional, antigo maduro, existe em várias plataformas, suporte para dados complexos, opensource, arquitetura extensível, e agora tem suporte para dados sem schema json, xml e hstore.
+PostgreSQL\cite{postgresql} é um sistema de banco de dados relacional poderoso e open source. Com mais de 15 anos de desenvolvimento tem uma reputação forte sobre sua confiabilidade, integridade dos dados e correção. Ele é executado em todos os principais sistemas operacionais, incluindo Linux, UNIX (AIX, BSD, HP-UX, SGI IRIX, Mac OS X, Solaris, Tru64) e Windows. É totalmente compatível com ACID, tem suporte completo para chaves estrangeiras, joins, views, triggers e procedures. Inclui a maioria dos tipos de dados SQL:2008: INTEGER, NUMERIC, BOOLEAN, CHAR, VARCHAR, DATE, INTERVALO e TIMESTAMP\@. Também suporta o armazenamento de grandes objetos binários, incluindo imagens, sons e vídeo. Tem interfaces de programação nativas para C / C ++, Java, .Net, Perl, Python, Ruby, Tcl, ODBC, entre outros.
+
+Recentemente também tem adotado algumas funcionalidades NoSQL buscando fornecer mais alternativas reunidas em uma base só, evitando que o serviço tenha que usar uma base SQL para parte de sua funcionalidade e outra base NoSQL para outro grupo de funcionalidades. Dentre elas o suporte orientado a documento(json e xml) e do tipo Chave-Valor(hstore).
 
 Sobre os dados sem schema que utiliza, o Xml é estruturado de maneira hierarquica sendo o padrão W3C standard 1998 o padrão é base para o protocolo de troca de mensagens SOAP, porém seu uso é um pouco complexo e seu desempenho de velocidade é o pior dos dados em armazenamento em documentos postgresql, sem indexação.
 
@@ -128,7 +130,7 @@ JSON significa "JavaScript Object Notation" \cite{json}, é um formato de dados d
 
 \section{BSON}
 
-O termo BSON é uma junção de Binary JSON, ele é a serialização de documentos JSON para binário, foi desenvolvido para melhorar o desempenho na busca das chaves. Além de armazenar os dados em arquivos binários a maior diferença entre ele e o JSON é o uso de tipos de dados com definição de tamanho e tipo pré-determinadas, para armazenar um número inteiro o JSON utiliza uma cadeia de caracteres arbitrária enquanto o BSON utiliza 32 e 64 bits para inteiros e 64 bits para double e floats, tipos booleanos em JSON são representados pela cadeia de caracteres 'True' ou 'False', em BSON é representado por apenas um bit 0 ou 1. Para valores como cadeias de strings são armazenadas meta-informações como o comprimento dela e, como os outros tipos já tem comprimentos definidos, um parsing na busca por uma chave pode facilmente saltar para os pontos em que interessa no documento.
+O termo BSON é uma junção de Binary JSON, ele é a serialização de documentos JSON para binário, foi desenvolvido para melhorar o desempenho na busca das chaves. Além de armazenar os dados em arquivos binários a maior diferença entre ele e o JSON é o uso de tipos de dados com definição de tamanho e tipo pré-determinadas, para armazenar um número inteiro o JSON utiliza uma cadeia de caracteres arbitrária enquanto o BSON utiliza 32 e 64 bits para inteiros e 64 bits para double e floats, tipos booleanos em JSON são representados pela cadeia de caracteres "True" ou "False", em BSON é representado por apenas um bit 0 ou 1. Para valores como cadeias de strings são armazenadas meta-informações como o comprimento dela e, como os outros tipos já tem comprimentos definidos, um parsing na busca por uma chave pode facilmente saltar para os pontos em que interessa no documento.
 
 \section{Json vs JsonB}
 
@@ -140,7 +142,7 @@ Para o primeiro teste utilizou o mesmo documento e variando seu tamanho de 1 à 9
 	\begin{figure}[!htb]
     	\centering
     	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson1}
-    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
+    	\caption{Performance relativa de BSON e JSON para aumento de tamanho do documento sobre número constante de tuplas \cite{whittaker}.}
     	\label{fig_bson1}
   	\end{figure}
 
@@ -149,7 +151,7 @@ No segundo teste utilizou o mesmo tamanho de documentos mas aumentou o número de
 	\begin{figure}[!htb]
     	\centering
     	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson2}
-    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
+    	\caption{Performance relativa de BSON e JSON para aumento do número de tuplas sobre documento de tamanho estático\cite{whittaker}.}
     	\label{fig_bson2}
   	\end{figure}
 
@@ -158,7 +160,7 @@ Outro teste foi realizar queries por uma chave variando seu lugar do começo ao f
 	\begin{figure}[!htb]
     	\centering
     	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson3}
-    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
+    	\caption{Comparação do fator do aumento de velocidade para chaves perto do começo do documento e perto do fim do documento \cite{whittaker}.}
     	\label{fig_bson3}
   	\end{figure}
 
@@ -167,21 +169,63 @@ Foi realizado também um teste sobre a composição do documento, ou seja, os tipos
 	\begin{figure}[!htb]
     	\centering
     	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson4}
-    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
+    	\caption{Comparação do fator do aumento de velocidade para documentos contendo exclusivamente um tipo de dado \cite{whittaker}.}
     	\label{fig_bson4}
   	\end{figure}
 
-Por último foi realizado um teste para verificar o tempo de carregamento dos arquivos em disco, como o bson precisa de um passo a mais no parsing transformando os valores de strings para os tipos de inteiros, booleanos, etc, criando os metadados sobre strings e comprimento das chaves, seu tempo de carregamento é pouco mais demorado em relação ao json, como pode-se verificar na figura \ref{fig_bson5}, entretanto para esse teste foi utilizado o parsing de validação do json e posteriormente foi salvo em disco, caso tivesse sido usado um parsing de validação já em bson essa diferença poderia se igualar ou até mesmo inverter-se.
+Por último foi realizado um teste para verificar o tempo de carregamento dos arquivos em disco, como o bson precisa de um passo a mais no parsing transformando os valores de strings para os tipos de inteiros, booleanos, etc, criando os metadados sobre strings e comprimento das chaves, seu tempo de carregamento é pouco mais demorado em relação ao json, como pode-se verificar na figura~\ref{fig_bson5}, entretanto para esse teste foi utilizado o parsing de validação do json e posteriormente foi salvo em disco, caso tivesse sido usado um parsing de validação já em bson essa diferença poderia se igualar ou até mesmo inverter-se.
 
 	\begin{figure}[!htb]
     	\centering
     	\includegraphics[width=0.5\textwidth]{figuras/chapter1/teste_bson5}
-    	\caption{Performance relativa de BSON e JSON para aumento de documento sobre número constante de tuplas \cite{whittaker}.}
+    	\caption{Comparação do total de tempo do carregamento entre JSON e BSON para 1.000, 10.000, 100.000 inserções \cite{whittaker}.}
     	\label{fig_bson5}
   	\end{figure}
 
-    \section{Técnicas para Execução de Queries}
+    \section{Uso no PostgreSQL}
+	Nesta seção serão abordadas as definições técnicas para utilizar a sintaxe de operadores para executar as tarefas das seções abaixo em campos Json e Jsonb do PostgreSQL, funções que encapsulam funcionalidades não seram abordadas.
+	\subsection{Criação de Tabelas}
+	Os tipos Json e Jsonb podem ser criados como um atributo qualquer de qualquer tabela, basta identificar o tipo após o nome do campo:
 
+CREATE TABLE eventos (
+
+  nome varchar(200),
+
+  attrJson json,
+
+  attrBinario jsonb
+
+);
+
+	\subsection{Realizando Inserções}
+	A inserção também ocorre de maneira natural como em outros atributos da tabela, a diferença nesse caso é o conteúdo da coluna:
+
+	INSERT INTO eventos values('Show de Sábado', '\{"lista de convidados": ["João", "Maria", "Roberto"]\}','\{"lista de intrusos":[]\}');
+
+	\subsection{Execução de Queries}
+	Para execução de queries foram criados operadores adicionais que podem ser utilizados juntos do comando SELECT\@. Operadores de json e jsonb na tabela
+
+\begin{table}[!htb]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Operador & Operando à Direita & Descrição & Exemplo & Resultado do Exemplo \\ \hline
+-\textgreater &  int   & Retorna o elemento do array JSON& '["a","b","c"]'::json-\textgreater2& c\\ \hline
+-\textgreater &  texto & Retorna o objeto da chave & '\{"a": [1,2,3]\}'::json-\textgreater'a'&[1,2,3]\\ \hline
+-\textgreater\textgreater& int & Retorna o elemento do array JSON como texto&'["a","b","c"]'::json-\textgreater\textgreater1&"b" \\ \hline
+-\textgreater\textgreater& texto & Retorna o objeto da chave como texto& '\{"a": [1,2,3]\}'::json-\textgreater\textgreater'a'& "[1,2,3]" \\ \hline
+\#\textgreater & texto[] & Retorna o objeto JSON no caminho &'\{"a": \{"b":2\}\}'::json\#\textgreater'\{a,b\}' & 2 \\ \hline
+\#\textgreater\textgreater & texto[] & Retorna o objeto JSON no caminho como texto&'\{"a": \{"b":2\}\}'::json\#\textgreater\textgreater'\{a,b\}' & '2' \\ \hline
+
+\end{tabular}
+}
+\caption{Operadores de json e jsonb \cite{postgresql}}
+\label{table:json-table}
+\end{table}
+
+
+\chapter{Visualização de Dados}
 opa
 \cite{heer}
 Opa

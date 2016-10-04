@@ -1,10 +1,10 @@
 \select@language {brazil}
-\contentsline {figure}{\numberline {1}{\ignorespaces Exemplo de Chave e Valor em Redis \cite {nasholm}.}}{12}
-\contentsline {figure}{\numberline {2}{\ignorespaces Exemplo de um documento JSON em CouchDB \cite {weber}.}}{13}
-\contentsline {figure}{\numberline {3}{\ignorespaces Exemplo de um pequeno banco de dados do cliente. Pode ser visto que as linhas t\^em chaves \'unicas que os identifica e que cada linha pode definir seu pr\'oprio conjunto de colunas. Note-se que esta \'e uma imagem simplificada; timestamps s\~ao omitidos, e todos os campos s\~ao realmente uma sequ\^encia de bits. \cite {nasholm}.}}{14}
-\contentsline {figure}{\numberline {4}{\ignorespaces Exemplo de um grafo Neo4j armazenando os dados de 3 clientes. Todos os clientes s\~ao alcan\c c\'aveis a partir do n\'o vazio. A imagem \'e um recorte da tela da ferramenta de visualiza\c c\~ao Neoclipse. \cite {nasholm}.}}{15}
-\contentsline {figure}{\numberline {5}{\ignorespaces Performance relativa de BSON e JSON para aumento de documento sobre n\'umero constante de tuplas \cite {whittaker}.}}{18}
-\contentsline {figure}{\numberline {6}{\ignorespaces Performance relativa de BSON e JSON para aumento de documento sobre n\'umero constante de tuplas \cite {whittaker}.}}{18}
-\contentsline {figure}{\numberline {7}{\ignorespaces Performance relativa de BSON e JSON para aumento de documento sobre n\'umero constante de tuplas \cite {whittaker}.}}{19}
-\contentsline {figure}{\numberline {8}{\ignorespaces Performance relativa de BSON e JSON para aumento de documento sobre n\'umero constante de tuplas \cite {whittaker}.}}{20}
-\contentsline {figure}{\numberline {9}{\ignorespaces Performance relativa de BSON e JSON para aumento de documento sobre n\'umero constante de tuplas \cite {whittaker}.}}{20}
+\contentsline {figure}{\numberline {1}{\ignorespaces Exemplo de Chave e Valor em Redis \cite {nasholm}.}}{13}
+\contentsline {figure}{\numberline {2}{\ignorespaces Exemplo de um documento JSON em CouchDB \cite {weber}.}}{14}
+\contentsline {figure}{\numberline {3}{\ignorespaces Exemplo de um pequeno banco de dados do cliente. Pode ser visto que as linhas t\^em chaves \'unicas que os identifica e que cada linha pode definir seu pr\'oprio conjunto de colunas. Note-se que esta \'e uma imagem simplificada; timestamps s\~ao omitidos, e todos os campos s\~ao realmente uma sequ\^encia de bits. \cite {nasholm}.}}{15}
+\contentsline {figure}{\numberline {4}{\ignorespaces Exemplo de um grafo Neo4j armazenando os dados de 3 clientes. Todos os clientes s\~ao alcan\c c\'aveis a partir do n\'o vazio. A imagem \'e um recorte da tela da ferramenta de visualiza\c c\~ao Neoclipse. \cite {nasholm}.}}{16}
+\contentsline {figure}{\numberline {5}{\ignorespaces Performance relativa de BSON e JSON para aumento de tamanho do documento sobre n\'umero constante de tuplas \cite {whittaker}.}}{19}
+\contentsline {figure}{\numberline {6}{\ignorespaces Performance relativa de BSON e JSON para aumento do n\'umero de tuplas sobre documento de tamanho est\'atico\cite {whittaker}.}}{20}
+\contentsline {figure}{\numberline {7}{\ignorespaces Compara\c c\~ao do fator do aumento de velocidade para chaves perto do come\c co do documento e perto do fim do documento \cite {whittaker}.}}{20}
+\contentsline {figure}{\numberline {8}{\ignorespaces Compara\c c\~ao do fator do aumento de velocidade para documentos contendo exclusivamente um tipo de dado \cite {whittaker}.}}{21}
+\contentsline {figure}{\numberline {9}{\ignorespaces Compara\c c\~ao do total de tempo do carregamento entre JSON e BSON para 1.000, 10.000, 100.000 inser\c c\~oes \cite {whittaker}.}}{21}
