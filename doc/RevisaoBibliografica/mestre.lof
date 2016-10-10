@@ -9,3 +9,7 @@
 \contentsline {figure}{\numberline {8}{\ignorespaces Compara\c c\~ao do fator do aumento de velocidade para documentos contendo exclusivamente um tipo de dado \cite {whittaker}.}}{22}
 \contentsline {figure}{\numberline {9}{\ignorespaces Compara\c c\~ao do total de tempo do carregamento entre JSON e BSON para 1.000, 10.000, 100.000 inser\c c\~oes \cite {whittaker}.}}{22}
 \contentsline {figure}{\numberline {10}{\ignorespaces Passos do processo KDD \cite {shimabukuro} adaptado de \cite {fay1996}.}}{25}
+\contentsline {figure}{\numberline {11}{\ignorespaces M\'utiplas janelas para um caso de 6 atributos em t\'ecnicas orientadas a pixel. \cite {shimabukuro} adaptado de \cite {kei2000}.}}{27}
+\contentsline {figure}{\numberline {12}{\ignorespaces Possibilidades de disposi\c c\~ao dos pixels nas t\'ecnicas orientadas a pixel. \apud {kei1996}{shimabukuro}.}}{27}
+\contentsline {figure}{\numberline {13}{\ignorespaces Formato circular para apresenta\c c\~ao dos pixels em Segmentos de C\IeC {\'\i }rculo. \cite {shimabukuro} adaptado de \cite {kei2000}.}}{28}
+\contentsline {figure}{\numberline {14}{\ignorespaces Esquema de arranjo dos pixels em Gr\'afico de Barras de Pixels. \cite {shimabukuro} adaptado de \cite {kei2001}.}}{28}

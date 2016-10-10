@@ -23,11 +23,11 @@
 \contentsline {section}{\numberline {3.1}Introdu\c c\~ao}{24}
 \contentsline {section}{\numberline {3.2}Minera\c c\~ao e Visualiza\c c\~ao de Dados}{24}
 \contentsline {section}{\numberline {3.3}T\'ecnicas de Visualiza\c c\~ao}{26}
-\contentsline {subsection}{\numberline {3.3.1}T\'ecnicas Orientadas a Pixel}{26}
-\contentsline {subsection}{\numberline {3.3.2}T\'ecnicas de Proje\c c\~ao Geom\'etrica}{26}
-\contentsline {subsection}{\numberline {3.3.3}T\'ecnicas Iconogr\'aficas}{26}
-\contentsline {subsection}{\numberline {3.3.4}T\'ecnicas Hier\'arquicas}{26}
-\contentsline {subsection}{\numberline {3.3.5}T\'ecnicas de Visualiza\c c\~ao de M\'ultiplas Coordenadas}{26}
-\contentsline {subsubsection}{\numberline {3.3.5.1}Varia\c c\~ao Temporal Uni-escala}{26}
-\contentsline {subsubsection}{\numberline {3.3.5.2}Varia\c c\~ao Temporal Multi-escala}{26}
-\contentsline {chapter}{Refer\^encias}{27}
+\contentsline {subsection}{\numberline {3.3.1}T\'ecnicas Orientadas a Pixel}{27}
+\contentsline {subsection}{\numberline {3.3.2}T\'ecnicas de Proje\c c\~ao Geom\'etrica}{28}
+\contentsline {subsection}{\numberline {3.3.3}T\'ecnicas Iconogr\'aficas}{28}
+\contentsline {subsection}{\numberline {3.3.4}T\'ecnicas Hier\'arquicas}{28}
+\contentsline {subsection}{\numberline {3.3.5}T\'ecnicas de Visualiza\c c\~ao de M\'ultiplas Coordenadas}{28}
+\contentsline {subsubsection}{\numberline {3.3.5.1}Varia\c c\~ao Temporal Uni-escala}{28}
+\contentsline {subsubsection}{\numberline {3.3.5.2}Varia\c c\~ao Temporal Multi-escala}{28}
+\contentsline {chapter}{Refer\^encias}{29}

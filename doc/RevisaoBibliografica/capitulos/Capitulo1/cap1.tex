@@ -254,27 +254,65 @@ Descrevendo melhor a etapa da Mineração de Dados podemos tomá-lá como sendo o ma
 
 \item Classificação de dados: Os dados são separados em classes definidas pelos conteúdos de alguns atributos, criadas de um subconjunto de treinamento
 
-\item Agrupamento (Clustering) de Dados: Os dados são agrupados sem uma pré-separação por classes 
+\item Agrupamento (Clustering) de Dados: Os dados são agrupados sem uma pré-separação por classes, denominada classificação não supervisionada. Os agrupamentos são feitos dando preferência a similaridades de atributos dentro da classe do que entre as classes identificando, de acordo com medidas de distância, regiões mais povoadas sendo estas os \textit{clusters}.
+
+\item Pesquisa por similaridade baseada em padrões: Pesquisa por atributos similares espaciais e temporais identificando risco, causalidade e tendências associadas ao padrão. Sendo estas informações importantes para diversas áreas financeira, meteorológica e médica. Tais atributos não precisam ser exatamente identicos mas ter algum nível de similaridade.
+
 \end{itemize}
 
 
-Além da necessidade de extrair informações relevantes de bases de dados é importante que exista um meio para apresent
+Além da necessidade de extrair informações relevantes de bases de dados é importante que exista um meio para apresentá-las, para isso são atreladas técnicas de Visualização de Dados, a qual ``reúne métodos que permitem interagir com representações visuais de dados, exibidas como imagens, para ganhar entendimento e introspecção sobre eles"\apud{rhyne2003}{shimabukuro}. com o uso das técnicas conjuntas surge o termo `Mineração Visual de Dados'(VDM, Visual Data Mining), técnicas que buscam unir o refinamento da Mineração de Dados a Técnicas de Visualização com o objetivo de extrair um número ainda maior de informações, aumentando a ``descoberta de conhecimento"\apud{wong1999}{shimabukuro}, adicionando a cognição humana a este processo.
+
 
 \section{Técnicas de Visualização}
+	Em sua tese de doutorado Shimabukuro levanta técnicas de visualização multidimencional propostas por Keim e Kriegel \apud{kei1996}{shimabukuro}, são chamados multidimensionais dados que tem mais de 3 atributos como 3 coordenadas \textit{x}, \textit{y}, \textit{z} espaciais e um atributo \textit{t} de tempo. Tais técnicas são descritas nas seções que seguem, além destas também serão apresentadas as técnicas de `Variação Temporal Uni-escala' e `Multi-escala' propostas por Shimabukuro\cite{shimabukuro}.
+
 	\subsection{Técnicas Orientadas a Pixel}
+	Esta Técnica utiliza uma janela com pixels de coloração variável podendo dividir a tela em quadrantes representando cada atributo dos dados, como na Figura~\ref{fig_pixel}
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/pixel}
+    	\caption{Mútiplas janelas para um caso de 6 atributos em técnicas orientadas a pixel. \cite{shimabukuro} adaptado de \cite{kei2000}.}
+    	\label{fig_pixel}
+  	\end{figure}
+
+	É possível utilizar algumas alternativas referentes aos aspectos desta técnica que são:
+
+\begin{itemize}
+\item Arranjo dos pixels nas janelas: A disposição dos pixels pode ficar de difícil leitura devido ao distanciamento dos atributos, da esquerda para a direita, de cima para baixo. Assim, são feitas consultas com um valor de requisito para os atributos, a janela é dividida em 4 quadrantes de forma espiral como na Figura~\ref{fig_espiral}, os dados com mais proximidade do valor vão estar mais próximos do centro dos eixos. Esta alternativa tem a precariedade de representar no máximo 4 atributos.
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/espiral}
+    	\caption{Possibilidades de disposição dos pixels nas técnicas orientadas a pixel. \apud{kei1996}{shimabukuro}.}
+    	\label{fig_espiral}
+  	\end{figure}
+
+\item Formato das Janelas: Ainda em relação ao problema da janela temos o aspecto da retangularidade que dificulta a visualização pelo distânciamento dos atributos, podendo utilizar um formato circular como na Figura~\ref{fig_circular} ou gráfico em barras na Figura~\ref{fig_barras} para aproximar esta distiância.
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/circular}
+    	\caption{Formato circular para apresentação dos pixels em Segmentos de Círculo. \cite{shimabukuro} adaptado de \cite{kei2000}.}
+    	\label{fig_circular}
+  	\end{figure}
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/pixel}
+    	\caption{Esquema de arranjo dos pixels em Gráfico de Barras de Pixels. \cite{shimabukuro} adaptado de \cite{kei2001}.}
+    	\label{fig_pixel}
+  	\end{figure}
+
+\item Mapeamento de cor: Um dos problemas é a escolha de uma escala de cores que permita a maior extensão de representação e também seja natural para o usuário e o domínio da aplicação. Uma saída interessante para a variação é o uso de diferentes escalas de brilho para distribuição de um único parâmetro.
+
+\end{itemize}
+
 	\subsection{Técnicas de Projeção Geométrica}
 	\subsection{Técnicas Iconográficas}
 	\subsection{Técnicas Hierárquicas}
-	\subsection{Técnicas de Visualização de Múltiplas Coordenadas}
-	\subsubsection{Variação Temporal Uni-escala}
-	\subsubsection{Variação Temporal Multi-escala}
-opa
-\cite{heer}
-Opa
-\cite{genghini}
-Opa
-\cite{shimabukuro}
-Opa
+	\subsection{Variação Temporal Uni-escala}
+	\subsection{Variação Temporal Multi-escala}
 
 %O capítulo \ref{chapter2} contém...
 

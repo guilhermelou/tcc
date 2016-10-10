@@ -10,11 +10,12 @@
 {ARCHIVE, N. \emph{NoSQL Databases}. 2009.
 Dispon{\'\i}vel em: \url{http://nosql-database.org/}.}
 
-\bibitem[Bostock, Ogievetsky e Heer 2011]{heer}
-\abntrefinfo{Bostock, Ogievetsky e Heer}{BOSTOCK; OGIEVETSKY; HEER}{2011}
-{BOSTOCK, M.; OGIEVETSKY, V.; HEER, J. D$^3$ data-driven documents.
-\emph{IEEE transactions on visualization and computer graphics}, IEEE, v.~17,
-  n.~12, p. 2301--2309, 2011.}
+\bibitem[Chen, Han e Yu 1996]{chen1996}
+\abntrefinfo{Chen, Han e Yu}{CHEN; HAN; YU}{1996}
+{CHEN, M.-S.; HAN, J.; YU, P.~S. Data mining: an overview from a database
+  perspective.
+\emph{IEEE Transactions on Knowledge and data Engineering}, IEEE, v.~8, n.~6,
+  p. 866--883, 1996.}
 
 \bibitem[Fayyad 1998]{fay1998}
 \abntrefinfo{Fayyad}{FAYYAD}{1998}
@@ -37,10 +38,31 @@ Universidade Estadual Paulista (UNESP), 2011.}
 {INTERNATIONAL, E. \emph{Introducting JSON}. 2013.
 Dispon{\'\i}vel em: \url{http://www.json.org/}.}
 
+\bibitem[Keim 2000]{kei2000}
+\abntrefinfo{Keim}{KEIM}{2000}
+{KEIM, D.~A. Designing pixel-oriented visualization techniques: Theory and
+  applications.
+\emph{IEEE Transactions on visualization and computer graphics}, IEEE, v.~6,
+  n.~1, p. 59--78, 2000.}
+
+\bibitem[Keim et al. 2001]{kei2001}
+\abntrefinfo{Keim et al.}{KEIM et al.}{2001}
+{KEIM, D.~A. et al. Pixel bar charts: A new technique for visualizing large
+  multi-attribute data sets without aggregation. In:  \emph{IEEE Symposium on
+  Information Visualization, 2001. INFOVIS 2001.} [S.l.: s.n.], 2001. p.
+  113--120.}
+
 \bibitem[Keim e Kriegel 1995]{kei1995}
 \abntrefinfo{Keim e Kriegel}{KEIM; KRIEGEL}{1995}
 {KEIM, D.~A.; KRIEGEL, H.-P. Issues in visualizing large databases. In:
   \emph{Visual Database Systems 3}. [S.l.]: Springer, 1995. p. 203--214.}
+
+\bibitem[Keim e Kriegel 1996]{kei1996}
+\abntrefinfo{Keim e Kriegel}{KEIM; KRIEGEL}{1996}
+{KEIM, D.~A.; KRIEGEL, H.-P. Visualization techniques for mining large
+  databases: A comparison.
+\emph{IEEE Transactions on knowledge and data engineering}, IEEE, v.~8, n.~6,
+  p. 923--938, 1996.}
 
 \bibitem[N{\"a}sholm 2012]{nasholm}
 \abntrefinfo{N{\"a}sholm}{N{\"A}SHOLM}{2012}
@@ -53,6 +75,13 @@ Chalmers University of Technology, 2012.}
 {POSTGRESQL. \emph{JSON Functions and Operators}. 1996.
 Dispon{\'\i}vel em:
   \url{https://www.postgresql.org/docs/9.6/static/functions-json.html}.}
+
+\bibitem[Rhyne 2003]{rhyne2003}
+\abntrefinfo{Rhyne}{RHYNE}{2003}
+{RHYNE, T.-M. Does the difference between information and scientific
+  visualization really matter?
+\emph{IEEE Computer Graphics and Applications}, IEEE Computer Society Press,
+  v.~23, n.~3, p.~6--8, 2003.}
 
 \bibitem[Shimabukuro 2004]{shimabukuro}
 \abntrefinfo{Shimabukuro}{SHIMABUKURO}{2004}
@@ -77,5 +106,11 @@ Tese (Doutorado) --- Instituto de Ci{\^e}ncias Matem{\'a}ticas e de
 {WHITTAKER, G. L. S. T.~J. Improving performance of schemaless document storage
   in postgresql using bson.
 2013.}
+
+\bibitem[Wong 1999]{wong1999}
+\abntrefinfo{Wong}{WONG}{1999}
+{WONG, P.~C. Visual data mining.
+\emph{IEEE Computer Graphics and Applications}, IEEE, v.~19, n.~5, p. 20--21,
+  1999.}
 
 \end{thebibliography}
