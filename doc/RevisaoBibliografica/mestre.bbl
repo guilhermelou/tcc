@@ -10,6 +10,12 @@
 {ARCHIVE, N. \emph{NoSQL Databases}. 2009.
 Dispon{\'\i}vel em: \url{http://nosql-database.org/}.}
 
+\bibitem[Bostock, Ogievetsky e Heer 2011]{heer}
+\abntrefinfo{Bostock, Ogievetsky e Heer}{BOSTOCK; OGIEVETSKY; HEER}{2011}
+{BOSTOCK, M.; OGIEVETSKY, V.; HEER, J. D$^3$ data-driven documents.
+\emph{IEEE transactions on visualization and computer graphics}, IEEE, v.~17,
+  n.~12, p. 2301--2309, 2011.}
+
 \bibitem[Chen, Han e Yu 1996]{chen1996}
 \abntrefinfo{Chen, Han e Yu}{CHEN; HAN; YU}{1996}
 {CHEN, M.-S.; HAN, J.; YU, P.~S. Data mining: an overview from a database

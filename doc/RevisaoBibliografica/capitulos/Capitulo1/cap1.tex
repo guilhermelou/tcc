@@ -1,5 +1,21 @@
 
 
+\chapter{Introdução}
+    O tamanho de dados utilizados cresce cada vez mais, a extração de informação em boa performance e a apresentação das mesmas são desafios cada vez maiores, são tantos detalhes e perspectivas para alcançar o objetivo de se utilizar os dados que para cumprir esta tarefa é necessário o conhecimento de diversas áreas, dentre elas Visualização de Dados, Mineração de Dados e Bases de Dados Não Convencionais, áreas que seram melhor esclarecidas nos capítulos que seguem.
+    
+\section{Objetivos do Trabalho}
+    O objetivo deste trabalho é elucidar as técnicas presentes em áreas de Visualização de Dados, Mineração de Dados e Bases de Dados NOSQL a ponto de que seja possível acoplar estes conhecimentos a fim de que seja obtido um resultado satisfatório em análises de informações espaciais e temporais no uso da aplicação.
+
+    \section{Organização do Trabalho}
+    Este documento começa com uma pequena introdução deste capítulo, depois segue na fundamentação teórica dividida em:
+
+    Bancos de Dados Não Relacionais: sendo abordados aspectos teóricos e de base da área.
+
+    PostgreSQL e os tipos de dados não convencionais: aspectos sobre o próprio PostgreSQL e os novos tipos de dados orientados a documento que vem fornecendo
+
+    Visualização de Dados: Novamente, aspectos gerais e de base da área envolvento `Descoberta do conhecimento' e `Mineração de Dados'.
+
+    Por fim, os trabalhos relacionados a este assundo e a conclusão.
 
 \chapter{Bancos de Dados Não Relacionais - NoSQL}
     Em um trabalho acadêmico intitulado "Selected Topics on Software-Technology Ultra-Large Scale Sites"(Tópicos Selecionados na Tecnologia de Softwares de Sites de Escala Ultra Grande) \cite{strauch} na Stuttgart Media University(Universidade de Mídia de Stuttgart) Christof Strauch reúne várias referências e tópicos sobre todo o assunto de base do NoSQL, conforme seu trabalho, os bancos de dados relacionais são os tipos predominantes para armazenamento de dados estruturados, desde 1970 este tipo de base de dados se suporta em uma aritmética relacional com o proliferado uso do SQL(Secure Query Language) para inserir, alterar, recuperar e remover os dados. Bases de dados não convencionais eram utilizadas apenas para aplicações de algum nicho específico como projetos utilizando SOAP que utiliza o padrão XML, porém o pensamento por cima desse uso disseminado "um tamanho para caber todos" tem sido questionado tanto pelas empresas como pelos acadêmicos devido ao aumento de usuários e volume de dados no meio.
@@ -375,6 +391,19 @@ Além da necessidade de extrair informações relevantes de bases de dados é import
     	\label{fig_multi}
   	\end{figure}
 
+\chapter{Trabalhos Relacionados}
+    Os trabalhos relacionados estão todos como parte base para esta revisão, sendo eles:
+
+\begin{itemize}
+
+    \item \cite{genghini}: Genghini implementa alguns métodos de visualização de \cite{shimabukuro} com interatividade que também serão posteriormente implementados no decorrer do TCC.
+    \item \cite{heer}: Implementa a biblioteca D3 fornecendo ferramentas de suporte para a visualização de dados, que será até mesmo a tecnologia base para a implementação das visualizações deste projeto.
+    \item \cite{whittaker}: Implementou os campos Json e Jsonb no PostgreSQL através do source do mesmo e de bibliotecas do CouchDB
+
+\end{itemize}
+
+\chapter{Conclusões}
+    A quantidade crescente de dados tem impulsionado estudos de diversas áreas para conseguirmos obter a informação através de técnicas de mineração de dados, interpretar a informação através de técnicas de visualização de dados e fazer isso de forma fluida, com uma boa performance, e para isso é necessário avaliar de que forma o computador processará tudo, nesse passo, podemos usufruir de Bases NOSQL.
 %O capítulo \ref{chapter2} contém...
 
 %O capítulo \ref{chapter3} destina-se...
