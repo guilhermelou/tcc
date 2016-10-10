@@ -7,7 +7,7 @@
 	Conforme segue na argumentação de Christof Strauch, para suprir essa demanda algumas alternativas começam a ser propostas, vários outros modelos são criados para abrangir mais nichos antes dominados pelos SGBDRs, esses modeloss adotam caminhos não convencionais nem sempre garantindo a ACID (Atomicidade, Consistência, Isolamento e Durabilidade) dos dados, porém conseguem optimizar o espaço de armazenamento e a performance das bases de dados, não necessariamente se desfazendo do uso do SQL, por isso a sigla NoSQL significa $"not$ $only$ $secure$ $query$ $language"$.
     
     \section{Definição}
-	Existem dois pontos de vista não equivalentes sobre o princípio do NoSQL, o NoSQL Archive \cite{nosql} apresenta uma visão seguindo o termo "NonSQL" que significa uma base de dados sem SQL em tudo, no artigo "NoSQL Databases"(Base de Dados NoSQL) \cite{weber} Silvan Weber define outro ponto de vista mais aceito sendo "Not only SQL"(Não apenas SQL), ou seja, base de dados que não é baseada em SQL porém, pode ter ou não funcionalidades SQL. Além do conceito presente no nome, Weber levanta outras características fundamentais:
+	Existem dois pontos de vista não equivalentes sobre o princípio do NoSQL, o NoSQL Archive \cite{nosql} apresenta uma visão seguindo o termo "NonSQL" que significa uma base de dados sem SQL em tudo, no artigo "NoSQL Databases"(Base de Dados NoSQL) \cite{weber} Silvan Weber define outro ponto de vista mais aceito sendo "Not only SQL"(Não apenas SQL), ou seja, base de dados que não é baseada em SQL porém, pode ter ou não funcionalidades SQL\@. Além do conceito presente no nome, Weber levanta outras características fundamentais:
 
 \begin{itemize}  
 \item Armazenamento Distribuido: Um dos maiores intuítos e motivador para o desenvolvimento de bases NoSQL é a necessidade de distribuir a carga de armazenamento e acessos das bases a vários servidores porém, mesmo dividido em vários servidores, a base continua interagindo com os outros sistemas como uma.
@@ -21,7 +21,7 @@ nem sempre atendem aos requisitos das aplicações
     Esta seção destina-se a criar uma base sólida sobre os principais aspectos e conceitos que envolvem o NoSQL, além de apontar diferenças e temas relacionados com SGBDs também serão abordados teoremas e tópicos específicos sobre o NoSQL
 
     \subsection{Recapitulando SGBDRs}
-    Em uma tese de mestrado intitulada "Extracting Data from NoSQL Databases. A Step towards Interactive Visual Analysis of NoSQL Data"(Extração de dados de bases NoSQL. Um passo avante para análise de visualização interativa de NoSQL) \cite{nasholm} da Chalmers University of Technology(Chalmers, Universidade de Tecnologia) Petter Näsholm apresenta uma recapitulação rápida sobre as bases de dados convencionais. SGBDRs se baseiam no conceito de tabelas com conjunto de atributos podendo ser chamados de colunas da tabela, cada atributo é associado a um tipo de dado(como inteiro, real ou string). Cada linha desta tabela é considerada uma tupla, ao passo que os atributos dentro de cada tupla podem ser preenchidos com componentes referente ao seu tipo. As tabelas também podem ter colunas com informações sobre a relação entre elas mesmas.
+    Em uma tese de mestrado intitulada "Extracting Data from NoSQL Databases. A Step towards Interactive Visual Analysis of NoSQL Data"(Extração de dados de bases NoSQL\@. Um passo avante para análise de visualização interativa de NoSQL) \cite{nasholm} da Chalmers University of Technology(Chalmers, Universidade de Tecnologia) Petter Näsholm apresenta uma recapitulação rápida sobre as bases de dados convencionais. SGBDRs se baseiam no conceito de tabelas com conjunto de atributos podendo ser chamados de colunas da tabela, cada atributo é associado a um tipo de dado(como inteiro, real ou string). Cada linha desta tabela é considerada uma tupla, ao passo que os atributos dentro de cada tupla podem ser preenchidos com componentes referente ao seu tipo. As tabelas também podem ter colunas com informações sobre a relação entre elas mesmas.
 
     \subsection{ACID e BASE}
     Petter Näsholm também aborda as garantias que a maioria dos SGBDRs adotam sendo elas a sigla ACID(Atomicidade, Consistência, Isolação, Durabilidade) onde Atomicidade é a garantia de que ou uma trasação é executada de forma completa ou não é executada de forma alguma, a Consistência garante que toda transação saia de um estado da base válido para outro, Isolação é a garantia de que não interfere outra no tempo em que estão ocorrendo e a Durabilidade garante que o efeito de uma transação deve persistir e, portanto, nunca ser perdido. No trabalho de Christof Strauch o autor apresenta o BASE que são as garantias dos NoSQL:
@@ -57,7 +57,7 @@ nem sempre atendem aos requisitos das aplicações
     \subsection{Armazenamento baseado em Chave-Valor}
 	Bases de dados Chave-Valor são extremamente simples, existe uma chave única, geralmente gerada por algum algoritmo de Hash, associada a um valor que pode ser de diferentes tipos como: string, inteiros, reais, cadeias de bytes. Algumas bases de dados não implementão nem a verificação de tipo. 
 
-	Tem a vantagem de ter um modelo de dados simples, feito com foco na rápida e eficiente manipulação dos dados para armazenamento distribuído sendo totalmente escalável. Alguns de seus exemplos: Google¿s BigTable\footnote{https://cloud.google.com/bigtable/, acessado em 16 de Maio de 2016}, Memcached\footnote{https://memcached.org/, acessado em 22 de Maio de 2016}, Redis\footnote{http://redis.io/, acessado em 25 de Maio de 2016}.
+	Tem a vantagem de ter um modelo de dados simples, feito com foco na rápida e eficiente manipulação dos dados para armazenamento distribuído sendo totalmente escalável. Alguns de seus exemplos: Google's BigTable\footnote{https://cloud.google.com/bigtable/, acessado em 16 de Maio de 2016}, Memcached\footnote{https://memcached.org/, acessado em 22 de Maio de 2016}, Redis\footnote{http://redis.io/, acessado em 25 de Maio de 2016}.
 
 	\begin{figure}[!htb]
     	\centering
@@ -226,6 +226,48 @@ Operador & Operando à Direita & Descrição & Exemplo & Resultado do Exemplo \\ \h
 
 
 \chapter{Visualização de Dados}
+\section{Introdução}
+	O Trabalho de Conclusão de Curso de Genghini \cite{genghini} lista uma coleção de técnicas de visualização que serviram de base para este, principalmente as de Visualização de Mútiplas Coordenadas \cite{shimabukuro}. Ele começa introduzindo a quantidade enorme e crescente de dados sendo armazenados e como é importante definirmos técnicas para que possamos acessar as informações que tais dados possam apresentar pois "Tais dados são potencialmente inúteis, um simples depósito volumoso, se não houver formas adequadas de processamento dos mesmos"\cite{shimabukuro}.
+
+Informações como dados espaciais de coordenadas geográficas, observando a distância entre dados, a densidade dos mesmos e o comportamento ao longo do tempo ajudam a compreender fenômenos de vários domínios como turismo, negócios, saúde pública e saneamento, meio ambiente e clima.
+
+Então, para podermos analisar tais dados a ponto de obtermos informações relevantes que permitam o traçar de estratégias são necessárias técnicas tanto para organizar tais dados e para apresentá-los que serão vistas nas seções que seguem.
+
+
+\section{Mineração e Visualização de Dados}
+
+Técnicas que dão suporte para extrair de forma automática ou semi-automática informações relevantes de enorme volume de dados são atribuídas a `Mineração de Dados'(DM, Data Mining)\apud{kei1995}{shimabukuro}\apud{fay1998}{shimabukuro} área de estudo que, para alguns é sinônimo de e para outros faz parte do processo de `Descoberta de Conhecimento em Base de Dados'(KDD< Knowlegde Discovery in Databases)\apud{fay1998}{shimabukuro}\apud{fay1996}{shimabukuro}.
+
+O proceso de descoberta de conhecimento é descrito pelas fases, em sequência de: Seleção(é selecionado um conjuntos de dados, destes são selecionados itens dos dados e o foco em um subconjunto de atributos ou retira-se uma amostra), Pré-processamento(remoção de dados estranhos ou corrompidos, remoção de informações inexistentes na base e ordenação seguindo algum atributo), Transformação(refinamento diminuindo o número de variáveis a serem consideradas, ou a divisão dos mesmos em partes menores), Mineração(aplicação de operações a fim de reconhecer padrões entre os dados refinados), Interpretação/avaliação(os padrões extraídos são avaliados podendo levar a uma repetição do processo. Caso aceita, as informações estão prontas para serem utilizadas).
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/kdd}
+    	\caption{Passos do processo KDD \cite{shimabukuro} adaptado de \cite{fay1996}.}
+    	\label{fig_kdd}
+  	\end{figure}
+
+Descrevendo melhor a etapa da Mineração de Dados podemos tomá-lá como sendo o mapeamento dos dados referentes a alguma informação, sendo a validade das mesmas atreladas ao domínio da aplicação e dos objetivos do usuário segundo \apud{fay1996}{shimabukuro}. Pode ser utilizada para prever novas entradas de dados baseado nos dados já existentes como parâmetro, extrair informações por critérios pré-estabelecidos informando o tipo da informação ou de dado entre outros modelos como os estatísticos e de aprendizagem de máquina. Chen\apud{chen1996}{shimabukuro} apresenta categorias baseadas no tipo de informação tomada dos dados:
+
+\begin{itemize}
+\item Regras de Associação: Procura desvendar o relacionamento entre os atributos se existe uma implicância da presença de um posto a presença do outro, associando-os. A procura utiliza os parâmetros de confiança \textit{c} e suporte \textit{s}, onde uma regra de associação ``se existe X então existe Y" tem uma confiança c e um suporte s, a porcentagem de c significando o quanto ocorre esta relação e a porcentagem de s o quanto X ou Y aparecem nos dados.
+
+\item Classificação de dados: Os dados são separados em classes definidas pelos conteúdos de alguns atributos, criadas de um subconjunto de treinamento
+
+\item Agrupamento (Clustering) de Dados: Os dados são agrupados sem uma pré-separação por classes 
+\end{itemize}
+
+
+Além da necessidade de extrair informações relevantes de bases de dados é importante que exista um meio para apresent
+
+\section{Técnicas de Visualização}
+	\subsection{Técnicas Orientadas a Pixel}
+	\subsection{Técnicas de Projeção Geométrica}
+	\subsection{Técnicas Iconográficas}
+	\subsection{Técnicas Hierárquicas}
+	\subsection{Técnicas de Visualização de Múltiplas Coordenadas}
+	\subsubsection{Variação Temporal Uni-escala}
+	\subsubsection{Variação Temporal Multi-escala}
 opa
 \cite{heer}
 Opa

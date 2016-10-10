@@ -16,6 +16,16 @@ Dispon{\'\i}vel em: \url{http://nosql-database.org/}.}
 \emph{IEEE transactions on visualization and computer graphics}, IEEE, v.~17,
   n.~12, p. 2301--2309, 2011.}
 
+\bibitem[Fayyad 1998]{fay1998}
+\abntrefinfo{Fayyad}{FAYYAD}{1998}
+{FAYYAD, U.~M. Mining databases: Towards algorithms for knowledge discovery.
+\emph{IEEE Data Eng. Bull.}, v.~21, n.~1, p. 39--48, 1998.}
+
+\bibitem[Fayyad et al. 1996]{fay1996}
+\abntrefinfo{Fayyad et al.}{FAYYAD et al.}{1996}
+{FAYYAD, U.~M. et al. Knowledge discovery and data mining: towards a unifying
+  framework. In:  \emph{KDD}. [S.l.: s.n.], 1996. v.~96, p. 82--88.}
+
 \bibitem[Genghini 2011]{genghini}
 \abntrefinfo{Genghini}{GENGHINI}{2011}
 {GENGHINI, F. Extens{\~a}o da plataforma de visualiza{\c{c}}{\~a}o infovis
@@ -26,6 +36,11 @@ Universidade Estadual Paulista (UNESP), 2011.}
 \abntrefinfo{International}{INTERNATIONAL}{2013}
 {INTERNATIONAL, E. \emph{Introducting JSON}. 2013.
 Dispon{\'\i}vel em: \url{http://www.json.org/}.}
+
+\bibitem[Keim e Kriegel 1995]{kei1995}
+\abntrefinfo{Keim e Kriegel}{KEIM; KRIEGEL}{1995}
+{KEIM, D.~A.; KRIEGEL, H.-P. Issues in visualizing large databases. In:
+  \emph{Visual Database Systems 3}. [S.l.]: Springer, 1995. p. 203--214.}
 
 \bibitem[N{\"a}sholm 2012]{nasholm}
 \abntrefinfo{N{\"a}sholm}{N{\"A}SHOLM}{2012}

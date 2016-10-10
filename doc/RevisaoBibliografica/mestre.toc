@@ -1,23 +1,33 @@
 \select@language {brazil}
-\contentsline {chapter}{\numberline {1}Bancos de Dados N\~ao Relacionais - NoSQL}{9}
-\contentsline {section}{\numberline {1.1}Defini\c c\~ao}{10}
-\contentsline {section}{\numberline {1.2}Aspectos Comuns ao NoSQL}{10}
-\contentsline {subsection}{\numberline {1.2.1}Recapitulando SGBDRs}{10}
-\contentsline {subsection}{\numberline {1.2.2}ACID e BASE}{11}
-\contentsline {subsection}{\numberline {1.2.3}Teorema CAP}{12}
-\contentsline {section}{\numberline {1.3}Formas de Armazenamento}{13}
-\contentsline {subsection}{\numberline {1.3.1}Armazenamento baseado em Chave-Valor}{13}
-\contentsline {subsection}{\numberline {1.3.2}Armazenamento orientado a Documento}{13}
-\contentsline {subsection}{\numberline {1.3.3}Banco de Dados Orientado a Colunas}{14}
-\contentsline {subsection}{\numberline {1.3.4}Banco de Daods Orientado a Grafos}{15}
-\contentsline {chapter}{\numberline {2}PostgreSQL e os tipos de dados n\~ao convencionais}{17}
-\contentsline {section}{\numberline {2.1}PostgreSQL}{17}
-\contentsline {section}{\numberline {2.2}JSON}{18}
-\contentsline {section}{\numberline {2.3}BSON}{18}
-\contentsline {section}{\numberline {2.4}Json vs JsonB}{19}
-\contentsline {section}{\numberline {2.5}Uso no PostgreSQL}{21}
-\contentsline {subsection}{\numberline {2.5.1}Cria\c c\~ao de Tabelas}{22}
-\contentsline {subsection}{\numberline {2.5.2}Realizando Inser\c c\~oes}{22}
-\contentsline {subsection}{\numberline {2.5.3}Execu\c c\~ao de Queries}{22}
-\contentsline {chapter}{\numberline {3}Visualiza\c c\~ao de Dados}{23}
-\contentsline {chapter}{Refer\^encias}{24}
+\contentsline {chapter}{\numberline {1}Bancos de Dados N\~ao Relacionais - NoSQL}{10}
+\contentsline {section}{\numberline {1.1}Defini\c c\~ao}{11}
+\contentsline {section}{\numberline {1.2}Aspectos Comuns ao NoSQL}{11}
+\contentsline {subsection}{\numberline {1.2.1}Recapitulando SGBDRs}{11}
+\contentsline {subsection}{\numberline {1.2.2}ACID e BASE}{12}
+\contentsline {subsection}{\numberline {1.2.3}Teorema CAP}{13}
+\contentsline {section}{\numberline {1.3}Formas de Armazenamento}{14}
+\contentsline {subsection}{\numberline {1.3.1}Armazenamento baseado em Chave-Valor}{14}
+\contentsline {subsection}{\numberline {1.3.2}Armazenamento orientado a Documento}{14}
+\contentsline {subsection}{\numberline {1.3.3}Banco de Dados Orientado a Colunas}{15}
+\contentsline {subsection}{\numberline {1.3.4}Banco de Daods Orientado a Grafos}{16}
+\contentsline {chapter}{\numberline {2}PostgreSQL e os tipos de dados n\~ao convencionais}{18}
+\contentsline {section}{\numberline {2.1}PostgreSQL}{18}
+\contentsline {section}{\numberline {2.2}JSON}{19}
+\contentsline {section}{\numberline {2.3}BSON}{19}
+\contentsline {section}{\numberline {2.4}Json vs JsonB}{20}
+\contentsline {section}{\numberline {2.5}Uso no PostgreSQL}{22}
+\contentsline {subsection}{\numberline {2.5.1}Cria\c c\~ao de Tabelas}{23}
+\contentsline {subsection}{\numberline {2.5.2}Realizando Inser\c c\~oes}{23}
+\contentsline {subsection}{\numberline {2.5.3}Execu\c c\~ao de Queries}{23}
+\contentsline {chapter}{\numberline {3}Visualiza\c c\~ao de Dados}{24}
+\contentsline {section}{\numberline {3.1}Introdu\c c\~ao}{24}
+\contentsline {section}{\numberline {3.2}Minera\c c\~ao e Visualiza\c c\~ao de Dados}{24}
+\contentsline {section}{\numberline {3.3}T\'ecnicas de Visualiza\c c\~ao}{26}
+\contentsline {subsection}{\numberline {3.3.1}T\'ecnicas Orientadas a Pixel}{26}
+\contentsline {subsection}{\numberline {3.3.2}T\'ecnicas de Proje\c c\~ao Geom\'etrica}{26}
+\contentsline {subsection}{\numberline {3.3.3}T\'ecnicas Iconogr\'aficas}{26}
+\contentsline {subsection}{\numberline {3.3.4}T\'ecnicas Hier\'arquicas}{26}
+\contentsline {subsection}{\numberline {3.3.5}T\'ecnicas de Visualiza\c c\~ao de M\'ultiplas Coordenadas}{26}
+\contentsline {subsubsection}{\numberline {3.3.5.1}Varia\c c\~ao Temporal Uni-escala}{26}
+\contentsline {subsubsection}{\numberline {3.3.5.2}Varia\c c\~ao Temporal Multi-escala}{26}
+\contentsline {chapter}{Refer\^encias}{27}
