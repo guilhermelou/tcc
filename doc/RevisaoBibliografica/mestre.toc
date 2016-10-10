@@ -1,31 +1,31 @@
 \select@language {brazil}
-\contentsline {chapter}{\numberline {1}Bancos de Dados N\~ao Relacionais - NoSQL}{8}
+\contentsline {chapter}{\numberline {1}Bancos de Dados N\~ao Relacionais - NoSQL}{9}
 \contentsline {section}{\numberline {1.1}Defini\c c\~ao}{9}
-\contentsline {section}{\numberline {1.2}Aspectos Comuns ao NoSQL}{9}
-\contentsline {subsection}{\numberline {1.2.1}Recapitulando SGBDRs}{9}
-\contentsline {subsection}{\numberline {1.2.2}ACID e BASE}{10}
-\contentsline {subsection}{\numberline {1.2.3}Teorema CAP}{11}
+\contentsline {section}{\numberline {1.2}Aspectos Comuns ao NoSQL}{10}
+\contentsline {subsection}{\numberline {1.2.1}Recapitulando SGBDRs}{10}
+\contentsline {subsection}{\numberline {1.2.2}ACID e BASE}{11}
+\contentsline {subsection}{\numberline {1.2.3}Teorema CAP}{12}
 \contentsline {section}{\numberline {1.3}Formas de Armazenamento}{12}
 \contentsline {subsection}{\numberline {1.3.1}Armazenamento baseado em Chave-Valor}{12}
-\contentsline {subsection}{\numberline {1.3.2}Armazenamento orientado a Documento}{12}
-\contentsline {subsection}{\numberline {1.3.3}Banco de Dados Orientado a Colunas}{13}
-\contentsline {subsection}{\numberline {1.3.4}Banco de Daods Orientado a Grafos}{14}
+\contentsline {subsection}{\numberline {1.3.2}Armazenamento orientado a Documento}{13}
+\contentsline {subsection}{\numberline {1.3.3}Banco de Dados Orientado a Colunas}{14}
+\contentsline {subsection}{\numberline {1.3.4}Banco de Daods Orientado a Grafos}{15}
 \contentsline {chapter}{\numberline {2}PostgreSQL e os tipos de dados n\~ao convencionais}{16}
 \contentsline {section}{\numberline {2.1}PostgreSQL}{16}
 \contentsline {section}{\numberline {2.2}JSON}{17}
 \contentsline {section}{\numberline {2.3}BSON}{17}
-\contentsline {section}{\numberline {2.4}Json vs JsonB}{18}
+\contentsline {section}{\numberline {2.4}Json vs JsonB}{17}
 \contentsline {section}{\numberline {2.5}Uso no PostgreSQL}{20}
-\contentsline {subsection}{\numberline {2.5.1}Cria\c c\~ao de Tabelas}{21}
+\contentsline {subsection}{\numberline {2.5.1}Cria\c c\~ao de Tabelas}{20}
 \contentsline {subsection}{\numberline {2.5.2}Realizando Inser\c c\~oes}{21}
 \contentsline {subsection}{\numberline {2.5.3}Execu\c c\~ao de Queries}{21}
 \contentsline {chapter}{\numberline {3}Visualiza\c c\~ao de Dados}{22}
 \contentsline {section}{\numberline {3.1}Introdu\c c\~ao}{22}
 \contentsline {section}{\numberline {3.2}Minera\c c\~ao e Visualiza\c c\~ao de Dados}{22}
 \contentsline {section}{\numberline {3.3}T\'ecnicas de Visualiza\c c\~ao}{24}
-\contentsline {subsection}{\numberline {3.3.1}T\'ecnicas Orientadas a Pixel}{25}
+\contentsline {subsection}{\numberline {3.3.1}T\'ecnicas Orientadas a Pixel}{24}
 \contentsline {subsection}{\numberline {3.3.2}T\'ecnicas de Proje\c c\~ao Geom\'etrica}{26}
-\contentsline {subsection}{\numberline {3.3.3}T\'ecnicas Iconogr\'aficas}{26}
+\contentsline {subsection}{\numberline {3.3.3}T\'ecnicas Iconogr\'aficas}{27}
 \contentsline {subsection}{\numberline {3.3.4}T\'ecnicas Hier\'arquicas}{27}
 \contentsline {subsection}{\numberline {3.3.5}Varia\c c\~ao Temporal Uni-escala}{28}
 \contentsline {subsection}{\numberline {3.3.6}Varia\c c\~ao Temporal Multi-escala}{29}

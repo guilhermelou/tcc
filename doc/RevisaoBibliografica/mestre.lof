@@ -1,6 +1,6 @@
 \select@language {brazil}
-\contentsline {figure}{\numberline {1}{\ignorespaces Exemplo de Chave e Valor em Redis \cite {nasholm}.}}{12}
-\contentsline {figure}{\numberline {2}{\ignorespaces Exemplo de um documento JSON em CouchDB \cite {weber}.}}{13}
+\contentsline {figure}{\numberline {1}{\ignorespaces Exemplo de Chave e Valor em Redis \cite {nasholm}.}}{13}
+\contentsline {figure}{\numberline {2}{\ignorespaces Exemplo de um documento JSON em CouchDB \cite {weber}.}}{14}
 \contentsline {figure}{\numberline {3}{\ignorespaces Exemplo de um pequeno banco de dados do cliente. Pode ser visto que as linhas t\^em chaves \'unicas que os identifica e que cada linha pode definir seu pr\'oprio conjunto de colunas. Note-se que esta \'e uma imagem simplificada; timestamps s\~ao omitidos, e todos os campos s\~ao realmente uma sequ\^encia de bits. \cite {nasholm}.}}{14}
 \contentsline {figure}{\numberline {4}{\ignorespaces Exemplo de um grafo Neo4j armazenando os dados de 3 clientes. Todos os clientes s\~ao alcan\c c\'aveis a partir do n\'o vazio. A imagem \'e um recorte da tela da ferramenta de visualiza\c c\~ao Neoclipse. \cite {nasholm}.}}{15}
 \contentsline {figure}{\numberline {5}{\ignorespaces Performance relativa de BSON e JSON para aumento de tamanho do documento sobre n\'umero constante de tuplas \cite {whittaker}.}}{18}
@@ -11,9 +11,9 @@
 \contentsline {figure}{\numberline {10}{\ignorespaces Passos do processo KDD \cite {shimabukuro} adaptado de \cite {fay1996}.}}{23}
 \contentsline {figure}{\numberline {11}{\ignorespaces M\'utiplas janelas para um caso de 6 atributos em t\'ecnicas orientadas a pixel. \cite {shimabukuro} adaptado de \cite {kei2000}.}}{25}
 \contentsline {figure}{\numberline {12}{\ignorespaces Possibilidades de disposi\c c\~ao dos pixels nas t\'ecnicas orientadas a pixel. \apud {kei1996}{shimabukuro}.}}{25}
-\contentsline {figure}{\numberline {13}{\ignorespaces Formato circular para apresenta\c c\~ao dos pixels em Segmentos de C\IeC {\'\i }rculo. \cite {shimabukuro} adaptado de \cite {kei2000}.}}{26}
+\contentsline {figure}{\numberline {13}{\ignorespaces Formato circular para apresenta\c c\~ao dos pixels em Segmentos de C\IeC {\'\i }rculo. \cite {shimabukuro} adaptado de \cite {kei2000}.}}{25}
 \contentsline {figure}{\numberline {14}{\ignorespaces Esquema de arranjo dos pixels em Gr\'afico de Barras de Pixels. \cite {shimabukuro} adaptado de \cite {kei2001}.}}{26}
-\contentsline {figure}{\numberline {15}{\ignorespaces Correla\c c\~ao e distribui\c c\~ao de valores em Coordenadas Paralelas. \apud {war1994}{shimabukuro}.}}{27}
+\contentsline {figure}{\numberline {15}{\ignorespaces Correla\c c\~ao e distribui\c c\~ao de valores em Coordenadas Paralelas. \apud {war1994}{shimabukuro}.}}{26}
 \contentsline {figure}{\numberline {16}{\ignorespaces Sobreposi\c c\~oes de linhas com apresenta\c c\~ao de 473 itens. \apud {ins1997}{shimabukuro}.}}{27}
 \contentsline {figure}{\numberline {17}{\ignorespaces Configura\c c\~ao para Figura de Arestas usando cinco arestas \apud {kei1996}{shimabukuro}.}}{27}
 \contentsline {figure}{\numberline {18}{\ignorespaces Diferentes texturas representadas por Figura de Arestas. \apud {gri2001}{shimabukuro}.}}{28}
