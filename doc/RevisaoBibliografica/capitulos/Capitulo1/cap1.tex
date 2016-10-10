@@ -309,10 +309,71 @@ Além da necessidade de extrair informações relevantes de bases de dados é import
 \end{itemize}
 
 	\subsection{Técnicas de Projeção Geométrica}
+	Utiliza um gráfico paralelo aos eixos x e y onde cada atributo é um eixo paralelo e uma linha traçada perpendicularmente corta os eixos denotando o valor como na Figura~\ref{fig_geom}. Este tipo visa demonstrar bi ou tridimensionalmente visualizações de n dimensões 
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/geom}
+    	\caption{Correlação e distribuição de valores em Coordenadas Paralelas. \apud{war1994}{shimabukuro}.}
+    	\label{fig_geom}
+  	\end{figure}
+	
+	O problema desta técnica é que a imagem pode ficar saturada com o número de retas inseridas como na Figura~\ref{fig_geom_sat}
+	
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/geom_sat}
+    	\caption{Sobreposições de linhas com apresentação de 473 itens. \apud{ins1997}{shimabukuro}.}
+    	\label{fig_geom_sat}
+  	\end{figure}
+
 	\subsection{Técnicas Iconográficas}
+	Nesta técnica cada item dos dados é transposto a um ícone, como na técnica de `Figura de Arestas'(Stick Figure) em que cada dimensão da tela é um atributo dos dados, no caso 2, e os outros atributos podem ser o ângulo de cada aresta e(ou) o comprimento da mesma, como na Figura~\ref{fig_icon}. Outras características podem ser disponibilizadas para os atributos como a cor e a expessura das arestas, O conjunto de vários itens de dados também pode gerar um padrão de textura de rápida percepção visual como na Figura~\ref{fig_text}. A desvantagem desta técnica é poder apresentar um número máximo de dimensões perto de 10.
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/icon}
+    	\caption{Configuração para Figura de Arestas usando cinco arestas \apud{kei1996}{shimabukuro}.}
+    	\label{fig_icon}
+  	\end{figure}
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/text}
+    	\caption{Diferentes texturas representadas por Figura de Arestas. \apud{gri2001}{shimabukuro}.}
+    	\label{fig_text}
+  	\end{figure}
+
 	\subsection{Técnicas Hierárquicas}
+
+	Nas técnicas de visualização hierárquicas, a janela é dividida em um conjunto de espaços e cada espaço pode ter uma subdivisão dentro de si em mais espaços representando atributos para cada divisão como na Figura~\ref{fig_hier}. essa técnica também é conhecida como `Empilhamento Dimensional'(Dimensional Stacking). A dificuldade é que não é possível levantar muitos atributos por causa das subdivisões no espaço da tela, a não ser que exista alguma funcionalidade interativa para ampliar e reduzir o tamanho da imagem.
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/hier}
+    	\caption{Resultado do empilhamento dimensional. Quatro atributos são aninhados aos pares \apud{hoff1977}{shimabukuro}.}
+    	\label{fig_hier}
+  	\end{figure}
+
 	\subsection{Variação Temporal Uni-escala}
+    Shimabukuro\cite{shimabukuro} propõe um novo modelo que se encaixa muito bem para atributos que apresentam uma variação temporal em alguma escala definida(dia, semana, ano, ...) utilizando uma tabela de cores, mapeando os intervalos de valores em interesse nas mesmas. Tais valores podem ser representados por sequências de pixels ou pontos organizados como quadrados como na Figura~\ref{fig_uni}. O autor descreve que cada sequência de pixels é correspondente a um objeto espacial, colocados verticalmente ou horizontalmente. Esta técnica permite uma visão simultânea de vários objetos referentes ao seu valor durante o intervalo de tempo.
+
+	\begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/uni}
+    	\caption{Construção da representação visual `Variação Temporal Uni-escala'.\cite{shimabukuro}.}
+    	\label{fig_uni}
+  	\end{figure}
+
 	\subsection{Variação Temporal Multi-escala}
+    A técnica multi-escala é similar a uni-escala porém, ao invés de ter o foco em observar vários objetos ao longo do tempo, ela tem o foco de observar apenas um objeto com um detalhamento temporal mais específico. Neste caso são agrupados os valores do objeto em diferentes escalas de tempo na mesma janela, tomando um caso qualquer seria possível observar os valores diários, mensais, anuais e no decorrer dos anos de tal objeto como na Figura~\ref{fig_multi}.
+
+    \begin{figure}[!htb]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{figuras/chapter1/multi}
+    	\caption{Construção da representação visual `Variação Temporal Multi-escala'.\cite{shimabukuro}.}
+    	\label{fig_multi}
+  	\end{figure}
 
 %O capítulo \ref{chapter2} contém...
 

@@ -33,6 +33,24 @@ Dispon{\'\i}vel em: \url{http://nosql-database.org/}.}
   incorporando recursos de interatividade.
 Universidade Estadual Paulista (UNESP), 2011.}
 
+\bibitem[Grinstein, Trutschl e Cvek 2001]{gri2001}
+\abntrefinfo{Grinstein, Trutschl e Cvek}{GRINSTEIN; TRUTSCHL; CVEK}{2001}
+{GRINSTEIN, G.; TRUTSCHL, M.; CVEK, U. High-dimensional visualizations. In:
+  CITESEER. \emph{Proceedings of the Visual Data Mining Workshop, KDD}. [S.l.],
+  2001.}
+
+\bibitem[Hoffman 1977]{hoff1977}
+\abntrefinfo{Hoffman}{HOFFMAN}{1977}
+{HOFFMAN, P.~E.
+\emph{Table visualizations: a formal model and its applications}.
+Tese (Doutorado) --- University of Massachusetts Lowell, 1977.}
+
+\bibitem[Inselberg 1997]{ins1997}
+\abntrefinfo{Inselberg}{INSELBERG}{1997}
+{INSELBERG, A. Multidimensional detective. In:  IEEE. \emph{Information
+  Visualization, 1997. Proceedings., IEEE Symposium on}. [S.l.], 1997. p.
+  100--107.}
+
 \bibitem[International 2013]{json}
 \abntrefinfo{International}{INTERNATIONAL}{2013}
 {INTERNATIONAL, E. \emph{Introducting JSON}. 2013.
@@ -95,6 +113,12 @@ Tese (Doutorado) --- Instituto de Ci{\^e}ncias Matem{\'a}ticas e de
 \abntrefinfo{Strauch, Sites e Kriha}{STRAUCH; SITES; KRIHA}{2011}
 {STRAUCH, C.; SITES, U.-L.~S.; KRIHA, W. Nosql databases.
 \emph{Lecture Notes, Stuttgart Media University}, 2011.}
+
+\bibitem[Ward 1994]{war1994}
+\abntrefinfo{Ward}{WARD}{1994}
+{WARD, M.~O. Xmdvtool: Integrating multiple methods for visualizing
+  multivariate data. In:  IEEE COMPUTER SOCIETY PRESS. \emph{Proceedings of the
+  Conference on Visualization'94}. [S.l.], 1994. p. 326--333.}
 
 \bibitem[Weber 2010]{weber}
 \abntrefinfo{Weber}{WEBER}{2010}
