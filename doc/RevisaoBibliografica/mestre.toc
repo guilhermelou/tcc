@@ -13,7 +13,7 @@
 \contentsline {subsection}{\numberline {2.3.2}Armazenamento orientado a Documento}{15}
 \contentsline {subsection}{\numberline {2.3.3}Banco de Dados Orientado a Colunas}{16}
 \contentsline {subsection}{\numberline {2.3.4}Banco de Daods Orientado a Grafos}{17}
-\contentsline {chapter}{\numberline {3}PostgreSQL e os tipos de dados n\~ao convencionais}{18}
+\contentsline {chapter}{\numberline {3}PostgreSQL e os tipos de dados n\~ao relacionais}{18}
 \contentsline {section}{\numberline {3.1}PostgreSQL}{18}
 \contentsline {section}{\numberline {3.2}JSON}{19}
 \contentsline {section}{\numberline {3.3}BSON}{19}

@@ -1,33 +1,37 @@
 
 
 \chapter{Introdução}
-    O tamanho de dados utilizados cresce cada vez mais, a extração de informação em boa performance e a apresentação das mesmas são desafios cada vez maiores, são tantos detalhes e perspectivas para alcançar o objetivo de se utilizar os dados que para cumprir esta tarefa é necessário o conhecimento de diversas áreas, dentre elas Visualização de Dados, Mineração de Dados e Bases de Dados Não Convencionais, áreas que seram melhor esclarecidas nos capítulos que seguem.
+    O tamanho de dados utilizados cresce cada vez mais, a extração de informação em boa performance e a apresentação das mesmas são desafios cada vez maiores, além de que existe uma necessidade cada vez maior de aplicações que ofereçam uma interatividade com a visualização dos mesmos com respostas instantâneas aos comandos do usuário.
+    
+    São tantos detalhes e perspectivas para alcançar o objetivo de se utilizar os dados que para cumprir esta tarefa é necessário o conhecimento de diversas áreas, dentre elas Visualização de Dados, Mineração de Dados e Bases de Dados Não Relacionais, áreas que seram melhor esclarecidas nos capítulos que seguem.
     
 \section{Objetivos do Trabalho}
     O objetivo deste trabalho é elucidar as técnicas presentes em áreas de Visualização de Dados, Mineração de Dados e Bases de Dados NOSQL a ponto de que seja possível acoplar estes conhecimentos a fim de que seja obtido um resultado satisfatório em análises de informações espaciais e temporais no uso da aplicação.
+    
+    Para isso é proposto a utilização de Bases de Dados não Relacionais junto com Técnicas de Visualização de dados procurando verificar a performance que pode ser obtida.
 
     \section{Organização do Trabalho}
     Este documento começa com uma pequena introdução deste capítulo, depois segue na fundamentação teórica dividida em:
 
     Bancos de Dados Não Relacionais: sendo abordados aspectos teóricos e de base da área.
 
-    PostgreSQL e os tipos de dados não convencionais: aspectos sobre o próprio PostgreSQL e os novos tipos de dados orientados a documento que vem fornecendo
+    PostgreSQL e os tipos de dados não relacionais: aspectos sobre o próprio PostgreSQL e os novos tipos de dados orientados a documento que vem fornecendo
 
     Visualização de Dados: Novamente, aspectos gerais e de base da área envolvento `Descoberta do conhecimento' e `Mineração de Dados'.
 
     Por fim, os trabalhos relacionados a este assundo e a conclusão.
 
 \chapter{Bancos de Dados Não Relacionais - NoSQL}
-    Em um trabalho acadêmico intitulado "Selected Topics on Software-Technology Ultra-Large Scale Sites"(Tópicos Selecionados na Tecnologia de Softwares de Sites de Escala Ultra Grande) \cite{strauch} na Stuttgart Media University(Universidade de Mídia de Stuttgart) Christof Strauch reúne várias referências e tópicos sobre todo o assunto de base do NoSQL, conforme seu trabalho, os bancos de dados relacionais são os tipos predominantes para armazenamento de dados estruturados, desde 1970 este tipo de base de dados se suporta em uma aritmética relacional com o proliferado uso do SQL(Secure Query Language) para inserir, alterar, recuperar e remover os dados. Bases de dados não convencionais eram utilizadas apenas para aplicações de algum nicho específico como projetos utilizando SOAP que utiliza o padrão XML, porém o pensamento por cima desse uso disseminado "um tamanho para caber todos" tem sido questionado tanto pelas empresas como pelos acadêmicos devido ao aumento de usuários e volume de dados no meio.
+    Em um trabalho acadêmico intitulado "Selected Topics on Software-Technology Ultra-Large Scale Sites"(Tópicos Selecionados na Tecnologia de Softwares de Sites de Escala Ultra Grande) \cite{strauch} na Stuttgart Media University(Universidade de Mídia de Stuttgart) Christof Strauch reúne várias referências e tópicos sobre todo o assunto de base do NoSQL, conforme seu trabalho, os bancos de dados relacionais são os tipos predominantes para armazenamento de dados estruturados, desde 1970 este tipo de base de dados se suporta em uma aritmética relacional com o proliferado uso do SQL(Structured Query Language) para inserir, alterar, recuperar e remover os dados. Bases de dados não relacionais eram utilizadas apenas para aplicações de algum nicho específico como projetos utilizando SOAP que utiliza o padrão XML, porém o pensamento por cima desse uso disseminado "um tamanho para caber todos" tem sido questionado tanto pelas empresas como pelos acadêmicos devido ao aumento de usuários e volume de dados no meio.
 
-	Conforme segue na argumentação de Christof Strauch, para suprir essa demanda algumas alternativas começam a ser propostas, vários outros modelos são criados para abrangir mais nichos antes dominados pelos SGBDRs, esses modeloss adotam caminhos não convencionais nem sempre garantindo a ACID (Atomicidade, Consistência, Isolamento e Durabilidade) dos dados, porém conseguem optimizar o espaço de armazenamento e a performance das bases de dados, não necessariamente se desfazendo do uso do SQL, por isso a sigla NoSQL significa $"not$ $only$ $secure$ $query$ $language"$.
+	Conforme segue na argumentação de Christof Strauch, para suprir essa demanda algumas alternativas começam a ser propostas, vários outros modelos são criados para abrangir mais nichos antes dominados pelos SGBDRs, esses modeloss adotam caminhos não relacionais nem sempre garantindo a ACID (Atomicidade, Consistência, Isolamento e Durabilidade) dos dados, porém conseguem optimizar o espaço de armazenamento e a performance das bases de dados, não necessariamente se desfazendo do uso do SQL, por isso a sigla NoSQL significa $"not$ $only$ $structured$ $query$ $language"$.
     
     \section{Definição}
 	Existem dois pontos de vista não equivalentes sobre o princípio do NoSQL, o NoSQL Archive \cite{nosql} apresenta uma visão seguindo o termo "NonSQL" que significa uma base de dados sem SQL em tudo, no artigo "NoSQL Databases"(Base de Dados NoSQL) \cite{weber} Silvan Weber define outro ponto de vista mais aceito sendo "Not only SQL"(Não apenas SQL), ou seja, base de dados que não é baseada em SQL porém, pode ter ou não funcionalidades SQL\@. Além do conceito presente no nome, Weber levanta outras características fundamentais:
 
 \begin{itemize}  
 \item Armazenamento Distribuido: Um dos maiores intuítos e motivador para o desenvolvimento de bases NoSQL é a necessidade de distribuir a carga de armazenamento e acessos das bases a vários servidores porém, mesmo dividido em vários servidores, a base continua interagindo com os outros sistemas como uma.
-\item Fonte aberto: Esse princípio assegura que o código fonte de bases NoSQL estejam disponíveis para que possam ser alterados para melhor se adaptar a necessidade de cada aplicação, diferentemente de SGBDRs comerciais que, além de serem muito onerosos, 
+\item Código Fonte aberto: Esse princípio assegura que o código fonte de bases NoSQL estejam disponíveis para que possam ser alterados para melhor se adaptar a necessidade de cada aplicação, diferentemente de SGBDRs comerciais que, além de serem muito onerosos, 
 nem sempre atendem aos requisitos das aplicações
 \item Escalável horizontalmente: Uma das necessidades de ter um armazenamento distribuído é para que quanto mais servidores ligados à base maior será a performance da base por completo, seguindo uma linha de proporção próxima do linear.
 \end{itemize}
@@ -37,7 +41,7 @@ nem sempre atendem aos requisitos das aplicações
     Esta seção destina-se a criar uma base sólida sobre os principais aspectos e conceitos que envolvem o NoSQL, além de apontar diferenças e temas relacionados com SGBDs também serão abordados teoremas e tópicos específicos sobre o NoSQL
 
     \subsection{Recapitulando SGBDRs}
-    Em uma tese de mestrado intitulada "Extracting Data from NoSQL Databases. A Step towards Interactive Visual Analysis of NoSQL Data"(Extração de dados de bases NoSQL\@. Um passo avante para análise de visualização interativa de NoSQL) \cite{nasholm} da Chalmers University of Technology(Chalmers, Universidade de Tecnologia) Petter Näsholm apresenta uma recapitulação rápida sobre as bases de dados convencionais. SGBDRs se baseiam no conceito de tabelas com conjunto de atributos podendo ser chamados de colunas da tabela, cada atributo é associado a um tipo de dado(como inteiro, real ou string). Cada linha desta tabela é considerada uma tupla, ao passo que os atributos dentro de cada tupla podem ser preenchidos com componentes referente ao seu tipo. As tabelas também podem ter colunas com informações sobre a relação entre elas mesmas.
+    Em uma tese de mestrado intitulada "Extracting Data from NoSQL Databases. A Step towards Interactive Visual Analysis of NoSQL Data"(Extração de dados de bases NoSQL\@. Um passo avante para análise de visualização interativa de NoSQL) \cite{nasholm} da Chalmers University of Technology(Chalmers, Universidade de Tecnologia) Petter Näsholm apresenta uma recapitulação rápida sobre as bases de dados relacionais. SGBDRs se baseiam no conceito de tabelas com conjunto de atributos podendo ser chamados de colunas da tabela, cada atributo é associado a um tipo de dado(como inteiro, real ou string). Cada linha desta tabela é considerada uma tupla, ao passo que os atributos dentro de cada tupla podem ser preenchidos com componentes referente ao seu tipo. As tabelas também podem ter colunas com informações sobre a relação entre elas mesmas.
 
     \subsection{ACID e BASE}
     Petter Näsholm também aborda as garantias que a maioria dos SGBDRs adotam sendo elas a sigla ACID(Atomicidade, Consistência, Isolação, Durabilidade) onde Atomicidade é a garantia de que ou uma trasação é executada de forma completa ou não é executada de forma alguma, a Consistência garante que toda transação saia de um estado da base válido para outro, Isolação é a garantia de que não interfere outra no tempo em que estão ocorrendo e a Durabilidade garante que o efeito de uma transação deve persistir e, portanto, nunca ser perdido. No trabalho de Christof Strauch o autor apresenta o BASE que são as garantias dos NoSQL:
@@ -123,13 +127,13 @@ nem sempre atendem aos requisitos das aplicações
   	\end{figure}
 %\section{e serviços rest, json e datavisualization}
 
-\chapter{PostgreSQL e os tipos de dados não convencionais}
+\chapter{PostgreSQL e os tipos de dados não relacionais}
 
 \section{PostgreSQL}
 
 
 %falta completar aquiiiiii
-PostgreSQL\cite{postgresql} é um sistema de banco de dados relacional poderoso e open source. Com mais de 15 anos de desenvolvimento tem uma reputação forte sobre sua confiabilidade, integridade dos dados e correção. Ele é executado em todos os principais sistemas operacionais, incluindo Linux, UNIX (AIX, BSD, HP-UX, SGI IRIX, Mac OS X, Solaris, Tru64) e Windows. É totalmente compatível com ACID, tem suporte completo para chaves estrangeiras, joins, views, triggers e procedures. Inclui a maioria dos tipos de dados SQL:2008: INTEGER, NUMERIC, BOOLEAN, CHAR, VARCHAR, DATE, INTERVALO e TIMESTAMP\@. Também suporta o armazenamento de grandes objetos binários, incluindo imagens, sons e vídeo. Tem interfaces de programação nativas para C / C ++, Java, .Net, Perl, Python, Ruby, Tcl, ODBC, entre outros.
+PostgreSQL\cite{postgresql} é um sistema gerenciador de banco de dados relacional robusto de reconhecimento em confiabilidade, integridade dos dados e correção. Tem seu código fonte aberto e seu desenvolvimento existe a mais de 15 anos. Disponível para diversos SOs, com interfaces nativas para muitas linguagens. Garante ACID e suporta a maioria dos tipos de dados SQL:2008. Tendo também o conjunto de funcionalidades dos SGBDs mais modernos como: triggers, chaves estrangeiras, views, joins...
 
 Recentemente também tem adotado algumas funcionalidades NoSQL buscando fornecer mais alternativas reunidas em uma base só, evitando que o serviço tenha que usar uma base SQL para parte de sua funcionalidade e outra base NoSQL para outro grupo de funcionalidades. Dentre elas o suporte orientado a documento(json e xml) e do tipo Chave-Valor(hstore).
 
@@ -151,7 +155,7 @@ O termo BSON é uma junção de Binary JSON, ele é a serialização de documentos JSO
 \section{Json vs JsonB}
 
 Antes do JSONB fazer parte do PosgreSQL Geoffrey Litt desenvolveu em seu projeto final "Improving performance of schemaless
-document storage in PostgreSQL using BSON"(Aprimorando a performance de armazenamento orientado a documento em PostgrSQL utilizando BSON) \cite{whittaker} da Yale University(Universidade de Yale), através do fonte do PostgreSQL, bibliotecas de parsing JSON e bibliotecas de parsing BSON do Mongodb, um campo similar chamado BSON, em sua tese pode testar as diferenças de performance destes campos. Posteriormente o PostgreSQL adotou este campo.
+document storage in PostgreSQL using BSON"(Aprimorando a performance de armazenamento orientado a documento em PostgrSQL utilizando BSON) \cite{whittaker} da Yale University(Universidade de Yale), através do código fonte do PostgreSQL, bibliotecas de parsing JSON e bibliotecas de parsing BSON do Mongodb, um campo similar chamado BSON, em sua tese pode testar as diferenças de performance destes campos. Posteriormente o PostgreSQL adotou este campo.
 
 Para o primeiro teste utilizou o mesmo documento e variando seu tamanho de 1 à 90 vezes, nele executava uma query simples para encontrar um valor no meio do documento, o teste demonstrou que quanto maior o documento maior era a velozidade do BSON sobre o JSON, com o tamanho máximo o BSON foi 8.28 vezes mais rápido para o JSON.
 
