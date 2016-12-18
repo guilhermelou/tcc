@@ -77,8 +77,8 @@
     var width = 20,
         height = 800,
         cellSize = 3; // cell size
-    var from_year = 2008,
-        to_year = 2011 + 1;
+    var from_year = 2005,
+        to_year = 2009 + 1;
 	var range_year = to_year - from_year;
     var month_cell_size;
     var year_cell_width = cellSize*7;
@@ -156,10 +156,10 @@
         .datum(format);
 
     // shifiting days slots
-    shifting_days = 12*(cellSize*7) + 10;
+    shifting_days = 12*(cellSize*7.2);
     var month_rect = g.selectAll(".month")
         .data(function(d) {
-          return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1));
+          return d3.time.months(new Date(d, 0, 1), new Date(d + 1, 0, 1));
         })
       .enter().append("rect")
         .attr("class", "month")
@@ -189,7 +189,7 @@
         })
         .datum(format);
 
-    shifting_months = shifting_days*2;
+    shifting_months = shifting_days + year_cell_height*1.5*12 - year_cell_height*0.8 ;
     var year_rect = g.selectAll(".year")
         .data(function(d) {
           return d3.time.years(new Date(d, 0, 1), new Date(d + 1, 0, 1));
@@ -257,6 +257,15 @@
         .select("title")
           .text(function(d) { return d + ": " + percent(data[d]); });
 
+      month_rect.filter(function(d) { return d in data; })
+          .attr("class", function(d) { return "month " + color(data[d]); })
+        .select("title")
+          .text(function(d) { return d + ": " + percent(data[d]); });
+
+      year_rect.filter(function(d) { return d in data; })
+          .attr("class", function(d) { return "year" + color(data[d]); })
+        .select("title")
+          .text(function(d) { return d + ": " + percent(data[d]); });
       //  Tooltip
       rect.on("mouseover", mouseover);
       rect.on("mouseout", mouseout);
@@ -292,7 +301,7 @@
       return t0.toString().split(" ")[3];
     }
 	function zoomed() {
-		svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+		svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale*1.2 + ")");
 	}
   </script>
 
