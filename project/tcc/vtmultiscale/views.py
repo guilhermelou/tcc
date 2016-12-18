@@ -7,3 +7,6 @@ def index(request):
 
 def custom(request):
 	return render(request, 'vtmultiscale/heatmap_custom.html')
+
+def calendar(request):
+	return render(request, 'vtmultiscale/calendar.html')

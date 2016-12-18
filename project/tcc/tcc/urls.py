@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', 'vtmultiscale.views.index', name='main_index'),
     url(r'^custom/', 'vtmultiscale.views.custom', name='main_index'),
+    url(r'^calendar/', 'vtmultiscale.views.calendar', name='calendar'),
 ]
