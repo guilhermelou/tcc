@@ -26,7 +26,7 @@
 
       .day {
         fill: #fff;
-        stroke: #ccc;
+        stroke: #000;
         stroke-width: 1px;
       }
 
@@ -76,9 +76,10 @@
     //    cellSize = 35; // cell size
     var width = 20,
         height = 800,
-        cellSize = 4; // cell size
-    var from_year = 2004,
+        cellSize = 3; // cell size
+    var from_year = 2008,
         to_year = 2011 + 1;
+	var range_year = to_year - from_year;
     var month_cell_size;
     var year_cell_width = cellSize*7;
     var year_cell_height = cellSize*3;
@@ -114,16 +115,27 @@
       	.append("g")
 		.call(zoom);
 */
-    var svg = d3.select("#chart").selectAll("svg")
-        .data(d3.range(from_year, to_year))
-        .enter().append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("class", "RdYlGn")
-      	.append("g")
+    /*
+    var svg = d3.select("#chart").append("svg")
+    .attr("width", 800)
+    .attr("height", 800)
+    .call(zoom);
+*/
+	var svg = d3.select("#chart").append("svg")
+		.attr("width", 800)
+		.attr("height", 800)
+		.append("g")
 		.call(zoom);
-    
-    var rect = svg.selectAll(".day")
+
+    var g = svg.selectAll("g")
+        .data(d3.range(from_year, to_year))
+        .enter().append("g")
+        //.attr("width", width)
+        //.attr("height", height)
+        .attr("class", "RdYlGn");
+
+
+    var rect = g.selectAll(".day")
         .data(function(d) {
           return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1));
         })
@@ -132,8 +144,9 @@
         .attr("width", cellSize)
         .attr("height", cellSize)
         .attr("x", function(d) {
-          var month_padding = 1.2 * cellSize*7 * ((month(d)-1) % (no_months_in_a_row));
-          return day(d) * cellSize + month_padding;
+			year_column = (range_year - (to_year - year(d)))*8*cellSize;
+          	var month_padding = year_column + 1.2 * cellSize*7 * ((month(d)-1) % (no_months_in_a_row));
+         	return day(d) * cellSize + month_padding;
         })
         .attr("y", function(d) {
           var week_diff = week(d) - week(new Date(year(d), month(d)-1, 1) );
@@ -143,28 +156,41 @@
         .datum(format);
 
     // shifiting days slots
-    shifting_days = 12*(cellSize*7)
-    var month_rect = svg.selectAll(".month")
+    shifting_days = 12*(cellSize*7) + 10;
+    var month_rect = g.selectAll(".month")
         .data(function(d) {
           return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1));
         })
       .enter().append("rect")
         .attr("class", "month")
-        .attr("width", cellSize)
-        .attr("height", cellSize)
+        .attr("width", year_cell_width)
+        .attr("height", year_cell_height)
+        //.attr("width", cellSize)
+        //.attr("height", cellSize)
         .attr("x", function(d) {
-          var month_padding = 1.2 * cellSize*7 * ((month(d)-1) % (no_months_in_a_row));
-          return day(d) * cellSize + month_padding;
+			year_column = (range_year - (to_year - year(d)))*8*cellSize;
+            var month_padding = year_column + 1.2 * cellSize*7 * ((month(d)-1) % (no_months_in_a_row));
+            return month_padding;
+            /*
+			year_column = (range_year - (to_year - year(d)))*8*cellSize;
+            var month_padding = year_column + 1.2 * cellSize*7 * ((month(d)-1) % (no_months_in_a_row));
+            return day(d) * cellSize + month_padding;
+            */
         })
         .attr("y", function(d) {
+            /*
           var week_diff = week(d) - week(new Date(year(d), month(d)-1, 1) );
           var row_level = Math.ceil(month(d) / (no_months_in_a_row));
           return (week_diff*cellSize) + row_level*cellSize*7 + shifting_days - cellSize/2 - shift_up;
+          */
+          var week_diff = week(d) - week(new Date(year(d), month(d)-1, 1) );
+          var row_level = Math.ceil(month(d) / (no_months_in_a_row));
+          return row_level*year_cell_height*1.5 + shifting_days - cellSize/2 - shift_up;
         })
         .datum(format);
 
     shifting_months = shifting_days*2;
-    var year_rect = svg.selectAll(".year")
+    var year_rect = g.selectAll(".year")
         .data(function(d) {
           return d3.time.years(new Date(d, 0, 1), new Date(d + 1, 0, 1));
         })
@@ -173,8 +199,9 @@
         .attr("width", year_cell_width)
         .attr("height", year_cell_height)
         .attr("x", function(d) {
-          var month_padding = 1.2 * cellSize*7 * ((month(d)-1) % (no_months_in_a_row));
-          return month_padding;
+			year_column = (range_year - (to_year - year(d)))*8*cellSize;
+            var month_padding = year_column + 1.2 * cellSize*7 * ((month(d)-1) % (no_months_in_a_row));
+            return month_padding;
         })
         .attr("y", function(d) {
           var week_diff = week(d) - week(new Date(year(d), month(d)-1, 1) );
