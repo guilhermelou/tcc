@@ -1,0 +1,167 @@
+{
+    "stations":{
+        "A6-009":{
+            "section": "A",
+            "subsection": 6,
+            "subsubsection": 9,
+            "average":0.5,
+            "years":[
+                {
+                    "year":1993,
+                    "average": 0.6,
+                    "amount": 1000,
+                    "day_amount": 365,
+                    "null_days": 8,
+                    "months":[
+                        {
+                            "month":1,
+                            "average": 0.5,
+                            "amount": 131,
+                            "day_amount": 30,
+                            "null_days":2,
+                            "days":[
+                                {
+                                    "day":1,
+                                    "average":0.5
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+},
+
+
+{
+    "stations":{
+        "A6-009":{
+            "section": "A",
+            "subsection": 6,
+            "subsubsection": 9,
+            "average":0.5,
+            "years":{
+                1993:{
+                    "year_average": 0.6,
+                    "months":[
+                        {
+                            "month_average": 0.5,
+                            "days":[
+                                0.5,
+                                0.3,
+                                0.4
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
+
+[
+    {
+        "station_area": "A",
+        "stations":[
+            {
+                "number": 6,
+                "substation": [
+                    {
+                        "number": 9
+
+                    }
+                ]
+            }
+        ]
+    }
+]
+
+
+{
+    "A":{
+        6:{
+            009:{
+            }
+            010:{
+            }
+        }
+    }
+}
+
+
+{
+    "A6-009":{
+        1993:{
+            1:{
+                1:{
+                    "value":0.5
+                },
+                2:{
+                    "value":0.5
+                },
+
+                3:"...",
+
+                31:{
+                    "value":0.5
+                }
+            },
+
+            2:{
+                1:"...",
+                28:"..."
+            },
+
+            3:"...",
+
+            12:{
+                1:"...",
+                30:"..."
+            }
+        }
+    },
+    "A6-010":{
+    }
+}
+
+
+
+
+
+[
+    {
+        "station_name":"A6-009",
+        "years":[
+            {
+                "year":1993,
+                "months":[
+                    {
+                        "month": 1,
+                        "days":[
+                            {
+                                "day": 1,
+                                "value":0.5
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
+
+{
+    "A6-009":{
+        "2010-12-30": 0.5
+    }
+
+}
+
+
+
+
+
+
+
+

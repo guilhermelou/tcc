@@ -1,0 +1,7 @@
+limites.dat               : intervalo de valores para latitude e longitude, e ano inicial dos dados
+
+<prefixo-posto>.dat       : dados de precipitação para um posto, 2 linhas de cabeçalho (nro de colunas, nome das colunas) e 1 ano/mês por linha
+
+postos.dat(csv)           : dados descritivos dos postos, 2 linhas de cabeçalho (nro de colunas, nome das colunas) e 1 posto por linha
+
+latlong(longlat).csv      : ordem dos postos por latitude (longitude)
