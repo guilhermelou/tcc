@@ -5,30 +5,33 @@ import os
 from datetime import date
 from calendar import monthrange
 
+# dict containing all the data
 data = {}
+# dict containing the stations
 stations = {}
+# attaching stations to all data
 data["stations"] = stations
-
+# iterating over rain files in the folder
 for file_name in glob.glob("estacoes_chuva/*.dat"):
-    # print file_name
+    # getting the base name from file path
     base_name = os.path.basename(file_name)
-
-    # print base_name
-    # print base_name[0]
-    # print base_name[1]
-    # print base_name[3:6]
-
-
+    # dict to store each station
     station = {}
     # array of years
     years = []
-
+    # getting only the name without extension
     prefix = base_name[:6]
+    # attaching the station to a prefix inside the stations dict
     stations[prefix] = station
+    # attaching section info to station
     station["section"] = base_name[0]
+    # attaching subsection info to station
     station["subsection"] = int(base_name[1])
+    # attaching subsubsection info to station
     station["subsubsection"] = int(base_name[3:6])
+    # attaching average info to station
     station["average"] = 200
+    # attaching years array info to station
     station["years"] = years
 
     with open(file_name, 'rb') as csvfile:
@@ -111,16 +114,18 @@ for file_name in glob.glob("estacoes_chuva/*.dat"):
                             # setting the day_amount key on month and year
                             month["day_amount"] = month["day_amount"] + 1
                             year["day_amount"] = year["day_amount"] + 1
-    '''
     if base_name == "A6-001.dat":
         break
         # json_data = json.dumps(data)
         # print json_data
-    '''
 
+# var with the file name of the geo info for the stations
 postos_file_name = 'estacoes_geo/postos.csv'
+# opening file as csv
 with open(postos_file_name, 'rb') as csvfile:
+    # starting the reader with a spamreader by row
     spamreader = csv.reader(csvfile, delimiter=';', quotechar='"')
+    # cleaning the station var
     station = {}
     # running over the lines
     for i, row in enumerate(spamreader):
@@ -130,34 +135,52 @@ with open(postos_file_name, 'rb') as csvfile:
             for counter, column in enumerate(row):
                 # first column is the number of the year
                 if counter==0:
-                    data
+                    # if station key exists add, if not continue to next itera
                     try:
                         station = stations[column]
                     except:
-                        break
+                        continue
+                # second column is the name of the station
                 elif counter == 1:
                     station["name"] = column
+                # third column is the city of the station
                 elif counter == 2:
                     station["city"] = column
+                # fourth column is the basin of the station
                 elif counter == 3:
                     station["basin"] = column
+                # fifth column is the altitude of the station
                 elif counter == 4:
                     station["alt"] = int(column)
+                # sixth column is the latitude of the station
                 elif counter == 5:
                     station["lat"] = int(column)
+                # seventh column is the longitude of the station
                 elif counter == 6:
                     station["long"] = int(column)
+                # octave column is the initial year of the station
                 elif counter == 7:
                     station["year_ini"] = int(column)
+                # ninth column is the final year of the station
                 elif counter == 8:
                     station["year_end"] = int(column)
+                # tenth column is the range of the station
                 elif counter == 9:
                     station["range"] = int(column)
+                # eleventh column is the consistency of the station
                 elif counter == 10:
+                    # creating a array from a wrong formated string
                     column.split("/")
                     consistency = map(int, column.split("/"))
                     station["consistency"] = consistency
 
+
+
+for station_key in stations:
+    station = stations[station_key]
+    print station
+
 json_data = json.dumps(data)
-print json_data
+
+# print json_data
 
