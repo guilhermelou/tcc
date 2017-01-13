@@ -14,7 +14,6 @@ def calendar(request):
 
 
 def map(request):
-    stations = Station.objects.all()[:5]
-    print stations
+    stations = Station.objects.all().values('lat', 'long')
     return render(request, 'vtmultiscale/map.html', {"stations": stations})
 

@@ -6,7 +6,16 @@ from datetime import date
 from calendar import monthrange
 from rainfall.models import Station, Section, SubSection
 
-
+def convert_coordinate(str):
+    ''' Function to convert a coordinate to use on D3, this function returns
+        the new str
+    '''
+    if str[0] != '-':
+        str = str.replace(" ", "")
+        integer = str[0:2]
+        decimal = str[2:]
+        real = '-'+integer+'.'+decimal
+    return real
 
 # dict containing all the data
 data = {}
@@ -130,12 +139,10 @@ for file_name in glob.glob("rainfall/estacoes_chuva/*.dat"):
                             month["day_amount"] = month["day_amount"] + 1
                             year["day_amount"] = year["day_amount"] + 1
                             station["day_amount"] = station["day_amount"] + 1
-    '''
     if base_name == "A6-001.dat":
         break
         # json_data = json.dumps(data)
         # print json_data
-    '''
 
 # var with the file name of the geo info for the stations
 postos_file_name = 'rainfall/estacoes_geo/postos.csv'
@@ -225,7 +232,6 @@ for station_key in stations:
                 )
             else:
                 month["average"] = -1
-
 # passing through real database
 for station_key in stations:
 
@@ -269,7 +275,7 @@ for station_key in stations:
                 consistency = station['consistency'],
                 years = station['years']
             )
-
+print data
 json_data = json.dumps(data)
 # print json_data
 
