@@ -139,10 +139,12 @@ for file_name in glob.glob("rainfall/estacoes_chuva/*.dat"):
                             month["day_amount"] = month["day_amount"] + 1
                             year["day_amount"] = year["day_amount"] + 1
                             station["day_amount"] = station["day_amount"] + 1
+    '''
     if base_name == "A6-001.dat":
         break
         # json_data = json.dumps(data)
         # print json_data
+    '''
 
 # var with the file name of the geo info for the stations
 postos_file_name = 'rainfall/estacoes_geo/postos.csv'
@@ -275,7 +277,7 @@ for station_key in stations:
                 consistency = station['consistency'],
                 years = station['years']
             )
-print data
+        # print data
 json_data = json.dumps(data)
 # print json_data
 
