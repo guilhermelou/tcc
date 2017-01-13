@@ -6,6 +6,8 @@ from datetime import date
 from calendar import monthrange
 from rainfall.models import Station, Section, SubSection
 
+
+
 # dict containing all the data
 data = {}
 # dict containing the stations
@@ -170,10 +172,16 @@ with open(postos_file_name, 'rb') as csvfile:
                     station["alt"] = int(column)
                 # sixth column is the latitude of the station
                 elif counter == 5:
-                    station["lat"] = int(column)
+                    # converting into new coordinate system
+                    station["lat"] = float(convert_coordinate(column))
+                    # Old version
+                    # station["lat"] = int(column)
                 # seventh column is the longitude of the station
                 elif counter == 6:
-                    station["long"] = int(column)
+                    # converting into new coordinate system
+                    station["long"] = float(convert_coordinate(column))
+                    # Old version
+                    # int(column)
                 # octave column is the initial year of the station
                 elif counter == 7:
                     station["year_ini"] = int(column)
