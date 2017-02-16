@@ -1,0 +1,5 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["RzFaQ"]); }
+
+__d('P2PPlatformContextBannerShape',['React'],(function a(b,c,d,e,f,g){'use strict';var h=c('React').PropTypes,i=h.shape({shouldShowToBuyer:h.bool,shouldShowToSeller:h.bool,shouldShowPayNux:h.bool});f.exports=i;}),null);
+__d('P2PPlatformContextShippingOptionShape',['React'],(function a(b,c,d,e,f,g){'use strict';var h=c('React').PropTypes,i=h.shape({formattedShippingPrice:h.string,formattedSubtotal:h.string,formattedTax:h.string,formattedTotal:h.string,id:h.string,rawTotal:h.string,title:h.string});f.exports=i;}),null);
+__d('P2PPlatformContextShape',['P2PPlatformContextBannerShape','P2PPlatformContextProductItemShape','P2PPlatformContextShippingOptionShape','React'],(function a(b,c,d,e,f,g){'use strict';var h=c('React').PropTypes,i=h.shape({id:h.string,banner:c('P2PPlatformContextBannerShape'),buyerID:h.string,product:c('P2PPlatformContextProductItemShape'),sellerID:h.string,shippingOptions:h.arrayOf(c('P2PPlatformContextShippingOptionShape'))});f.exports=i;}),null);

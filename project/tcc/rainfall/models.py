@@ -68,15 +68,15 @@ class Station(models.Model):
         )
     lat = models.DecimalField(
             _('Latitude'),
-            max_digits=12,
-            decimal_places=6,
+            max_digits=13,
+            decimal_places=10,
             null=True,
             blank=True
         )
     long = models.DecimalField(
             _('Longitude'),
-            max_digits=12,
-            decimal_places=6,
+            max_digits=13,
+            decimal_places=10,
             null=True,
             blank=True
         )

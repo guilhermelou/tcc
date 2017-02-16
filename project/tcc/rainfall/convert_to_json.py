@@ -6,16 +6,23 @@ from datetime import date
 from calendar import monthrange
 from rainfall.models import Station, Section, SubSection
 
+
+def dms2dd(degrees, minutes, seconds, direction):
+    dd = float(degrees) + float(minutes)/60 + float(seconds)/(60*60);
+    if direction == 'S' or direction == 'W':
+        dd *= -1
+    return dd;
+
+
 def convert_coordinate(str):
     ''' Function to convert a coordinate to use on D3, this function returns
-        the new str
+        the lat or long in southwest in float
     '''
     if str[0] != '-':
         str = str.replace(" ", "")
-        integer = str[0:2]
-        decimal = str[2:]
-        real = '-'+integer+'.'+decimal
-    return real
+        degrees = str[0:2]
+        minutes = str[2:]
+        return dms2dd(degrees, minutes, 0, 'S')
 
 # dict containing all the data
 data = {}
@@ -182,15 +189,11 @@ with open(postos_file_name, 'rb') as csvfile:
                 # sixth column is the latitude of the station
                 elif counter == 5:
                     # converting into new coordinate system
-                    station["lat"] = float(convert_coordinate(column))
-                    # Old version
-                    # station["lat"] = int(column)
+                    station["lat"] = convert_coordinate(column)
                 # seventh column is the longitude of the station
                 elif counter == 6:
                     # converting into new coordinate system
-                    station["long"] = float(convert_coordinate(column))
-                    # Old version
-                    # int(column)
+                    station["long"] = convert_coordinate(column)
                 # octave column is the initial year of the station
                 elif counter == 7:
                     station["year_ini"] = int(column)

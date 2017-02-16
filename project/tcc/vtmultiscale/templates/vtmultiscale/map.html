@@ -53,8 +53,8 @@ var path = d3.geo.path()
 
 // Load data (asynchronously)
 d3_queue.queue()
-    .defer(d3.json, "{% static 'vtmultiscale/br-states.json' %}")
-//    .defer(d3.json, "{% static 'vtmultiscale/br-states-full.json' %}")
+//    .defer(d3.json, "{% static 'vtmultiscale/br-states.json' %}")
+    .defer(d3.json, "{% static 'vtmultiscale/br-states-full.json' %}")
     .await(ready);
 
     //.defer(d3.json, "https://raw.githubusercontent.com/thiagomarzagao/thiagomarzagao.github.io/master/assets/br-states.json")
@@ -63,13 +63,13 @@ function ready(error, shp) {
   if (error) throw error;
 
   // Extracting polygons and contours
-  /*
   var states = topojson.feature(shp, shp.objects.states);
   var states_contour = topojson.mesh(shp, shp.objects.states);
-  */
+  /*
   var states = topojson.feature(shp, shp.objects.estados);
   var states_contour = topojson.mesh(shp, shp.objects.estados);
 
+  */
   // Desenhando estados
   g.selectAll(".estado")
       .data(states.features)
