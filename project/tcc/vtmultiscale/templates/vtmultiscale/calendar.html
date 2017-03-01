@@ -76,12 +76,12 @@
 <script>
 $(document).ready(function(){
 	var data_years = 'banana';
+    var test_promise
 		$.ajaxSetup({
 			data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
 		});
-        function check_notify(lolo) {
-            console.log(data_years);
-            $.ajax({
+        function get_years() {
+            test_promise = $.ajax({
                 url: '{% url 'vtmultiscale:get_year' %}',
                 type: 'post',
                 dataType: "json",
@@ -92,24 +92,92 @@ $(document).ready(function(){
                     return data['year_list'];
                 },
 */
-                error: function(data) {
+      /*          error: function(data) {
                     console.log('Got an error dude');
-                }
+                }*/
             });
+            //test_promise.done(drawCalendar);
         }
-    function drawCalendar(data){
-        console.log(data);
-        console.log(data['year_list']);
-        console.log(data);
 
+    function drawCalendar(data){
+        //console.log(data);
+        //console.log(data['year_list']);
+        //console.log(data);
+        //console.log(data_years);
+        //console.log(data)
+        data_years = data['year_list'];
+            /*
+        d3.csv("http://kathyz.github.io/d3-calendar/dji.csv", function(error, csv) {
+        var data = d3.nest()
+            .key(function(d) { return d.Date; })
+            .rollup(function(d) { return (d[0].Close - d[0].Open) / d[0].Open; })
+            .map(csv);
+*/
+        rect.filter(function(d) { return d in data['year_list']; })
+            .attr("class", function(d) {  return "day " + color(data[d]); })
+            .select("title")
+            .text(function(d) { return d + ": " + percent(data[d]); });
+
+        month_rect.filter(function(d) { return d in data; })
+            .attr("class", function(d) { return "month " + color(data[d]); })
+            .select("title")
+            .text(function(d) { return d + ": " + percent(data[d]); });
+
+        year_rect.filter(function(d) {
+            year_date = (new Date(d)).getUTCFullYear();
+            for (i in data_years){
+                year_obj = data_years[i];
+                year = year_obj['year'];
+                if (year_date == year){
+                    return year;
+                }
+            }
+        }).attr("class", function(d) {
+            year_date = (new Date(d)).getUTCFullYear();
+            var year_average;
+            for (i in data_years){
+                year_obj = data_years[i];
+                year = year_obj['year'];
+                if (year_date == year){
+                    year_average = year_obj['average'];
+                }
+            }
+            console.log(year_average);
+            return "year " + color_year(year_average);
+        }).select("title").text(function(d) {
+            return d + ": " + percent(year_average);
+        });
+        //  Tooltip
+        rect.on("mouseover", mouseover);
+        rect.on("mouseout", mouseout);
+        function mouseover(d) {
+            tooltip.style("visibility", "visible");
+            var percent_data = (data[d] !== undefined) ? percent(data[d]) : percent(0);
+            var purchase_text = d + ": " + percent_data;
+
+            tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+            tooltip.html(purchase_text)
+                        .style("left", (d3.event.pageX)+30 + "px")
+                        .style("top", (d3.event.pageY) + "px");
+        }
+        function mouseout (d) {
+            tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            var $tooltip = $("#tooltip");
+            $tooltip.empty();
+        }
+    }
         //var width = 960,
         //    height = 750,
         //    cellSize = 35; // cell size
         var width = 20,
             height = 800,
             cellSize = 3; // cell size
-        var from_year = 2005,
-            to_year = 2009 + 1;
+        var from_year = 1990,
+            to_year = 1997 + 1;
         var range_year = to_year - from_year;
         var month_cell_size;
         var year_cell_width = cellSize*7;
@@ -134,7 +202,10 @@ $(document).ready(function(){
             percent = d3.format(".1%"),
             format = d3.time.format("%Y-%m-%d");
         var color = d3.scale.quantize()
-            .domain([-.05, .05])
+            .domain([0,300])
+            .range(d3.range(11).map(function(d) {  return "q" + d + "-11"; }));
+        var color_year = d3.scale.quantize()
+            .domain([0,50])
             .range(d3.range(11).map(function(d) {  return "q" + d + "-11"; }));
     /*
         var svg = d3.select("#chart").selectAll("svg")
@@ -277,50 +348,6 @@ $(document).ready(function(){
         .style("visibility", "hidden")
         .text("a simple tooltip");
 
-        d3.csv("http://kathyz.github.io/d3-calendar/dji.csv", function(error, csv) {
-        var data = d3.nest()
-            .key(function(d) { return d.Date; })
-            .rollup(function(d) { return (d[0].Close - d[0].Open) / d[0].Open; })
-            .map(csv);
-
-        rect.filter(function(d) { return d in data; })
-            .attr("class", function(d) {  return "day " + color(data[d]); })
-            .select("title")
-            .text(function(d) { return d + ": " + percent(data[d]); });
-
-        month_rect.filter(function(d) { return d in data; })
-            .attr("class", function(d) { return "month " + color(data[d]); })
-            .select("title")
-            .text(function(d) { return d + ": " + percent(data[d]); });
-
-        year_rect.filter(function(d) { return d in data; })
-            .attr("class", function(d) { return "year" + color(data[d]); })
-            .select("title")
-            .text(function(d) { return d + ": " + percent(data[d]); });
-        //  Tooltip
-        rect.on("mouseover", mouseover);
-        rect.on("mouseout", mouseout);
-        function mouseover(d) {
-            tooltip.style("visibility", "visible");
-            var percent_data = (data[d] !== undefined) ? percent(data[d]) : percent(0);
-            var purchase_text = d + ": " + percent_data;
-
-            tooltip.transition()
-                        .duration(200)
-                        .style("opacity", .9);
-            tooltip.html(purchase_text)
-                        .style("left", (d3.event.pageX)+30 + "px")     
-                        .style("top", (d3.event.pageY) + "px"); 
-        }
-        function mouseout (d) {
-            tooltip.transition()        
-                    .duration(500)      
-                    .style("opacity", 0); 
-            var $tooltip = $("#tooltip");
-            $tooltip.empty();
-        }
-
-        });
 
         function dayTitle (t0) {
         return t0.toString().split(" ")[2];
@@ -334,8 +361,7 @@ $(document).ready(function(){
         function zoomed() {
             svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale*1.2 + ")");
         }
-    }
-check_notify();
+get_years();
 });
 </script>
 
