@@ -17,39 +17,57 @@ function drawCalendar(data){
             date = d['date'];
             day_obj = getDayByDate(date, data_years);
             if (day_obj!=null){
-                return format(date) + ": " + percent(day_obj["day_average"]);
+                return format(date) + ": " + day_obj["day_average"];
             }
         });
 
         month_rect.filter(function(d) {
-            month_obj = getMonthByDate(d, data_years);
+            date = d['date'];
+            month_obj = getMonthByDate(date, data_years);
             if (month_obj!=null){
                 return month_obj["month"];
             }
         }).attr("class", function(d) {
-            month_obj = getMonthByDate(d, data_years);
+            date = d['date'];
+            month_obj = getMonthByDate(date, data_years);
             if (month_obj!=null){
                 return "month " + color_month(month_obj["average"]);
             }
         }).select("title")
-        .text(function(d) { return d + ": " + percent(data[d]); });
+        .text(function(d) {
+            date = d['date'];
+            month_obj = getMonthByDate(date, data_years);
+            if (month_obj!=null){
+                return format(date) + ": " + month_obj["average"];
+            }
+        });
 
         year_rect.filter(function(d) {
-            year_obj = getYearByDate(d, data_years);
+            date = d['date'];
+            year_obj = getYearByDate(date, data_years);
             if (year_obj!=null){
                 return year_obj["year"];
             }
         }).attr("class", function(d) {
-            year_obj = getYearByDate(d, data_years);
+            date = d['date'];
+            year_obj = getYearByDate(date, data_years);
             if (year_obj!=null){
                 return "year " + color_year(year_obj["average"]);
             }
         }).select("title").text(function(d) {
-            return d + ": " + percent(year_average);
+            date = d['date'];
+            year_obj = getYearByDate(date, data_years);
+            if (year_obj!=null){
+                return format(date) + ": " + year_obj["average"];
+            }
         });
         //  Tooltip
         rect.on("mouseover", mouseOverDate);
         rect.on("mouseout", mouseOutDate);
+        month_rect.on("mouseover", mouseOverDate);
+        month_rect.on("mouseout", mouseOutDate);
+        year_rect.on("mouseover", mouseOverDate);
+        year_rect.on("mouseout", mouseOutDate);
         function mouseOverDate(d) {
             tooltip.style("visibility", "visible");
             date = d["date"];
@@ -63,8 +81,16 @@ function drawCalendar(data){
                     }
                     break;
                 case "month":
+                    month_obj = getMonthByDate(date, data_years);
+                    if (month_obj!=null){
+                        amount_data = month_obj["average"];
+                    }
                     break;
                 case "year":
+                    year_obj = getYearByDate(date, data_years);
+                    if (year_obj!=null){
+                        amount_data = year_obj["average"];
+                    }
                     break;
                 default:
             }
@@ -124,22 +150,7 @@ function drawCalendar(data){
         var color_year = d3.scale.quantize()
             .domain([0,50])
             .range(d3.range(11).map(function(d) {  return "q" + d + "-11"; }));
-    /*
-        var svg = d3.select("#chart").selectAll("svg")
-            .data(d3.range(from_year, to_year))
-            .enter().append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .attr("class", "RdYlGn")
-            .append("g")
-            .call(zoom);
-    */
-        /*
-        var svg = d3.select("#chart").append("svg")
-        .attr("width", 800)
-        .attr("height", 800)
-        .call(zoom);
-    */
+
         var svg = d3.select("#chart").append("svg")
             .attr("width", 800)
             .attr("height", 800)
@@ -171,7 +182,9 @@ function drawCalendar(data){
             .attr("height", cellSize)
             .attr("x", function(d) {
                 date = d['date'];
-                year_column = (range_year - (to_year - year(date)))*8*cellSize;
+                year_column = (
+                        (range_year - (to_year - year(date)))*8*cellSize
+                    );
                 var month_padding = (
                         year_column + 1.2 * cellSize*7 *
                         ((month(date)-1) % (no_months_in_a_row))
@@ -201,8 +214,15 @@ function drawCalendar(data){
         shifting_days = 12*(cellSize*7.2);
         var month_rect = g.selectAll(".month")
             .data(function(d) {
-            return d3.time.months(new Date(d, 0, 1), new Date(d + 1, 0, 1));
-            })
+                array_date = d3.time.months(
+                    new Date(d, 0, 1), new Date(d + 1, 0, 1)
+                );
+                array_dict = [];
+                for(i in array_date){
+                    array_dict.push({'type':'month', 'date':array_date[i]});
+                }
+                return array_dict;
+        })
         .enter().append("rect")
             .attr("class", "month")
             .attr("width", year_cell_width)
@@ -210,47 +230,70 @@ function drawCalendar(data){
             //.attr("width", cellSize)
             //.attr("height", cellSize)
             .attr("x", function(d) {
-                year_column = (range_year - (to_year - year(d)))*8*cellSize;
-                var month_padding = year_column + 1.2 * cellSize*7 * ((month(d)-1) % (no_months_in_a_row));
+                date = d['date'];
+                year_column = (range_year - (to_year - year(date)))*8*cellSize;
+                var month_padding = (
+                        year_column + 1.2 * cellSize*7 *
+                        ((month(date)-1) % (no_months_in_a_row))
+                );
                 return month_padding;
-                /*
-                year_column = (range_year - (to_year - year(d)))*8*cellSize;
-                var month_padding = year_column + 1.2 * cellSize*7 * ((month(d)-1) % (no_months_in_a_row));
-                return day(d) * cellSize + month_padding;
-                */
             })
             .attr("y", function(d) {
-                /*
-            var week_diff = week(d) - week(new Date(year(d), month(d)-1, 1) );
-            var row_level = Math.ceil(month(d) / (no_months_in_a_row));
-            return (week_diff*cellSize) + row_level*cellSize*7 + shifting_days - cellSize/2 - shift_up;
-            */
-            var week_diff = week(d) - week(new Date(year(d), month(d)-1, 1) );
-            var row_level = Math.ceil(month(d) / (no_months_in_a_row));
-            return row_level*year_cell_height*1.5 + shifting_days - cellSize/2 - shift_up;
+                date = d['date'];
+                var week_diff = (
+                        week(date) -
+                        week(new Date(year(date), month(date)-1, 1) )
+                );
+                var row_level = Math.ceil(month(date) / (no_months_in_a_row));
+                return (
+                        row_level*year_cell_height*1.5 +
+                        shifting_days - cellSize/2 - shift_up
+                );
             })
-            .datum(format);
+            .datum(function(d){
+                return d;
+            });
 
         shifting_months = shifting_days + year_cell_height*1.5*12 - year_cell_height*0.8 ;
         var year_rect = g.selectAll(".year")
             .data(function(d) {
-            return d3.time.years(new Date(d, 0, 1), new Date(d + 1, 0, 1));
+                array_date = d3.time.years(
+                        new Date(d, 0, 1), new Date(d + 1, 0, 1)
+                );
+                array_dict = [];
+                for(i in array_date){
+                    array_dict.push({'type':'year', 'date':array_date[i]});
+                }
+                return array_dict;
             })
         .enter().append("rect")
             .attr("class", "year")
             .attr("width", year_cell_width)
             .attr("height", year_cell_height)
             .attr("x", function(d) {
-                year_column = (range_year - (to_year - year(d)))*8*cellSize;
-                var month_padding = year_column + 1.2 * cellSize*7 * ((month(d)-1) % (no_months_in_a_row));
+                date = d['date'];
+                year_column = (range_year - (to_year - year(date)))*8*cellSize;
+                var month_padding = (
+                        year_column + 1.2 * cellSize*7 *
+                        ((month(date)-1) % (no_months_in_a_row))
+                );
                 return month_padding;
             })
             .attr("y", function(d) {
-            var week_diff = week(d) - week(new Date(year(d), month(d)-1, 1) );
-            var row_level = Math.ceil(month(d) / (no_months_in_a_row));
-            return (week_diff*cellSize) + row_level*cellSize*7 + shifting_months - cellSize/2 - shift_up;
+                date = d['date'];
+                var week_diff = (
+                        week(date) -
+                        week(new Date(year(date), month(date)-1, 1) )
+                );
+                var row_level = Math.ceil(month(date) / (no_months_in_a_row));
+                return (
+                        (week_diff*cellSize) + row_level*cellSize*7 +
+                        shifting_months - cellSize/2 - shift_up
+                );
             })
-            .datum(format);
+            .datum(function(d){
+                return d;
+            });
             /*
         var month_titles = svg.selectAll(".month-title")  // Jan, Feb, Mar and the whatnot
             .data(function(d) {
