@@ -1,22 +1,23 @@
 function drawCalendar(data){
         data_years = data['year_list'];
         rect.filter(function(d) {
-            day_obj = getDayByDate(d, data_years);
+            date = d['date'];
+            day_obj = getDayByDate(date, data_years);
             if (day_obj!=null){
                 return day_obj["day"];
             }
         }).attr("class", function(d) {
-            day_obj = getDayByDate(d, data_years);
+            date = d['date'];
+            day_obj = getDayByDate(date, data_years);
             if (day_obj!=null){
                 return "day " + color(day_obj["day_average"]);
             }
         }).select("title")
         .text(function(d) {
-            console.log(d);
-            day_obj = getDayByDate(d, data_years);
+            date = d['date'];
+            day_obj = getDayByDate(date, data_years);
             if (day_obj!=null){
-                console.log(day_obj["day_average"]);
-                return d + ": " + percent(day_obj["day_average"]);
+                return format(date) + ": " + percent(day_obj["day_average"]);
             }
         });
 
@@ -47,17 +48,27 @@ function drawCalendar(data){
             return d + ": " + percent(year_average);
         });
         //  Tooltip
-        rect.on("mouseover", mouseOverDay);
-        rect.on("mouseout", mouseOutDay);
-        function mouseOverDay(d) {
+        rect.on("mouseover", mouseOverDate);
+        rect.on("mouseout", mouseOutDate);
+        function mouseOverDate(d) {
             tooltip.style("visibility", "visible");
-            day_obj = getDayByDate(d, data_years);
+            date = d["date"];
+            type = d["type"];
             var amount_data = -1;
-            if (day_obj!=null){
-                amount_data = day_obj["day_average"];
+            switch(type){
+                case "day":
+                    day_obj = getDayByDate(date, data_years);
+                    if (day_obj!=null){
+                        amount_data = day_obj["day_average"];
+                    }
+                    break;
+                case "month":
+                    break;
+                case "year":
+                    break;
+                default:
             }
-            var purchase_text = d + ": " + amount_data;
-
+            var purchase_text = format(date) + ": " + amount_data;
             tooltip.transition()
                         .duration(200)
                         .style("opacity", .9);
@@ -65,7 +76,7 @@ function drawCalendar(data){
                         .style("left", (d3.event.pageX)+30 + "px")
                         .style("top", (d3.event.pageY) + "px");
         }
-        function mouseOutDay (d) {
+        function mouseOutDate(d) {
             tooltip.transition()
                     .duration(500)
                     .style("opacity", 0);
@@ -145,23 +156,46 @@ function drawCalendar(data){
 
         var rect = g.selectAll(".day")
             .data(function(d) {
-            return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1));
+                array_date = d3.time.days(
+                        new Date(d, 0, 1), new Date(d + 1, 0, 1)
+                );
+                array_dict = [];
+                for(i in array_date){
+                    array_dict.push({'type':'day', 'date':array_date[i]});
+                }
+                return array_dict;
             })
         .enter().append("rect")
             .attr("class", "day")
             .attr("width", cellSize)
             .attr("height", cellSize)
             .attr("x", function(d) {
-                year_column = (range_year - (to_year - year(d)))*8*cellSize;
-                var month_padding = year_column + 1.2 * cellSize*7 * ((month(d)-1) % (no_months_in_a_row));
-                return day(d) * cellSize + month_padding;
+                date = d['date'];
+                year_column = (range_year - (to_year - year(date)))*8*cellSize;
+                var month_padding = (
+                        year_column + 1.2 * cellSize*7 *
+                        ((month(date)-1) % (no_months_in_a_row))
+                    );
+                return day(date) * cellSize + month_padding;
             })
             .attr("y", function(d) {
-            var week_diff = week(d) - week(new Date(year(d), month(d)-1, 1) );
-            var row_level = Math.ceil(month(d) / (no_months_in_a_row));
-            return (week_diff*cellSize) + row_level*cellSize*7 - cellSize/2 - shift_up;
+                date = d['date'];
+                var week_diff = (
+                        week(date) - week(
+                                new Date(year(date),month(date)-1, 1)
+                        )
+                );
+                var row_level = Math.ceil(month(date) / (no_months_in_a_row));
+                return (
+                        (week_diff*cellSize) +
+                        row_level*cellSize*7 -
+                        cellSize/2 -
+                        shift_up
+                );
             })
-            .datum(format);
+            .datum(function(d){
+                return d;
+            });
 
         // shifiting days slots
         shifting_days = 12*(cellSize*7.2);

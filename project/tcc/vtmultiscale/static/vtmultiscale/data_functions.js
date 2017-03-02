@@ -1,12 +1,12 @@
 /**
  * This method is used to get the year object inside a data
  * dictionary using the date parameter to find it
- * @param {Date} d - This param is used to find the year of this date
+ * @param {Date} date - This param is used to find the year of this date
  * @param {Array} data - The year will be found in this param
  * @return {Dictionary} The proper year object from data
  */
-var getYearByDate = function(d, data){
-    year_date = (new Date(d)).getUTCFullYear();
+var getYearByDate = function(date, data){
+    year_date = (new Date(date)).getUTCFullYear();
     for (i in data){
         year_obj = data[i];
         year = year_obj["year"];
@@ -20,13 +20,13 @@ var getYearByDate = function(d, data){
 /**
  * This method is used to get the month object inside a data
  * dictionary using the date parameter to find it
- * @param {Date} d - This param is used to find the month of this date
+ * @param {Date} date - This param is used to find the month of this date
  * @param {Array} data - The month will be found in this data_set
  * @return {Dictionary} The proper month object from data
  */
-var getMonthByDate = function(d, data){
-    year_date = (new Date(d)).getUTCFullYear();
-    month_index = (new Date(d)).getUTCMonth();
+var getMonthByDate = function(date, data){
+    year_date = (new Date(date)).getUTCFullYear();
+    month_index = (new Date(date)).getUTCMonth();
     for (i in data){
         year_obj = data[i];
         year = year_obj["year"];
@@ -41,14 +41,14 @@ var getMonthByDate = function(d, data){
 /**
  * This method is used to get the day object inside a data
  * dictionary using the date parameter to find it
- * @param {Date} d - This param is used to find the day of this date
+ * @param {Date} date - This param is used to find the day of this date
  * @param {Array} data - The day will be found in this data_set
  * @return {Dictionary} The proper day object from data
  */
-var getDayByDate = function(d, data){
-    year_date = (new Date(d)).getUTCFullYear();
-    month_index = (new Date(d)).getUTCMonth();
-    day_index = (new Date(d)).getUTCDate()-1;
+var getDayByDate = function(date, data){
+    year_date = date.getUTCFullYear();
+    month_index = date.getUTCMonth();
+    day_index = date.getUTCDate()-1;
     for (i in data){
         year_obj = data[i];
         year = year_obj["year"];
