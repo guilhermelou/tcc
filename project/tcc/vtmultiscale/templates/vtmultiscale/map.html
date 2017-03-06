@@ -24,8 +24,8 @@
 <script>
 
 // Define map size on screen
-var width = 960,
-    height = 600;
+var width = 400,
+    height = 400;
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -42,10 +42,10 @@ var zoom = d3.behavior.zoom()
 svg.call(zoom) // delete this line to disable free zooming
   .call(zoom.event);
 
-// Align center of Brazil to center of map
+// Align center of Sao Paulo to center of map
 var projection = d3.geo.mercator()
-  .scale(650)
-  .center([-52, -15])
+  .scale(7000)
+  .center([-48, -22])
   .translate([width / 2, height / 2]);
 
 var path = d3.geo.path()
@@ -53,23 +53,16 @@ var path = d3.geo.path()
 
 // Load data (asynchronously)
 d3_queue.queue()
-//    .defer(d3.json, "{% static 'vtmultiscale/br-states.json' %}")
-    .defer(d3.json, "{% static 'vtmultiscale/br-states-full.json' %}")
+    //.defer(d3.json, "{% static 'vtmultiscale/maps/sp-state-simpl.json' %}")
+    .defer(d3.json, "{% static 'vtmultiscale/maps/sp-state-full.json' %}")
     .await(ready);
 
-    //.defer(d3.json, "https://raw.githubusercontent.com/thiagomarzagao/thiagomarzagao.github.io/master/assets/br-states.json")
-    //.defer(d3.json, "{% static 'vtmultiscale/br-states.json' %}")
 function ready(error, shp) {
   if (error) throw error;
 
   // Extracting polygons and contours
-  var states = topojson.feature(shp, shp.objects.states);
-  var states_contour = topojson.mesh(shp, shp.objects.states);
-  /*
-  var states = topojson.feature(shp, shp.objects.estados);
-  var states_contour = topojson.mesh(shp, shp.objects.estados);
-
-  */
+    var states = topojson.feature(shp, shp.objects.states);
+    var states_contour = topojson.mesh(shp, shp.objects.states);
   // Desenhando estados
   g.selectAll(".estado")
       .data(states.features)
@@ -92,7 +85,6 @@ function ready(error, shp) {
     {% endfor %}
     aa = [-48.02, -25.13];
     bb = [-49.41, -19.58];
-
     console.log(projection(aa),projection(bb));
     g.selectAll("circle")
 		.data(station_geo_array).enter()
@@ -106,8 +98,10 @@ function ready(error, shp) {
 
 // What to do when zooming
 function zoomed() {
-  g.style("stroke-width", 1.5 / d3.event.scale + "px");
-  g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+    g.style("stroke-width", 1.5 / d3.event.scale + "px");
+    //g.selectAll("path").attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+    //g.selectAll("circle").attr("transform", "translate(" + d3.event.translate + ")");
+    g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 }
 function over(d, i) {
     console.log("Objeto")

@@ -38,7 +38,7 @@ function drawCalendar(data){
             date = d['date'];
             month_obj = getMonthByDate(date, data_years);
             if (month_obj!=null){
-                return format(date) + ": " + month_obj["average"];
+                return format_month(date) + ": " + month_obj["average"];
             }
         });
 
@@ -58,7 +58,7 @@ function drawCalendar(data){
             date = d['date'];
             year_obj = getYearByDate(date, data_years);
             if (year_obj!=null){
-                return format(date) + ": " + year_obj["average"];
+                return format_year(date) + ": " + year_obj["average"];
             }
         });
         //  Tooltip
@@ -73,28 +73,32 @@ function drawCalendar(data){
             date = d["date"];
             type = d["type"];
             var amount_data = -1;
+            var date_formated = -1;
             switch(type){
                 case "day":
                     day_obj = getDayByDate(date, data_years);
                     if (day_obj!=null){
                         amount_data = day_obj["day_average"];
+                        date_formated = format(date);
                     }
                     break;
                 case "month":
                     month_obj = getMonthByDate(date, data_years);
                     if (month_obj!=null){
                         amount_data = month_obj["average"];
+                        date_formated = format_month(date);
                     }
                     break;
                 case "year":
                     year_obj = getYearByDate(date, data_years);
                     if (year_obj!=null){
                         amount_data = year_obj["average"];
+                        date_formated = format_year(date);
                     }
                     break;
                 default:
             }
-            var purchase_text = format(date) + ": " + amount_data;
+            var purchase_text = date_formated + ": " + amount_data;
             tooltip.transition()
                         .duration(200)
                         .style("opacity", .9);
@@ -141,6 +145,8 @@ function drawCalendar(data){
             year = d3.time.format("%Y"),
             percent = d3.format(".1%"),
             format = d3.time.format("%Y-%m-%d");
+            format_month = d3.time.format("%Y-%m");
+            format_year= d3.time.format("%Y");
         var color = d3.scale.quantize()
             .domain([0,300])
             .range(d3.range(11).map(function(d) {  return "q" + d + "-11"; }));

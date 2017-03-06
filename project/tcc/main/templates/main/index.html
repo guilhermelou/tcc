@@ -1,0 +1,103 @@
+{% extends 'main/base.html' %}
+{% load main_extras %}
+{% load static from staticfiles %}
+{% block extra_ogimage %}
+{% endblock %}
+{% block extrahead %}
+{% endblock %}
+{% block title %}Adota Bixo - Index{% endblock %}
+
+{% block content %}
+
+	<div class="row main_body ">
+		<div class=" container portal_title">
+			<div class="col-lg-12">
+				<div class="jumbotron">
+				  <h1 class="text-center">Adota Bixo</h1>
+				  <p class="text-center">Este é um portal destinado aos cursos universitários que tem o costume do apadrinhamento entre veteranos e bixos, é uma ferramenta de uso gratuito e colaborativo, auxiliando na visibilidade daqueles calouros que desejam auxílio e dos veteranos que estão disponíveis a atendê-los.</p>
+				  <p class="text-center">Comece criando uma conta e depois procurando o seu campus!</p>
+				</div>
+				
+			</div>
+		</div>
+	
+		
+		<div class="container campus_list">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">Campus</h3>
+				  </div>
+				  <div class="panel-body">
+				    <div class="list-group">
+						{% for campus in campus_list%}
+							<a href="{% url 'university:university_course_list' campus.slug %}" class="list-group-item">{{campus.title}}</a>
+						{% endfor%}
+					</div>
+				  </div>
+				  <div class="panel-footer center-block ">
+				  <a href="#myModal" role="button" class="btn btn-primary center-block" data-toggle="modal">Seu Campus Não Está Aqui?</a>
+				  </div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-sm-6 div_margin">
+			{% if messages %}
+				{% for message in messages %}
+					<div class="modal fade myDivTextBlack" id="contato_{{forloop.counter}}">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-body">
+									<button class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title" style="color: #3c763d;">{{message}}</h4>
+								</div><!-- end modal-body -->
+							</div><!-- end modal-content -->
+						</div><!-- end modal-dialog -->
+					</div><!-- end myModal -->
+				{%endfor%}
+			{% endif %}
+			<div class="modal fade myDivTextBlack" id="myModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Fale Conosco</h4>
+						</div><!-- end modal-header -->
+						<div class="modal-body">
+							<div class="text-center">
+								Envie para nós o seu campus ou curso que não esteja na listagem
+							</div>
+							{# Load the tag library #}
+							{% load bootstrap3 %}
+							{# Load CSS and JavaScript #}
+							{# Display django.contrib.messages as Bootstrap alerts #}
+							{% bootstrap_messages %}
+							{# Display a form #}
+							<form action="." method="post" class="form-horizontal">
+							  {% csrf_token %}
+							  {% bootstrap_form contactRequestForm %}
+							  {% buttons %}
+							  <div class="col-lg-12">
+							    <button type="submit" class="btn btn-success pull-right">
+							      Enviar
+							    </button>
+							  </div>
+							  {% endbuttons %}
+							</form>
+						</div><!-- end modal-body -->
+					</div><!-- end modal-content -->
+				</div><!-- end modal-dialog -->
+			</div><!-- end myModal -->
+		</div><!-- end col-sm-6 -->
+	</div>
+{% endblock %}
+{% block extrajs%}
+<script type="text/javascript">
+    $(window).load(function(){
+        {%for message in messages%}
+        	$('#contato_{{forloop.counter}}').modal('show');
+        {%endfor%}
+    });
+</script>
+{% endblock %}

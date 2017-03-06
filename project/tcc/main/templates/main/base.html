@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  
+  <head>
+  	{% load static from staticfiles %}
+    <meta charset="utf-8">
+	{% block extra_ogimage %}{% endblock %}
+		<!-- Mobile viewport optimized -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="author" content="Guilherme Henrique Lourenço dos Santos">
+    
+    <meta name="description" content="Portal para apadrinhamento de calouros de sua universidade!"/>
+    <meta name="title" content="Adota Bixo">
+    
+    <meta name="keywords" content="faculdade, apadrinhamento, bixo, calouro, universidade" />
+    <link rel="shortcut icon" href="{% static "main/images/minilogo.png" %}"/>
+	<link href="{% static "main/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+	<link href="{% static "main/main_style.css" %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'main/font-awesome-4.4.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+	
+    <title>{% block title %}{% endblock %}</title>
+    {% block extrahead %}{% endblock %}
+  </head>
+
+  <body>
+  	<div id="wrap">
+	  	<header class="navbar navbar-default navbar-fixed-top bs-docs-nav" role="banner">
+		  <div class="container">
+		    <div class="navbar-header">
+		      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="/">VTMultiScale</a>
+
+		    </div>
+		    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+		    <ul class="nav navbar-nav">
+		    </ul>
+
+		    <ul class="nav navbar-nav navbar-right">
+			</ul><!-- end nav pull-right -->
+		    </nav>
+		  </div>
+		</header>
+		
+	{% block content %}{% endblock %}
+</div>
+    <!-- FOOTER -->
+    <footer id="footer">
+    	<div class="col-sm-12 text-center" >
+    	<h6>Developed by <a target="_blank" href="https://www.facebook.com/lourencosanti" target="_blank">Guilherme H. L. dos Santos</a>, Project on <a target="_blank" href="https://github.com/guilhermelou/adotabixo">Github</a></h6>
+    	</div>
+			
+	</footer><!-- END FOOTER -->
+		
+
+	<!-- All Javascript at the bottom of the page for faster page loading -->
+		
+	<!-- First try for the online version of jQuery-->
+	<!-- <script src="http://code.jquery.com/jquery.js"></script>-->
+	
+	<!-- If no online access, fallback to our hardcoded version of jQuery -->
+	<script type="text/javascript" src="{% static "main/jquery/jquery-1.12.0.min.js" %}"></script>
+
+	<!-- Bootstrap JS -->
+	<!--<script src="{% static "main/bootstrap/js/bootstrap.min.js" %}"></script>-->
+	<script src="{% static "main/bootstrap/js/bootstrap.js" %}"></script>
+	<!-- Custom JS -->
+	
+	
+    {% block extrajs %}{% endblock %}
+  </body>
+
+</html>
