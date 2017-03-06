@@ -23,55 +23,98 @@
 <script src="{% static 'vtmultiscale/topojson/topojson.min.js' %}" type="text/javascript"></script>
 <script>
 
-// Define map size on screen
-var width = 200,
-    height = 200;
+var Mapa = function(){
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    console.log("AAAAA");
+    // Define map size on screen
+    this.width = 200,
+    this.height = 200;
+    var out_this = this;
+    this.svg = d3.select("body").append("svg")
+        .attr("width", this.width)
+        .attr("height", this.height);
 
-var g = svg.append("g");
+    this.g = this.svg.append("g");
+    console.log(this);
+    console.log(this.g);
+    console.log("BBBBB");
+    var othis = this;
+    // Align center of Sao Paulo to center of map
+    this.projection = d3.geo.mercator()
+    .scale(1100)
+    .center([-48, -22])
+    .translate([this.width / 2, this.height / 2]);
 
-var zoom = d3.behavior.zoom()
-  .translate([0, 0])
-  .scale(1)
-  .scaleExtent([1, 30])
-  .on("zoom", zoomed);
+    this.path = d3.geo.path()
+    .projection(this.projection);
 
-svg.call(zoom) // delete this line to disable free zooming
-  .call(zoom.event);
+    // Load data (asynchronously)
+    d3_queue.queue()
+        .defer(d3.json, "{% static 'vtmultiscale/maps/sp-state-full.json' %}")
+        .await(function(error, shp){
+            if (error) throw error;
+            // Extracting polygons and contours
+                var states = topojson.feature(shp, shp.objects.states);
+                var states_contour = topojson.mesh(shp, shp.objects.states);
+            // Desenhando estados
+            out_this.g.selectAll(".estado")
+                .data(states.features)
+                .enter()
+                .append("path")
+                .attr("class", "state")
+                .attr("d", out_this.path);
 
-// Align center of Sao Paulo to center of map
-var projection = d3.geo.mercator()
-  .scale(1100)
-  .center([-48, -22])
-  .translate([width / 2, height / 2]);
+            out_this.g.append("path")
+                .datum(states_contour)
+                .attr("d", out_this.path)
+                .attr("class", "state_contour");
 
-var path = d3.geo.path()
-  .projection(projection);
 
-// Load data (asynchronously)
-d3_queue.queue()
-    //.defer(d3.json, "{% static 'vtmultiscale/maps/sp-state-simpl.json' %}")
-    .defer(d3.json, "{% static 'vtmultiscale/maps/sp-state-full.json' %}")
-    .await(ready);
+            station_geo_array = []
+            {% for station in stations %}
+                station_geo_array.push(
+                        [{{station.long}}, {{station.lat}}]
+                    )
+            {% endfor %}
+            out_this.g.selectAll("circle")
+                .data(station_geo_array).enter()
+                .append("circle")
+                .attr("cx", function (d) { return out_this.projection(d)[0]; })
+                .attr("cy", function (d) { return out_this.projection(d)[1]; })
+                .attr("r", "0.1px")
+                .attr("fill", "red")
+                .on("mouseover", over);
+        });
+/*
+    this.zoom = d3.behavior.zoom()
+    .translate([0, 0])
+    .scale(1)
+    .scaleExtent([1, 30])
+    .on("zoom", this.zoomed);
 
-function ready(error, shp) {
+    this.svg.call(this.zoom) // delete this line to disable free zooming
+    .call(this.zoom.event);
+
+    d3.select(self.frameElement).style("height", height + "px");
+    d3.select("svg").on("mousedown.log", function() {
+    });
+    */
+};
+
+Mapa.prototype.ready = function(error, shp) {
   if (error) throw error;
-
   // Extracting polygons and contours
     var states = topojson.feature(shp, shp.objects.states);
     var states_contour = topojson.mesh(shp, shp.objects.states);
   // Desenhando estados
-  g.selectAll(".estado")
+  this.g.selectAll(".estado")
       .data(states.features)
     .enter()
       .append("path")
       .attr("class", "state")
       .attr("d", path);
 
-  g.append("path")
+  this.g.append("path")
     .datum(states_contour)
     .attr("d", path)
     .attr("class", "state_contour");
@@ -85,34 +128,32 @@ function ready(error, shp) {
     {% endfor %}
     aa = [-48.02, -25.13];
     bb = [-49.41, -19.58];
-    console.log(projection(aa),projection(bb));
-    g.selectAll("circle")
+    this.g.selectAll("circle")
 		.data(station_geo_array).enter()
 		.append("circle")
 		.attr("cx", function (d) { return projection(d)[0]; })
 		.attr("cy", function (d) { return projection(d)[1]; })
 		.attr("r", "0.1px")
 		.attr("fill", "red")
-        .on("mouseover", over)
+        .on("mouseover", over);
 }
 
 // What to do when zooming
-function zoomed() {
-    g.style("stroke-width", 2 / d3.event.scale + "px");
+Mapa.prototype.zoomed = function () {
+    console.log("OPAA");
+    console.log(g);
+    this.g.style("stroke-width", 2 / d3.event.scale + "px");
     //g.selectAll("circle").attr("r",  0.1*d3.event.scale + "px")
-    g.attr(
+    this.g.attr(
             "transform",
             "translate(" + d3.event.translate+
             ")scale(" + d3.event.scale +
             ")"
     );
 }
-function over(d, i) {
+Mapa.prototype.over = function(d, i) {
     console.log("Objeto")
   d3.select(this).selectAll("*").style("fill", "green");
 }
-d3.select(self.frameElement).style("height", height + "px");
-d3.select("svg").on("mousedown.log", function() {
-  console.log(projection.invert(d3.mouse(this)));
-});
+var map1 = new Mapa();
 </script>
