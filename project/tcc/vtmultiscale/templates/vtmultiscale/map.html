@@ -17,28 +17,27 @@
 
 </style>
 <body>
+    <div id="sp_map">
+    </div>
 <script src="{% static 'vtmultiscale/d3/d3.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'vtmultiscale/jquery/jquery-3.1.1.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'vtmultiscale/d3-queue/d3-queue.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'vtmultiscale/topojson/topojson.min.js' %}" type="text/javascript"></script>
 <script>
-
-var Mapa = function(){
-
-    console.log("AAAAA");
+var div_sp_map_id = "#sp_map";
+var url_sp_map_full = "{% static 'vtmultiscale/maps/sp-state-full.json' %}";
+var url_sp_map_simpl = "{% static 'vtmultiscale/maps/sp-state-simpl.json' %}";
+var Mapa = function(div_id, file_map_url){
+    //defining othis for out of scope porpouse
+    var othis = this;
     // Define map size on screen
     this.width = 200,
     this.height = 200;
-    var out_this = this;
-    this.svg = d3.select("body").append("svg")
+    this.svg = d3.select(div_id).append("svg")
         .attr("width", this.width)
         .attr("height", this.height);
 
     this.g = this.svg.append("g");
-    console.log(this);
-    console.log(this.g);
-    console.log("BBBBB");
-    var othis = this;
     // Align center of Sao Paulo to center of map
     this.projection = d3.geo.mercator()
     .scale(1100)
@@ -50,74 +49,45 @@ var Mapa = function(){
 
     // Load data (asynchronously)
     d3_queue.queue()
-        .defer(d3.json, "{% static 'vtmultiscale/maps/sp-state-full.json' %}")
-        .await(function(error, shp){
-            if (error) throw error;
-            // Extracting polygons and contours
-                var states = topojson.feature(shp, shp.objects.states);
-                var states_contour = topojson.mesh(shp, shp.objects.states);
-            // Desenhando estados
-            out_this.g.selectAll(".estado")
-                .data(states.features)
-                .enter()
-                .append("path")
-                .attr("class", "state")
-                .attr("d", out_this.path);
+    .defer(d3.json, file_map_url)
+    .await(function(){
+            othis.ready.apply(othis, arguments);
+    });
 
-            out_this.g.append("path")
-                .datum(states_contour)
-                .attr("d", out_this.path)
-                .attr("class", "state_contour");
-
-
-            station_geo_array = []
-            {% for station in stations %}
-                station_geo_array.push(
-                        [{{station.long}}, {{station.lat}}]
-                    )
-            {% endfor %}
-            out_this.g.selectAll("circle")
-                .data(station_geo_array).enter()
-                .append("circle")
-                .attr("cx", function (d) { return out_this.projection(d)[0]; })
-                .attr("cy", function (d) { return out_this.projection(d)[1]; })
-                .attr("r", "0.1px")
-                .attr("fill", "red")
-                .on("mouseover", over);
-        });
-/*
     this.zoom = d3.behavior.zoom()
     .translate([0, 0])
     .scale(1)
     .scaleExtent([1, 30])
-    .on("zoom", this.zoomed);
+    .on("zoom", function(){
+            othis.zoomed.apply(othis, arguments);
+    });
 
     this.svg.call(this.zoom) // delete this line to disable free zooming
     .call(this.zoom.event);
 
-    d3.select(self.frameElement).style("height", height + "px");
+    d3.select(self.frameElement).style("height", this.height + "px");
     d3.select("svg").on("mousedown.log", function() {
     });
-    */
 };
 
 Mapa.prototype.ready = function(error, shp) {
-  if (error) throw error;
-  // Extracting polygons and contours
+    if (error) throw error;
+    var othis = this;
+    // Extracting polygons and contours
     var states = topojson.feature(shp, shp.objects.states);
     var states_contour = topojson.mesh(shp, shp.objects.states);
-  // Desenhando estados
-  this.g.selectAll(".estado")
-      .data(states.features)
-    .enter()
-      .append("path")
-      .attr("class", "state")
-      .attr("d", path);
+    // Desenhando estados
+    this.g.selectAll(".estado")
+        .data(states.features)
+        .enter()
+        .append("path")
+        .attr("class", "state")
+        .attr("d", this.path);
 
-  this.g.append("path")
-    .datum(states_contour)
-    .attr("d", path)
-    .attr("class", "state_contour");
+    this.g.append("path")
+        .datum(states_contour)
+        .attr("d", this.path)
+        .attr("class", "state_contour");
 
 
     station_geo_array = []
@@ -126,22 +96,20 @@ Mapa.prototype.ready = function(error, shp) {
                 [{{station.long}}, {{station.lat}}]
             )
     {% endfor %}
-    aa = [-48.02, -25.13];
-    bb = [-49.41, -19.58];
     this.g.selectAll("circle")
-		.data(station_geo_array).enter()
-		.append("circle")
-		.attr("cx", function (d) { return projection(d)[0]; })
-		.attr("cy", function (d) { return projection(d)[1]; })
-		.attr("r", "0.1px")
-		.attr("fill", "red")
-        .on("mouseover", over);
+        .data(station_geo_array).enter()
+        .append("circle")
+        .attr("cx", function (d) { return othis.projection(d)[0]; })
+        .attr("cy", function (d) { return othis.projection(d)[1]; })
+        .attr("r", "0.1px")
+        .attr("fill", "red")
+        .on("mouseover", function(data, index, base){
+                return othis.over.apply(othis, [data, index, base, this]);
+        });
 }
 
 // What to do when zooming
 Mapa.prototype.zoomed = function () {
-    console.log("OPAA");
-    console.log(g);
     this.g.style("stroke-width", 2 / d3.event.scale + "px");
     //g.selectAll("circle").attr("r",  0.1*d3.event.scale + "px")
     this.g.attr(
@@ -151,9 +119,11 @@ Mapa.prototype.zoomed = function () {
             ")"
     );
 }
-Mapa.prototype.over = function(d, i) {
+Mapa.prototype.over = function(data, index, base, obj) {
     console.log("Objeto")
-  d3.select(this).selectAll("*").style("fill", "green");
+    console.log(this);
+    console.log(obj);
+    d3.select(obj).style("fill", "green");
 }
-var map1 = new Mapa();
+var map1 = new Mapa(div_sp_map_id, url_sp_map_full);
 </script>
