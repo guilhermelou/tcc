@@ -237,6 +237,7 @@ for station_key in stations:
                 )
             else:
                 month["average"] = -1
+
 # passing through real database
 for station_key in stations:
 

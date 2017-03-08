@@ -24,12 +24,73 @@ def convert_non_str_coordinate(coord):
     '''
     return convert_coordinate(str(int(fabs(coord))))
 
+def getGreaterOrMinor(
+        station_dict,
+        key,
+        current_val=None,
+        greater=True
+    ):
+    station_val = station_dict[key]
+    if current_val == None:
+        return station_val
+    else:
+        if (greater):
+            if (station_val > current_val):
+                return station_val
+            else:
+                return current_val
+        else:
+            if (station_val < current_val):
+                return station_val
+            else:
+                return current_val
+
+def getBBoxFromStationArray(stations):
+    greater_long = None
+    greater_lat = None
+    minor_long = None
+    minor_lat = None
+    for station in stations:
+        greater_long = getGreaterOrMinor(station, "long", greater_long, True)
+        greater_lat= getGreaterOrMinor(station, "lat", greater_lat, True)
+        minor_long= getGreaterOrMinor(station, "long", minor_long, False)
+        minor_lat= getGreaterOrMinor(station, "lat", minor_lat, False)
+    return [greater_long, greater_lat, minor_long, minor_lat]
+
+
 class Section(models.Model):
     name = models.CharField(_('Name'), max_length = 10, unique=True)
+    bbox = ArrayField(
+            models.FloatField(),
+            size=4,
+            default=[]
+    )
+    def updateBBox(self):
+        '''Function used to update bbox values
+        '''
+        stations = Station.objects.filter(
+                sub_section__section=self
+        ).values("lat", "long")
+        self.bbox = getBBoxFromStationArray(stations)
+        self.save()
+
 
 class SubSection(models.Model):
     section = models.ForeignKey(Section)
     code = models.PositiveSmallIntegerField(_('Code'))
+    bbox = ArrayField(
+            models.FloatField(),
+            size=4,
+            default=[]
+    )
+    def updateBBox(self):
+        '''Function used to update bbox values
+        '''
+        stations = Station.objects.filter(
+                sub_section=self
+        ).values("lat", "long")
+        self.bbox = getBBoxFromStationArray(stations)
+        self.save()
 
 class Station(models.Model):
     prefix = models.CharField(
@@ -59,24 +120,18 @@ class Station(models.Model):
             null=True,
             blank=True
         )
-    alt = models.DecimalField(
+    alt = models.FloatField(
             _('Altitude'),
-            max_digits=12,
-            decimal_places=6,
             null=True,
             blank=True
         )
-    lat = models.DecimalField(
+    lat = models.FloatField(
             _('Latitude'),
-            max_digits=13,
-            decimal_places=10,
             null=True,
             blank=True
         )
-    long = models.DecimalField(
+    long = models.FloatField(
             _('Longitude'),
-            max_digits=13,
-            decimal_places=10,
             null=True,
             blank=True
         )

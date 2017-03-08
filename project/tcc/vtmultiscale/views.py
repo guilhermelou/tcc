@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rainfall.models import Station
 from django.http import JsonResponse
+import json
+from django.core import serializers
 # Create your views here.
 
 def index(request):
@@ -35,6 +37,33 @@ def get_year(request):
     return response
 
 def map(request):
-    stations = Station.objects.all().values('lat', 'long')
-    return render(request, 'vtmultiscale/map.html', {"stations": stations})
+    json_fields = (
+        'prefix',
+        'sub_section',
+        'code',
+        'name',
+        'city',
+        'basin',
+        'alt',
+        'lat',
+        'long',
+        'year_ini',
+        'year_end',
+        'range',
+        'day_amount',
+        'null_days',
+        'amount',
+        'average',
+        'consistency'
+    )
+    stations = Station.objects.defer('years').all()
+    stations_json = serializers.serialize(
+            'json',
+            stations,
+            fields = json_fields
+    )
+
+    return render(request, 'vtmultiscale/map.html', {
+            "stations_json": stations_json
+        })
 
