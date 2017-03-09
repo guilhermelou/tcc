@@ -37,7 +37,13 @@ station_geo_array = []
 {% endfor %}
 */
     station_geo_array = {{stations_json|safe}}
-    section_box_array = {{sections_json|safe}}
-    sub_section_box_array = {{sub_sections_json|safe}}
-var map1 = new Mapa(div_sp_map_id, url_sp_map_full, station_geo_array);
+    section_array = {{sections_json|safe}}
+    sub_section_array = {{sub_sections_json|safe}}
+var map1 = new Mapa(
+        div_sp_map_id,
+        url_sp_map_full,
+        station_geo_array,
+        section_array,
+        sub_section_array
+    );
 </script>

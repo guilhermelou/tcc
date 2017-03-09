@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rainfall.models import Station
+from rainfall.models import Station, Section, SubSection
 from django.http import JsonResponse
 import json
 from django.core import serializers
@@ -37,7 +37,7 @@ def get_year(request):
     return response
 
 def map(request):
-    json_fields = (
+    station_fields = [
         'prefix',
         'sub_section',
         'code',
@@ -55,15 +55,27 @@ def map(request):
         'amount',
         'average',
         'consistency'
-    )
+    ]
+
+    '''
+    Poderia ter usado serializacao
     stations = Station.objects.defer('years').all()
     stations_json = serializers.serialize(
             'json',
             stations,
-            fields = json_fields
+            fields = station_fields
     )
+    '''
+    stations = Station.objects.values(*station_fields).all()
+    sections = Section.objects.all()
+    sub_sections = SubSection.objects.all()
+    stations_json = json.dumps(list(stations))
+    sections_json = json.dumps(list(sections.values()))
+    sub_sections_json = json.dumps(list(sub_sections.values()))
 
     return render(request, 'vtmultiscale/map.html', {
-            "stations_json": stations_json
+            "stations_json": stations_json,
+            "sections_json": sections_json,
+            "sub_sections_json": sub_sections_json
         })
 

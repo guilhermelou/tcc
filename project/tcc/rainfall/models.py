@@ -55,7 +55,7 @@ def getBBoxFromStationArray(stations):
         greater_lat= getGreaterOrMinor(station, "lat", greater_lat, True)
         minor_long= getGreaterOrMinor(station, "long", minor_long, False)
         minor_lat= getGreaterOrMinor(station, "lat", minor_lat, False)
-    return [greater_long, greater_lat, minor_long, minor_lat]
+    return [minor_long, greater_lat, greater_long, minor_lat]
 
 
 class Section(models.Model):

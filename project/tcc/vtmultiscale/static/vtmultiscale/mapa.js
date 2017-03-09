@@ -1,32 +1,44 @@
 var Station = function(station){
-    this.model = station.model;
-    this.pk = station.pk;
-    this.fields = station.fields;
-};
-
-Station.prototype.getLat = function() {
-    return parseFloat(this.fields["lat"]);
-};
-
-Station.prototype.getLong = function() {
-    return parseFloat(this.fields["long"]);
+    keys = Object.keys(station);
+    for (i in keys){
+        key = keys[i];
+        this[key] = station[key];
+    }
 };
 
 Station.prototype.getLatLong = function() {
-    return [this.getLat(), this.getLong()];
+    return [this.lat, this.long];
 };
 
 Station.prototype.getLongLat = function() {
-    return [this.getLong(), this.getLat()];
+    return [this.long, this.lat];
 };
 
-var Mapa = function(div_id, file_map_url, stations){
+var Section = function(section){
+    keys = Object.keys(section);
+    for (i in keys){
+        key = keys[i];
+        this[key] = section[key];
+    }
+};
+
+var SubSection = function(sub_section){
+    keys = Object.keys(sub_section);
+    for (i in keys){
+        key = keys[i];
+        this[key] = sub_section[key];
+    }
+};
+
+var Mapa = function(div_id, file_map_url, stations, sections, sub_sections){
     //defining othis for out of scope porpouse
     var othis = this;
     //defining the list of stations
-    this.stations = stations
+    this.stations = stations;
+    this.sections = sections;
+    this.sub_sections = sub_sections;
     // Define map size on screen
-    this.width = 200,
+    this.width = 200;
     this.height = 200;
     this.svg = d3.select(div_id).append("svg")
         .attr("width", this.width)
@@ -100,6 +112,38 @@ Mapa.prototype.ready = function(error, shp) {
         .attr("fill", "red")
         .on("mouseover", function(data, index, base){
                 return othis.over.apply(othis, [data, index, base, this]);
+        });
+    this.g.selectAll(".section")
+        .data(this.sections).enter()
+        .append("rect")
+        .attr("class", "section")
+        .attr("x", function(d){
+            bbox = d['bbox'];
+            up_corner = [bbox[0], bbox[1]];
+            return othis.projection(up_corner)[0];
+        })
+        .attr("y", function(d){
+            bbox = d['bbox'];
+            up_corner = [bbox[0], bbox[1]];
+            return othis.projection(up_corner)[1];
+        })
+        .attr("width", function(d){
+            bbox = d['bbox'];
+            up_corner = othis.projection([bbox[0], bbox[1]]);
+            bt_corner = othis.projection([bbox[2], bbox[3]]);
+            width = up_corner[0] - bt_corner[0]
+            return Math.abs(width);
+        })
+        .attr("height", function(d){
+            bbox = d['bbox'];
+            up_corner = othis.projection([bbox[0], bbox[1]]);
+            bt_corner = othis.projection([bbox[2], bbox[3]]);
+            height = up_corner[1] - bt_corner[1];
+            return Math.abs(height);
+        }).attr("fill", function(d){
+            return "#044B94";
+        }).attr("fill-opacity",function(d){
+            return 0.4;
         });
 };
 
