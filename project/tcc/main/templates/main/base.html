@@ -15,7 +15,9 @@
     <meta name="keywords" content="faculdade, apadrinhamento, bixo, calouro, universidade" />
     <link rel="shortcut icon" href="{% static "main/images/minilogo.png" %}"/>
 	<link href="{% static "main/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <!--
 	<link href="{% static "main/main_style.css" %}" rel="stylesheet" type="text/css">
+    -->
 	<link href="{% static 'main/font-awesome-4.4.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 	
     <title>{% block title %}{% endblock %}</title>
@@ -23,6 +25,7 @@
   </head>
 
   <body>
+      <!--
   	<div id="wrap">
 	  	<header class="navbar navbar-default navbar-fixed-top bs-docs-nav" role="banner">
 		  <div class="container">
@@ -40,17 +43,20 @@
 		    </ul>
 
 		    <ul class="nav navbar-nav navbar-right">
-			</ul><!-- end nav pull-right -->
+			</ul>
 		    </nav>
 		  </div>
 		</header>
 		
+</div>
+-->
+<div class="content">
 	{% block content %}{% endblock %}
 </div>
     <!-- FOOTER -->
     <footer id="footer">
     	<div class="col-sm-12 text-center" >
-    	<h6>Developed by <a target="_blank" href="https://www.facebook.com/lourencosanti" target="_blank">Guilherme H. L. dos Santos</a>, Project on <a target="_blank" href="https://github.com/guilhermelou/adotabixo">Github</a></h6>
+    	<h6>Developed by <a target="_blank" href="https://www.facebook.com/lourencosanti" target="_blank">Guilherme H. L. dos Santos</a>, Project on <a target="_blank" href="https://github.com/guilhermelou/tcc">Github</a></h6>
     	</div>
 			
 	</footer><!-- END FOOTER -->

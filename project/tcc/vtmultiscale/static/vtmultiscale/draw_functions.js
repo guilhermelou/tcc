@@ -1,119 +1,119 @@
 function drawCalendar(data){
-        data_years = data['year_list'];
-        rect.filter(function(d) {
-            date = d['date'];
-            day_obj = getDayByDate(date, data_years);
-            if (day_obj!=null){
-                return day_obj["day"];
-            }
-        }).attr("class", function(d) {
-            date = d['date'];
-            day_obj = getDayByDate(date, data_years);
-            if (day_obj!=null){
-                return "day " + color(day_obj["day_average"]);
-            }
-        }).select("title")
-        .text(function(d) {
-            date = d['date'];
-            day_obj = getDayByDate(date, data_years);
-            if (day_obj!=null){
-                return format(date) + ": " + day_obj["day_average"];
-            }
-        });
-
-        month_rect.filter(function(d) {
-            date = d['date'];
-            month_obj = getMonthByDate(date, data_years);
-            if (month_obj!=null){
-                return month_obj["month"];
-            }
-        }).attr("class", function(d) {
-            date = d['date'];
-            month_obj = getMonthByDate(date, data_years);
-            if (month_obj!=null){
-                return "month " + color_month(month_obj["average"]);
-            }
-        }).select("title")
-        .text(function(d) {
-            date = d['date'];
-            month_obj = getMonthByDate(date, data_years);
-            if (month_obj!=null){
-                return format_month(date) + ": " + month_obj["average"];
-            }
-        });
-
-        year_rect.filter(function(d) {
-            date = d['date'];
-            year_obj = getYearByDate(date, data_years);
-            if (year_obj!=null){
-                return year_obj["year"];
-            }
-        }).attr("class", function(d) {
-            date = d['date'];
-            year_obj = getYearByDate(date, data_years);
-            if (year_obj!=null){
-                return "year " + color_year(year_obj["average"]);
-            }
-        }).select("title").text(function(d) {
-            date = d['date'];
-            year_obj = getYearByDate(date, data_years);
-            if (year_obj!=null){
-                return format_year(date) + ": " + year_obj["average"];
-            }
-        });
-        //  Tooltip
-        rect.on("mouseover", mouseOverDate);
-        rect.on("mouseout", mouseOutDate);
-        month_rect.on("mouseover", mouseOverDate);
-        month_rect.on("mouseout", mouseOutDate);
-        year_rect.on("mouseover", mouseOverDate);
-        year_rect.on("mouseout", mouseOutDate);
-        function mouseOverDate(d) {
-            tooltip.style("visibility", "visible");
-            date = d["date"];
-            type = d["type"];
-            var amount_data = -1;
-            var date_formated = -1;
-            switch(type){
-                case "day":
-                    day_obj = getDayByDate(date, data_years);
-                    if (day_obj!=null){
-                        amount_data = day_obj["day_average"];
-                        date_formated = format(date);
-                    }
-                    break;
-                case "month":
-                    month_obj = getMonthByDate(date, data_years);
-                    if (month_obj!=null){
-                        amount_data = month_obj["average"];
-                        date_formated = format_month(date);
-                    }
-                    break;
-                case "year":
-                    year_obj = getYearByDate(date, data_years);
-                    if (year_obj!=null){
-                        amount_data = year_obj["average"];
-                        date_formated = format_year(date);
-                    }
-                    break;
-                default:
-            }
-            var purchase_text = date_formated + ": " + amount_data;
-            tooltip.transition()
-                        .duration(200)
-                        .style("opacity", .9);
-            tooltip.html(purchase_text)
-                        .style("left", (d3.event.pageX)+30 + "px")
-                        .style("top", (d3.event.pageY) + "px");
+    data_years = data['year_list'];
+    rect.filter(function(d) {
+        date = d['date'];
+        day_obj = getDayByDate(date, data_years);
+        if (day_obj!=null){
+            return day_obj["day"];
         }
-        function mouseOutDate(d) {
-            tooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0);
-            var $tooltip = $("#tooltip");
-            $tooltip.empty();
+    }).attr("class", function(d) {
+        date = d['date'];
+        day_obj = getDayByDate(date, data_years);
+        if (day_obj!=null){
+            return "day " + color(day_obj["day_average"]);
         }
+    }).select("title")
+    .text(function(d) {
+        date = d['date'];
+        day_obj = getDayByDate(date, data_years);
+        if (day_obj!=null){
+            return format(date) + ": " + day_obj["day_average"];
+        }
+    });
+
+    month_rect.filter(function(d) {
+        date = d['date'];
+        month_obj = getMonthByDate(date, data_years);
+        if (month_obj!=null){
+            return month_obj["month"];
+        }
+    }).attr("class", function(d) {
+        date = d['date'];
+        month_obj = getMonthByDate(date, data_years);
+        if (month_obj!=null){
+            return "month " + color_month(month_obj["average"]);
+        }
+    }).select("title")
+    .text(function(d) {
+        date = d['date'];
+        month_obj = getMonthByDate(date, data_years);
+        if (month_obj!=null){
+            return format_month(date) + ": " + month_obj["average"];
+        }
+    });
+
+    year_rect.filter(function(d) {
+        date = d['date'];
+        year_obj = getYearByDate(date, data_years);
+        if (year_obj!=null){
+            return year_obj["year"];
+        }
+    }).attr("class", function(d) {
+        date = d['date'];
+        year_obj = getYearByDate(date, data_years);
+        if (year_obj!=null){
+            return "year " + color_year(year_obj["average"]);
+        }
+    }).select("title").text(function(d) {
+        date = d['date'];
+        year_obj = getYearByDate(date, data_years);
+        if (year_obj!=null){
+            return format_year(date) + ": " + year_obj["average"];
+        }
+    });
+    //  Tooltip
+    rect.on("mouseover", mouseOverDate);
+    rect.on("mouseout", mouseOutDate);
+    month_rect.on("mouseover", mouseOverDate);
+    month_rect.on("mouseout", mouseOutDate);
+    year_rect.on("mouseover", mouseOverDate);
+    year_rect.on("mouseout", mouseOutDate);
+    function mouseOverDate(d) {
+        tooltip.style("visibility", "visible");
+        date = d["date"];
+        type = d["type"];
+        var amount_data = -1;
+        var date_formated = -1;
+        switch(type){
+            case "day":
+                day_obj = getDayByDate(date, data_years);
+                if (day_obj!=null){
+                    amount_data = day_obj["day_average"];
+                    date_formated = format(date);
+                }
+                break;
+            case "month":
+                month_obj = getMonthByDate(date, data_years);
+                if (month_obj!=null){
+                    amount_data = month_obj["average"];
+                    date_formated = format_month(date);
+                }
+                break;
+            case "year":
+                year_obj = getYearByDate(date, data_years);
+                if (year_obj!=null){
+                    amount_data = year_obj["average"];
+                    date_formated = format_year(date);
+                }
+                break;
+            default:
+        }
+        var purchase_text = "<p>"+date_formated + ":</p> " + amount_data;
+        tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+        tooltip.html(purchase_text)
+                    .style("left", (d3.event.pageX)+30 + "px")
+                    .style("top", (d3.event.pageY) + "px");
     }
+    function mouseOutDate(d) {
+        tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+        var $tooltip = $("#tooltip");
+        $tooltip.empty();
+    }
+}
         //var width = 960,
         //    height = 750,
         //    cellSize = 35; // cell size
@@ -137,29 +137,9 @@ function drawCalendar(data){
 
         var shift_up = cellSize * 3;
 
-        var day = d3.time.format("%w"), // day of the week
-            day_of_month = d3.time.format("%e"), // day of the month
-            day_of_year = d3.time.format("%j"),
-            week = d3.time.format("%U"), // week number of the year
-            month = d3.time.format("%m"), // month number
-            year = d3.time.format("%Y"),
-            percent = d3.format(".1%"),
-            format = d3.time.format("%Y-%m-%d");
-            format_month = d3.time.format("%Y-%m");
-            format_year= d3.time.format("%Y");
-        var color = d3.scale.quantize()
-            .domain([0,300])
-            .range(d3.range(11).map(function(d) {  return "q" + d + "-11"; }));
-        var color_month = d3.scale.quantize()
-            .domain([0,300])
-            .range(d3.range(11).map(function(d) {  return "q" + d + "-11"; }));
-        var color_year = d3.scale.quantize()
-            .domain([0,50])
-            .range(d3.range(11).map(function(d) {  return "q" + d + "-11"; }));
-
-        var svg = d3.select("#chart").append("svg")
-            .attr("width", 800)
-            .attr("height", 800)
+        var svg = d3.select("#chart0").append("svg")
+//            .attr("width", 800)
+//            .attr("height", 800)
             .append("g")
             .call(zoom);
 

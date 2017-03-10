@@ -65,13 +65,25 @@ class Section(models.Model):
             size=4,
             default=[]
     )
+    average = models.FloatField(_('Average'), blank=True, null=True)
     def updateBBox(self):
         '''Function used to update bbox values
         '''
         stations = Station.objects.filter(
                 sub_section__section=self
-        ).values("lat", "long")
+            ).values("lat", "long")
         self.bbox = getBBoxFromStationArray(stations)
+        self.save()
+    def updateAverage(self):
+        '''Function used to update average values
+        '''
+        stations = Station.objects.filter(
+                sub_section__section=self
+            ).values("average")
+        average = 0
+        for station in stations:
+            average += station['average']
+        self.average = average/len(stations)
         self.save()
 
 

@@ -1,34 +1,3 @@
-var Station = function(station){
-    keys = Object.keys(station);
-    for (i in keys){
-        key = keys[i];
-        this[key] = station[key];
-    }
-};
-
-Station.prototype.getLatLong = function() {
-    return [this.lat, this.long];
-};
-
-Station.prototype.getLongLat = function() {
-    return [this.long, this.lat];
-};
-
-var Section = function(section){
-    keys = Object.keys(section);
-    for (i in keys){
-        key = keys[i];
-        this[key] = section[key];
-    }
-};
-
-var SubSection = function(sub_section){
-    keys = Object.keys(sub_section);
-    for (i in keys){
-        key = keys[i];
-        this[key] = sub_section[key];
-    }
-};
 
 var Mapa = function(div_id, file_map_url, stations, sections, sub_sections){
     //defining othis for out of scope porpouse
@@ -44,7 +13,8 @@ var Mapa = function(div_id, file_map_url, stations, sections, sub_sections){
         .attr("width", this.width)
         .attr("height", this.height);
 
-    this.g = this.svg.append("g");
+    this.g = this.svg.append("g")
+        .attr("class", "RdYlGn");
     // Align center of Sao Paulo to center of map
     this.projection = d3.geo.mercator()
     .scale(1100)
@@ -96,27 +66,12 @@ Mapa.prototype.ready = function(error, shp) {
         .attr("d", this.path)
         .attr("class", "state_contour");
 
-
-    this.g.selectAll("circle")
-        .data(this.stations).enter()
-        .append("circle")
-        .attr("cx", function (d) {
-                var station = new Station(d);
-                return othis.projection(station.getLongLat())[0];
-        })
-        .attr("cy", function (d) {
-                var station = new Station(d);
-                return othis.projection(station.getLongLat())[1];
-        })
-        .attr("r", "0.1px")
-        .attr("fill", "red")
-        .on("mouseover", function(data, index, base){
-                return othis.over.apply(othis, [data, index, base, this]);
-        });
-    this.g.selectAll(".section")
+    this.section_rects = this.g.selectAll(".section")
         .data(this.sections).enter()
         .append("rect")
-        .attr("class", "section")
+        .attr("class", function(d) {
+            return "section " + color_section(d["average"]);
+        })
         .attr("x", function(d){
             bbox = d['bbox'];
             up_corner = [bbox[0], bbox[1]];
@@ -140,23 +95,46 @@ Mapa.prototype.ready = function(error, shp) {
             bt_corner = othis.projection([bbox[2], bbox[3]]);
             height = up_corner[1] - bt_corner[1];
             return Math.abs(height);
-        }).attr("fill", function(d){
-            return "#044B94";
         }).attr("fill-opacity",function(d){
             return 0.4;
+        });
+
+    this.station_circles = this.g.selectAll("circle")
+        .data(this.stations).enter()
+        .append("circle")
+        .attr("cx", function (d) {
+                var station = new Station(d);
+                return othis.projection(station.getLongLat())[0];
+        })
+        .attr("cy", function (d) {
+                var station = new Station(d);
+                return othis.projection(station.getLongLat())[1];
+        })
+        .attr("r", "0.5px")
+        .attr("class", function(d) {
+            return "station " + color_station(d["average"]);
+        })
+        .on("mouseover", function(data, index, base){
+                return othis.over.apply(othis, [data, index, base, this]);
+        })
+        .on("mouseout", function(data, index, base){
+                return othis.out.apply(othis, [data, index, base, this]);
+        })
+        .on("click", function(data, index, base){
+                return othis.click.apply(othis, [data, index, base, this]);
         });
 };
 
 // What to do when zooming
 Mapa.prototype.zoomed = function () {
     this.g.style("stroke-width", 2 / d3.event.scale + "px");
-    //g.selectAll("circle").attr("r",  0.1*d3.event.scale + "px")
     this.g.attr(
             "transform",
             "translate(" + d3.event.translate+
             ")scale(" + d3.event.scale +
             ")"
     );
+    //this.g.selectAll("circle").attr("r",""+0.5*(1/(d3.event.scale*0.7))+"px");
 };
 
 Mapa.prototype.over = function(data, index, base, obj) {
@@ -164,6 +142,17 @@ Mapa.prototype.over = function(data, index, base, obj) {
     console.log(this);
     console.log(obj);
     console.log(obj.__data__);
-    d3.select(obj).style("fill", "green");
+    d3.select(obj).attr("r", "5px");
 };
 
+Mapa.prototype.out = function(data, index, base, obj) {
+    console.log("Objeto")
+    console.log(this);
+    console.log(obj);
+    console.log(obj.__data__);
+    d3.select(obj).attr("r", "0.5px");
+};
+
+Mapa.prototype.click = function(data, index, base, obj) {
+    console.log("CLICK");
+};

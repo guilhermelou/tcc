@@ -6,6 +6,38 @@ from django.core import serializers
 # Create your views here.
 
 def index(request):
+    station_fields = [
+        'prefix',
+        'sub_section',
+        'code',
+        'name',
+        'city',
+        'basin',
+        'alt',
+        'lat',
+        'long',
+        'year_ini',
+        'year_end',
+        'range',
+        'day_amount',
+        'null_days',
+        'amount',
+        'average',
+        'consistency'
+    ]
+
+    stations = Station.objects.values(*station_fields).all()
+    sections = Section.objects.all()
+    sub_sections = SubSection.objects.all()
+    stations_json = json.dumps(list(stations))
+    sections_json = json.dumps(list(sections.values()))
+    sub_sections_json = json.dumps(list(sub_sections.values()))
+
+    return render(request, 'vtmultiscale/index.html', {
+            "stations_json": stations_json,
+            "sections_json": sections_json,
+            "sub_sections_json": sub_sections_json
+        })
     return render(request, 'vtmultiscale/index.html')
 
 def custom(request):
@@ -20,7 +52,6 @@ def calendar(request):
     for year in years:
         if year['year'] >= min_year and year['year'] <= max_year:
             year_list.append(year)
-    print(year_list)
     return render(request, 'vtmultiscale/calendar.html', {"station": station})
 
 def get_year(request):
@@ -57,15 +88,6 @@ def map(request):
         'consistency'
     ]
 
-    '''
-    Poderia ter usado serializacao
-    stations = Station.objects.defer('years').all()
-    stations_json = serializers.serialize(
-            'json',
-            stations,
-            fields = station_fields
-    )
-    '''
     stations = Station.objects.values(*station_fields).all()
     sections = Section.objects.all()
     sub_sections = SubSection.objects.all()
