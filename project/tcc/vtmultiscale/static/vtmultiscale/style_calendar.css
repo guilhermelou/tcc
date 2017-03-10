@@ -1,7 +1,9 @@
 body {
     font: 1.1em sans-serif;
 }
-
+.menu{
+    position: static;
+}
 #chart{
     margin: 0 auto;
     /*

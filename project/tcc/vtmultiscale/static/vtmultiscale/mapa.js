@@ -154,5 +154,6 @@ Mapa.prototype.out = function(data, index, base, obj) {
 };
 
 Mapa.prototype.click = function(data, index, base, obj) {
-    console.log("CLICK");
+    addChart(obj.__data__);
 };
+

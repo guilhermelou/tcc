@@ -7,6 +7,7 @@ from django.core import serializers
 
 def index(request):
     station_fields = [
+        'id',
         'prefix',
         'sub_section',
         'code',
@@ -55,17 +56,28 @@ def calendar(request):
     return render(request, 'vtmultiscale/calendar.html', {"station": station})
 
 def get_year(request):
-    min_year = 1990
-    max_year = 1997
-    station = Station.objects.all().first()
-    years = station.years
-    year_list = []
-    for year in years:
-        if year['year'] >= min_year and year['year'] <= max_year:
-            year_list.append(year)
-    print(year_list)
-    response = JsonResponse({'year_list': year_list})
-    return response
+    if request.method == "POST":
+        # 1990
+        # 1997
+        min_year = int(request.POST["year_ini"])
+        max_year = int(request.POST["year_end"])
+        print min_year
+        print max_year
+        station_id = int(request.POST["station_id"])
+        station = None
+        try:
+            station = Station.objects.get(id=station_id)
+        except:
+            pass
+        years = station.years
+        year_list = []
+        for year in years:
+            print year['year']
+            if year['year'] >= min_year and year['year'] <= max_year:
+                year_list.append(year)
+        print(year_list)
+        response = JsonResponse({'year_list': year_list})
+        return response
 
 def map(request):
     station_fields = [

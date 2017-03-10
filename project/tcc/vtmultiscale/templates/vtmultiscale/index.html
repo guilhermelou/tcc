@@ -13,22 +13,24 @@
     </div>
     <div class="col-lg-3">
         <div class="col-lg-12">
-            <div id="chart0" class="clearfix"></div>
+            <div id="chart0" class="chart">
+            </div>
         </div>
     </div>
     <div class="col-lg-3">
         <div class="col-lg-12">
-            <div id="chart1" class="clearfix"></div>
+            <div id="chart1" class="clearfix chart">
+            </div>
         </div>
     </div>
     <div class="col-lg-3">
         <div class="col-lg-12">
-            <div id="chart2" class="clearfix"></div>
+            <div id="chart2" class="clearfix chart"></div>
         </div>
     </div>
     <div class="col-lg-3">
         <div class="col-lg-12">
-            <div id="chart3" class="clearfix"></div>
+            <div id="chart3" class="clearfix chart"></div>
         </div>
     </div>
 
@@ -59,17 +61,45 @@ var map1 = new Mapa(
         section_array,
         sub_section_array
     );
-
+var chart_to_draw = "#chart0";
+var current_chart = null;
+function opa(){
+    console.log("opaaaaaa");
+    addChart();
+}
+function addChart(station){
+    console.log("opaaaa");
+    var chart_array = document.getElementsByClassName("chart");
+    for (var i=0; i<chart_array.length; i++){
+        var chart = chart_array[i];
+        if (chart.children.length < 1){
+            chart_to_draw = "#"+chart.id;
+            break;
+        }
+    }
+    getYears(station, [1990,1996]);
+}
+function drawCalendar(d){
+    console.log("Drawing");
+    console.log(chart_to_draw);
+    current_chart = new VtMultiScale(chart_to_draw, [1990,1996], d);
+}
+var getYears;
 $(document).ready(function(){
 	var data_years = 'banana';
     var test_promise;
     $.ajaxSetup({
         data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
     });
-    function get_years() {
+    getYears = function get_years(station, year_range) {
         test_promise = $.ajax({
             url: '{% url 'vtmultiscale:get_year' %}',
             type: 'post',
+            data: {
+                    'station_id': station["id"],
+                    'year_ini':year_range[0],
+                    'year_end':year_range[1]
+            },
             dataType: "json",
             success: drawCalendar,
             error: function(data) {
@@ -77,8 +107,6 @@ $(document).ready(function(){
             }
         });
     }
-
-get_years();
 });
 </script>
 {% endblock %}
