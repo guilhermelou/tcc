@@ -134,6 +134,7 @@ Mapa.prototype.zoomed = function () {
             ")scale(" + d3.event.scale +
             ")"
     );
+	test_extent(-d3.event.translate[0], -d3.event.translate[1], d3.event.scale);
     //this.g.selectAll("circle").attr("r",""+0.5*(1/(d3.event.scale*0.7))+"px");
 };
 

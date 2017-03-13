@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^custom/', 'vtmultiscale.views.custom', name='main_index'),
     url(r'^calendar/', 'vtmultiscale.views.calendar', name='calendar'),
     url(r'^map/', 'vtmultiscale.views.map', name='map'),
+    url(r'^focus_context/', 'vtmultiscale.views.focus_context', name='focus_context'),
     url(
 		r'^multi-scale/',
 		include('vtmultiscale.urls', namespace='vtmultiscale')

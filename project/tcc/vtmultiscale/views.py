@@ -113,3 +113,5 @@ def map(request):
             "sub_sections_json": sub_sections_json
         })
 
+def focus_context(request):
+    return render(request, 'vtmultiscale/focus_context.html')

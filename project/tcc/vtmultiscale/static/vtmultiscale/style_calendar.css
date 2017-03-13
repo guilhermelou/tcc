@@ -14,6 +14,11 @@ body {
 fill: #eee;
 }
 
+.extent{
+    fill-opacity: 0.3;
+    fill: gray;
+    visibility: visible;
+}
 line {
 stroke: #fff;
 }
