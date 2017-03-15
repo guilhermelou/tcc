@@ -85,8 +85,10 @@ var map1 = new Mapa(
 
 var map2 = new MapaFocusContext(
         focus_context_id,
-        url_sp_map_full
+        url_sp_map_full,
+        map1
     );
+map1.addBrushMap(map2);
 
 var map3 = new Mapa(
         div_selected_stations_id,
@@ -96,52 +98,8 @@ var map3 = new Mapa(
         []
     );
 
-var scale = d3.scale.linear()
-.domain([0, 200])
-.range([0, 200]);
 
-var brush = d3.svg.brush();
-
-
-brush.y(scale);
-brush.x(scale);
-brush.extent([[0, 0], [0,0]]);
-
-brush.on('brushend', function() {
-    console.log('end');
-});
-
-brush.on('brush', function() {
-    trans_scale = map1.bboxToTransScale(
-        [
-            brush.extent()[0][0],
-            brush.extent()[0][1],
-            brush.extent()[1][0],
-            brush.extent()[1][1]
-        ]
-    );
-    translate = trans_scale[0];
-    min_scale = trans_scale[1];
-    map1.g.transition()
-		.duration(750)
-		.attr(
-            "transform",
-            "translate("+translate+")scale("+min_scale+")"
-    );
-});
-
-brush(map2.g_brush);
-
-
-function test_extent(x, y, zoom_scale){
-    if(map2){
-        bbox = map1.transScaleToBBox(x, y, zoom_scale);
-        map2.g_brush.selectAll(".extent")
-            .attr("x", bbox[0])
-            .attr("y", bbox[1])
-            .attr("width", bbox[2])
-            .attr("height", bbox[3]);
-    }
+function zoomIn(x, y, zoom_scale){
     if(map3){
         bbox = getBBoxFromStationArray(stations_test_array);
         trans_scale = map1.bboxToTransScale(
@@ -179,6 +137,7 @@ function addChart(station){
             break;
         }
     }
+    d3.select(chart_to_draw).datum(function(){return station});
     getYears(station, [1990,1996]);
 }
 function drawCalendar(d){
@@ -186,6 +145,7 @@ function drawCalendar(d){
     console.log(chart_to_draw);
     current_chart = new VtMultiScale(chart_to_draw, [1990,1996], d);
 }
+
 var getYears;
 $(document).ready(function(){
 	var data_years = 'banana';

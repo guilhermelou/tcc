@@ -5,6 +5,7 @@ var MapaRaw = function(div_id, file_map_url){
     this.width = 200;
     this.height = 200;
     this.svg = d3.select(div_id).append("svg")
+        .attr("class", "mapa")
         .attr("width", this.width)
         .attr("height", this.height);
 

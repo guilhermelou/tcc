@@ -4,6 +4,11 @@ body {
 .menu{
     position: static;
 }
+.mapa{
+    border-width: thin;
+    border-style: solid;
+    border-color: gray;
+}
 #chart{
     margin: 0 auto;
     /*

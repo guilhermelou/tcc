@@ -6,10 +6,13 @@ var Mapa = function(div_id, file_map_url, stations, sections, sub_sections){
     this.stations = stations;
     this.sections = sections;
     this.sub_sections = sub_sections;
+    // Declarating future brush_map
+    this.brush_map = null;
     // Define map size on screen
     this.width = 200;
     this.height = 200;
     this.svg = d3.select(div_id).append("svg")
+        .attr("class", "mapa")
         .attr("width", this.width)
         .attr("height", this.height);
 
@@ -157,6 +160,9 @@ Mapa.prototype.bboxToTransScale = function(bbox){
     return ([translate, min_scale]);
 };
 
+Mapa.prototype.addBrushMap = function (brush_map) {
+    this.brush_map = brush_map;
+};
 // What to do when zooming
 Mapa.prototype.zoomed = function () {
     this.g.style("stroke-width", 2 / d3.event.scale + "px");
@@ -166,7 +172,22 @@ Mapa.prototype.zoomed = function () {
             ")scale(" + d3.event.scale +
             ")"
     );
-	test_extent(d3.event.translate[0], d3.event.translate[1], d3.event.scale);
+
+    if(this.brush_map){
+        bbox = transScaleToBBox(
+                d3.event.translate[0],
+                d3.event.translate[1],
+                d3.event.scale,
+                this.width,
+                this.height
+        );
+        this.brush_map.g_brush.selectAll(".extent")
+            .attr("x", bbox[0])
+            .attr("y", bbox[1])
+            .attr("width", bbox[2])
+            .attr("height", bbox[3]);
+    }
+	//test_extent(d3.event.translate[0], d3.event.translate[1], d3.event.scale);
     //this.g.selectAll("circle").attr("r",""+0.5*(1/(d3.event.scale*0.7))+"px");
 };
 

@@ -22,16 +22,16 @@ var VtMultiScale = function(chart, year_range, data){
 
         this.svg = d3.select(chart).append("svg")
             .attr("height", height)
-            .append("g")
+        this.g = this.svg.append("g")
             .call(zoom);
-        this.g = this.svg.selectAll("g")
+        this.g_years = this.g.selectAll("g")
             .data(d3.range(from_year, to_year))
             .enter().append("g")
             //.attr("width", width)
             //.attr("height", height)
             .attr("class", "RdYlGn");
 
-        this.rect = this.g.selectAll(".day")
+        this.rect = this.g_years.selectAll(".day")
             .data(function(d) {
                 array_date = d3.time.days(
                         new Date(d, 0, 1), new Date(d + 1, 0, 1)
@@ -78,7 +78,7 @@ var VtMultiScale = function(chart, year_range, data){
 
         // shifiting days slots
         shifting_days = 12*(cellSize*7.2);
-        this.month_rect = this.g.selectAll(".month")
+        this.month_rect = this.g_years.selectAll(".month")
             .data(function(d) {
                 array_date = d3.time.months(
                     new Date(d, 0, 1), new Date(d + 1, 0, 1)
@@ -123,7 +123,7 @@ var VtMultiScale = function(chart, year_range, data){
                 year_cell_height*1.5*12 -
                 year_cell_height*0.8
             );
-        this.year_rect = this.g.selectAll(".year")
+        this.year_rect = this.g_years.selectAll(".year")
             .data(function(d) {
                 array_date = d3.time.years(
                         new Date(d, 0, 1), new Date(d + 1, 0, 1)
@@ -308,7 +308,7 @@ VtMultiScale.prototype.mouseOutDate = function(data, index, base, obj){
 };
 
 VtMultiScale.prototype.zoomed = function(){
-    this.svg.attr(
+    this.g.attr(
             "transform",
             "translate(" +
             d3.event.translate +

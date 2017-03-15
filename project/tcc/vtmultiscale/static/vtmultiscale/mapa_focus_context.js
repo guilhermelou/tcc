@@ -1,16 +1,17 @@
-var MapaFocusContext = function(div_id, file_map_url){
+var MapaFocusContext = function(div_id, file_map_url, target_map){
     //defining othis for out of scope porpouse
     var othis = this;
+    this.target_map = target_map;
     // Define map size on screen
     this.width = 200;
     this.height = 200;
     this.svg = d3.select(div_id).append("svg")
+        .attr("class", "mapa")
         .attr("width", this.width)
         .attr("height", this.height);
 
     this.g = this.svg.append("g")
         .attr("class", "RdYlGn");
-    this.g_brush = this.svg.append("g");
     // Align center of Sao Paulo to center of map
     this.projection = d3.geo.mercator()
     .scale(1100)
@@ -28,6 +29,24 @@ var MapaFocusContext = function(div_id, file_map_url){
     });
 
     d3.select(self.frameElement).style("height", this.height + "px");
+
+    this.g_brush = this.svg.append("g");
+    this.brush_scale = d3.scale.linear()
+    .domain([0, this.width])
+    .range([0, this.width]);
+
+    this.brush = d3.svg.brush();
+
+
+    this.brush.y(this.brush_scale);
+    this.brush.x(this.brush_scale);
+    this.brush.extent([[0, 0], [0,0]]);
+
+    this.brush.on('brush', function() {
+        othis.brushing.apply(othis, arguments);
+    });
+
+    this.brush(this.g_brush);
 };
 
 MapaFocusContext.prototype.ready = function(error, shp) {
@@ -51,34 +70,26 @@ MapaFocusContext.prototype.ready = function(error, shp) {
 
 };
 
-MapaFocusContext.prototype.transScaleToBBox = function(x, y, zoom_scale){
-    x = -x;
-    y = -y;
-    x1 = x>0? (x)/zoom_scale: 0;
-    y1 = y>0? (y)/zoom_scale: 0;
-    w = (200+x)/zoom_scale - (x>0? x/zoom_scale: 0);
-    h = (200+y)/zoom_scale - (y>0? y/zoom_scale: 0);
-    return ([x1, y1, w, h]);
+MapaFocusContext.prototype.brushing = function() {
+    if (this.target_map){
+        var trans_scale = bboxToTransScale(
+            [
+                this.brush.extent()[0][0],
+                this.brush.extent()[0][1],
+                this.brush.extent()[1][0],
+                this.brush.extent()[1][1]
+            ],
+            this.width,
+            this.height
+        );
+        var translate = trans_scale[0];
+        var min_scale = trans_scale[1];
+        this.target_map.g.transition()
+            .duration(750)
+            .attr(
+                "transform",
+                "translate("+translate+")scale("+min_scale+")"
+        );
+    }
 };
 
-MapaFocusContext.prototype.bboxToTransScale = function(bbox){
-    x = bbox[0];
-    y = bbox[1];
-    w = bbox[2];
-    h = bbox[3];
-    // width
-    dx = w-x;
-    //height
-    dy = h-y;
-    //center axis x
-    point_x = (x + w)/2;
-    //center axis y
-    point_y = (y + h)/2;
-    //getting scale based on max value between width and height
-    //but the scale will be the shortest zoom in
-    min_scale = .95/Math.max(dx/200, dy/200);
-    // translating the point x to right corner (200/2) minus center on axis
-    // x plus scale. Analog for axis y.
-    translate = [200/2 - min_scale*point_x, 200/2 - min_scale*point_y];
-    return ([translate, min_scale]);
-};
