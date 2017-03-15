@@ -298,7 +298,7 @@ VtMultiScale.prototype.mouseOverDate = function(data, index, base, obj){
 };
 
 VtMultiScale.prototype.mouseOutDate = function(data, index, base, obj){
-    tooltip.transition()
+    this.tooltip.transition()
             .duration(500)
             .style("opacity", 0);
     /*
