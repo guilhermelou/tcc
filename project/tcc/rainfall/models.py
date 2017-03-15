@@ -24,12 +24,7 @@ def convert_non_str_coordinate(coord):
     '''
     return convert_coordinate(str(int(fabs(coord))))
 
-def getGreaterOrMinor(
-        station_dict,
-        key,
-        current_val=None,
-        greater=True
-    ):
+def getGreaterOrMinor(station_dict, key, current_val=None, greater=True):
     station_val = station_dict[key]
     if current_val == None:
         return station_val

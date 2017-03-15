@@ -125,6 +125,38 @@ Mapa.prototype.ready = function(error, shp) {
         });
 };
 
+Mapa.prototype.transScaleToBBox = function(x, y, zoom_scale){
+    x = -x;
+    y = -y;
+    x1 = x>0? (x)/zoom_scale: 0;
+    y1 = y>0? (y)/zoom_scale: 0;
+    w = (200+x)/zoom_scale - (x>0? x/zoom_scale: 0);
+    h = (200+y)/zoom_scale - (y>0? y/zoom_scale: 0);
+    return ([x1, y1, w, h]);
+};
+
+Mapa.prototype.bboxToTransScale = function(bbox){
+    x = bbox[0];
+    y = bbox[1];
+    w = bbox[2];
+    h = bbox[3];
+    // width
+    dx = w-x;
+    //height
+    dy = h-y;
+    //center axis x
+    point_x = (x + w)/2;
+    //center axis y
+    point_y = (y + h)/2;
+    //getting scale based on max value between width and height
+    //but the scale will be the shortest zoom in
+    min_scale = .95/Math.max(dx/200, dy/200);
+    // translating the point x to right corner (200/2) minus center on axis
+    // x plus scale. Analog for axis y.
+    translate = [200/2 - min_scale*point_x, 200/2 - min_scale*point_y];
+    return ([translate, min_scale]);
+};
+
 // What to do when zooming
 Mapa.prototype.zoomed = function () {
     this.g.style("stroke-width", 2 / d3.event.scale + "px");
@@ -134,7 +166,7 @@ Mapa.prototype.zoomed = function () {
             ")scale(" + d3.event.scale +
             ")"
     );
-	test_extent(-d3.event.translate[0], -d3.event.translate[1], d3.event.scale);
+	test_extent(d3.event.translate[0], d3.event.translate[1], d3.event.scale);
     //this.g.selectAll("circle").attr("r",""+0.5*(1/(d3.event.scale*0.7))+"px");
 };
 
