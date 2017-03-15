@@ -21,27 +21,13 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3">
-        <div class="col-lg-12">
-            <div id="chart0" class="chart">
+    <div id="charts">
+            <div id="chart0" class="chart col-lg-3">
             </div>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="col-lg-12">
-            <div id="chart1" class="clearfix chart">
+            <div id="chart1" class="clearfix chart col-lg-3">
             </div>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="col-lg-12">
-            <div id="chart2" class="clearfix chart"></div>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <div class="col-lg-12">
-            <div id="chart3" class="clearfix chart"></div>
-        </div>
+            <div id="chart2" class="clearfix chart col-lg-3"></div>
+            <div id="chart3" class="clearfix chart col-lg-3"></div>
     </div>
 
 <script src="{% static 'vtmultiscale/d3/d3.min.js' %}" type="text/javascript"></script>
@@ -120,7 +106,13 @@ function zoomIn(x, y, zoom_scale){
         );
     }
 }
-
+function createHtmlChart(id, father){
+    var chart_aux = document.createElement("div");
+    chart_aux.id = "chart"+id;
+    chart_aux.className = "chart col-lg-3";
+    father.appendChild(chart_aux);
+}
+//createHtmlChart(8, document.getElementById("charts"));
 var chart_to_draw = "#chart0";
 var current_chart = null;
 function opa(){
