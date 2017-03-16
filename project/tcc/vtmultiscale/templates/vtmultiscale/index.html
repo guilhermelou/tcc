@@ -20,14 +20,109 @@
             <div id="selected_stations">
             </div>
         </div>
+        <div class="col-lg-2">
+            <h5>Configurações Globais</h5>
+            <label> Ano Inicial: </label>
+            <select>
+                <option>1966</option>
+                <option>1965</option>
+                <option>1964</option>
+                <option>1963</option>
+                <option>1962</option>
+                <option>1961</option>
+                <option>1960</option>
+            </select>
+            <br>
+            <label> Ano Final: </label>
+            <select>
+                <option>1966</option>
+                <option>1965</option>
+                <option>1964</option>
+                <option>1963</option>
+                <option>1962</option>
+                <option>1961</option>
+                <option>1960</option>
+            </select>
+        </div>
+        <div class="col-lg-4">
+            <h5>Busca Estações</h5>
+            <label>Seção: </label>
+            <select id="cbx_section">
+                <option>----</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+                <option>E</option>
+                <option>F</option>
+                <option>G</option>
+            </select>
+            <br>
+            <label>Contenha dados do período, inicial: </label>
+            <select>
+                <option>----</option>
+                <option>1966</option>
+            </select>
+            <label>final: </label>
+            <select>
+                <option>----</option>
+                <option>1966</option>
+            </select>
+            <br>
+            <label> Média de chuva: </label>
+            <br>
+            <label> Período: </label>
+            <select>
+                <option>----</option>
+                <option>1966</option>
+            </select>
+            <select>
+                <option>----</option>
+                <option>12</option>
+            </select>
+            <select>
+                <option>----</option>
+                <option>23</option>
+            </select>
+            <select>
+                <option>=</option>
+                <option>></option>
+                <option><</option>
+                <option>>=</option>
+                <option><=</option>
+            </select>
+            <input type="text"></input>unid.
+            <br>
+            <label> Qtd. de chuva: </label>
+            <br>
+            <label> Período: </label>
+            <select>
+                <option>----</option>
+                <option>1966</option>
+            </select>
+            <select>
+                <option>----</option>
+                <option>12</option>
+            </select>
+            <select>
+                <option>----</option>
+                <option>23</option>
+            </select>
+            <select>
+                <option>=</option>
+                <option>></option>
+                <option><</option>
+                <option>>=</option>
+                <option><=</option>
+            </select>
+            <input type="text"></input>unid.
+            <br>
+            <br>
+            <input type="submit" value="Buscar"></input>
+        </div>
     </div>
-    <div id="charts">
-            <div id="chart0" class="chart col-lg-3">
-            </div>
-            <div id="chart1" class="clearfix chart col-lg-3">
-            </div>
-            <div id="chart2" class="clearfix chart col-lg-3"></div>
-            <div id="chart3" class="clearfix chart col-lg-3"></div>
+    <div id="charts" class="">
+
     </div>
 
 <script src="{% static 'vtmultiscale/d3/d3.min.js' %}" type="text/javascript"></script>
@@ -45,6 +140,62 @@
 <script src="{% static 'vtmultiscale/mapa_focus_context.js' %}" type="text/javascript"></script>
 
 <script>
+var chart_info = '\
+            <div class="col-lg-6">\
+            <h6> Configurações Locais </h6>\
+            <label>Posição: </label>\
+            <select>\
+                <option>1</option>\
+            </select>\
+            <br>\
+            <label>Seção: </label>\
+            <select>\
+                <option>A</option>\
+            </select>\
+            <br>\
+            <label>Estação:</label>\
+            <select>\
+                <option>A3-259</option>\
+            </select>\
+            <br>\
+            <label> Ano Inicial: </label>\
+            <select>\
+                <option>1960</option>\
+            </select>\
+            <br>\
+            <label> Ano Final: </label>\
+            <select>\
+                <option>1966</option>\
+            </select>\
+            <h6>Meta Informações</h6>\
+            <label>nome: </label> ARACAJU\
+            <br>\
+            <label>cidade: </label> ARACAJU\
+            <br>\
+            <label>bacia: </label> ARACAJU\
+            <br>\
+            <label>latitude: </label> -14,90\
+            <br>\
+            <label>longitude: </label> -54,90\
+            <br>\
+            <label>altitude: </label> 500\
+            <br>\
+            <label>Período dos dados: </label> 1930 - 1997\
+            <br>\
+            <label>anos de consistência: </label> 22\
+            <br>\
+            <label>intervalo de consistência: </label> [1930, 1931, 1939]\
+            <br>\
+            <label>total de chuva: </label> 1231233\
+            <br>\
+            <label>média de chuva: </label> 30\
+            <br>\
+            <label>qtde. de dias: </label> 123131\
+            <br>\
+            <label>qtde. de dias nulos: </label> 123\
+            <br>\
+            </div>\
+            '
 var div_sp_map_id = "#sp_map";
 var url_sp_map_full = "{% static 'vtmultiscale/maps/sp-state-full.json' %}";
 var url_sp_map_simpl = "{% static 'vtmultiscale/maps/sp-state-simpl.json' %}";
@@ -106,35 +257,29 @@ function zoomIn(x, y, zoom_scale){
         );
     }
 }
-function createHtmlChart(id, father){
+function createHtmlChart(nmb, father){
     var chart_aux = document.createElement("div");
-    chart_aux.id = "chart"+id;
-    chart_aux.className = "chart col-lg-3";
+    chart_aux.id = "chart"+nmb;
+    chart_aux.className = "chart col-lg-4";
     father.appendChild(chart_aux);
+    return chart_aux;
 }
 //createHtmlChart(8, document.getElementById("charts"));
 var chart_to_draw = "#chart0";
 var current_chart = null;
-function opa(){
-    console.log("opaaaaaa");
-    addChart();
-}
+var current_chart_div = null;
+
 function addChart(station){
     console.log("opaaaa");
     var chart_array = document.getElementsByClassName("chart");
-    for (var i=0; i<chart_array.length; i++){
-        var chart = chart_array[i];
-        if (chart.children.length < 1){
-            chart_to_draw = "#"+chart.id;
-            break;
-        }
-    }
+    var nmb = chart_array.length;
+    current_chart_div = createHtmlChart(nmb, charts);
+    chart_to_draw = "#"+current_chart_div.id;
     d3.select(chart_to_draw).datum(function(){return station});
     getYears(station, [1990,1996]);
 }
 function drawCalendar(d){
-    console.log("Drawing");
-    console.log(chart_to_draw);
+    current_chart_div.innerHTML += chart_info;
     current_chart = new VtMultiScale(chart_to_draw, [1990,1996], d);
 }
 

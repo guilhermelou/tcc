@@ -23,7 +23,13 @@ fill: #eee;
     fill-opacity: 0.3;
     fill: gray;
     visibility: visible;
+    /*
+    border-width: thin;
+    border-style: solid;
+    border-color: gray;
+    */
 }
+
 line {
 stroke: #fff;
 }

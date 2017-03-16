@@ -2,7 +2,7 @@ var VtMultiScale = function(chart, year_range, data){
         this.data = data;
         var othis = this;
         var width = 20,
-            height = 800,
+            height = 450,
             cellSize = 3; // cell size
         var from_year = year_range[0],
             to_year = year_range[1] + 1;
@@ -22,6 +22,7 @@ var VtMultiScale = function(chart, year_range, data){
 
         this.svg = d3.select(chart).append("svg")
             .attr("height", height)
+            .attr("class", "col-lg-6");
         this.g = this.svg.append("g")
             .call(zoom);
         this.g_years = this.g.selectAll("g")
