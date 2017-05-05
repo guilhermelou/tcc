@@ -24,28 +24,8 @@
             </div>
         </div>
         <div class="col-lg-2">
-            <h5>Configurações Globais</h5>
-            <label> Ano Inicial: </label>
-            <select>
-                <option>1966</option>
-                <option>1965</option>
-                <option>1964</option>
-                <option>1963</option>
-                <option>1962</option>
-                <option>1961</option>
-                <option>1960</option>
-            </select>
-            <br>
-            <label> Ano Final: </label>
-            <select>
-                <option>1966</option>
-                <option>1965</option>
-                <option>1964</option>
-                <option>1963</option>
-                <option>1962</option>
-                <option>1961</option>
-                <option>1960</option>
-            </select>
+            <div id="second_focus_context">
+            </div>
         </div>
         <div class="col-lg-4">
             <h5>Busca Estações</h5>
@@ -134,8 +114,29 @@
             </li>
             <li><a href="#tab3" data-toggle="tab">Horizon-Graph</a>
             </li>
+            <li style="margin:8px">
+                <label> Ano Inicial: </label>
+                <select>
+                    <option>1966</option>
+                    <option>1965</option>
+                    <option>1964</option>
+                    <option>1963</option>
+                    <option>1962</option>
+                    <option>1961</option>
+                    <option>1960</option>
+                </select>
+                <label> Ano Final: </label>
+                <select>
+                    <option>1966</option>
+                    <option>1965</option>
+                    <option>1964</option>
+                    <option>1963</option>
+                    <option>1962</option>
+                    <option>1961</option>
+                    <option>1960</option>
+                </select>
+            </li>
         </ul>
-
         <div class="tab-content ">
             <div class="tab-pane active" id="tab1">
                 <div id="charts" class=""></div>
@@ -216,6 +217,7 @@ var div_sp_map_id = "#sp_map";
 var url_sp_map_full = "{% static 'vtmultiscale/maps/sp-state-full.json' %}";
 var url_sp_map_simpl = "{% static 'vtmultiscale/maps/sp-state-simpl.json' %}";
 var focus_context_id = "#focus_context";
+var second_focus_context_id = "#second_focus_context";
 var div_selected_stations_id = "#selected_stations";
 
 function mudou(obj, a){
@@ -250,6 +252,15 @@ var map3 = new Mapa(
         [],
         []
     );
+
+var map4 = new MapaFocusContext(
+        second_focus_context_id,
+        url_sp_map_full,
+        map3
+    );
+
+map1.addBrushMap(map2);
+
 function addSelectedStations(station){
     stations_selected_array.push(station);
     document.getElementById(div_selected_stations_id.substring(1)).innerHTML="";
@@ -282,6 +293,19 @@ function zoomIn(){
                 "transform",
                 "translate("+translate+")scale("+min_scale+")"
         );
+        // brushing the map4
+        bbox = transScaleToBBox(
+                translate[0],
+                translate[1],
+                min_scale,
+                map3.width,
+                map3.height
+        );
+        map4.g_brush.selectAll(".extent")
+            .attr("x", bbox[0])
+            .attr("y", bbox[1])
+            .attr("width", bbox[2])
+            .attr("height", bbox[3]);
     }
 }
 function createHtmlChart(nmb, father){
