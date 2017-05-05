@@ -15,6 +15,11 @@ body {
     width: 800px;
     */
 }
+.chart{
+    border-width: thin;
+    border-style: solid;
+    border-color: gray;
+}
 .background {
 fill: #eee;
 }

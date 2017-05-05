@@ -3,6 +3,9 @@
 {% load static from staticfiles %}
 {% block extrahead %}
     <link href="{% static 'vtmultiscale/style_calendar.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet" type="text/css">
+    <link href="{% static 'vtuniscale/visavail/css/visavail.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'vtuniscale/vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block content %}
@@ -121,8 +124,29 @@
             <input type="submit" value="Buscar"></input>
         </div>
     </div>
-    <div id="charts" class="">
 
+    <div id="exTab2" class="container-fluid">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a  href="#tab1" data-toggle="tab">Multi-Scale</a>
+            </li>
+            <li><a href="#tab2" data-toggle="tab">Uni-Scale</a>
+            </li>
+            <li><a href="#tab3" data-toggle="tab">Horizon-Graph</a>
+            </li>
+        </ul>
+
+        <div class="tab-content ">
+            <div class="tab-pane active" id="tab1">
+                <div id="charts" class=""></div>
+            </div>
+            <div class="tab-pane" id="tab2">
+                <div id="chart_uni_scale" class=""></div>
+            </div>
+            <div class="tab-pane" id="tab3">
+                <div id="chart_horizon_graph" class=""></div>
+            </div>
+        </div>
     </div>
 
 <script src="{% static 'vtmultiscale/d3/d3.min.js' %}" type="text/javascript"></script>
@@ -138,6 +162,54 @@
 <script src="{% static 'vtmultiscale/vt_multi_scale.js' %}" type="text/javascript"></script>
 <script src="{% static 'vtmultiscale/mapa.js' %}" type="text/javascript"></script>
 <script src="{% static 'vtmultiscale/mapa_focus_context.js' %}" type="text/javascript"></script>
+<script src="{% static 'vtuniscale/vendors/moment/moment-with-locales.min.js' %}" type="text/javascript"></script>
+<script>
+    moment.locale("pt-BR");
+</script>
+<script src="{% static 'vtuniscale/vendors/d3/d3.min.js' %}" charset="utf-8"></script>
+<script src="{% static 'vtuniscale/visavail/js/visavail.js' %}"></script>
+<script src="{% static 'vthorizongraph/horizon.js' %}"></script>
+<script src="{% static 'vtuniscale/dataset.js' %}"></script>
+
+<script>
+    var chart = visavailChart().width(800); // define width of chart in px
+    d3.select("#chart_uni_scale")
+            .datum(dataset)
+            .call(chart);
+</script>
+
+<script>
+var width = 960,
+    height = 30;
+
+var horizon_chart = d3.horizon()
+    .width(width)
+    .height(height)
+    .bands(1)
+    .mode("mirror")
+    //.mode("offset")
+    .interpolate("basis");
+
+var horizon_svg = d3.select("#chart_horizon_graph").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+d3.json("{% static 'vthorizongraph/unemployment.json' %}", function(error, data) {
+  if (error) throw error;
+
+  // Offset so that positive is above-average and negative is below-average.
+  var mean = data.rate.reduce(function(p, v) { return p + v; }, 0) / data.rate.length;
+
+  // Transpose column values to rows.
+  data = data.rate.map(function(rate, i) {
+    return [Date.UTC(data.year[i], data.month[i] - 1), rate - mean];
+  });
+
+  // Render the chart.
+  horizon_svg.data([data]).call(horizon_chart);
+
+});
+</script>
 
 <script>
 var div_sp_map_id = "#sp_map";
@@ -154,12 +226,7 @@ function mudou(obj, a){
 var station_geo_array = {{stations_json|safe}}
 var section_array = {{sections_json|safe}}
 var sub_section_array = {{sub_sections_json|safe}}
-var stations_test_array = [
-		station_geo_array[0],
-		station_geo_array[1],
-		station_geo_array[2],
-		station_geo_array[3]
-];
+var stations_selected_array = [];
 
 var map1 = new Mapa(
         div_sp_map_id,
@@ -179,15 +246,26 @@ map1.addBrushMap(map2);
 var map3 = new Mapa(
         div_selected_stations_id,
         url_sp_map_full,
-        stations_test_array,
+        stations_selected_array,
         [],
         []
     );
+function addSelectedStations(station){
+    stations_selected_array.push(station);
+    document.getElementById(div_selected_stations_id.substring(1)).innerHTML="";
+    map3 = new Mapa(
+            div_selected_stations_id,
+            url_sp_map_full,
+            stations_selected_array,
+            [],
+            []
+        );
+    zoomIn();
+};
 
-
-function zoomIn(x, y, zoom_scale){
+function zoomIn(){
     if(map3){
-        bbox = getBBoxFromStationArray(stations_test_array);
+        bbox = getBBoxFromStationArray(stations_selected_array);
         trans_scale = map1.bboxToTransScale(
             [
                 map3.projection([bbox[0],bbox[1]])[0],
@@ -225,6 +303,7 @@ function addChart(station){
     chart_to_draw = "#"+current_chart_div.id;
     d3.select(chart_to_draw).datum(function(){return station});
     getYears(station, [1990,1996]);
+    addSelectedStations(station);
 }
 function drawCalendar(d){
     current_chart_div.innerHTML += loadChartInfo(current_chart_div.id, 1);
