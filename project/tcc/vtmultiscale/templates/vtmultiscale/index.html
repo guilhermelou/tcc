@@ -28,45 +28,28 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <h5>Busca Estações</h5>
+            <h4>Busca Estações</h4>
+            <form>
+            <h6>Local</h6>
             <label>Seção: </label>
-            <select id="cbx_section">
-                <option>----</option>
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
-                <option>D</option>
-                <option>E</option>
-                <option>F</option>
-                <option>G</option>
-            </select>
+            <input type="text">
+            <label>Subseção: </label>
+            <input type="text">
+
             <br>
-            <label>Contenha dados do período, inicial: </label>
-            <select>
-                <option>----</option>
-                <option>1966</option>
-            </select>
-            <label>final: </label>
-            <select>
-                <option>----</option>
-                <option>1966</option>
-            </select>
+            <h6>Contém dados do período</h6>
+            <label>Inicial: </label>
+            <input type="date">
+            <label>Final: </label>
+            <input type="date">
             <br>
-            <label> Média de chuva: </label>
-            <br>
-            <label> Período: </label>
+            <h6>Média de chuva</h6>
             <select>
-                <option>----</option>
-                <option>1966</option>
+                <option>Ano</option>
+                <option>Mês</option>
+                <option>Diá</option>
             </select>
-            <select>
-                <option>----</option>
-                <option>12</option>
-            </select>
-            <select>
-                <option>----</option>
-                <option>23</option>
-            </select>
+            <input type="date"></input>
             <select>
                 <option>=</option>
                 <option>></option>
@@ -75,44 +58,22 @@
                 <option><=</option>
             </select>
             <input type="text"></input>unid.
-            <br>
-            <label> Qtd. de chuva: </label>
-            <br>
-            <label> Período: </label>
-            <select>
-                <option>----</option>
-                <option>1966</option>
-            </select>
-            <select>
-                <option>----</option>
-                <option>12</option>
-            </select>
-            <select>
-                <option value="0">----</option>
-                <option value="1">23</option>
-            </select>
-            <select>
-                <option>=</option>
-                <option>></option>
-                <option><</option>
-                <option>>=</option>
-                <option><=</option>
-            </select>
-            <input type="text"></input>unid.
-            <br>
             <br>
             <input type="submit" value="Buscar"></input>
+            </form>
         </div>
     </div>
 
     <div id="exTab2" class="container-fluid">
         <ul class="nav nav-tabs">
             <li class="active">
-                <a  href="#tab1" data-toggle="tab">Multi-Scale</a>
+                <a href="#tab1" data-toggle="tab">Uni-Scale</a>
             </li>
-            <li><a href="#tab2" data-toggle="tab">Uni-Scale</a>
+            <li>
+                <a  href="#tab2" data-toggle="tab">Multi-Scale</a>
             </li>
-            <li><a href="#tab3" data-toggle="tab">Horizon-Graph</a>
+            <li>
+                <a href="#tab3" data-toggle="tab">Horizon-Graph</a>
             </li>
             <li style="margin:8px">
                 <label> Ano Inicial: </label>
@@ -139,10 +100,10 @@
         </ul>
         <div class="tab-content ">
             <div class="tab-pane active" id="tab1">
-                <div id="charts" class=""></div>
+                <div id="chart_uni_scale" class=""></div>
             </div>
             <div class="tab-pane" id="tab2">
-                <div id="chart_uni_scale" class=""></div>
+                <div id="charts" class=""></div>
             </div>
             <div class="tab-pane" id="tab3">
                 <div id="chart_horizon_graph" class=""></div>
@@ -171,13 +132,8 @@
 <script src="{% static 'vtuniscale/visavail/js/visavail.js' %}"></script>
 <script src="{% static 'vthorizongraph/horizon.js' %}"></script>
 <script src="{% static 'vtuniscale/dataset.js' %}"></script>
+<script src="{% static 'vtuniscale/vt_uni_scale.js' %}"></script>
 
-<script>
-    var chart = visavailChart().width(800); // define width of chart in px
-    d3.select("#chart_uni_scale")
-            .datum(dataset)
-            .call(chart);
-</script>
 
 <script>
 var width = 960,
@@ -186,7 +142,7 @@ var width = 960,
 var horizon_chart = d3.horizon()
     .width(width)
     .height(height)
-    .bands(1)
+    .bands(3)
     .mode("mirror")
     //.mode("offset")
     .interpolate("basis");
@@ -198,7 +154,7 @@ var horizon_svg = d3.select("#chart_horizon_graph").append("svg")
 d3.json("{% static 'vthorizongraph/unemployment.json' %}", function(error, data) {
   if (error) throw error;
 
-  // Offset so that positive is above-average and negative is below-average.
+  // Offset so that positive is above-average and negative is below-averiage.
   var mean = data.rate.reduce(function(p, v) { return p + v; }, 0) / data.rate.length;
 
   // Transpose column values to rows.
@@ -212,6 +168,8 @@ d3.json("{% static 'vthorizongraph/unemployment.json' %}", function(error, data)
 });
 </script>
 
+<script>
+</script>
 <script>
 var div_sp_map_id = "#sp_map";
 var url_sp_map_full = "{% static 'vtmultiscale/maps/sp-state-full.json' %}";
@@ -228,7 +186,28 @@ function mudou(obj, a){
 var station_geo_array = {{stations_json|safe}}
 var section_array = {{sections_json|safe}}
 var sub_section_array = {{sub_sections_json|safe}}
+
+
+
+
 var stations_selected_array = [];
+console.log(station_geo_array);
+
+vt_uni_scale_chart = new VtUniScale("#chart_uni_scale", station_geo_array);
+function testeUni(prefix){
+    console.log("Clicou no prefixo");
+    console.log(prefix);
+}
+var data_set = []
+//data_set.push(vt_uni_scale_chart.dataSetFromStation(station_geo_array[0]));
+for (var k=0; k<station_geo_array.length;k++){
+    //data_set.push(station_geo_array[k]['uni_scale']);
+    data_set.push(vt_uni_scale_chart.dataSetFromStationComplete(station_geo_array[k]));
+}
+var chart = visavailChart().width(800); // define width of chart in px
+d3.select("#chart_uni_scale")
+        .datum(data_set)
+        .call(chart);
 
 var map1 = new Mapa(
         div_sp_map_id,

@@ -3,8 +3,9 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.postgres.fields import JSONField, ArrayField
+from datetime import date, timedelta
 from math import fabs
-
+import json
 # Create your models here.
 
 def convert_coordinate(str):
@@ -167,6 +168,10 @@ class Station(models.Model):
             blank=True,
             null=True
         )
+    null_days_array = ArrayField(models.DateField(blank=True, null=True))
+    null_days_array_str = ArrayField(
+            models.CharField(max_length=200,blank=True, null=True)
+        )
     amount = models.IntegerField(
             _('Total'),
             blank=True,
@@ -175,6 +180,7 @@ class Station(models.Model):
     average = models.FloatField(_('Average'), blank=True, null=True)
     consistency = ArrayField(models.IntegerField(blank=True, null=True))
     years = JSONField()
+    uni_scale = JSONField()
 
     @staticmethod
     def convert_system_all_stations():
@@ -185,5 +191,129 @@ class Station(models.Model):
             station.long = convert_non_str_coordinate(station.long)
             station.save()
 
+    def update_null_days_array(self):
+        '''Function used to update all coordinates
+        '''
+        # for station in Station.objects.all():
+        station = self
+        # Getting the json data
+        years = station.years
+        # Starting a new array for null days date on this Station
+        station_null_days_array = []
+        # Starting a new array for null days date on this Station with string
+        # data
+        station_null_days_array_str = []
+        # Going through the years searching for null days
+        for year in years:
+            # Saving the year number to create the date after
+            year_nmb = year['year']
+            # Getting the months of this year
+            months = year['months']
+            # Starting a new array for null days date on this year
+            year_null_days_array = []
+            # Going through months
+            for month in months:
+                month_nmb = month['month']
+                days = month['days']
+                month_null_days_array = []
+                for day in days:
+                    day_average = day['day_average']
+                    day_nmb = day['day']
+                    if day_average < 0:
+                        null_date = date(
+                                year_nmb, month_nmb, day_nmb)
+                        month_null_days_array.append(null_date.isoformat())
+                        year_null_days_array.append(null_date.isoformat())
+                        station_null_days_array_str.append(
+                                null_date.isoformat()
+                            )
+                        station_null_days_array.append(null_date)
+                month['null_days_array'] = month_null_days_array
+            year['null_days_array'] = year_null_days_array
+        station.null_days_array = station_null_days_array
+        station.null_days_array_str = station_null_days_array_str
+        station.save()
 
+    def update_uni_scale(self):
+        '''Function used to update all coordinates
+        '''
+        EMPTY = "Empty"
+        CONS = "Consisted"
+        NOT_CONS = "Not Consisted"
+        station = self
+        data_item = {}
+        years_array = []
+        years_state = EMPTY
+        data_item["categories"] = {
+                EMPTY: {"color": "#000"},
+                CONS: {"color": "#449d44"},
+                NOT_CONS: {"color": "#d9534d"}
+            }
+        data_item["measure"] = station.prefix
+        data_item["interval_s"] = 3*30.5*24*60*60
+        data_item["data"] = years_array
+        consistency_array = station.consistency
+        consistency_index = 0
+        null_days_array = station.null_days_array
+        null_days_index = 0
+        null_day_happen = False
+        first_date_of_year = None
+        last_date_of_year = None
+        null_day = None
+        last_null_day = None
+        for year in range(station.year_ini, station.year_end+1):
+            first_date_of_year = date(year, 1, 1)
+            last_date_of_year = date(year, 12, 31)
+            try:
+                current_consisted_year = int(
+                        consistency_array[consistency_index])
+            except:
+                current_consisted_year = 0
+            if (year==current_consisted_year):
+                consistency_index += 1
+                if (
+                        years_state==EMPTY or
+                        years_state==NOT_CONS
+                        ):
+                    years_state = CONS
+                    years_array.append([first_date_of_year.isoformat(), CONS])
+            else:
+                if (
+                        years_state==EMPTY or
+                        years_state==CONS
+                        ):
+                    years_state = NOT_CONS
+                    years_array.append(
+                            [first_date_of_year.isoformat(), NOT_CONS])
+            if (null_days_index < len(null_days_array)):
+                try:
+                    null_day = null_days_array[null_days_index]
+                except:
+                    null_day = date(0001,01,01)
+                while(
+                        null_day >= first_date_of_year and
+                        null_day <= last_date_of_year and
+                        null_days_index < len(null_days_array)
+                        ):
+                    last_null_day = null_days_array[null_days_index]
+                    years_array.append([null_day.isoformat(), EMPTY])
+                    null_day_happen = True
+                    null_days_index += 1
+                    if (null_days_index < len(null_days_array)):
+                        null_day = null_days_array[null_days_index]
+                        after_null_day = last_null_day
+                        after_null_day += timedelta(days=1)
+                        if (after_null_day < null_day):
+                            if (years_state==CONS):
+                                years_array.append(
+                                        [after_null_day.isoformat(), CONS])
+                            else:
+                                years_array.append(
+                                        [after_null_day.isoformat(), NOT_CONS])
+        if (years_state==CONS):
+            years_array.append([last_date_of_year.isoformat(), CONS])
+        else:
+            years_array.append([last_date_of_year.isoformat(), NOT_CONS])
+        station.uni_scale = data_item
+        station.save()
 
