@@ -141,3 +141,4 @@ def map(request):
 
 def focus_context(request):
     return render(request, 'vtmultiscale/focus_context.html')
+
