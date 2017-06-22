@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.postgres.fields import JSONField, ArrayField
+from django.core import serializers
 from datetime import date, timedelta
 from math import fabs
 import json
@@ -100,6 +101,71 @@ class SubSection(models.Model):
         self.bbox = getBBoxFromStationArray(stations)
         self.save()
 
+class StationManager(models.Manager):
+    def mix_filter(
+                self,
+                year_ini=None,
+                year_end=None,
+                average_date=None,
+                time_scale=None,
+                signal=None,
+                average=None,
+                fields=None
+            ):
+        SQL = ''
+        comma_fields = " , ".join(fields)
+        if (average_date and average):
+            SQL+="""WITH years_data AS (
+                SELECT id, year_ini, year_end, st_years, {}
+                    FROM rainfall_station st,
+                    jsonb_array_elements(st.years) st_years
+                    WHERE (st_years->>'year')::int = {}
+                )
+                SELECT DISTINCT ON (id) id, year_ini, year_end, {}
+                FROM years_data WHERE""".format(
+                         comma_fields, average_date.year, comma_fields)
+            if(time_scale=="Anual"):
+                SQL+="""(st_years->>'average')::float {} {}
+                """.format(signal, average)
+            elif(time_scale=="Mensal"):
+                SQL+="""(st_years->'months'->{}->>'average')::float {} {}
+                """.format(
+                        (average_date.month-1),
+                        signal,
+                        average)
+            elif(time_scale=="Diaria"):
+                SQL+="""
+                (st_years->'months'->{}->'days'->{}->>'day_average')::float {} {}
+                """.format(
+                        (average_date.month-1),
+                        (average_date.day-1),
+                        signal,
+                        average)
+        else:
+            SQL +="""
+            SELECT DISTINCT ON (id) id, year_ini, year_end, {}
+            FROM rainfall_station WHERE 1 = 1
+            """.format(comma_fields)
+        if year_ini:
+            SQL+=" AND year_ini <= {}".format(year_ini)
+        if year_end:
+            SQL+=" AND year_end >= {}".format(year_end)
+        print SQL
+        #if time_scale == ''
+        raw_query = self.raw(SQL)#, ['0'])
+        # This is one way
+        '''
+        data = serializers.serialize("json", raw_query, fields=fields)
+        print data
+        station_dict_list = []
+        for obj in json.loads(data):
+            station_dict_list.append(obj['fields'])'''
+        # Other way
+        station_dict_list = [dict(obj.__dict__) for obj in raw_query]
+        for obj in station_dict_list:
+            obj.pop('_state', None)
+        return station_dict_list
+
 class Station(models.Model):
     prefix = models.CharField(
             _('Prefix'),
@@ -181,6 +247,8 @@ class Station(models.Model):
     consistency = ArrayField(models.IntegerField(blank=True, null=True))
     years = JSONField()
     uni_scale = JSONField()
+
+    objects = StationManager()
 
     @staticmethod
     def convert_system_all_stations():

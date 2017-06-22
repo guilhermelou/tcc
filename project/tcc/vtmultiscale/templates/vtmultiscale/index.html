@@ -29,44 +29,37 @@
         </div>
         <div class="col-lg-4">
             <h4>Busca Estações</h4>
-            <form>
-            <h6>Local</h6>
-            <label>Seção: </label>
-            <input type="text">
-            <label>Subseção: </label>
-            <input type="text">
-
-            <br>
+            <form id="search_station_form">
             <h6>Contém dados do Período</h6>
-            <label>Inicial: </label>
-            <input type="date">
-            <label>Final: </label>
-            <input type="date">
+            <label>Ano inicial: </label>
+            <input id="year_ini" type="text">
+            <label>Ano final: </label>
+            <input id="year_end" type="text">
             <br>
             <h6>Média de chuva</h6>
+            <label> Escala: </label>
+            <select id="time_scale">
+                <option>Anual</option>
+                <option>Mensal</option>
+                <option>Diaria</option>
+            </select>
+			<br>
             <label> Data: </label>
-            <select>
-                <option>----</option>
-                <option>1966</option>
-            </select>
-            <select>
-                <option>----</option>
-                <option>12</option>
-            </select>
-            <select>
-                <option>----</option>
-                <option>23</option>
-            </select>
-            <select>
+            <input id="average_date" type="date"></input>
+            <select id="signal">
                 <option>=</option>
                 <option>></option>
                 <option><</option>
                 <option>>=</option>
                 <option><=</option>
             </select>
-            <input type="text"></input>unid.
+            <input id="average" type="text"></input>unid.
             <br>
-            <input type="submit" value="Buscar"></input>
+            <br>
+            <div id="stations_found"></div>
+            <input type="button" onClick="searchBtnClicked();" value="Buscar"></input>
+            <input type="button" onClick="loadStations();" value="Carregar Encontrados"></input>
+            <input type="button" onClick="clearStations();" value="Limpar Encontrados"></input>
             </form>
         </div>
     </div>
@@ -205,16 +198,20 @@ function testeUni(prefix){
     console.log("Clicou no prefixo");
     console.log(prefix);
 }
+/*
 var data_set = []
-//data_set.push(vt_uni_scale_chart.dataSetFromStation(station_geo_array[0]));
 for (var k=0; k<station_geo_array.length;k++){
     //data_set.push(station_geo_array[k]['uni_scale']);
-    data_set.push(vt_uni_scale_chart.dataSetFromStationComplete(station_geo_array[k]));
+	//data_set.push(
+	//	vt_uni_scale_chart.dataSetFromStation(station_geo_array[0]));
+    data_set.push(
+		vt_uni_scale_chart.dataSetFromStationComplete(station_geo_array[k]));
 }
 var chart = visavailChart().width(800); // define width of chart in px
 d3.select("#chart_uni_scale")
         .datum(data_set)
         .call(chart);
+*/
 
 var map1 = new Mapa(
         div_sp_map_id,
@@ -320,8 +317,32 @@ function drawCalendar(d){
     setNewIndex();
     current_chart = new VtMultiScale(chart_to_draw, [1990,1996], d);
 }
-
+function searchResult(d){
+	console.log(d);
+}
+function searchBtnClicked(){
+	console.log("clicou");
+	var year_ini = document.getElementById("year_ini").value;
+	var year_end = document.getElementById("year_end").value;
+	var time_scale = document.getElementById("time_scale").value;
+	var average_date = document.getElementById("average_date").value;
+	var signal = document.getElementById("signal").value;
+	var average = document.getElementById("average").value;
+    searchStations(
+				year_ini,
+                year_end,
+                average_date,
+                time_scale,
+                signal,
+                average
+    )
+}
+function loadStations(){
+}
+function clearStations(){
+}
 var getYears;
+var searchStations;
 $(document).ready(function(){
 	var data_years = 'banana';
     var test_promise;
@@ -344,6 +365,37 @@ $(document).ready(function(){
             }
         });
     }
+    searchStations = function search_stations(
+				year_ini,
+                year_end,
+                average_date,
+                time_scale,
+                signal,
+                average
+				) {
+        test_promise_2 = $.ajax({
+            url: '{% url 'vtmultiscale:search_station' %}',
+            type: 'post',
+            data: {
+				'year_ini': year_ini,
+				'year_end': year_end,
+                'average_date': average_date,
+                'time_scale': time_scale,
+                'signal': signal,
+                'average': average
+
+            },
+            dataType: "json",
+            success: searchResult,
+            error: function(data) {
+                console.log('Got an error ');
+            }
+        });
+    }
+	$("#search_station_form").on("submit", function(){
+		var form = $(this);
+		console.log("Deu submit");
+	});
 });
 
 function loadChartInfo(chart_id, length_charts){

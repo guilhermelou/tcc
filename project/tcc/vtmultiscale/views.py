@@ -3,6 +3,7 @@ from rainfall.models import Station, Section, SubSection
 from django.http import JsonResponse
 import json
 from django.core import serializers
+from datetime import datetime
 # Create your views here.
 
 def index(request):
@@ -81,28 +82,59 @@ def get_year(request):
         return response
 
 def search_station(request):
+    station_fields = [
+        'prefix',
+        'code',
+        'name',
+        'city',
+        'basin',
+        'alt',
+        'lat',
+        'long',
+        'range',
+        'day_amount',
+        'null_days',
+        'amount',
+        'average',
+        'consistency',
+        'null_days_array_str'
+    ]
     if request.method == "POST":
         # 1990
         # 1997
-        min_year = int(request.POST["year_ini"])
-        max_year = int(request.POST["year_end"])
-        print min_year
-        print max_year
-        station_id = int(request.POST["station_id"])
-        station = None
         try:
-            station = Station.objects.get(id=station_id)
+            year_ini = int(request.POST["year_ini"])
         except:
-            pass
-        years = station.years
-        year_list = []
-        for year in years:
-            print year['year']
-            if year['year'] >= min_year and year['year'] <= max_year:
-                year_list.append(year)
-        print(year_list)
-        response = JsonResponse({'year_list': year_list})
+            year_ini = None
+        try:
+            year_end = int(request.POST["year_end"])
+        except:
+            year_end = None
+        try:
+            average_date = datetime.strptime(
+                    request.POST["average_date"], "%Y-%m-%d")
+        except:
+            avarage_date = None
+        time_scale = request.POST["time_scale"]
+        signal = request.POST["signal"]
+        try:
+            average = float(request.POST["average"])
+        except:
+            average = None
+        stations = Station.objects.mix_filter(
+			year_ini=year_ini,
+			year_end=year_end,
+			average_date=average_date,
+			time_scale=time_scale,
+			signal=signal,
+			average=average,
+			fields=station_fields
+		)
+
+        #print stations
+        response = JsonResponse({'stations': stations})
         return response
+
 
 def map(request):
     station_fields = [
