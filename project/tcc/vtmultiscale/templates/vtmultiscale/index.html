@@ -66,36 +66,22 @@
 
     <div id="exTab2" class="container-fluid">
         <ul class="nav nav-tabs">
-            <li class="active">
-                <a href="#tab1" data-toggle="tab">Uni-Scale</a>
+            <li class="active" style="">
+                <a href="#tab1" data-toggle="tab" style="height:45px;">Uni-Scale
+                    <label>Ordenar por:</label> <button onClick="orderStationsBy('lat')">Latitude &uarr;&darr;</button> <button onClick="orderStationsBy('long')">Longitude &uarr;&darr;</button> <button onClick="orderStationsBy('prefix')">Prefixo &uarr;&darr;</button>
+                </a>
             </li>
             <li>
-                <a  href="#tab2" data-toggle="tab">Multi-Scale</a>
-            </li>
-            <li>
-                <a href="#tab3" data-toggle="tab">Horizon-Graph</a>
-            </li>
-            <li style="margin:8px">
+                <a href="#tab2" data-toggle="tab">Multi-Scale:
                 <label> Ano Inicial: </label>
-                <select>
-                    <option>1966</option>
-                    <option>1965</option>
-                    <option>1964</option>
-                    <option>1963</option>
-                    <option>1962</option>
-                    <option>1961</option>
-                    <option>1960</option>
-                </select>
+                <input id="ms_year_ini" type="text" value="1960"></input>
                 <label> Ano Final: </label>
-                <select>
-                    <option>1966</option>
-                    <option>1965</option>
-                    <option>1964</option>
-                    <option>1963</option>
-                    <option>1962</option>
-                    <option>1961</option>
-                    <option>1960</option>
-                </select>
+                <input id="ms_year_end" type="text" value="1965"></input>
+                <button id="ms_update"> Atualizar &#x21BB;</button>
+                </a>
+            </li>
+            <li >
+                <a href="#tab3" data-toggle="tab" style="height:45px;">Horizon-Graph</a>
             </li>
         </ul>
         <div class="tab-content ">
@@ -169,8 +155,6 @@ d3.json("{% static 'vthorizongraph/unemployment.json' %}", function(error, data)
 </script>
 
 <script>
-</script>
-<script>
 var div_sp_map_id = "#sp_map";
 var url_sp_map_full = "{% static 'vtmultiscale/maps/sp-state-full.json' %}";
 var url_sp_map_simpl = "{% static 'vtmultiscale/maps/sp-state-simpl.json' %}";
@@ -183,42 +167,41 @@ function mudou(obj, a){
     console.log(arguments);
     console.log("mudou");
 }
-var station_geo_array = {{stations_json|safe}}
-var section_array = {{sections_json|safe}}
-var sub_section_array = {{sub_sections_json|safe}}
-
-
-
-
+var station_geo_array = {{stations_json|safe}};
+var section_array = [];//{{sections_json|safe}}
+var sub_section_array = [];//{{sub_sections_json|safe}}
+var stations_found_array = [];
 var stations_selected_array = [];
+var order_field = 'prefix';
+var order_way = false;
 console.log(station_geo_array);
 
 vt_uni_scale_chart = new VtUniScale("#chart_uni_scale", station_geo_array);
-function testeUni(prefix){
+function testeUni(id){
     console.log("Clicou no prefixo");
-    console.log(prefix);
+    console.log(id);
 }
-/*
 var data_set = []
 for (var k=0; k<station_geo_array.length;k++){
     //data_set.push(station_geo_array[k]['uni_scale']);
-	//data_set.push(
-	//	vt_uni_scale_chart.dataSetFromStation(station_geo_array[0]));
-    data_set.push(
-		vt_uni_scale_chart.dataSetFromStationComplete(station_geo_array[k]));
+	data_set.push(
+		vt_uni_scale_chart.dataSetFromStation(station_geo_array[k]));
+    //data_set.push(
+	//	vt_uni_scale_chart.dataSetFromStationComplete(station_geo_array[k]));
 }
 var chart = visavailChart().width(800); // define width of chart in px
 d3.select("#chart_uni_scale")
         .datum(data_set)
         .call(chart);
-*/
 
 var map1 = new Mapa(
         div_sp_map_id,
         url_sp_map_full,
         station_geo_array,
-        section_array,
-        sub_section_array
+        [],
+        []
+        //section_array,
+        //sub_section_array
     );
 
 var map2 = new MapaFocusContext(
@@ -257,6 +240,34 @@ function addSelectedStations(station){
     zoomIn();
 };
 
+function setSelectedStations(stations){
+    stations_selected_array = [];
+    for (var i in stations){
+        stations_selected_array.push(stations[i]);
+        console.log(stations_selected_array);
+    }
+    document.getElementById(div_selected_stations_id.substring(1)).innerHTML="";
+    map3 = new Mapa(
+            div_selected_stations_id,
+            url_sp_map_full,
+            stations_selected_array,
+            [],
+            []
+        );
+    zoomIn();
+};
+function orderStationsBy(field){
+    console.log(field);
+    if (order_field == field){
+        order_way = !order_way;
+    }
+    else{
+        order_way = false;
+        order_field = field;
+    }
+    console.log(order_way);
+    stationsOrdered(order_field, order_way);
+}
 function zoomIn(){
     if(map3){
         bbox = getBBoxFromStationArray(stations_selected_array);
@@ -313,15 +324,35 @@ function addChart(station){
     addSelectedStations(station);
 }
 function drawCalendar(d){
-    current_chart_div.innerHTML += loadChartInfo(current_chart_div.id, 1);
+    current_chart_div.innerHTML += loadChartInfo(
+            current_chart_div.id, 1, d);
     setNewIndex();
     current_chart = new VtMultiScale(chart_to_draw, [1990,1996], d);
 }
 function searchResult(d){
 	console.log(d);
+    stations_found_array = d['stations'];
+	var stations_found = document.getElementById("stations_found");
+	stations_found.innerHTML = ''+stations_found_array.length+' estações encontradas';
+}
+function setStationsUniScale(d){
+	console.log(d);
+    var stations = d['stations'];
+    var data_set = []
+    for (var k=0; k<stations.length;k++){
+        data_set.push(
+            vt_uni_scale_chart.dataSetFromStation(stations[k]));
+    }
+    var chart = visavailChart().width(800); // define width of chart in px
+    document.getElementById("chart_uni_scale").innerHTML = ''
+    d3.select("#chart_uni_scale")
+            .datum(data_set)
+            .call(chart);
 }
 function searchBtnClicked(){
 	console.log("clicou");
+	var stations_found = document.getElementById("stations_found");
+	stations_found.innerHTML = 'Procurando...';
 	var year_ini = document.getElementById("year_ini").value;
 	var year_end = document.getElementById("year_end").value;
 	var time_scale = document.getElementById("time_scale").value;
@@ -338,17 +369,36 @@ function searchBtnClicked(){
     )
 }
 function loadStations(){
+    setSelectedStations(stations_found_array);
 }
 function clearStations(){
+    setSelectedStations([]);
 }
+var stationsOrdered;
 var getYears;
 var searchStations;
+
 $(document).ready(function(){
 	var data_years = 'banana';
     var test_promise;
     $.ajaxSetup({
         data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
     });
+    stationsOrdered = function stations_ordered(order_field, order_way) {
+        test_promise = $.ajax({
+            url: '{% url 'vtmultiscale:stations_ordered' %}',
+            type: 'post',
+            data: {
+                    'order_field': order_field,
+                    'order_way':order_way
+            },
+            dataType: "json",
+            success: setStationsUniScale,
+            error: function(data) {
+                console.log('Got an error ');
+            }
+        });
+    }
     getYears = function get_years(station, year_range) {
         test_promise = $.ajax({
             url: '{% url 'vtmultiscale:get_year' %}',
@@ -398,7 +448,7 @@ $(document).ready(function(){
 	});
 });
 
-function loadChartInfo(chart_id, length_charts){
+function loadChartInfo(chart_id, length_charts, station){
     var chart_info = '\
                 <div class="col-lg-6">\
                 <h6> Configurações Locais </h6>\

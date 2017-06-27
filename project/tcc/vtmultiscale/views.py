@@ -6,7 +6,9 @@ from django.core import serializers
 from datetime import datetime
 # Create your views here.
 
+
 def index(request):
+
     station_fields = [
         'id',
         'prefix',
@@ -28,20 +30,42 @@ def index(request):
         'consistency',
         'null_days_array_str'
     ]
-
-    stations = Station.objects.values(*station_fields).all()
-    sections = Section.objects.all()
-    sub_sections = SubSection.objects.all()
+    stations = Station.objects.values(*station_fields).all().order_by('prefix')
+    # sections = Section.objects.all()
+    # sub_sections = SubSection.objects.all()
     stations_json = json.dumps(list(stations))
-    sections_json = json.dumps(list(sections.values()))
-    sub_sections_json = json.dumps(list(sub_sections.values()))
+    #sections_json = json.dumps(list(sections.values()))
+    #sub_sections_json = json.dumps(list(sub_sections.values()))
 
     return render(request, 'vtmultiscale/index.html', {
-            "stations_json": stations_json,
-            "sections_json": sections_json,
-            "sub_sections_json": sub_sections_json
+            "stations_json": stations_json
+            #"sections_json": sections_json,
+            #"sub_sections_json": sub_sections_json
         })
     return render(request, 'vtmultiscale/index.html')
+
+def stations_ordered(request):
+
+    ordered_station_fields = [
+        'id',
+        'year_ini',
+        'year_end',
+        'prefix',
+        'alt',
+        'lat',
+        'long',
+        'consistency',
+        'null_days_array_str'
+    ]
+    order_field = request.POST["order_field"]
+    order_way = request.POST["order_way"]
+    if order_way.upper() == 'TRUE':
+        order_field = "-{}".format(order_field)
+    stations = Station.objects.values(*ordered_station_fields).all().order_by(
+            order_field)
+    response = JsonResponse({'stations': list(stations)})
+    return response
+
 
 def custom(request):
     return render(request, 'vtmultiscale/heatmap_custom.html')
@@ -63,8 +87,6 @@ def get_year(request):
         # 1997
         min_year = int(request.POST["year_ini"])
         max_year = int(request.POST["year_end"])
-        print min_year
-        print max_year
         station_id = int(request.POST["station_id"])
         station = None
         try:
@@ -77,7 +99,6 @@ def get_year(request):
             print year['year']
             if year['year'] >= min_year and year['year'] <= max_year:
                 year_list.append(year)
-        print(year_list)
         response = JsonResponse({'year_list': year_list})
         return response
 
@@ -114,13 +135,13 @@ def search_station(request):
             average_date = datetime.strptime(
                     request.POST["average_date"], "%Y-%m-%d")
         except:
-            avarage_date = None
-        time_scale = request.POST["time_scale"]
-        signal = request.POST["signal"]
+            average_date = None
         try:
             average = float(request.POST["average"])
         except:
             average = None
+        time_scale = request.POST["time_scale"]
+        signal = request.POST["signal"]
         stations = Station.objects.mix_filter(
 			year_ini=year_ini,
 			year_end=year_end,
@@ -130,8 +151,6 @@ def search_station(request):
 			average=average,
 			fields=station_fields
 		)
-
-        #print stations
         response = JsonResponse({'stations': stations})
         return response
 

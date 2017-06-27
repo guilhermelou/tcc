@@ -7,4 +7,9 @@ urlpatterns = [
         'vtmultiscale.views.search_station',
         name='search_station'
     ),
+    url(
+        r'^stations_ordered/',
+        'vtmultiscale.views.stations_ordered',
+        name='stations_ordered'
+    ),
 ]
