@@ -48,6 +48,14 @@ var Mapa = function(div_id, file_map_url, stations, sections, sub_sections){
     d3.select(self.frameElement).style("height", this.height + "px");
     d3.select("svg").on("mousedown.log", function() {
     });
+
+    console.log("Our tooltip");
+    this.tooltip = d3.select("body")
+    .append("div").attr("id", "tooltip_map")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .text("a simple tooltip");
 };
 
 Mapa.prototype.ready = function(error, shp) {
@@ -192,18 +200,21 @@ Mapa.prototype.zoomed = function () {
 };
 
 Mapa.prototype.over = function(data, index, base, obj) {
-    console.log("Objeto")
-    console.log(this);
-    console.log(obj);
-    console.log(obj.__data__);
+    this.tooltip.style("visibility", "visible");
+    var purchase_text = "<p>" + obj.__data__["prefix"] +"</p>";
+    this.tooltip.transition()
+                .duration(200)
+                .style("opacity", .9);
+    this.tooltip.html(purchase_text)
+                .style("left", (d3.event.pageX)+30 + "px")
+                .style("top", (d3.event.pageY) + "px");
     d3.select(obj).attr("r", "5px");
 };
 
 Mapa.prototype.out = function(data, index, base, obj) {
-    console.log("Objeto")
-    console.log(this);
-    console.log(obj);
-    console.log(obj.__data__);
+    this.tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
     d3.select(obj).attr("r", "0.5px");
 };
 

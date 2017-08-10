@@ -8,10 +8,15 @@
 var getYearByDate = function(date, data){
     year_date = (new Date(date)).getUTCFullYear();
     for (i in data){
-        year_obj = data[i];
-        year = year_obj["year"];
-        if (year_date == year){
-            return year_obj;
+        try {
+            year_obj = data[i];
+            year = year_obj["year"];
+            if (year_date == year){
+                return year_obj;
+            }
+        }
+        catch(err) {
+                console.log("erro ano");
         }
     }
     return null;
@@ -28,11 +33,16 @@ var getMonthByDate = function(date, data){
     year_date = (new Date(date)).getUTCFullYear();
     month_index = (new Date(date)).getUTCMonth();
     for (i in data){
-        year_obj = data[i];
-        year = year_obj["year"];
-        if (year_date == year){
-            months = year_obj["months"];
-            return months[month_index];
+        try {
+            year_obj = data[i];
+            year = year_obj["year"];
+            if (year_date == year){
+                months = year_obj["months"];
+                return months[month_index];
+            }
+        }
+        catch(err) {
+                console.log("erro mes");
         }
     }
     return null;
@@ -50,13 +60,18 @@ var getDayByDate = function(date, data){
     month_index = date.getUTCMonth();
     day_index = date.getUTCDate()-1;
     for (i in data){
-        year_obj = data[i];
-        year = year_obj["year"];
-        if (year_date == year){
-            months = year_obj["months"];
-            month = months[month_index];
-            days = month["days"];
-            return days[day_index];
+        try {
+            year_obj = data[i];
+            year = year_obj["year"];
+            if (year_date == year){
+                months = year_obj["months"];
+                month = months[month_index];
+                days = month["days"];
+                return days[day_index];
+            }
+        }
+        catch(err) {
+            console.log("erro dia");
         }
     }
     return null;

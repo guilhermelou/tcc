@@ -385,3 +385,21 @@ class Station(models.Model):
         station.uni_scale = data_item
         station.save()
 
+class YearRain(models.Model):
+    station = models.ForeignKey(Station)
+    date = models.DateField(_('Name'), blank=True, null=True)
+    average = models.FloatField(_('Average'), blank=True, null=True)
+
+
+class MonthRain(models.Model):
+    station = models.ForeignKey(Station)
+    date = models.DateField(_('Name'), blank=True, null=True)
+    average = models.FloatField(_('Average'), blank=True, null=True)
+
+
+class DayRain(models.Model):
+    station = models.ForeignKey(Station)
+    date = models.DateField(_('Name'), blank=True, null=True)
+    average = models.FloatField(_('Average'), blank=True, null=True)
+
+

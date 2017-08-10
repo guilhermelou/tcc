@@ -10,11 +10,13 @@ var VtMultiScale = function(chart, year_range, data){
         var month_cell_size;
         var year_cell_width = cellSize*7;
         var year_cell_height = cellSize*3;
+        /*
         var zoom = d3.behavior.zoom()
             .scaleExtent([0.001, 10])
             .on("zoom", function(){
                     othis.zoomed.apply(othis, arguments);
             });
+            */
 
         var no_months_in_a_row = 1;
 
@@ -23,8 +25,8 @@ var VtMultiScale = function(chart, year_range, data){
         this.svg = d3.select(chart).append("svg")
             .attr("height", height)
             .attr("class", "col-lg-6");
-        this.g = this.svg.append("g")
-            .call(zoom);
+        this.g = this.svg.append("g");
+            //.call(zoom);
         this.g_years = this.g.selectAll("g")
             .data(d3.range(from_year, to_year))
             .enter().append("g")
@@ -62,10 +64,12 @@ var VtMultiScale = function(chart, year_range, data){
                 date = d['date'];
                 var week_diff = (
                         week(date) - week(
-                                new Date(format_year(date),only_month(date)-1, 1)
+                                new Date(
+                                    format_year(date),only_month(date)-1, 1)
                         )
                 );
-                var row_level = Math.ceil(only_month(date) / (no_months_in_a_row));
+                var row_level = (
+                        Math.ceil(only_month(date) / (no_months_in_a_row)));
                 return (
                         (week_diff*cellSize) +
                         row_level*cellSize*7 -
@@ -187,7 +191,11 @@ VtMultiScale.prototype.drawCalendarData = function () {
         date = d['date'];
         day_obj = getDayByDate(date, data_years);
         if (day_obj!=null){
-            return "day " + color(day_obj["day_average"]);
+            if (day_obj["day_average"]>=0){
+                return "day " + color(day_obj["day_average"]);
+            }else{
+                return "day qn-11";
+            }
         }
     }).select("title")
     .text(function(d) {
@@ -208,7 +216,11 @@ VtMultiScale.prototype.drawCalendarData = function () {
         date = d['date'];
         month_obj = getMonthByDate(date, data_years);
         if (month_obj!=null){
-            return "month " + color_month(month_obj["average"]);
+            if (month_obj["average"]>=0){
+                return "month " + color_month(month_obj["average"]);
+            }else{
+                return "month qn-11";
+            }
         }
     }).select("title")
     .text(function(d) {
@@ -229,7 +241,11 @@ VtMultiScale.prototype.drawCalendarData = function () {
         date = d['date'];
         year_obj = getYearByDate(date, data_years);
         if (year_obj!=null){
-            return "year " + color_year(year_obj["average"]);
+            if (year_obj["average"]>=0){
+                return "year " + color_year(year_obj["average"]);
+            }else{
+                return "year qn-11";
+            }
         }
     }).select("title").text(function(d) {
         date = d['date'];
@@ -263,6 +279,7 @@ VtMultiScale.prototype.mouseOverDate = function(data, index, base, obj){
     this.tooltip.style("visibility", "visible");
     date = data["date"];
     type = data["type"];
+    data_years = this.data['year_list'];
     var amount_data = -1;
     var date_formated = -1;
     switch(type){

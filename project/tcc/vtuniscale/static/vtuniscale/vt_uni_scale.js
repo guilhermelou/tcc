@@ -32,8 +32,8 @@ VtUniScale.prototype.dataSetFromStation = function (station) {
             "CONSISTENT": {"color": "#449d44"},
             "NOT CONSISTENT": {"color": "#d9534d"}
         }
-    data_item["measure_html"] = '<button onclick="testeUni(\''+
-            station["id"]+'\')">'+station["prefix"]+'</button>'
+    data_item["measure_html"] = '<button onclick="addChartFromUni('+
+            station["id"]+')">'+station["prefix"]+'  [+]</button>'
     data_item["interval_s"] = 3*30.5*24*60*60;
     data_item["data"] = years_array;
     consistency_array = station["consistency"];

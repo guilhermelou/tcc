@@ -66,7 +66,6 @@ def stations_ordered(request):
     response = JsonResponse({'stations': list(stations)})
     return response
 
-
 def custom(request):
     return render(request, 'vtmultiscale/heatmap_custom.html')
 
@@ -90,16 +89,21 @@ def get_year(request):
         station_id = int(request.POST["station_id"])
         station = None
         try:
-            station = Station.objects.get(id=station_id)
+            station = Station.objects.filter(id=station_id).values()[0]
         except:
             pass
-        years = station.years
+        years = station["years"]
         year_list = []
         for year in years:
-            print year['year']
             if year['year'] >= min_year and year['year'] <= max_year:
                 year_list.append(year)
-        response = JsonResponse({'year_list': year_list})
+        station.pop("years", 0)
+        station.pop("null_days_array_str", 0)
+        station.pop("null_days_array", 0)
+        station.pop("uni_scale", 0)
+        station.pop("sub_section_id", 0)
+        response = JsonResponse(
+                {'year_list': year_list, "station": station})
         return response
 
 def search_station(request):

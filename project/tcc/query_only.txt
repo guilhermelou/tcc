@@ -1,0 +1,37 @@
+SELECT DISTINCT ON (id) id, year_ini, year_end, prefix , code , name ,
+city , basin , alt , lat , long , range , day_amount , null_days , amount ,
+average , consistency , null_days_array_str
+
+FROM rainfall_station WHERE year_ini <= 1960 AND year_end >= 1975
+
+WITH years_data AS (
+    SELECT id, year_ini, year_end, st_years, prefix , code , name , city ,
+        basin , alt , lat , long , range , day_amount , null_days , amount ,
+        average , consistency , null_days_array_str
+    FROM rainfall_station st,
+    jsonb_array_elements(st.years) st_years
+    WHERE (st_years->>'year')::int = 1983
+)
+SELECT DISTINCT ON (id) id, year_ini, year_end, prefix , code , name , city ,
+ basin , alt , lat , long , range , day_amount , null_days , amount , average ,
+ consistency , null_days_array_str
+FROM years_data WHERE(st_years->>'average')::float > 30.0
+AND year_ini <= 1960 AND year_end >= 1975
+
+
+WITH years_data AS (
+    SELECT id, year_ini, year_end, st_years, prefix , code , name , city ,
+        basin , alt , lat , long , range , day_amount , null_days , amount ,
+        average , consistency , null_days_array_str
+    FROM rainfall_station st,
+    jsonb_array_elements(st.years) st_years
+    WHERE (st_years->>'year')::int = 1983
+)
+SELECT DISTINCT ON (id) id, year_ini, year_end, prefix , code , name , city ,
+ basin , alt , lat , long , range , day_amount , null_days , amount , average ,
+ consistency , null_days_array_str
+FROM years_data WHERE(st_years->>'average')::float > 30.0
+
+
+
+

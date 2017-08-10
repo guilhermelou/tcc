@@ -56,6 +56,7 @@ MapaFocusContext.prototype.ready = function(error, shp) {
     var states = topojson.feature(shp, shp.objects.states);
     var states_contour = topojson.mesh(shp, shp.objects.states);
     // Desenhando estados
+    
     this.g.selectAll(".estado")
         .data(states.features)
         .enter()
