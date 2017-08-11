@@ -77,7 +77,7 @@
                 <input id="ms_year_ini" type="text" value="1990"></input>
                 <label> Ano Final: </label>
                 <input id="ms_year_end" type="text" value="1996"></input>
-                <button id="ms_update"> Atualizar &#x21BB;</button>
+                <button id="ms_update" onClick="updateMulti()"> Atualizar &#x21BB;</button>
                 </a>
             </li>
             <li >
@@ -168,7 +168,7 @@ function getStationById(station_array, id){
 }
 function addChartFromUni(id){
     var station = getStationById(station_geo_array, id);
-	addSelectedStations(station);
+	//addSelectedStations(station);
     if (station !=null){
         addChart(station);
     }
@@ -242,6 +242,7 @@ function setSelectedStations(stations){
     stations_selected_array = [];
     for (var i in stations){
         stations_selected_array.push(stations[i]);
+        console.log(i);
     }
     document.getElementById(div_selected_stations_id.substring(1)).innerHTML="";
     document.getElementById("charts").innerHTML = "";
@@ -588,6 +589,10 @@ function exchangeElements(element1, element2)
     element1.parentNode.replaceChild(clonedElement2, element1);
 
     return clonedElement1;
+}
+function updateMulti(){
+    console.log("ATUALIZA");
+	setSelectedStations(stations_selected_array.slice());
 }
 </script>
 {% endblock %}
