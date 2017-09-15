@@ -1,0 +1,214 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.5 }
+
+\bibitem[Assad e Sano 1998]{assad1998sistema}
+\abntrefinfo{Assad e Sano}{ASSAD; SANO}{1998}
+{ASSAD, E.~D.; SANO, E.~E. Sistema de informa{\c{c}}{\~o}es geogr{\'a}ficas:
+  aplica{\c{c}}{\~o}es na agricultura.
+EMBRAPA-CPAC, 1998.}
+
+\bibitem[Bederson 2000]{bederson2000fisheye}
+\abntrefinfo{Bederson}{BEDERSON}{2000}
+{BEDERSON, B.~B. Fisheye menus. In:  ACM. \emph{Proceedings of the 13th annual
+  ACM symposium on User interface software and technology}. [S.l.], 2000. p.
+  217--225.}
+
+\bibitem[Berners-Lee 1991]{berners1991original}
+\abntrefinfo{Berners-Lee}{BERNERS-LEE}{1991}
+{BERNERS-LEE, T. The original http as defined in 1991.
+\emph{World Wide Web Consortium (W3C)}, 1991.}
+
+\bibitem[Branco 2003]{branco2003visualizacao}
+\abntrefinfo{Branco}{BRANCO}{2003}
+{BRANCO, V. M.~A.
+\emph{Visualiza{\c{c}}{\~a}o como suporte {\`a} explora{\c{c}}{\~a}o de uma
+  base de dados pluviom{\'e}tricos}.
+Disserta\c{c}\~{a}o (Mestrado) --- Universidade de S{\~a}o Paulo, 2003.}
+
+\bibitem[Card, Mackinlay e Shneiderman 1999]{card1999readings}
+\abntrefinfo{Card, Mackinlay e Shneiderman}{CARD; MACKINLAY; SHNEIDERMAN}{1999}
+{CARD, S.~K.; MACKINLAY, J.~D.; SHNEIDERMAN, B. \emph{Readings in information
+  visualization: using vision to think}. [S.l.]: Morgan Kaufmann, 1999.}
+
+\bibitem[Chen, Han e Yu 1996]{chen1996}
+\abntrefinfo{Chen, Han e Yu}{CHEN; HAN; YU}{1996}
+{CHEN, M.-S.; HAN, J.; YU, P.~S. Data mining: an overview from a database
+  perspective.
+\emph{IEEE Transactions on Knowledge and data Engineering}, IEEE, v.~8, n.~6,
+  p. 866--883, 1996.}
+
+\bibitem[Chmielewski 2014]{chmielewski2014device}
+\abntrefinfo{Chmielewski}{CHMIELEWSKI}{2014}
+{CHMIELEWSKI, J. Device-independent architecture for ubiquitous applications.
+\emph{Personal and Ubiquitous Computing}, Springer, v.~18, n.~2, p. 481--488,
+  2014.}
+
+\bibitem[Cisco 2017]{cisco}
+\abntrefinfo{Cisco}{CISCO}{2017}
+{CISCO. \emph{Cisco Visual Networking Index: Global Mobile Data Traffic
+  Forecast Update, 2016–2021 White Paper}. 2017.
+Dispon{\'\i}vel em:
+  \url{https://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/mobile-white-paper-c11-520862.html,
+  acessado em 15 de Agosto de 2017}. Acesso em: 2017-08-15.}
+
+\bibitem[Coulouris et al. 2013]{coulouris2013sistemas}
+\abntrefinfo{Coulouris et al.}{COULOURIS et al.}{2013}
+{COULOURIS, G. et al. \emph{Sistemas Distribu{\'\i}dos-: Conceitos e Projeto}.
+  [S.l.]: Bookman Editora, 2013.}
+
+\bibitem[Crepani, Medeiros e Palmeira 2004]{crepani2004intensidade}
+\abntrefinfo{Crepani, Medeiros e Palmeira}{CREPANI; MEDEIROS; PALMEIRA}{2004}
+{CREPANI, E.; MEDEIROS, J.~d.; PALMEIRA, A.~F. Intensidade pluviom{\'e}trica:
+  uma maneira de tratar dados pluviom{\'e}tricos para an{\'a}lise da
+  vulnerabilidade de paisagens {\`a} perda de solo.
+\emph{S{\~a}o Jos{\'e} dos Campos: INPE}, 2004.}
+
+\bibitem[Fayyad 1998]{fay1998}
+\abntrefinfo{Fayyad}{FAYYAD}{1998}
+{FAYYAD, U.~M. Mining databases: Towards algorithms for knowledge discovery.
+\emph{IEEE Data Eng. Bull.}, v.~21, n.~1, p. 39--48, 1998.}
+
+\bibitem[Fayyad et al. 1996]{fay1996}
+\abntrefinfo{Fayyad et al.}{FAYYAD et al.}{1996}
+{FAYYAD, U.~M. et al. Knowledge discovery and data mining: towards a unifying
+  framework. In:  \emph{KDD}. [S.l.: s.n.], 1996. v.~96, p. 82--88.}
+
+\bibitem[Few e Edge 2008]{horizon}
+\abntrefinfo{Few e Edge}{FEW; EDGE}{2008}
+{FEW, S.; EDGE, P. Time on the horizon.
+\emph{Perceptual Edge: Visual Business Intelligence Newsletter}, p.~1--7,
+  2008.}
+
+\bibitem[Gantz e Reinsel 2012]{gantz2012digital}
+\abntrefinfo{Gantz e Reinsel}{GANTZ; REINSEL}{2012}
+{GANTZ, J.; REINSEL, D. The digital universe in 2020: Big data, bigger digital
+  shadows, and biggest growth in the far east.
+\emph{IDC iView: IDC Analyze the future}, v.~2007, n.~2012, p. 1--16, 2012.}
+
+\bibitem[Genghini 2011]{genghini}
+\abntrefinfo{Genghini}{GENGHINI}{2011}
+{GENGHINI, F.
+\emph{Extens{\~a}o da plataforma de visualiza{\c{c}}{\~a}o INFOVIS incorporando
+  recursos de interatividade}.
+Disserta\c{c}\~{a}o ({Trabalho de Conclusão de Curso}) --- Universidade
+  Estadual Paulista (UNESP), {Campus de Presidente Prudente}, 2011.}
+
+\bibitem[International 2013]{json}
+\abntrefinfo{International}{INTERNATIONAL}{2013}
+{INTERNATIONAL, E. \emph{Introducting JSON}. 2013.
+Dispon{\'\i}vel em: \url{http://www.json.org/}.}
+
+\bibitem[Kosara, Hauser e Gresh 2003]{kosara2003interaction}
+\abntrefinfo{Kosara, Hauser e Gresh}{KOSARA; HAUSER; GRESH}{2003}
+{KOSARA, R.; HAUSER, H.; GRESH, D.~L. An interaction view on information
+  visualization.
+\emph{State-of-the-Art Report. Proceedings of EUROGRAPHICS}, p. 123--137,
+  2003.}
+
+\bibitem[Lamping, Rao e Pirolli 1995]{lamping1995focus}
+\abntrefinfo{Lamping, Rao e Pirolli}{LAMPING; RAO; PIROLLI}{1995}
+{LAMPING, J.; RAO, R.; PIROLLI, P. A focus+ context technique based on
+  hyperbolic geometry for visualizing large hierarchies. In:  ACM
+  PRESS/ADDISON-WESLEY PUBLISHING CO. \emph{Proceedings of the SIGCHI
+  conference on Human factors in computing systems}. [S.l.], 1995. p.
+  401--408.}
+
+\bibitem[Mackinlay, Robertson e Card 1991]{mackinlay1991perspective}
+\abntrefinfo{Mackinlay, Robertson e Card}{MACKINLAY; ROBERTSON; CARD}{1991}
+{MACKINLAY, J.~D.; ROBERTSON, G.~G.; CARD, S.~K. The perspective wall: Detail
+  and context smoothly integrated. In:  ACM. \emph{Proceedings of the SIGCHI
+  conference on Human factors in computing systems}. [S.l.], 1991. p.
+  173--176.}
+
+\bibitem[Nascimento e Ferreira 2005]{do2005visualizacao}
+\abntrefinfo{Nascimento e Ferreira}{NASCIMENTO; FERREIRA}{2005}
+{NASCIMENTO, H.~A. D.; FERREIRA, C.~B. Visualiza{\c{c}}{\~a}o de
+  informa{\c{c}}{\~o}es--uma abordagem pr{\'a}tica. In:  \emph{XXV Congresso da
+  Sociedade Brasileira de Computa{\c{c}}{\~a}o, XXIV JAI. UNISINOS, S.
+  Leopoldo--RS}. [S.l.: s.n.], 2005.}
+
+\bibitem[NoSQL Databases 2009]{nosql}
+\abntrefinfo{NoSQL\ldots}{NOSQL\ldots}{2009}
+{NOSQL Databases. 2009.
+Dispon{\'\i}vel em: \url{http://nosql-database.org/}. Acesso em: 2016-03-15.}
+
+\bibitem[Oliveira e Assun{\c{c}}{\~a}o 2009]{oliveira2009importancia}
+\abntrefinfo{Oliveira e Assun{\c{c}}{\~a}o}{OLIVEIRA; ASSUN{\c{C}}{\~A}O}{2009}
+{OLIVEIRA, A.~G.; ASSUN{\c{C}}{\~A}O, W.~L. A import{\^a}ncia dos dados das
+  vari{\'a}veis clim{\'a}ticas nas pesquisas em geografia: um estudo de caso
+  empregando a precipita{\c{c}}{\~a}o pluviom{\'e}trica.
+\emph{Caminhos de Geografia}, v.~10, n.~31, 2009.}
+
+\bibitem[Perin, Vernier e Fekete 2013]{perin2013interactive}
+\abntrefinfo{Perin, Vernier e Fekete}{PERIN; VERNIER; FEKETE}{2013}
+{PERIN, C.; VERNIER, F.; FEKETE, J.-D. Interactive horizon graphs: Improving
+  the compact visualization of multiple time series. In:  ACM.
+  \emph{Proceedings of the SIGCHI Conference on Human Factors in Computing
+  Systems}. [S.l.], 2013. p. 3217--3226.}
+
+\bibitem[Pirolli e Rao 2000]{pirolli}
+\abntrefinfo{Pirolli e Rao}{PIROLLI; RAO}{2000}
+{PIROLLI, P.; RAO, R. Table lens as a tool for making sense of data.
+11 2000.}
+
+\bibitem[PostgreSQL 1996]{postgresql}
+\abntrefinfo{PostgreSQL}{POSTGRESQL}{1996}
+{POSTGRESQL. \emph{JSON Functions and Operators}. 1996.
+Dispon{\'\i}vel em:
+  \url{https://www.postgresql.org/docs/9.6/static/functions-json.html}.}
+
+\bibitem[Rao e Card 1994]{rao1994table}
+\abntrefinfo{Rao e Card}{RAO; CARD}{1994}
+{RAO, R.; CARD, S.~K. The table lens: merging graphical and symbolic
+  representations in an interactive focus+ context visualization for tabular
+  information. In:  ACM. \emph{Proceedings of the SIGCHI conference on Human
+  factors in computing systems}. [S.l.], 1994. p. 318--322.}
+
+\bibitem[Rhyne 2003]{rhyne2003}
+\abntrefinfo{Rhyne}{RHYNE}{2003}
+{RHYNE, T.-M. Does the difference between information and scientific
+  visualization really matter?
+\emph{IEEE Computer Graphics and Applications}, IEEE Computer Society Press,
+  v.~23, n.~3, p.~6--8, 2003.}
+
+\bibitem[Romero-L{\'e}piz 2015]{romero2015herramienta}
+\abntrefinfo{Romero-L{\'e}piz}{ROMERO-L{\'E}PIZ}{2015}
+{ROMERO-L{\'E}PIZ, J.~A. Herramienta en ambiente web para la visualizaci{\'o}n
+  de las corrientes de viento en costa rica.
+Instituto Tecnol{\'o}gico de Costa Rica, 2015.}
+
+\bibitem[Saito et al. 2005]{saito2005two}
+\abntrefinfo{Saito et al.}{SAITO et al.}{2005}
+{SAITO, T. et al. Two-tone pseudo coloring: Compact visualization for
+  one-dimensional data. In:  IEEE. \emph{Information Visualization, 2005.
+  INFOVIS 2005. IEEE Symposium on}. [S.l.], 2005. p. 173--180.}
+
+\bibitem[Shimabukuro 2004]{shimabukuro}
+\abntrefinfo{Shimabukuro}{SHIMABUKURO}{2004}
+{SHIMABUKURO, M.~H.
+\emph{Visualiza{\c{c}}{\~o}es temporais em uma plataforma de software
+  extens{\'\i}vel e adapt{\'a}vel}.
+Tese (Doutorado) --- Instituto de Ci{\^e}ncias Matem{\'a}ticas e de
+  Computa{\c{c}}{\~a}o (ICMC-USP), {São Carlos}, 2004.}
+
+\bibitem[Strauch, Sites e Kriha 2011]{strauch}
+\abntrefinfo{Strauch, Sites e Kriha}{STRAUCH; SITES; KRIHA}{2011}
+{STRAUCH, C.; SITES, U.-L.~S.; KRIHA, W. Nosql databases.
+\emph{Lecture Notes, Stuttgart Media University}, 2011.}
+
+\bibitem[Weber 2010]{weber}
+\abntrefinfo{Weber}{WEBER}{2010}
+{WEBER, S. Nosql databases.
+\emph{University of Applied Sciences HTW Chur, Switzerland}, 2010.}
+
+\bibitem[Wong 1999]{wong1999}
+\abntrefinfo{Wong}{WONG}{1999}
+{WONG, P.~C. Visual data mining.
+\emph{IEEE Computer Graphics and Applications}, IEEE, v.~19, n.~5, p. 20--21,
+  1999.}
+
+\end{thebibliography}

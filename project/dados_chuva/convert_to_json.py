@@ -177,8 +177,28 @@ with open(postos_file_name, 'rb') as csvfile:
 
 
 for station_key in stations:
+
     station = stations[station_key]
+    print station['years']
+    '''
+    # copying the dict to not destruct the data
+    station = stations[station_key].copy()
+    print station.pop('section', None)
+    print station.pop('subsection', None)
+    print station.pop('subsubsection', None)
+    print station.pop('average', None)
+    print station.pop('name', None)
+    print station.pop('city', None)
+    print station.pop('basin', None)
+    print station.pop('alt', None)
+    print station.pop('lat', None)
+    print station.pop('long', None)
+    print station.pop('year_ini', None)
+    print station.pop('year_end', None)
+    print station.pop('range', None)
+    print station.pop('consistency', None)
     print station
+    '''
 
 json_data = json.dumps(data)
 

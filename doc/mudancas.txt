@@ -1,0 +1,37 @@
+#reduancia de chuva e pluviométrico
+
+#Dados pluviométricos são captados em várias estações na escala diária mas podem ser analisados mes a mes e ano ano e eventualmente os 3o
+
+#lugar de performance e desempenho trocar por melhor adequação ao tipo de dado
+
+#trabalhos relacionados o que foi feito
+
+#primeira vez utilizar "dentro do SGBD PostgreSQL
+
+#KDD em itálico
+
+#aumentar KDD
+
+#Adaptado de Fayad sem shimabukuro
+
+#Remover definição
+
+#detalhes do json explicado em ref
+
+#Estrutura do projeto no lugar de demostrativo
+
+#trocar demonstrado para mostra, exibe ou representa
+
+#É interessante ou invés de também há
+
+#retirar legenda do horizongraph
+
+#segundo só o citeonline
+
+#Conteúdo legenda imagens jogar pro texto onde tem o segundo
+
+#desenhar a), b) e c) nas imagens e referenciar
+
+
+
+

@@ -6,10 +6,10 @@
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet" type="text/css">
     <link href="{% static 'vtuniscale/visavail/css/visavail.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'vtuniscale/vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'vthorizongraph/horizon.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block content %}
-
     <div class="col-lg-12">
         <div class="col-lg-2">
             <div id="sp_map">
@@ -119,6 +119,7 @@
 <script src="{% static 'vthorizongraph/horizon.js' %}"></script>
 <script src="{% static 'vtuniscale/dataset.js' %}"></script>
 <script src="{% static 'vtuniscale/vt_uni_scale.js' %}"></script>
+
 
 
 <script>
@@ -337,11 +338,46 @@ function drawCalendar(d){
             current_chart_div.id, 1, d["station"]);
     setNewIndex();
     current_chart = new VtMultiScale(chart_to_draw, getYearRange(), d);
+
+
     // HORIZONNNNN
+    horizon_div = document.getElementById("chart_horizon_graph");
+    console.log("CONTEUDO:  "+horizon_div.innerHTML)
+    var margin = {top: 0, right: 10, bottom: 20, left: 0},
+        width = 960 - margin.left - margin.right,
+        height = 50 - margin.top - margin.bottom;
+    if (horizon_div.innerHTML == ""){
+
+        var x = d3.time.scale()
+            .domain([
+                        new Date(getYearRange()[0], 0, 1),
+                        new Date(getYearRange()[1], 11, 31)
+                    ])
+            .range([0, width]);
+
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom")
+            .tickSize(16, 0);
+
+        var axis_svg = d3.select("#chart_horizon_graph").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        axis_svg.append("g")
+            .attr("class", "x h_axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+        .selectAll(".tick text")
+            .style("text-anchor", "start")
+            .attr("x", 6)
+            .attr("y", 6);
+    }
     var horizon_svg = d3.select("#chart_horizon_graph").append("svg")
         .attr("width", width)
         .attr("height", height);
-
 
     var data = [];
     var year_array = d["year_list"];
@@ -373,6 +409,7 @@ function drawCalendar(d){
 */
     // Render the chart.
     //horizon_svg.data([[[Date.UTC(2000,10), 5], [Date.UTC(2000,11), 10]]]).call(horizon_chart);
+
     horizon_svg.data([data]).call(horizon_chart);
     var horizon_prefix = horizon_svg.append("g").selectAll("text")
         .data([d["station"]["prefix"]])

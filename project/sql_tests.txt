@@ -1,0 +1,10 @@
+select name from rainfall_station;
+select * from rainfall_station where name='OSASCO';
+select name, years->1->'average' as year_average from rainfall_station where years@>'[{"year": 1985}]'::jsonb;
+select name from rainfall_station;
+select * from rainfall_station where name='OSASCO';
+select * from rainfall_station where name='IBITIUVA';
+select name, years->1->'average' as year_average from rainfall_station where years@>'[{"year": 1985}]'::jsonb;
+select name, years->0->'year' as year_average from rainfall_station where years@>'[{"year": 1940}]'::jsonb;
+select name, years from rainfall_station where years@>'[{"year": 1930}]'::jsonb;
+select name, years from rainfall_station where years@>'[{"year": 1920}]'::jsonb;

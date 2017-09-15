@@ -1,0 +1,31 @@
+[
+  {
+    "ano": 1959,
+    "quantidade_dias": 365,
+    "media_chuva": 28.745205479452054,
+    "quantidade_chuva": 10492,
+    "dias_nulos": 2,
+    "meses": [
+      {
+        "mes": 1,
+        "quantidade_dias": 31,
+        "quantidade_chuva": 2536,
+        "media_chuva": 81.80645161290323,
+        "array_dias_nulos": [
+          "1997-01-21",
+          "1997-01-22"
+        ],
+        "dias_nulos": 2,
+        "dias": [
+          {
+            "dia": 1,
+            "quantidade_chuva": 0
+          },
+          {
+            "dia": 2,
+            "quantidade_chuva": 0
+          },
+          {
+            "dia": 3,
+            "quantidade_chuva": 20
+          },

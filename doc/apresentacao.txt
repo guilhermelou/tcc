@@ -1,0 +1,13 @@
+Título do projeto
+
+o que foi feito?
+// este projeto reúne técnicas de visualização
+
+    Ambiente WEB que reúne Visualizações simultâneas coordenadas com interatividade aplicada a dados pluviométricos
+    Uso de tecnologias para dar apoio as visualizações, com D3.js, e a gerencia dos dados, com PostgreSQL+NoSQL.
+
+Introdução
+    Dados pluviométricos e análises, então é importante existir visualizaçõe voltada a este tipo de forma clara e estruturada, o uso de ferramentas computacionais podem  auxiliar neste processo como o D3.js para gerar as visualizações em arquivos SVG
+    uso da WeB
+
+
